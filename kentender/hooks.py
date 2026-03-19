@@ -2,8 +2,45 @@ doc_events = {
 	"Procurement Plan Item": {
 		"validate": "kentender.kentender.api.validate_plan_item",
 	},
+	"Contract": {
+		"validate": "kentender.kentender.api.validate_contract",
+	},
+	"Acceptance Certificate": {
+		"validate": "kentender.kentender.api.validate_acceptance_certificate",
+	},
+	"Contract Implementation Team Member": {
+		"validate": "kentender.kentender.api.validate_cit_member",
+	},
+	"Inspection Committee Member": {
+		"validate": "kentender.kentender.api.validate_inspection_committee_member",
+	},
+	"Contract Variation": {
+		"validate": "kentender.kentender.api.validate_contract_variation",
+		"on_submit": "kentender.kentender.api.apply_contract_variation",
+	},
+	"Termination Record": {
+		"validate": "kentender.kentender.api.validate_termination_record",
+		"on_submit": "kentender.kentender.api.apply_termination_record",
+	},
+	"Defect Liability Case": {
+		"validate": "kentender.kentender.api.validate_defect_liability_case",
+		"on_update": "kentender.kentender.api.handle_defect_liability_case_update",
+	},
+	"Claim": {
+		"validate": "kentender.kentender.api.validate_claim",
+	},
+	"Dispute Case": {
+		"validate": "kentender.kentender.api.validate_dispute_case",
+	},
+	"Task": {
+		"validate": "kentender.kentender.api.validate_task_milestone",
+	},
 	"Tender Submission": {
 		"validate": "kentender.kentender.api.validate_submission",
+	},
+	"Purchase Invoice": {
+		"validate": "kentender.kentender.api.validate_purchase_invoice_certificate",
+		"on_submit": "kentender.kentender.api.create_retention_ledger_entry_from_invoice",
 	},
 	"Tender": {
 		"on_submit": "kentender.kentender.api.validate_tender",
@@ -13,7 +50,11 @@ doc_events = {
 scheduler_events = {
 	"daily": [
 		"kentender.kentender.api.recheck_supplier_compliance",
-	]
+		"kentender.kentender.api.monitor_dlp_expiry",
+	],
+	"monthly": [
+		"kentender.kentender.api.create_monthly_contract_monitoring_reports",
+	],
 }
 app_name = "kentender"
 app_title = "KenTender"
