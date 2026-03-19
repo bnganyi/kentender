@@ -1,0 +1,68 @@
+{
+  "doctype": "DocType",
+  "name": "Tender",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:TN-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "procurement_plan_item",
+      "label": "Procurement Plan Item",
+      "fieldtype": "Link",
+      "options": "Procurement Plan Item",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nPublished\nClosed\nEvaluated\nAwarded",
+      "default": "Draft"
+    },
+    {
+      "fieldname": "publish_date",
+      "label": "Publish Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "submission_deadline",
+      "label": "Submission Deadline",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "purchase_order",
+      "label": "Purchase Order",
+      "fieldtype": "Link",
+      "options": "Purchase Order"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Procurement User",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "read": 1,
+      "write": 1
+    }
+  ]
+}

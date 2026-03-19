@@ -1,0 +1,82 @@
+{
+  "doctype": "DocType",
+  "name": "Procurement Plan Item",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 1,
+  "autoname": "format:PPI-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "procurement_plan",
+      "label": "Procurement Plan",
+      "fieldtype": "Link",
+      "options": "Procurement Plan",
+      "reqd": 1
+    },
+    {
+      "fieldname": "item_code",
+      "label": "Item",
+      "fieldtype": "Link",
+      "options": "Item",
+      "reqd": 1
+    },
+    {
+      "fieldname": "qty",
+      "label": "Quantity",
+      "fieldtype": "Float",
+      "reqd": 1
+    },
+    {
+      "fieldname": "estimated_budget",
+      "label": "Estimated Budget",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approvals",
+      "label": "Approvals",
+      "fieldtype": "Table",
+      "options": "Plan Item Approval"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nUnder Review\nApproved\nClosed",
+      "default": "Draft"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Procurement User",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "read": 1,
+      "write": 1,
+      "submit": 1,
+      "cancel": 1
+    }
+  ]
+}

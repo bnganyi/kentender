@@ -1,0 +1,78 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Submission",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:TS-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "tender",
+      "label": "Tender",
+      "fieldtype": "Link",
+      "options": "Tender",
+      "reqd": 1
+    },
+    {
+      "fieldname": "supplier",
+      "label": "Supplier",
+      "fieldtype": "Link",
+      "options": "Supplier",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "currency",
+      "label": "Currency",
+      "fieldtype": "Link",
+      "options": "Currency",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "quoted_amount",
+      "label": "Quoted Amount",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "exchange_rate",
+      "label": "Exchange Rate",
+      "fieldtype": "Float",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "base_amount",
+      "label": "Base Amount",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "in_list_view": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Supplier",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Procurement User",
+      "read": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "read": 1
+    }
+  ]
+}

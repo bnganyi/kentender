@@ -1,0 +1,38 @@
+{
+  "doctype": "DocType",
+  "name": "Plan Item Approval",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 1,
+  "is_submittable": 0,
+  "fields": [
+    {
+      "fieldname": "approval_level",
+      "label": "Approval Level",
+      "fieldtype": "Int",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approver_role",
+      "label": "Approver Role",
+      "fieldtype": "Link",
+      "options": "Role",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Pending\nApproved\nRejected",
+      "default": "Pending",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approved_by",
+      "label": "Approved By",
+      "fieldtype": "Link",
+      "options": "User"
+    }
+  ]
+}
+

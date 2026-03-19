@@ -1,0 +1,48 @@
+{
+  "doctype": "DocType",
+  "name": "Supplier Compliance Profile",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:SCP-{#####}",
+  "fields": [
+    {
+      "fieldname": "supplier",
+      "label": "Supplier",
+      "fieldtype": "Link",
+      "options": "Supplier",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Pending\nVerified\nPartially Verified\nRejected",
+      "default": "Pending"
+    },
+    {
+      "fieldname": "last_checked",
+      "label": "Last Checked",
+      "fieldtype": "Datetime"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Procurement User",
+      "read": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "read": 1,
+      "write": 1
+    }
+  ]
+}

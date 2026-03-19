@@ -1,3 +1,21 @@
+doc_events = {
+	"Procurement Plan Item": {
+		"on_submit": "kentender.kentender.api.generate_approval_chain",
+		"validate": "kentender.kentender.api.validate_plan_item",
+	},
+	"Tender Submission": {
+		"validate": "kentender.kentender.api.validate_submission",
+	},
+	"Tender": {
+		"on_submit": "kentender.kentender.api.validate_tender",
+	},
+}
+
+scheduler_events = {
+	"daily": [
+		"kentender.kentender.api.recheck_supplier_compliance",
+	]
+}
 app_name = "kentender"
 app_title = "KenTender"
 app_publisher = "Midas"

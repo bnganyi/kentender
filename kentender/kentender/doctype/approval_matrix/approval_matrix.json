@@ -1,0 +1,60 @@
+{
+  "doctype": "DocType",
+  "name": "Approval Matrix",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:AM-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "min_amount",
+      "label": "Min Amount",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "max_amount",
+      "label": "Max Amount",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approval_level",
+      "label": "Approval Level",
+      "fieldtype": "Int",
+      "reqd": 1
+    },
+    {
+      "fieldname": "role",
+      "label": "Role",
+      "fieldtype": "Link",
+      "options": "Role",
+      "reqd": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 0
+    }
+  ]
+}
+
