@@ -1,6 +1,5 @@
 doc_events = {
 	"Procurement Plan Item": {
-		"on_submit": "kentender.kentender.api.generate_approval_chain",
 		"validate": "kentender.kentender.api.validate_plan_item",
 	},
 	"Tender Submission": {

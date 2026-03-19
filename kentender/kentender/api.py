@@ -45,6 +45,11 @@ def validate_plan_item(doc, method) -> None:
     if not doc.item_code:
         frappe.throw("Item is required")
 
+    # IMPORTANT: populate approvals during validation so changes persist on submit.
+    # Frappe does not automatically re-save changes made in `on_submit`.
+    if getattr(doc, "docstatus", 0) == 1:
+        generate_approval_chain(doc, method)
+
 
 @frappe.whitelist()
 def approve_plan_item(docname: str) -> str:
