@@ -1,0 +1,50 @@
+{
+  "doctype": "DocType",
+  "name": "Evaluation Criteria",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:EC-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "criteria_name",
+      "label": "Criteria Name",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "weight",
+      "label": "Weight",
+      "fieldtype": "Float",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "type",
+      "label": "Type",
+      "fieldtype": "Select",
+      "options": "Technical\nFinancial",
+      "reqd": 1,
+      "in_list_view": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 0
+    }
+  ]
+}
+

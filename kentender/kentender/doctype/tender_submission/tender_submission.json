@@ -50,6 +50,19 @@
       "fieldtype": "Currency",
       "options": "currency",
       "in_list_view": 1
+    },
+    {
+      "fieldname": "scores",
+      "label": "Scores",
+      "fieldtype": "Table",
+      "options": "Submission Scores",
+      "in_list_view": 0
+    },
+    {
+      "fieldname": "total_score",
+      "label": "Total Score",
+      "fieldtype": "Float",
+      "in_list_view": 1
     }
   ],
   "permissions": [

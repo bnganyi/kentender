@@ -102,6 +102,30 @@ def validate_submission(doc, method) -> None:
     set_exchange(doc)
     validate_supplier_compliance(doc.supplier)
 
+    # Phase 2: compute weighted evaluation score (if score rows exist).
+    if doc.meta.get_field("total_score"):
+        doc.total_score = calculate_total_score(doc)
+
+
+def calculate_total_score(submission) -> float:
+    """Compute weighted score using Evaluation Criteria weights."""
+    total = 0.0
+    any_row_scored = False
+
+    for row in (getattr(submission, "scores", None) or []):
+        if not row.criteria:
+            continue
+        if row.score is None:
+            continue
+
+        any_row_scored = True
+        weight = frappe.db.get_value("Evaluation Criteria", row.criteria, "weight") or 0
+        total += float(row.score or 0) * float(weight)
+
+    # If there are no score rows, keep total_score at 0.
+    # award_tender will decide whether scores are mandatory.
+    return float(total) if any_row_scored else 0.0
+
 
 def set_exchange(doc) -> None:
     company = frappe.db.get_value("Tender", doc.tender, "company")
@@ -168,7 +192,10 @@ def _resolve_warehouse(company: str, item_code: str) -> str | None:
 @frappe.whitelist()
 def award_tender(tender_name: str, submission_name: str) -> str:
     tender = frappe.get_doc("Tender", tender_name)
-    submission = frappe.get_doc("Tender Submission", submission_name)
+
+    # Phase 2: choose the winner by highest weighted total_score.
+    winner = _select_winning_submission(tender_name, submission_name)
+    submission = frappe.get_doc("Tender Submission", winner)
     plan_item = frappe.get_doc("Procurement Plan Item", tender.procurement_plan_item)
     is_stock_item = frappe.db.get_value("Item", plan_item.item_code, "is_stock_item")
     warehouse = _resolve_warehouse(tender.company, plan_item.item_code) if is_stock_item else None
@@ -204,4 +231,63 @@ def award_tender(tender_name: str, submission_name: str) -> str:
     tender.save()
 
     return po.name
+
+
+def _select_winning_submission(tender_name: str, preferred_submission: str | None) -> str:
+    submission_names = frappe.get_all(
+        "Tender Submission",
+        filters={"tender": tender_name},
+        pluck="name",
+    )
+    if not submission_names:
+        frappe.throw("No Tender Submissions found for this tender")
+
+    best_name = None
+    best_total = None
+    best_quote = None
+
+    preferred_total = None
+    preferred_quote = None
+    preferred_is_best_candidate = False
+
+    for sub_name in submission_names:
+        sub = frappe.get_doc("Tender Submission", sub_name)
+
+        # Ensure total_score exists (covers older records that may not have been rescored).
+        total = (
+            sub.total_score
+            if getattr(sub, "total_score", None) not in (None, 0)
+            else calculate_total_score(sub)
+        )
+        total = float(total or 0)
+
+        # If we have no score rows, disqualify for Phase 2 winner selection.
+        # (You can relax this later if you want a fallback ranking.)
+        scores = getattr(sub, "scores", None) or []
+        has_scoring = bool(scores and any(r.criteria for r in scores))
+        if not has_scoring:
+            continue
+
+        quote = float(sub.quoted_amount or 0)
+
+        if best_total is None or total > best_total or (total == best_total and quote < best_quote):
+            best_total = total
+            best_quote = quote
+            best_name = sub_name
+
+        # Track preferred submission's evaluation values (if it has scoring).
+        if preferred_submission and sub_name == preferred_submission:
+            preferred_total = total
+            preferred_quote = quote
+            preferred_is_best_candidate = True
+
+    if best_name:
+        # Prefer the submission passed by the caller only if it matches the computed best.
+        if preferred_submission and preferred_is_best_candidate:
+            if float(preferred_total or 0) == float(best_total or 0) and float(preferred_quote or 0) == float(best_quote or 0):
+                return preferred_submission
+        return best_name
+
+    # If scoring rows are missing on all submissions, we fail fast.
+    frappe.throw("Cannot award: evaluation scores are missing for all Tender Submissions")
 
