@@ -1,0 +1,150 @@
+{
+  "doctype": "DocType",
+  "name": "Purchase Requisition Item",
+  "module": "KenTender",
+  "custom": 1,
+  "istable": 1,
+  "fields": [
+    {
+      "fieldname": "procurement_plan_item",
+      "fieldtype": "Link",
+      "label": "Procurement Plan Item",
+      "options": "Procurement Plan Item"
+    },
+    {
+      "fieldname": "line_number",
+      "fieldtype": "Int",
+      "label": "Line Number",
+      "reqd": 1
+    },
+    {
+      "fieldname": "item_description",
+      "fieldtype": "Data",
+      "label": "Item Description",
+      "reqd": 1
+    },
+    {
+      "fieldname": "technical_specification",
+      "fieldtype": "Small Text",
+      "label": "Technical Specification",
+      "reqd": 1
+    },
+    {
+      "fieldname": "procurement_type",
+      "fieldtype": "Select",
+      "label": "Procurement Type",
+      "options": "Goods\nWorks\nNon-Consulting Services\nConsulting Services\nAsset Disposal",
+      "reqd": 1
+    },
+    {
+      "fieldname": "category",
+      "fieldtype": "Link",
+      "label": "Category",
+      "options": "Spend Category",
+      "reqd": 1
+    },
+    {
+      "fieldname": "quantity",
+      "fieldtype": "Float",
+      "label": "Quantity",
+      "reqd": 1
+    },
+    {
+      "fieldname": "uom",
+      "fieldtype": "Link",
+      "label": "UOM",
+      "options": "UOM",
+      "reqd": 1
+    },
+    {
+      "fieldname": "estimated_unit_cost",
+      "fieldtype": "Currency",
+      "label": "Estimated Unit Cost",
+      "reqd": 1
+    },
+    {
+      "fieldname": "estimated_total_cost",
+      "fieldtype": "Currency",
+      "label": "Estimated Total Cost",
+      "read_only": 1
+    },
+    {
+      "fieldname": "delivery_timeline",
+      "fieldtype": "Data",
+      "label": "Delivery Timeline"
+    },
+    {
+      "fieldname": "delivery_location",
+      "fieldtype": "Data",
+      "label": "Delivery Location"
+    },
+    {
+      "fieldname": "budget_head",
+      "fieldtype": "Data",
+      "label": "Budget Head",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cost_center",
+      "fieldtype": "Link",
+      "label": "Cost Center",
+      "options": "Cost Center",
+      "reqd": 1
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "label": "Project",
+      "options": "Project"
+    },
+    {
+      "fieldname": "funding_source",
+      "fieldtype": "Link",
+      "label": "Funding Source",
+      "options": "Funding Source",
+      "reqd": 1
+    },
+    {
+      "fieldname": "procurement_method_hint",
+      "fieldtype": "Data",
+      "label": "Procurement Method Hint"
+    },
+    {
+      "fieldname": "remaining_app_balance",
+      "fieldtype": "Currency",
+      "label": "Remaining APP Balance",
+      "read_only": 1
+    },
+    {
+      "fieldname": "commitment_amount",
+      "fieldtype": "Currency",
+      "label": "Commitment Amount",
+      "read_only": 1
+    },
+    {
+      "fieldname": "tendered_amount",
+      "fieldtype": "Currency",
+      "label": "Tendered Amount",
+      "read_only": 1
+    },
+    {
+      "fieldname": "awarded_amount",
+      "fieldtype": "Currency",
+      "label": "Awarded Amount",
+      "read_only": 1
+    },
+    {
+      "fieldname": "received_amount",
+      "fieldtype": "Currency",
+      "label": "Received Amount",
+      "read_only": 1
+    },
+    {
+      "fieldname": "line_status",
+      "fieldtype": "Select",
+      "label": "Line Status",
+      "options": "Draft\nValidated\nApproved\nTendered\nAwarded\nClosed\nCancelled",
+      "default": "Draft"
+    }
+  ]
+}

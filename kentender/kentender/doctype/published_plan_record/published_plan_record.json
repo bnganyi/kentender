@@ -1,0 +1,75 @@
+{
+  "doctype": "DocType",
+  "name": "Published Plan Record",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "procurement_plan",
+      "label": "Procurement Plan",
+      "fieldtype": "Link",
+      "options": "Procurement Plan",
+      "reqd": 1
+    },
+    {
+      "fieldname": "publication_type",
+      "label": "Publication Type",
+      "fieldtype": "Select",
+      "options": "Internal\nPublic\nAudit",
+      "reqd": 1
+    },
+    {
+      "fieldname": "published_by",
+      "label": "Published By",
+      "fieldtype": "Link",
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "published_on",
+      "label": "Published On",
+      "fieldtype": "Datetime",
+      "reqd": 1
+    },
+    {
+      "fieldname": "pdf_attachment",
+      "label": "PDF Attachment",
+      "fieldtype": "Attach",
+      "reqd": 0
+    },
+    {
+      "fieldname": "excel_attachment",
+      "label": "Excel Attachment",
+      "fieldtype": "Attach",
+      "reqd": 0
+    },
+    {
+      "fieldname": "hash_value",
+      "label": "Hash Value",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "notes",
+      "label": "Notes",
+      "fieldtype": "Small Text"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "create": 0,
+      "read": 1,
+      "write": 0,
+      "delete": 0
+    }
+  ]
+}
+

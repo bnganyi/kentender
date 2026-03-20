@@ -1,0 +1,12 @@
+PHASE 2 UAT CHECKLIST
+
+1. Supplier with active debarment record is blocked from bid submission.
+2. Tender cannot be published without an approved requisition source and complete document pack.
+3. Submission locks automatically at closing datetime using server time.
+4. Bid price content remains sealed until the opening action occurs.
+5. Opening record is generated and becomes immutable after committee signoff.
+6. Evaluator cannot submit worksheet before signing declaration.
+7. Evaluation consensus requires underlying evaluator worksheets.
+8. Award decision cannot finalize without a recommendation reference.
+9. Active challenge case holds final award publication where configured.
+10. Award handoff record is blocked until final award state is reached.

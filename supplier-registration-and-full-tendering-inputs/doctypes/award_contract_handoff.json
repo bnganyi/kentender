@@ -1,0 +1,58 @@
+{
+  "doctype": "DocType",
+  "name": "Award Contract Handoff",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "award_decision",
+    "handoff_status",
+    "prepared_by",
+    "prepared_on",
+    "contract_reference",
+    "notes"
+  ],
+  "fields": [
+    {
+      "fieldname": "award_decision",
+      "label": "Award Decision",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Award Decision",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "handoff_status",
+      "label": "Handoff Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Draft\nPrepared\nSent to Contract Module\nClosed",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "prepared_by",
+      "label": "Prepared By",
+      "fieldtype": "Link",
+      "options": "User"
+    },
+    {
+      "fieldname": "prepared_on",
+      "label": "Prepared On",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "contract_reference",
+      "label": "Contract Reference",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "notes",
+      "label": "Notes",
+      "fieldtype": "Small Text"
+    }
+  ],
+  "permissions": []
+}

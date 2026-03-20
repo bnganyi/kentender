@@ -1,0 +1,120 @@
+{
+  "doctype": "DocType",
+  "name": "Supplier Master",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "supplier_code",
+    "supplier_name",
+    "legal_name",
+    "registration_number",
+    "tax_id",
+    "email",
+    "phone",
+    "supplier_status",
+    "registration_status",
+    "country",
+    "physical_address",
+    "beneficial_ownership_verified",
+    "last_review_date",
+    "next_review_date",
+    "notes"
+  ],
+  "fields": [
+    {
+      "fieldname": "supplier_code",
+      "label": "Supplier Code",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "supplier_name",
+      "label": "Supplier Name",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "legal_name",
+      "label": "Legal Name",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "registration_number",
+      "label": "Registration Number",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "tax_id",
+      "label": "Tax ID",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "email",
+      "label": "Email",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "phone",
+      "label": "Phone",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "supplier_status",
+      "label": "Supplier Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Draft\nActive\nInactive\nSuspended\nDebarred\nExpired Compliance\nBlacklisted",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "registration_status",
+      "label": "Registration Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Pending\nApproved\nRejected\nRenewal Due"
+    },
+    {
+      "fieldname": "country",
+      "label": "Country",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "physical_address",
+      "label": "Physical Address",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "beneficial_ownership_verified",
+      "label": "Beneficial Ownership Verified",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "last_review_date",
+      "label": "Last Review Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "next_review_date",
+      "label": "Next Review Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "notes",
+      "label": "Notes",
+      "fieldtype": "Small Text"
+    }
+  ],
+  "permissions": [],
+  "autoname": "format:SUP-.YYYY.-.#####"
+}

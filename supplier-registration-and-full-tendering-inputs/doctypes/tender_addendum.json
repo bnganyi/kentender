@@ -1,0 +1,79 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Addendum",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "tender",
+    "addendum_number",
+    "title",
+    "change_summary",
+    "effective_date",
+    "closing_date_extended",
+    "new_closing_datetime",
+    "attachment",
+    "status"
+  ],
+  "fields": [
+    {
+      "fieldname": "tender",
+      "label": "Tender",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Tender",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "addendum_number",
+      "label": "Addendum Number",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "title",
+      "label": "Title",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "change_summary",
+      "label": "Change Summary",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "effective_date",
+      "label": "Effective Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "closing_date_extended",
+      "label": "Closing Date Extended",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "new_closing_datetime",
+      "label": "New Closing Datetime",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "attachment",
+      "label": "Attachment",
+      "fieldtype": "Attach"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Draft\nApproved\nPublished\nWithdrawn",
+      "in_list_view": 1
+    }
+  ],
+  "permissions": []
+}

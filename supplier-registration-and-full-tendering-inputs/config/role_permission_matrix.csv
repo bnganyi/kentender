@@ -1,0 +1,12 @@
+Role,Key DocTypes,Primary Rights,Constraints
+Supplier Bidder User,Supplier Registration Application; Tender Submission,Create own registration; upload docs; submit bids; view own notifications,Cannot view competitor data or internal evaluation/award records
+Supplier Registration Officer,Supplier Registration Application; Supplier Compliance Document,Review applications; verify documents; recommend approval,Cannot self-approve supplier activation
+Procurement Officer,Tender; Tender Document Pack; Tender Clarification; Tender Addendum,Create/manage tenders; publish; manage addenda and clarifications,Cannot alter evaluation consensus or approve award
+Head of Procurement,Tender; Supplier Registration Application; Award Recommendation,Approve tender readiness; review supplier approvals; procedural oversight,Should not rewrite evaluator scoring
+Tender Committee Secretary,Tender; Bid Opening Register; Bid Opening Record,Administer opening event; launch evaluation; maintain registers,Cannot access sealed commercial content before opening
+Opening Committee Member,Bid Opening Record,Participate in formal opening and signoff,No tender editing or evaluation scoring
+Evaluation Committee Member,Evaluation Worksheet; Evaluation Score Record,Evaluate assigned bids; submit worksheets,Cannot view or edit other evaluators' worksheets unless chair policy permits
+Evaluation Committee Chair,Evaluation Consensus Record; Evaluation Committee,Lead consensus and committee closure,Cannot bypass declarations or fabricate missing worksheets
+Approving Authority / Accounting Officer,Award Decision,Approve or reject award outcomes,Should not directly modify evaluation evidence
+Internal Auditor,All Phase 2 docs,Read-only full audit access,No transactional edits
+System Administrator,All,Configuration/support,Not default business approver

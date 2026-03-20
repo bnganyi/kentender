@@ -1,0 +1,121 @@
+{
+  "doctype": "Workflow",
+  "workflow_name": "Purchase Requisition Workflow",
+  "document_type": "Purchase Requisition",
+  "is_active": 1,
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": "0",
+      "allow_edit": "Requestor"
+    },
+    {
+      "state": "Submitted",
+      "doc_status": "0",
+      "allow_edit": "Head of Department"
+    },
+    {
+      "state": "HoD Review",
+      "doc_status": "0",
+      "allow_edit": "Head of Department"
+    },
+    {
+      "state": "Finance Review",
+      "doc_status": "0",
+      "allow_edit": "Finance/Budget Officer"
+    },
+    {
+      "state": "AO Review",
+      "doc_status": "0",
+      "allow_edit": "Accounting Officer"
+    },
+    {
+      "state": "Procurement Review",
+      "doc_status": "0",
+      "allow_edit": "Procurement Officer"
+    },
+    {
+      "state": "Approved",
+      "doc_status": "1",
+      "allow_edit": "Head of Procurement"
+    },
+    {
+      "state": "Rejected",
+      "doc_status": "0",
+      "allow_edit": "Requestor"
+    },
+    {
+      "state": "Cancelled",
+      "doc_status": "2",
+      "allow_edit": "System Manager"
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit",
+      "next_state": "Submitted",
+      "allowed": "Requestor"
+    },
+    {
+      "state": "Submitted",
+      "action": "Route to HoD",
+      "next_state": "HoD Review",
+      "allowed": "Head of Department"
+    },
+    {
+      "state": "HoD Review",
+      "action": "Approve HoD",
+      "next_state": "Finance Review",
+      "allowed": "Head of Department"
+    },
+    {
+      "state": "HoD Review",
+      "action": "Return",
+      "next_state": "Draft",
+      "allowed": "Head of Department"
+    },
+    {
+      "state": "Finance Review",
+      "action": "Approve Finance",
+      "next_state": "AO Review",
+      "allowed": "Finance/Budget Officer"
+    },
+    {
+      "state": "Finance Review",
+      "action": "Return",
+      "next_state": "Draft",
+      "allowed": "Finance/Budget Officer"
+    },
+    {
+      "state": "AO Review",
+      "action": "Approve AO",
+      "next_state": "Procurement Review",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "AO Review",
+      "action": "Reject",
+      "next_state": "Rejected",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Procurement Review",
+      "action": "Approve Final",
+      "next_state": "Approved",
+      "allowed": "Procurement Officer"
+    },
+    {
+      "state": "Procurement Review",
+      "action": "Return",
+      "next_state": "Draft",
+      "allowed": "Procurement Officer"
+    },
+    {
+      "state": "Approved",
+      "action": "Cancel",
+      "next_state": "Cancelled",
+      "allowed": "Head of Procurement"
+    }
+  ]
+}

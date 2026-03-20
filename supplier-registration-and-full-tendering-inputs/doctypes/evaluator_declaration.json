@@ -1,0 +1,62 @@
+{
+  "doctype": "DocType",
+  "name": "Evaluator Declaration",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "tender",
+    "committee_member",
+    "declaration_type",
+    "status",
+    "notes",
+    "signed_on"
+  ],
+  "fields": [
+    {
+      "fieldname": "tender",
+      "label": "Tender",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Tender",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "committee_member",
+      "label": "Committee Member",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "User",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "declaration_type",
+      "label": "Declaration Type",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "COI\nConfidentiality\nBoth"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Signed\nNot Signed\nConflict Declared",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "notes",
+      "label": "Notes",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "signed_on",
+      "label": "Signed On",
+      "fieldtype": "Datetime"
+    }
+  ],
+  "permissions": []
+}

@@ -1,0 +1,53 @@
+{
+  "doctype": "DocType",
+  "name": "National Development Priority",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "field:priority_code",
+  "fields": [
+    {
+      "fieldname": "priority_code",
+      "label": "Priority Code",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "priority_title",
+      "label": "Priority Title",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nActive\nRetired",
+      "default": "Active",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Long Text"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 0
+    }
+  ]
+}
+

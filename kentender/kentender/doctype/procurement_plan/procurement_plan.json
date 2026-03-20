@@ -1,54 +1,192 @@
 {
-  "doctype": "DocType",
-  "name": "Procurement Plan",
-  "module": "KenTender",
-  "custom": 0,
-  "istable": 0,
-  "is_submittable": 0,
-  "autoname": "format:PP-{YYYY}-{#####}",
-  "fields": [
-    {
-      "fieldname": "company",
-      "label": "Company",
-      "fieldtype": "Link",
-      "options": "Company",
-      "reqd": 1
-    },
-    {
-      "fieldname": "fiscal_year",
-      "label": "Fiscal Year",
-      "fieldtype": "Link",
-      "options": "Fiscal Year",
-      "reqd": 1
-    },
-    {
-      "fieldname": "status",
-      "label": "Status",
-      "fieldtype": "Select",
-      "options": "Draft\nSubmitted\nApproved\nClosed",
-      "default": "Draft"
-    }
-  ],
-  "permissions": [
-    {
-      "role": "System Manager",
-      "create": 1,
-      "read": 1,
-      "write": 1,
-      "delete": 1,
-      "submit": 1
-    },
-    {
-      "role": "Procurement User",
-      "create": 1,
-      "read": 1,
-      "write": 1
-    },
-    {
-      "role": "Procurement Manager",
-      "read": 1,
-      "write": 1,
-      "submit": 1
-    }
-  ]
+ "doctype": "DocType",
+ "name": "Procurement Plan",
+ "module": "KenTender",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 1,
+ "autoname": "format:PP-{YYYY}-{#####}",
+ "fields": [
+  {
+   "fieldname": "company",
+   "label": "Company",
+   "fieldtype": "Link",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fiscal_year",
+   "label": "Fiscal Year",
+   "fieldtype": "Link",
+   "options": "Fiscal Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "plan_name",
+   "label": "Plan Name",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "app_number",
+   "label": "APP Number",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "currency",
+   "label": "Currency",
+   "fieldtype": "Link",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "total_budget",
+   "label": "Total Budget",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_planned_amount",
+   "label": "Total Planned Amount",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_reserved_amount",
+   "label": "Total Reserved Amount",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_committed_amount",
+   "label": "Total Committed Amount",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_actual_amount",
+   "label": "Total Actual Amount",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "plan_type",
+   "label": "Plan Type",
+   "fieldtype": "Select",
+   "options": "Annual\nSupplementary\nRevision",
+   "reqd": 0
+  },
+  {
+   "fieldname": "policy_profile",
+   "label": "Policy Profile",
+   "fieldtype": "Link",
+   "options": "Procurement Policy Profile"
+  },
+  {
+   "fieldname": "budget_reference",
+   "label": "Budget Reference",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "budget_approval_date",
+   "label": "Budget Approval Date",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "budget_approved_by",
+   "label": "Budget Approved By",
+   "fieldtype": "Link",
+   "options": "User"
+  },
+  {
+   "fieldname": "created_by_department",
+   "label": "Created By Department",
+   "fieldtype": "Link",
+   "options": "Department"
+  },
+  {
+   "fieldname": "status",
+   "label": "Status",
+   "fieldtype": "Select",
+   "options": "Draft\nDepartment Consolidation\nProcurement Review\nFinance Review\nSubmitted\nSubmitted for Approval\nApproved\nPublished\nLocked\nSuperseded\nCancelled\nClosed",
+   "default": "Draft",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "plan_version",
+   "label": "Plan Version",
+   "fieldtype": "Data",
+   "default": "1.0"
+  },
+  {
+   "fieldname": "parent_plan_version",
+   "label": "Parent Plan Version",
+   "fieldtype": "Link",
+   "options": "Procurement Plan"
+  },
+  {
+   "fieldname": "revision_type",
+   "label": "Revision Type",
+   "fieldtype": "Select",
+   "options": "Original\nSupplementary\nFormal Revision\nAdministrative Update"
+  },
+  {
+   "fieldname": "revision_reason",
+   "label": "Revision Reason",
+   "fieldtype": "Long Text"
+  },
+  {
+   "fieldname": "submission_date",
+   "label": "Submission Date",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_date",
+   "label": "Approval Date",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "published_date",
+   "label": "Published Date",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "locked_on",
+   "label": "Locked On",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "locked_by",
+   "label": "Locked By",
+   "fieldtype": "Link",
+   "options": "User",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "submit": 1
+  },
+  {
+   "role": "Procurement User",
+   "create": 1,
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "Procurement Manager",
+   "read": 1,
+   "write": 1,
+   "submit": 1
+  }
+ ]
 }

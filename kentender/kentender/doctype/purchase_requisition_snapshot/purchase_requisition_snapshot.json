@@ -1,0 +1,14 @@
+{
+  "doctype": "DocType",
+  "name": "Purchase Requisition Snapshot",
+  "module": "KenTender",
+  "custom": 1,
+  "autoname": "format:PRS-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "purchase_requisition", "fieldtype": "Link", "label": "Purchase Requisition", "options": "Purchase Requisition", "reqd": 1},
+    {"fieldname": "snapshot_type", "fieldtype": "Select", "label": "Snapshot Type", "options": "Submission\nApproval\nAmendment Approval\nCancellation\nTender Handoff", "reqd": 1},
+    {"fieldname": "snapshot_json", "fieldtype": "Long Text", "label": "Snapshot JSON", "reqd": 1},
+    {"fieldname": "created_by", "fieldtype": "Link", "label": "Created By", "options": "User"},
+    {"fieldname": "created_on", "fieldtype": "Datetime", "label": "Created On"}
+  ]
+}

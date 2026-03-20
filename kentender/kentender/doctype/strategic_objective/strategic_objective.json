@@ -1,0 +1,68 @@
+{
+  "doctype": "DocType",
+  "name": "Strategic Objective",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "field:objective_code",
+  "fields": [
+    {
+      "fieldname": "objective_code",
+      "label": "Objective Code",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "objective_title",
+      "label": "Objective Title",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "corporate_strategic_plan",
+      "label": "Corporate Strategic Plan",
+      "fieldtype": "Link",
+      "options": "Corporate Strategic Plan",
+      "reqd": 1
+    },
+    {
+      "fieldname": "priority",
+      "label": "National Development Priority",
+      "fieldtype": "Link",
+      "options": "National Development Priority",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Long Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nActive\nRetired",
+      "default": "Draft",
+      "reqd": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 0
+    }
+  ]
+}
+

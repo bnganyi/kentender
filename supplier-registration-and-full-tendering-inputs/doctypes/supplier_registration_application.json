@@ -1,0 +1,117 @@
+{
+  "doctype": "DocType",
+  "name": "Supplier Registration Application",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "application_number",
+    "supplier_name",
+    "legal_name",
+    "registration_number",
+    "tax_id",
+    "supplier_type",
+    "country",
+    "email",
+    "phone",
+    "physical_address",
+    "application_status",
+    "submitted_on",
+    "approved_on",
+    "remarks"
+  ],
+  "fields": [
+    {
+      "fieldname": "application_number",
+      "label": "Application Number",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "supplier_name",
+      "label": "Supplier Name",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "legal_name",
+      "label": "Legal Name",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "registration_number",
+      "label": "Registration Number",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "tax_id",
+      "label": "Tax ID",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "supplier_type",
+      "label": "Supplier Type",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Company\nPartnership\nSole Proprietor\nNGO\nState Corporation\nOther"
+    },
+    {
+      "fieldname": "country",
+      "label": "Country",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "email",
+      "label": "Email",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "phone",
+      "label": "Phone",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "physical_address",
+      "label": "Physical Address",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "application_status",
+      "label": "Application Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Draft\nSubmitted\nCompliance Review\nProcurement Review\nApproved\nRejected\nSuspended"
+    },
+    {
+      "fieldname": "submitted_on",
+      "label": "Submitted On",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "approved_on",
+      "label": "Approved On",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "remarks",
+      "label": "Remarks",
+      "fieldtype": "Small Text"
+    }
+  ],
+  "permissions": [],
+  "autoname": "format:SUP-APP-.YYYY.-.#####"
+}

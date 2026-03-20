@@ -1,0 +1,131 @@
+{
+  "doctype": "Workflow",
+  "workflow_name": "Tender Workflow",
+  "document_type": "Tender",
+  "is_active": 1,
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": "0",
+      "allow_edit": "Procurement Officer"
+    },
+    {
+      "state": "Internal Review",
+      "doc_status": "0",
+      "allow_edit": "Head of Procurement"
+    },
+    {
+      "state": "Approved for Publication",
+      "doc_status": "0",
+      "allow_edit": "Head of Procurement"
+    },
+    {
+      "state": "Published",
+      "doc_status": "0",
+      "allow_edit": "Procurement Officer"
+    },
+    {
+      "state": "Closed",
+      "doc_status": "0",
+      "allow_edit": "Tender Committee Secretary"
+    },
+    {
+      "state": "Opened",
+      "doc_status": "0",
+      "allow_edit": "Tender Committee Secretary"
+    },
+    {
+      "state": "Under Evaluation",
+      "doc_status": "0",
+      "allow_edit": "Evaluation Committee Chair"
+    },
+    {
+      "state": "Award Recommended",
+      "doc_status": "0",
+      "allow_edit": "Evaluation Committee Chair"
+    },
+    {
+      "state": "Award Approved",
+      "doc_status": "0",
+      "allow_edit": "Approving Authority / Accounting Officer"
+    },
+    {
+      "state": "Award Published",
+      "doc_status": "1",
+      "allow_edit": "System Administrator"
+    },
+    {
+      "state": "Cancelled",
+      "doc_status": "2",
+      "allow_edit": "System Administrator"
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit for Review",
+      "next_state": "Internal Review",
+      "allowed": "Procurement Officer"
+    },
+    {
+      "state": "Internal Review",
+      "action": "Approve for Publication",
+      "next_state": "Approved for Publication",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Approved for Publication",
+      "action": "Publish Tender",
+      "next_state": "Published",
+      "allowed": "Procurement Officer"
+    },
+    {
+      "state": "Published",
+      "action": "Close Tender",
+      "next_state": "Closed",
+      "allowed": "Tender Committee Secretary"
+    },
+    {
+      "state": "Closed",
+      "action": "Open Bids",
+      "next_state": "Opened",
+      "allowed": "Opening Committee Member"
+    },
+    {
+      "state": "Opened",
+      "action": "Start Evaluation",
+      "next_state": "Under Evaluation",
+      "allowed": "Tender Committee Secretary"
+    },
+    {
+      "state": "Under Evaluation",
+      "action": "Recommend Award",
+      "next_state": "Award Recommended",
+      "allowed": "Evaluation Committee Chair"
+    },
+    {
+      "state": "Award Recommended",
+      "action": "Approve Award",
+      "next_state": "Award Approved",
+      "allowed": "Approving Authority / Accounting Officer"
+    },
+    {
+      "state": "Award Approved",
+      "action": "Publish Award",
+      "next_state": "Award Published",
+      "allowed": "Procurement Officer"
+    },
+    {
+      "state": "Draft",
+      "action": "Cancel",
+      "next_state": "Cancelled",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Internal Review",
+      "action": "Return to Draft",
+      "next_state": "Draft",
+      "allowed": "Head of Procurement"
+    }
+  ]
+}

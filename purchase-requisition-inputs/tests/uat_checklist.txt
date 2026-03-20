@@ -1,0 +1,9 @@
+TEST CASES
+1. Standard APP-linked requisition with two lines submits and routes correctly.
+2. One-off requisition without exception record is blocked.
+3. Requestor cannot self-approve through approval hook/policy.
+4. Requisition exceeding APP remaining balance is blocked.
+5. Approved requisition creates one commitment record per line.
+6. Approved requisition cannot be materially edited directly.
+7. Cancellation releases commitments.
+8. Handoff is allowed only for approved requisitions.

@@ -1,0 +1,73 @@
+{
+  "doctype": "DocType",
+  "name": "Suspension Debarment Register",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "supplier",
+    "action_type",
+    "reason",
+    "reference_number",
+    "effective_from",
+    "effective_to",
+    "issuing_authority",
+    "status"
+  ],
+  "fields": [
+    {
+      "fieldname": "supplier",
+      "label": "Supplier",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Supplier Master",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "action_type",
+      "label": "Action Type",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Suspension\nDebarment\nBlacklist",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Long Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reference_number",
+      "label": "Reference Number",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "effective_from",
+      "label": "Effective From",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "effective_to",
+      "label": "Effective To",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "issuing_authority",
+      "label": "Issuing Authority",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Active\nExpired\nRevoked",
+      "in_list_view": 1
+    }
+  ],
+  "permissions": []
+}

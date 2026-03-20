@@ -1,0 +1,18 @@
+{
+  "doctype": "DocType",
+  "name": "Purchase Requisition Amendment",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:PRA-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "purchase_requisition", "fieldtype": "Link", "label": "Purchase Requisition", "options": "Purchase Requisition", "reqd": 1},
+    {"fieldname": "amendment_type", "fieldtype": "Select", "label": "Amendment Type", "options": "Scope\nQuantity\nBudget\nTimeline\nCancellation\nAdministrative", "reqd": 1},
+    {"fieldname": "reason", "fieldtype": "Small Text", "label": "Reason", "reqd": 1},
+    {"fieldname": "requested_by", "fieldtype": "Link", "label": "Requested By", "options": "User", "reqd": 1},
+    {"fieldname": "submitted_on", "fieldtype": "Datetime", "label": "Submitted On"},
+    {"fieldname": "approved_by", "fieldtype": "Link", "label": "Approved By", "options": "User"},
+    {"fieldname": "approved_on", "fieldtype": "Datetime", "label": "Approved On"},
+    {"fieldname": "status", "fieldtype": "Select", "label": "Status", "options": "Draft\nUnder Review\nApproved\nRejected\nApplied", "default": "Draft"}
+  ]
+}

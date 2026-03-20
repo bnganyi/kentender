@@ -1,0 +1,100 @@
+{
+  "doctype": "DocType",
+  "name": "Procurement Commitment",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "field:commitment_number",
+  "fields": [
+    {
+      "fieldname": "commitment_number",
+      "label": "Commitment Number",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "procurement_plan_item",
+      "label": "Procurement Plan Item",
+      "fieldtype": "Link",
+      "options": "Procurement Plan Item",
+      "reqd": 1
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "fiscal_year",
+      "label": "Fiscal Year",
+      "fieldtype": "Link",
+      "options": "Fiscal Year",
+      "reqd": 1
+    },
+    {
+      "fieldname": "budget_head",
+      "label": "Budget Head",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "cost_center",
+      "label": "Cost Center",
+      "fieldtype": "Link",
+      "options": "Cost Center"
+    },
+    {
+      "fieldname": "commitment_stage",
+      "label": "Commitment Stage",
+      "fieldtype": "Select",
+      "options": "Requisition Commitment\nTender Commitment\nContract Commitment\nInvoice Accrual",
+      "default": "Requisition Commitment",
+      "reqd": 1
+    },
+    {
+      "fieldname": "committed_amount",
+      "label": "Committed Amount",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Active\nReleased\nCancelled",
+      "default": "Active",
+      "reqd": 1
+    },
+    {
+      "fieldname": "created_from_doc_type",
+      "label": "Created From DocType",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "created_from_doc_name",
+      "label": "Created From DocName",
+      "fieldtype": "Data"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounts Manager",
+      "read": 1
+    }
+  ]
+}
+

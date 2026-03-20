@@ -6,7 +6,7 @@ import io
 import json
 import frappe
 from frappe import _
-from frappe.utils import cint, get_datetime, now_datetime
+from frappe.utils import cint, flt, get_datetime, now_datetime
 from erpnext.setup.utils import get_exchange_rate
 
 CONTRACT_STATUS_TRANSITIONS = {
@@ -57,6 +57,20 @@ PAYMENT_ENTRY_CLM_TRANSITIONS = {
     "Finance Verified": {"Procurement Certified"},
     "Procurement Certified": {"Paid"},
     "Paid": set(),
+}
+
+PROCUREMENT_PLAN_STATUS_TRANSITIONS = {
+    "Draft": {"Department Consolidation", "Cancelled"},
+    "Department Consolidation": {"Procurement Review", "Draft", "Cancelled"},
+    "Procurement Review": {"Finance Review", "Department Consolidation", "Cancelled"},
+    "Finance Review": {"Submitted", "Procurement Review", "Cancelled"},
+    "Submitted": {"Approved", "Department Consolidation", "Cancelled"},
+    "Approved": {"Published", "Superseded", "Cancelled"},
+    "Published": {"Locked", "Superseded"},
+    "Locked": {"Superseded"},
+    "Superseded": set(),
+    "Cancelled": set(),
+    "Closed": set(),
 }
 
 ACCEPTANCE_CERT_WORKFLOW_TRANSITIONS = {
@@ -417,6 +431,150 @@ def download_ken_tender_audit_events_csv(
     frappe.response["type"] = "download"
 
 
+def _phase1_scope_filters(company: str | None = None, fiscal_year: str | None = None) -> dict:
+    filters = {}
+    if company:
+        filters["company"] = company
+    if fiscal_year:
+        filters["fiscal_year"] = fiscal_year
+    return filters
+
+
+def _phase1_rows_to_csv(rows: list[dict], columns: list[str]) -> str:
+    buffer = io.StringIO()
+    writer = csv.writer(buffer)
+    writer.writerow(columns)
+    for row in rows:
+        writer.writerow([row.get(c) for c in columns])
+    return buffer.getvalue()
+
+
+@frappe.whitelist()
+def phase1_get_reporting_snapshot(company: str | None = None, fiscal_year: str | None = None) -> dict:
+    """Aggregate Phase 1 reporting snapshot for dashboards and ops reviews."""
+    for doctype in ("Procurement Plan", "Procurement Plan Item", "Purchase Requisition"):
+        frappe.has_permission(doctype, "read", throw=True)
+
+    plan_filters = _phase1_scope_filters(company, fiscal_year)
+    app_rows = frappe.get_all(
+        "Procurement Plan",
+        filters=plan_filters,
+        fields=["name", "status", "total_budget", "total_committed_amount", "total_actual_amount"],
+        limit=5000,
+    )
+
+    app_status_counts = {}
+    app_total_budget = 0.0
+    app_total_committed = 0.0
+    app_total_actual = 0.0
+    for row in app_rows or []:
+        status = row.get("status") or "Unknown"
+        app_status_counts[status] = app_status_counts.get(status, 0) + 1
+        app_total_budget += flt(row.get("total_budget") or 0)
+        app_total_committed += flt(row.get("total_committed_amount") or 0)
+        app_total_actual += flt(row.get("total_actual_amount") or 0)
+
+    ppi_filters = {}
+    if company:
+        ppi_filters["company"] = company
+    ppi_rows = frappe.get_all(
+        "Procurement Plan Item",
+        filters=ppi_filters,
+        fields=["name", "budget_status", "risk_level"],
+        limit=20000,
+    )
+    item_budget_status_counts = {}
+    item_risk_counts = {}
+    for row in ppi_rows or []:
+        bstatus = row.get("budget_status") or "Unknown"
+        item_budget_status_counts[bstatus] = item_budget_status_counts.get(bstatus, 0) + 1
+        rlevel = row.get("risk_level") or "Unrated"
+        item_risk_counts[rlevel] = item_risk_counts.get(rlevel, 0) + 1
+
+    override_rows = frappe.get_all(
+        "Budget Override Record",
+        fields=["name", "override_type", "status", "reference_name", "creation"],
+        filters={"reference_doctype": "Procurement Plan Item"},
+        limit=20000,
+    )
+    override_by_type = {}
+    for row in override_rows or []:
+        otype = row.get("override_type") or "Unknown"
+        override_by_type[otype] = override_by_type.get(otype, 0) + 1
+
+    pr_filters = {}
+    if company:
+        pr_filters["entity"] = company
+    if fiscal_year:
+        pr_filters["financial_year"] = fiscal_year
+    pr_rows = frappe.get_all(
+        "Purchase Requisition",
+        filters=pr_filters,
+        fields=["name", "status", "tender_readiness_status", "linked_tender_count"],
+        limit=10000,
+    )
+    pr_status_counts = {}
+    pr_readiness_counts = {}
+    linked_tender_total = 0
+    for row in pr_rows or []:
+        s = row.get("status") or "Unknown"
+        pr_status_counts[s] = pr_status_counts.get(s, 0) + 1
+        rs = row.get("tender_readiness_status") or "Unknown"
+        pr_readiness_counts[rs] = pr_readiness_counts.get(rs, 0) + 1
+        linked_tender_total += cint(row.get("linked_tender_count") or 0)
+
+    handoff_rows = frappe.get_all(
+        "Requisition Tender Handoff",
+        fields=["name", "purchase_requisition", "handoff_status", "tender_reference", "approved_for_tender_on"],
+        limit=10000,
+        order_by="creation desc",
+    )
+
+    return {
+        "ok": True,
+        "scope": {"company": company, "fiscal_year": fiscal_year},
+        "generated_at": str(now_datetime()),
+        "app_summary": {
+            "count": len(app_rows or []),
+            "status_counts": app_status_counts,
+            "total_budget": app_total_budget,
+            "total_committed_amount": app_total_committed,
+            "total_actual_amount": app_total_actual,
+        },
+        "plan_item_summary": {
+            "count": len(ppi_rows or []),
+            "budget_status_counts": item_budget_status_counts,
+            "risk_level_counts": item_risk_counts,
+        },
+        "override_summary": {
+            "count": len(override_rows or []),
+            "by_type": override_by_type,
+        },
+        "pr_summary": {
+            "count": len(pr_rows or []),
+            "status_counts": pr_status_counts,
+            "tender_readiness_counts": pr_readiness_counts,
+            "linked_tender_total": linked_tender_total,
+        },
+        "handoff_rows": handoff_rows,
+    }
+
+
+@frappe.whitelist()
+def phase1_download_reporting_snapshot_csv(company: str | None = None, fiscal_year: str | None = None) -> None:
+    """CSV export for Phase 1 reporting snapshot (APP, PR, handoff rows)."""
+    snapshot = phase1_get_reporting_snapshot(company=company, fiscal_year=fiscal_year)
+    handoff_rows = snapshot.get("handoff_rows") or []
+    columns = ["name", "purchase_requisition", "handoff_status", "tender_reference", "approved_for_tender_on"]
+    csv_content = _phase1_rows_to_csv(handoff_rows, columns)
+    fname = f"phase1_handoff_snapshot_{company or 'all'}_{fiscal_year or 'all'}_{frappe.utils.today()}.csv".replace(
+        " ", "_"
+    )
+    frappe.response["filename"] = fname
+    frappe.response["filecontent"] = csv_content.encode("utf-8")
+    frappe.response["type"] = "download"
+
+
 def _transition_allowed(
     doctype_label: str, old_state: str | None, new_state: str | None, allowed_map: dict
 ) -> None:
@@ -466,6 +624,1314 @@ def generate_approval_chain(doc, method) -> None:
     doc.status = "Under Review"
 
 
+def _phase1_get_policy_profile_for_plan(plan_name: str) -> str | None:
+    if not plan_name:
+        return None
+    return frappe.db.get_value("Procurement Plan", plan_name, "policy_profile")
+
+
+def _phase1_recommend_procurement_method_for_item(doc) -> str | None:
+    """Recommend procurement method from `Procurement Threshold Rule` (if configured)."""
+    policy_profile = _phase1_get_policy_profile_for_plan(getattr(doc, "procurement_plan", None))
+    if not policy_profile:
+        return getattr(doc, "procurement_method", None)
+
+    if not getattr(doc, "procurement_type", None):
+        return getattr(doc, "procurement_method", None)
+
+    value = flt(getattr(doc, "estimated_budget", 0) or 0)
+    if value <= 0:
+        return getattr(doc, "procurement_method", None)
+
+    # Filter by policy_profile + procurement_type first; apply category + amount
+    # range matching in Python so we can explicitly detect ambiguous threshold sets.
+    rules = frappe.get_all(
+        "Procurement Threshold Rule",
+        filters={"policy_profile": policy_profile, "procurement_type": doc.procurement_type, "active": 1},
+        fields=["name", "category", "minimum_amount", "maximum_amount", "recommended_method"],
+        order_by="minimum_amount asc",
+    )
+
+    matching_rules = []
+    for rule in rules or []:
+        if getattr(doc, "category", None) and rule.category and doc.category != rule.category:
+            continue
+        if flt(rule.minimum_amount) <= value <= flt(rule.maximum_amount):
+            matching_rules.append(rule)
+
+    if len(matching_rules) > 1:
+        names = ", ".join(r.name for r in matching_rules)
+        frappe.throw(
+            f"Threshold rule ambiguity detected for this line. Review active Procurement Threshold Rules: {names}"
+        )
+
+    if matching_rules:
+        return matching_rules[0].recommended_method
+
+    return getattr(doc, "procurement_method", None)
+
+
+def _phase1_find_matching_threshold_rule(doc):
+    """Return the single matching threshold rule for a plan item."""
+    policy_profile = _phase1_get_policy_profile_for_plan(getattr(doc, "procurement_plan", None))
+    if not policy_profile or not getattr(doc, "procurement_type", None):
+        return None
+
+    value = flt(getattr(doc, "estimated_budget", 0) or 0)
+    if value <= 0:
+        return None
+
+    rules = frappe.get_all(
+        "Procurement Threshold Rule",
+        filters={"policy_profile": policy_profile, "procurement_type": doc.procurement_type, "active": 1},
+        fields=["name", "category", "minimum_amount", "maximum_amount", "recommended_method", "allowed_methods"],
+        order_by="minimum_amount asc",
+    )
+
+    matches = []
+    for rule in rules or []:
+        if getattr(doc, "category", None) and rule.category and doc.category != rule.category:
+            continue
+        if flt(rule.minimum_amount) <= value <= flt(rule.maximum_amount):
+            matches.append(rule)
+
+    if len(matches) > 1:
+        names = ", ".join(r.name for r in matches)
+        frappe.throw(
+            f"Threshold rule ambiguity detected for this line. Review active Procurement Threshold Rules: {names}"
+        )
+    return matches[0] if matches else None
+
+
+def _phase1_allowed_methods(allowed_methods: str | None) -> set[str]:
+    return {m.strip() for m in (allowed_methods or "").split(",") if m and m.strip()}
+
+
+def _phase1_method_is_non_competitive(method: str | None) -> bool:
+    return (method or "").strip() in {"Direct Procurement", "Restricted Tender"}
+
+
+def _phase1_upsert_budget_override_record(
+    *,
+    reference_name: str,
+    override_type: str,
+    field_name: str,
+    old_value: str,
+    new_value: str,
+    reason: str,
+) -> None:
+    """Create/update a single draft override record per item/type to avoid duplicates."""
+    existing = frappe.get_all(
+        "Budget Override Record",
+        filters={
+            "reference_doctype": "Procurement Plan Item",
+            "reference_name": reference_name,
+            "override_type": override_type,
+            "status": "Draft",
+        },
+        fields=["name"],
+        limit=1,
+    )
+    payload = {
+        "field_name": field_name,
+        "old_value": old_value,
+        "new_value": new_value,
+        "reason": reason,
+        "requested_by": frappe.session.user,
+    }
+    if existing:
+        frappe.db.set_value("Budget Override Record", existing[0].name, payload, update_modified=False)
+        return
+
+    frappe.get_doc(
+        {
+            "doctype": "Budget Override Record",
+            "reference_doctype": "Procurement Plan Item",
+            "reference_name": reference_name,
+            "override_type": override_type,
+            **payload,
+            "status": "Draft",
+        }
+    ).insert(ignore_permissions=True)
+
+
+def _phase1_validate_item_before_first_approval(doc) -> None:
+    """Hard governance checks when approving a Phase 1 Plan Item."""
+    # Strategic linkage (required by the design)
+    if not getattr(doc, "strategic_objective", None):
+        frappe.throw("Strategic Objective is required before Phase 1 approval")
+
+    if not getattr(doc, "strategic_plan", None):
+        derived_plan = frappe.db.get_value("Strategic Objective", doc.strategic_objective, "corporate_strategic_plan")
+        if derived_plan:
+            doc.strategic_plan = derived_plan
+
+    if not getattr(doc, "national_priority", None):
+        derived_priority = frappe.db.get_value("Strategic Objective", doc.strategic_objective, "priority")
+        if derived_priority:
+            doc.national_priority = derived_priority
+
+    if not getattr(doc, "national_priority", None):
+        frappe.throw("National Priority is required before Phase 1 approval")
+
+    # Budget linkage (minimum required for approval)
+    missing = []
+    for f in ["budget_head", "cost_center", "quarter", "responsible_department"]:
+        if not getattr(doc, f, None):
+            missing.append(f)
+    if missing:
+        frappe.throw(f"Cannot approve without budget linkage: {', '.join(missing)}")
+
+    if flt(getattr(doc, "estimated_budget", 0) or 0) <= 0:
+        frappe.throw("Estimated Budget must be greater than zero before Phase 1 approval")
+
+    # Method advisory + override governance
+    if not getattr(doc, "procurement_method", None):
+        frappe.throw("Procurement Method is required before Phase 1 approval")
+
+    matching_rule = _phase1_find_matching_threshold_rule(doc)
+    recommended = _phase1_recommend_procurement_method_for_item(doc) or doc.procurement_method
+    doc.system_recommended_method = recommended
+
+    if doc.procurement_method != recommended and not getattr(doc, "method_override_reason", None):
+        frappe.throw("Method Override Reason is required when procurement method differs from system recommendation")
+
+    if matching_rule:
+        allowed = _phase1_allowed_methods(getattr(matching_rule, "allowed_methods", None))
+        if allowed and doc.procurement_method not in allowed:
+            frappe.throw(
+                f'Selected Procurement Method "{doc.procurement_method}" is not allowed by threshold rule {matching_rule.name}.'
+            )
+
+    policy_profile = _phase1_get_policy_profile_for_plan(getattr(doc, "procurement_plan", None))
+    require_non_competitive_reason = cint(
+        frappe.db.get_value(
+            "Procurement Policy Profile",
+            policy_profile,
+            "require_method_justification_for_non_competitive",
+        )
+        or 0
+    )
+    if require_non_competitive_reason and _phase1_method_is_non_competitive(doc.procurement_method):
+        if not getattr(doc, "method_override_reason", None):
+            frappe.throw(
+                "Method Override Reason is required for non-competitive procurement methods under the active policy profile"
+            )
+
+    # Emergency handling: require justification
+    if getattr(doc, "emergency_flag", 0) and not getattr(doc, "override_reason", None):
+        frappe.throw("Override Reason is required for Emergency procurement before Phase 1 approval")
+
+    # Anti-split control (baseline: block if repeated similar lines exist)
+    # Only run when anti-split inputs are present.
+    if (
+        getattr(doc, "responsible_department", None)
+        and getattr(doc, "budget_head", None)
+        and getattr(doc, "category", None)
+        and getattr(doc, "quarter", None)
+    ):
+        candidates = frappe.get_all(
+            "Procurement Plan Item",
+            filters={
+                "name": ("!=", doc.name),
+                "procurement_plan": doc.procurement_plan,
+                "responsible_department": doc.responsible_department,
+                "budget_head": doc.budget_head,
+                "category": doc.category,
+                "quarter": doc.quarter,
+            },
+            fields=["name", "estimated_budget"],
+            limit=10,
+        )
+        total_cluster_amount = flt(getattr(doc, "estimated_budget", 0) or 0)
+        for row in candidates or []:
+            total_cluster_amount += flt(getattr(row, "estimated_budget", 0) or 0)
+
+        anti_split_group = getattr(doc, "anti_split_group", None) or getattr(doc, "aggregation_group", None)
+        trigger = len(candidates or []) >= 2 or bool(anti_split_group)
+        if trigger and not getattr(doc, "override_flag", 0):
+            frappe.throw(
+                "Potential procurement fragmentation detected (anti-split). "
+                "Use Override Flag + Override Reason to proceed."
+            )
+
+        if getattr(doc, "override_flag", 0) and not getattr(doc, "override_reason", None):
+            frappe.throw("Override Reason is required when anti-split control is triggered")
+
+        # Risk score is intentionally simple for now: larger fragmented clusters
+        # should be harder to overlook during governance review.
+        if trigger:
+            doc.risk_score = min(100, 30 + (len(candidates or []) * 10))
+            doc.risk_level = "High" if doc.risk_score >= 60 else "Medium"
+        else:
+            doc.risk_score = 20
+            doc.risk_level = "Low"
+
+    # Update budget status (Phase 1 starter: available if amount is valid)
+    doc.budget_status = "Available"
+
+    if not getattr(doc, "risk_score", None):
+        doc.risk_score = 20
+        doc.risk_level = "Low"
+
+    # Override governance evidence capture (deduplicated)
+    if doc.procurement_method != doc.system_recommended_method:
+        _phase1_upsert_budget_override_record(
+            reference_name=doc.name,
+            override_type="Method",
+            field_name="procurement_method",
+            old_value=str(doc.system_recommended_method or ""),
+            new_value=str(doc.procurement_method or ""),
+            reason=str(getattr(doc, "method_override_reason", None) or getattr(doc, "override_reason", None) or ""),
+        )
+
+    if getattr(doc, "override_flag", 0):
+        if not getattr(doc, "override_reason", None):
+            frappe.throw("Override Reason is required when Override Flag is set")
+        _phase1_upsert_budget_override_record(
+            reference_name=doc.name,
+            override_type="Amount",
+            field_name="override_reason",
+            old_value=str(doc.system_recommended_method or ""),
+            new_value=str(doc.procurement_method or ""),
+            reason=str(doc.override_reason),
+        )
+
+
+def _phase1_generate_app_number_for_plan(plan: frappe.model.document.Document) -> str:
+    """Generate APP number from company and fiscal year (starter-aligned)."""
+    entity = getattr(plan, "company", None) or getattr(plan, "entity", None) or "ENT"
+    financial_year = getattr(plan, "fiscal_year", None) or getattr(plan, "financial_year", None) or "FY"
+
+    entity_code = (entity or "ENT")[:4].upper().replace(" ", "")
+    fy_code = (financial_year or "FY").replace("-", "")[-4:]
+    count = frappe.db.count(
+        "Procurement Plan",
+        filters={
+            "company": entity,
+            "fiscal_year": financial_year,
+        },
+    ) + 1
+    return f"APP-{entity_code}-{fy_code}-{count:03d}"
+
+
+def _phase1_assert_active_policy_profile_for_plan(doc) -> None:
+    if not getattr(doc, "policy_profile", None):
+        frappe.throw("Policy Profile is required for Procurement Plan governance")
+
+    status = frappe.db.get_value("Procurement Policy Profile", doc.policy_profile, "status")
+    if status != "Active":
+        frappe.throw("Procurement Policy Profile must be Active to progress the APP")
+
+
+def _phase1_ensure_single_active_original_app(doc) -> None:
+    # Only enforce for "original" annual APPs.
+    if getattr(doc, "plan_type", None) != "Annual":
+        return
+
+    revision_type = getattr(doc, "revision_type", None) or "Original"
+    if revision_type != "Original":
+        return
+
+    existing = frappe.get_all(
+        "Procurement Plan",
+        filters={
+            "company": doc.company,
+            "fiscal_year": doc.fiscal_year,
+            "plan_type": "Annual",
+            "revision_type": "Original",
+            "name": ("!=", doc.name),
+            "status": ("in", ["Approved", "Published", "Locked"]),
+        },
+        pluck="name",
+        limit=1,
+    )
+
+    if existing:
+        frappe.throw(
+            f"Another active annual APP already exists for this company and fiscal year: {existing[0]}"
+        )
+
+
+def _phase1_recalculate_plan_totals(doc) -> None:
+    """Recalculate header totals from Procurement Plan Items."""
+    rows = frappe.get_all(
+        "Procurement Plan Item",
+        filters={"procurement_plan": doc.name},
+        fields=["estimated_budget", "reserved_budget_amount", "committed_amount", "actual_amount"],
+    )
+
+    total_budget = sum(flt(r.get("estimated_budget") or 0) for r in rows or [])
+    total_reserved = sum(flt(r.get("reserved_budget_amount") or 0) for r in rows or [])
+    total_committed = sum(flt(r.get("committed_amount") or 0) for r in rows or [])
+    total_actual = sum(flt(r.get("actual_amount") or 0) for r in rows or [])
+
+    # These fields exist in the extended Procurement Plan schema.
+    doc.db_set("total_budget", total_budget, update_modified=False)
+    doc.db_set("total_planned_amount", total_budget, update_modified=False)
+    doc.db_set("total_reserved_amount", total_reserved, update_modified=False)
+    doc.db_set("total_committed_amount", total_committed, update_modified=False)
+    doc.db_set("total_actual_amount", total_actual, update_modified=False)
+
+
+def _phase1_create_published_snapshot(doc) -> None:
+    payload = frappe.as_json(doc.as_dict(), indent=2)
+    hash_value = hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+    frappe.get_doc(
+        {
+            "doctype": "Published Plan Record",
+            "procurement_plan": doc.name,
+            "publication_type": "Internal",
+            "published_by": frappe.session.user,
+            "published_on": now_datetime(),
+            "hash_value": hash_value,
+            "notes": "Generated snapshot placeholder (attachments may be exported separately).",
+        }
+    ).insert(ignore_permissions=True)
+
+
+def _phase1_lock_procurement_plan(doc) -> None:
+    doc.db_set("locked_on", now_datetime(), update_modified=False)
+    doc.db_set("locked_by", frappe.session.user, update_modified=False)
+
+
+def phase1_procurement_plan_before_insert(doc, method=None):
+    if not getattr(doc, "app_number", None):
+        doc.app_number = _phase1_generate_app_number_for_plan(doc)
+
+
+def phase1_procurement_plan_validate(doc, method=None) -> None:
+    # Lock immutability: once Locked, do not allow further edits
+    # (except via controlled code paths with `frappe.flags.in_override`).
+    if getattr(frappe.flags, "in_override", False):
+        return
+
+    old = doc.get_doc_before_save()
+    if old and getattr(old, "status", None) != getattr(doc, "status", None):
+        _transition_allowed(
+            "Procurement Plan status",
+            old.status,
+            doc.status,
+            PROCUREMENT_PLAN_STATUS_TRANSITIONS,
+        )
+
+    if old and getattr(old, "status", None) == "Locked" and getattr(doc, "status", None) == "Locked":
+        changed = doc.get_changed_fields()
+        protected = {"locked_on", "locked_by"}
+        if changed and not set(changed).issubset(protected):
+            frappe.throw("Locked Procurement Plan cannot be modified")
+    elif old and getattr(old, "status", None) == "Locked" and getattr(doc, "status", None) != "Locked":
+        frappe.throw("Locked Procurement Plan cannot transition out of Locked")
+
+    # Enforce required governance fields only when progressing beyond Draft.
+    prev_status = doc.get_value_before_save("status")
+    status_changed = prev_status is not None and prev_status != doc.status
+    is_new = getattr(doc, "is_new", lambda: False)()
+    if (doc.status != "Draft") and (is_new or status_changed or doc.docstatus == 1):
+        required = [
+            "budget_reference",
+            "budget_approval_date",
+            "budget_approved_by",
+            "policy_profile",
+            "created_by_department",
+        ]
+        missing = [f for f in required if not getattr(doc, f, None)]
+        if missing:
+            frappe.throw(f"Cannot progress APP without: {', '.join(missing)}")
+
+        _phase1_assert_active_policy_profile_for_plan(doc)
+        _phase1_ensure_single_active_original_app(doc)
+
+    # Keep header totals consistent.
+    if doc.name and doc.status in {"Department Consolidation", "Procurement Review", "Finance Review", "Submitted", "Approved", "Published", "Locked"}:
+        _phase1_recalculate_plan_totals(doc)
+
+
+def phase1_procurement_plan_on_submit(doc, method=None):
+    # `on_submit` is only meaningful when the APP is at/after approval.
+    if getattr(doc, "status", None) == "Draft":
+        frappe.throw("Cannot submit an APP while status is Draft")
+
+    doc.db_set("submission_date", now_datetime(), update_modified=False)
+    _phase1_recalculate_plan_totals(doc)
+
+
+def phase1_procurement_plan_on_update_after_submit(doc, method=None):
+    if getattr(doc, "status", None) == "Published" and not getattr(doc, "published_date", None):
+        doc.db_set("published_date", now_datetime(), update_modified=False)
+        _phase1_create_published_snapshot(doc)
+
+    if getattr(doc, "status", None) == "Locked" and not getattr(doc, "locked_on", None):
+        _phase1_lock_procurement_plan(doc)
+
+
+@frappe.whitelist()
+def phase1_transition_procurement_plan_status(
+    docname: str, next_status: str, remarks: str | None = None
+) -> str:
+    """Controlled status transition helper for Procurement Plan header governance."""
+    doc = frappe.get_doc("Procurement Plan", docname)
+    current_status = getattr(doc, "status", None)
+
+    _transition_allowed(
+        "Procurement Plan status",
+        current_status,
+        next_status,
+        PROCUREMENT_PLAN_STATUS_TRANSITIONS,
+    )
+
+    prev_in_override = getattr(frappe.flags, "in_override", False)
+    frappe.flags.in_override = True
+    try:
+        doc.status = next_status
+        prev_ignore = getattr(doc.flags, "ignore_validate_update_after_submit", False)
+        doc.flags.ignore_validate_update_after_submit = True
+        try:
+            doc.save(ignore_permissions=True)
+        finally:
+            doc.flags.ignore_validate_update_after_submit = prev_ignore
+
+        doc.reload()
+        if remarks:
+            doc.add_comment("Workflow", f"{current_status} -> {next_status}: {remarks}")
+        else:
+            doc.add_comment("Workflow", f"{current_status} -> {next_status}")
+
+        log_ken_tender_audit_event(
+            action="procurement_plan_status_transition",
+            reference_doctype="Procurement Plan",
+            reference_name=doc.name,
+            details={
+                "from_status": current_status,
+                "to_status": next_status,
+                "remarks": remarks or "",
+            },
+        )
+    finally:
+        frappe.flags.in_override = prev_in_override
+
+    return doc.status
+
+
+def phase1_procurement_plan_revision_validate(doc, method=None) -> None:
+    """Validate revision governance before publish orchestration."""
+    if not getattr(doc, "parent_plan", None):
+        frappe.throw("Parent Plan is required for Procurement Plan Revision")
+
+    if not frappe.db.exists("Procurement Plan", doc.parent_plan):
+        frappe.throw(f"Parent Plan not found: {doc.parent_plan}")
+
+    duplicate = frappe.get_all(
+        "Procurement Plan Revision",
+        filters={
+            "parent_plan": doc.parent_plan,
+            "revision_number": doc.revision_number,
+            "name": ("!=", doc.name),
+        },
+        pluck="name",
+        limit=1,
+    )
+    if duplicate:
+        frappe.throw(
+            f"Revision Number '{doc.revision_number}' already exists for parent APP {doc.parent_plan} ({duplicate[0]})."
+        )
+
+    if not getattr(doc, "reason", None):
+        frappe.throw("Revision reason is required")
+
+    if not getattr(doc, "prepared_by", None):
+        doc.prepared_by = frappe.session.user
+
+    parent_status = frappe.db.get_value("Procurement Plan", doc.parent_plan, "status")
+    if doc.status in {"Approved", "Published"} and parent_status in {"Cancelled", "Closed"}:
+        frappe.throw(
+            f"Cannot progress revision while parent APP is {parent_status}."
+        )
+
+
+def _phase1_apply_revision_publish_side_effects(revision_doc) -> None:
+    parent = frappe.get_doc("Procurement Plan", revision_doc.parent_plan)
+    parent_status = getattr(parent, "status", None)
+    if parent_status in {"Cancelled", "Closed"}:
+        frappe.throw(f"Cannot publish revision because parent APP is {parent_status}.")
+
+    if parent_status != "Superseded":
+        phase1_transition_procurement_plan_status(
+            parent.name,
+            "Superseded",
+            remarks=f"Superseded by Procurement Plan Revision {revision_doc.name}",
+        )
+
+    if not getattr(revision_doc, "approved_by", None):
+        revision_doc.db_set("approved_by", frappe.session.user, update_modified=False)
+    if not getattr(revision_doc, "approved_on", None):
+        revision_doc.db_set("approved_on", now_datetime(), update_modified=False)
+
+    log_ken_tender_audit_event(
+        action="procurement_plan_revision_published",
+        reference_doctype="Procurement Plan Revision",
+        reference_name=revision_doc.name,
+        details={
+            "parent_plan": revision_doc.parent_plan,
+            "parent_status_after": frappe.db.get_value("Procurement Plan", revision_doc.parent_plan, "status"),
+            "revision_type": getattr(revision_doc, "revision_type", None),
+            "revision_number": getattr(revision_doc, "revision_number", None),
+        },
+    )
+
+
+def phase1_procurement_plan_revision_on_update(doc, method=None) -> None:
+    prev_status = doc.get_value_before_save("status")
+    if prev_status != "Published" and getattr(doc, "status", None) == "Published":
+        _phase1_apply_revision_publish_side_effects(doc)
+
+
+@frappe.whitelist()
+def phase1_publish_procurement_plan_revision(revision_name: str, remarks: str | None = None) -> str:
+    """Controlled publish path for Procurement Plan Revision."""
+    doc = frappe.get_doc("Procurement Plan Revision", revision_name)
+    current_status = getattr(doc, "status", None)
+    if current_status == "Published":
+        _phase1_apply_revision_publish_side_effects(doc)
+        return doc.status
+
+    if current_status == "Under Review":
+        doc = frappe.model.workflow.apply_workflow(doc, "Approve Revision")
+        doc.reload()
+        current_status = getattr(doc, "status", None)
+
+    if current_status != "Approved":
+        frappe.throw("Revision can only be published from Approved state")
+
+    # Try workflow-native publish first.
+    try:
+        doc = frappe.model.workflow.apply_workflow(doc, "Publish Revision")
+        doc.reload()
+        if remarks:
+            doc.add_comment("Workflow", f"Approved -> Published: {remarks}")
+        return doc.status
+    except Exception:
+        # Fallback to controlled override for environments where workflow action
+        # routing is unavailable for the current operator.
+        pass
+
+    prev_in_override = getattr(frappe.flags, "in_override", False)
+    frappe.flags.in_override = True
+    try:
+        doc.reload()
+        doc.status = "Published"
+        prev_ignore = getattr(doc.flags, "ignore_validate_update_after_submit", False)
+        doc.flags.ignore_validate_update_after_submit = True
+        prev_ignore_version = getattr(doc.flags, "ignore_version", False)
+        doc.flags.ignore_version = True
+        try:
+            doc.save(ignore_permissions=True)
+        finally:
+            doc.flags.ignore_validate_update_after_submit = prev_ignore
+            doc.flags.ignore_version = prev_ignore_version
+
+        doc.reload()
+        _phase1_apply_revision_publish_side_effects(doc)
+        if remarks:
+            doc.add_comment("Workflow", f"{current_status} -> Published: {remarks}")
+        else:
+            doc.add_comment("Workflow", f"{current_status} -> Published")
+    finally:
+        frappe.flags.in_override = prev_in_override
+
+    if doc.status == "Published":
+        _phase1_apply_revision_publish_side_effects(doc)
+        doc.reload()
+    return doc.status
+
+
+def _phase1_upsert_workflow(
+    workflow_name: str,
+    document_type: str,
+    workflow_state_field: str,
+    states: list[dict],
+    transitions: list[dict],
+) -> str:
+    # Ensure linked Roles and Workflow States exist before saving Workflow rows.
+    required_roles = set()
+    for row in states:
+        if row.get("allow_edit"):
+            required_roles.add(row["allow_edit"])
+    for row in transitions:
+        if row.get("allowed"):
+            required_roles.add(row["allowed"])
+    for role_name in required_roles:
+        if not frappe.db.exists("Role", role_name):
+            frappe.get_doc({"doctype": "Role", "role_name": role_name}).insert(ignore_permissions=True)
+
+    required_states = {row["state"] for row in states}
+    required_states.update({row["state"] for row in transitions})
+    required_states.update({row["next_state"] for row in transitions})
+    for state_name in required_states:
+        if not frappe.db.exists("Workflow State", state_name):
+            frappe.get_doc(
+                {
+                    "doctype": "Workflow State",
+                    "workflow_state_name": state_name,
+                    "style": "Primary",
+                }
+            ).insert(ignore_permissions=True)
+
+    required_actions = {row["action"] for row in transitions if row.get("action")}
+    for action_name in required_actions:
+        if not frappe.db.exists("Workflow Action Master", action_name):
+            frappe.get_doc(
+                {
+                    "doctype": "Workflow Action Master",
+                    "workflow_action_name": action_name,
+                }
+            ).insert(ignore_permissions=True)
+
+    existing = frappe.db.exists("Workflow", workflow_name)
+    if existing:
+        wf = frappe.get_doc("Workflow", workflow_name)
+    else:
+        wf = frappe.new_doc("Workflow")
+        wf.workflow_name = workflow_name
+
+    wf.document_type = document_type
+    wf.workflow_state_field = workflow_state_field
+    wf.is_active = 1
+    wf.send_email_alert = 0
+
+    wf.set("states", [])
+    for row in states:
+        wf.append(
+            "states",
+            {
+                "state": row["state"],
+                "doc_status": row["doc_status"],
+                "allow_edit": row["allow_edit"],
+            },
+        )
+
+    wf.set("transitions", [])
+    for row in transitions:
+        wf.append(
+            "transitions",
+            {
+                "state": row["state"],
+                "action": row["action"],
+                "next_state": row["next_state"],
+                "allowed": row["allowed"],
+            },
+        )
+
+    wf.save(ignore_permissions=True)
+    return wf.name
+
+
+@frappe.whitelist()
+def phase1_setup_procurement_plan_workflows() -> dict:
+    """Create/update active Workflow docs for Phase 1 Procurement Plan governance."""
+    plan_states = [
+        {"state": "Draft", "doc_status": 0, "allow_edit": "Procurement Planner"},
+        {"state": "Department Consolidation", "doc_status": 0, "allow_edit": "Procurement Planner"},
+        {"state": "Procurement Review", "doc_status": 0, "allow_edit": "Head of Procurement"},
+        {"state": "Finance Review", "doc_status": 0, "allow_edit": "Finance/Budget Officer"},
+        {"state": "Submitted", "doc_status": 0, "allow_edit": "Accounting Officer"},
+        {"state": "Approved", "doc_status": 1, "allow_edit": "Accounting Officer"},
+        {"state": "Published", "doc_status": 1, "allow_edit": "Procurement Manager"},
+        {"state": "Locked", "doc_status": 1, "allow_edit": "System Manager"},
+        {"state": "Superseded", "doc_status": 1, "allow_edit": "System Manager"},
+        {"state": "Cancelled", "doc_status": 2, "allow_edit": "System Manager"},
+    ]
+    plan_transitions = [
+        {"state": "Draft", "action": "Consolidate", "next_state": "Department Consolidation", "allowed": "Procurement Planner"},
+        {"state": "Department Consolidation", "action": "Send to Procurement Review", "next_state": "Procurement Review", "allowed": "Procurement Planner"},
+        {"state": "Procurement Review", "action": "Send to Finance", "next_state": "Finance Review", "allowed": "Head of Procurement"},
+        {"state": "Procurement Review", "action": "Return to Planner", "next_state": "Department Consolidation", "allowed": "Head of Procurement"},
+        {"state": "Finance Review", "action": "Submit for Approval", "next_state": "Submitted", "allowed": "Finance/Budget Officer"},
+        {"state": "Finance Review", "action": "Return to Procurement", "next_state": "Procurement Review", "allowed": "Finance/Budget Officer"},
+        {"state": "Submitted", "action": "Approve", "next_state": "Approved", "allowed": "Accounting Officer"},
+        {"state": "Submitted", "action": "Reject", "next_state": "Department Consolidation", "allowed": "Accounting Officer"},
+        {"state": "Approved", "action": "Publish", "next_state": "Published", "allowed": "Head of Procurement"},
+        {"state": "Approved", "action": "Supersede", "next_state": "Superseded", "allowed": "System Manager"},
+        {"state": "Published", "action": "Supersede", "next_state": "Superseded", "allowed": "System Manager"},
+        {"state": "Published", "action": "Lock", "next_state": "Locked", "allowed": "System Manager"},
+        {"state": "Locked", "action": "Supersede", "next_state": "Superseded", "allowed": "System Manager"},
+    ]
+
+    revision_states = [
+        {"state": "Draft", "doc_status": 0, "allow_edit": "Procurement Planner"},
+        {"state": "Under Review", "doc_status": 0, "allow_edit": "Head of Procurement"},
+        {"state": "Approved", "doc_status": 1, "allow_edit": "Accounting Officer"},
+        {"state": "Published", "doc_status": 1, "allow_edit": "System Manager"},
+        {"state": "Rejected", "doc_status": 2, "allow_edit": "System Manager"},
+    ]
+    revision_transitions = [
+        {"state": "Draft", "action": "Submit Revision", "next_state": "Under Review", "allowed": "Procurement Planner"},
+        {"state": "Under Review", "action": "Approve Revision", "next_state": "Approved", "allowed": "Accounting Officer"},
+        {"state": "Under Review", "action": "Reject Revision", "next_state": "Rejected", "allowed": "Accounting Officer"},
+        {"state": "Approved", "action": "Publish Revision", "next_state": "Published", "allowed": "Head of Procurement"},
+    ]
+
+    plan_wf = _phase1_upsert_workflow(
+        workflow_name="Procurement Plan Workflow",
+        document_type="Procurement Plan",
+        workflow_state_field="status",
+        states=plan_states,
+        transitions=plan_transitions,
+    )
+    revision_wf = _phase1_upsert_workflow(
+        workflow_name="Procurement Plan Revision Workflow",
+        document_type="Procurement Plan Revision",
+        workflow_state_field="status",
+        states=revision_states,
+        transitions=revision_transitions,
+    )
+    frappe.clear_cache()
+    return {
+        "procurement_plan_workflow": plan_wf,
+        "procurement_plan_revision_workflow": revision_wf,
+    }
+
+
+@frappe.whitelist()
+def phase15_setup_purchase_requisition_workflow() -> dict:
+    states = [
+        {"state": "Draft", "doc_status": 0, "allow_edit": "Requestor"},
+        {"state": "Submitted", "doc_status": 0, "allow_edit": "Head of Department"},
+        {"state": "HoD Review", "doc_status": 0, "allow_edit": "Head of Department"},
+        {"state": "Finance Review", "doc_status": 0, "allow_edit": "Finance/Budget Officer"},
+        {"state": "AO Review", "doc_status": 0, "allow_edit": "Accounting Officer"},
+        {"state": "Procurement Review", "doc_status": 0, "allow_edit": "Procurement Officer"},
+        {"state": "Approved", "doc_status": 0, "allow_edit": "Head of Procurement"},
+        {"state": "Rejected", "doc_status": 0, "allow_edit": "Requestor"},
+        {"state": "Cancelled", "doc_status": 0, "allow_edit": "System Manager"},
+    ]
+    transitions = [
+        {"state": "Draft", "action": "Submit", "next_state": "Submitted", "allowed": "Requestor"},
+        {"state": "Submitted", "action": "Route to HoD", "next_state": "HoD Review", "allowed": "Head of Department"},
+        {"state": "HoD Review", "action": "Approve HoD", "next_state": "Finance Review", "allowed": "Head of Department"},
+        {"state": "HoD Review", "action": "Return", "next_state": "Draft", "allowed": "Head of Department"},
+        {"state": "Finance Review", "action": "Approve Finance", "next_state": "AO Review", "allowed": "Finance/Budget Officer"},
+        {"state": "Finance Review", "action": "Return", "next_state": "Draft", "allowed": "Finance/Budget Officer"},
+        {"state": "AO Review", "action": "Approve AO", "next_state": "Procurement Review", "allowed": "Accounting Officer"},
+        {"state": "AO Review", "action": "Reject", "next_state": "Rejected", "allowed": "Accounting Officer"},
+        {"state": "Procurement Review", "action": "Approve Final", "next_state": "Approved", "allowed": "Procurement Officer"},
+        {"state": "Procurement Review", "action": "Return", "next_state": "Draft", "allowed": "Procurement Officer"},
+        {"state": "Approved", "action": "Cancel", "next_state": "Cancelled", "allowed": "Head of Procurement"},
+    ]
+    workflow_name = _phase1_upsert_workflow(
+        workflow_name="Purchase Requisition Workflow",
+        document_type="Purchase Requisition",
+        workflow_state_field="status",
+        states=states,
+        transitions=transitions,
+    )
+    frappe.clear_cache()
+    return {"purchase_requisition_workflow": workflow_name}
+
+
+def _phase1_requisition_amount(doc) -> float:
+    for fieldname in ("estimated_cost", "grand_total", "base_grand_total"):
+        value = flt(getattr(doc, fieldname, 0) or 0)
+        if value > 0:
+            return value
+    return 0.0
+
+
+def _phase15_line_amount(row) -> float:
+    qty = flt(getattr(row, "quantity", 0) or 0)
+    unit = flt(getattr(row, "estimated_unit_cost", 0) or 0)
+    if qty > 0 and unit > 0:
+        return qty * unit
+    return flt(getattr(row, "estimated_total_cost", 0) or 0)
+
+
+def _phase1_get_available_plan_item_balance(plan_item_name: str) -> float:
+    row = frappe.db.get_value(
+        "Procurement Plan Item",
+        plan_item_name,
+        ["estimated_budget", "committed_amount", "actual_amount"],
+        as_dict=True,
+    ) or {}
+    planned = flt(row.get("estimated_budget") or 0)
+    committed = flt(row.get("committed_amount") or 0)
+    actual = flt(row.get("actual_amount") or 0)
+    return max(planned - max(committed, actual), 0)
+
+
+def phase1_validate_purchase_requisition(doc, method=None) -> None:
+    # Phase 1.5: full requisition treatment with line-level controls.
+    if not getattr(doc, "requestor", None):
+        doc.requestor = frappe.session.user
+    if not getattr(doc, "entity", None) and getattr(doc, "organization", None):
+        # Compatibility bridge for legacy PR field naming.
+        doc.entity = doc.organization
+
+    required = ["entity", "department", "financial_year", "request_date", "required_by_date", "justification", "source_mode"]
+    missing = [f for f in required if not getattr(doc, f, None)]
+    if missing:
+        frappe.throw(f"Missing required Purchase Requisition fields: {', '.join(missing)}")
+
+    if doc.required_by_date and doc.request_date and doc.required_by_date < doc.request_date:
+        frappe.throw("Required by date cannot be earlier than request date")
+
+    items = list(getattr(doc, "items", []) or [])
+    if not items and getattr(doc, "procurement_plan_item", None):
+        # Backward compatibility fallback (single-line mode).
+        amount = _phase1_requisition_amount(doc)
+        if amount <= 0:
+            frappe.throw("Purchase Requisition amount must be greater than zero")
+        plan_item_name = doc.procurement_plan_item
+        if not frappe.db.exists("Procurement Plan Item", plan_item_name):
+            frappe.throw(f"Procurement Plan Item not found: {plan_item_name}")
+        ppi_status = frappe.db.get_value("Procurement Plan Item", plan_item_name, "status")
+        if ppi_status != "Approved":
+            frappe.throw("Purchase Requisition requires an Approved Procurement Plan Item")
+        available = _phase1_get_available_plan_item_balance(plan_item_name)
+        if amount > available:
+            frappe.throw(
+                f"Requisition amount ({amount}) exceeds available APP line balance ({available})"
+            )
+        doc.total_estimated_cost = amount
+        return
+
+    if not items:
+        frappe.throw("At least one Purchase Requisition Item is required")
+
+    if doc.source_mode == "One-Off" and not getattr(doc, "one_off_flag", 0):
+        frappe.throw("One-Off source mode requires one_off_flag")
+
+    total = 0.0
+    for idx, row in enumerate(items, start=1):
+        row.line_number = idx
+        if not getattr(row, "item_description", None):
+            frappe.throw(f"Item description is required on row {idx}")
+        if not getattr(row, "technical_specification", None):
+            frappe.throw(f"Technical specification is required on row {idx}")
+        if flt(getattr(row, "quantity", 0) or 0) <= 0:
+            frappe.throw(f"Quantity must be greater than zero on row {idx}")
+        if flt(getattr(row, "estimated_unit_cost", 0) or 0) <= 0:
+            frappe.throw(f"Estimated unit cost must be greater than zero on row {idx}")
+
+        line_amount = _phase15_line_amount(row)
+        row.estimated_total_cost = line_amount
+        total += line_amount
+
+        if doc.source_mode == "APP Linked":
+            if not getattr(row, "procurement_plan_item", None):
+                frappe.throw(f"APP-linked requisitions require Procurement Plan Item on row {idx}")
+            ppi_status = frappe.db.get_value("Procurement Plan Item", row.procurement_plan_item, "status")
+            if ppi_status != "Approved":
+                frappe.throw(f"Procurement Plan Item on row {idx} must be Approved")
+            available = _phase1_get_available_plan_item_balance(row.procurement_plan_item)
+            row.remaining_app_balance = available
+            if line_amount > available:
+                frappe.throw(
+                    f"Row {idx} exceeds remaining APP balance ({available}) with amount ({line_amount})"
+                )
+
+    doc.total_estimated_cost = total
+    if total <= 0:
+        frappe.throw("Total requisition amount must be greater than zero")
+
+    # Minimal budget gate baseline (can become policy-rule based later).
+    doc.budget_status = "Available"
+    if doc.source_mode == "One-Off" and not getattr(doc, "exception_flag", 0):
+        # one-off path should not bypass governance
+        frappe.throw("One-Off requisitions require exception_flag and approved exception routing")
+
+
+def phase1_after_migrate_setup() -> None:
+    """Phase 1 migrate-time setup for budget lifecycle controls."""
+    if not frappe.db.exists("DocType", "Purchase Requisition"):
+        return
+
+    if not frappe.db.exists(
+        "Custom Field",
+        {"dt": "Purchase Requisition", "fieldname": "procurement_plan_item"},
+    ):
+        frappe.get_doc(
+            {
+                "doctype": "Custom Field",
+                "dt": "Purchase Requisition",
+                "label": "Procurement Plan Item",
+                "fieldname": "procurement_plan_item",
+                "fieldtype": "Link",
+                "options": "Procurement Plan Item",
+                "insert_after": "estimated_cost",
+                "description": "Required for Phase 1 budget lifecycle commitment controls.",
+            }
+        ).insert(ignore_permissions=True)
+
+    def _ensure_cf(dt: str, fieldname: str, label: str, fieldtype: str, insert_after: str, **extra):
+        if frappe.db.exists("Custom Field", {"dt": dt, "fieldname": fieldname}):
+            return
+        payload = {
+            "doctype": "Custom Field",
+            "dt": dt,
+            "label": label,
+            "fieldname": fieldname,
+            "fieldtype": fieldtype,
+            "insert_after": insert_after,
+        }
+        payload.update(extra or {})
+        frappe.get_doc(payload).insert(ignore_permissions=True)
+
+    # Phase 1.5 header fields on core Purchase Requisition doctype.
+    _ensure_cf("Purchase Requisition", "entity", "Entity", "Link", "organization", options="Company")
+    _ensure_cf("Purchase Requisition", "requestor", "Requestor", "Link", "department", options="User")
+    _ensure_cf("Purchase Requisition", "financial_year", "Financial Year", "Link", "request_date", options="Fiscal Year")
+    _ensure_cf("Purchase Requisition", "requisition_type", "Requisition Type", "Select", "financial_year", options="Standard\nAggregated\nEmergency\nOne-Off\nAmendment\nCancellation")
+    _ensure_cf("Purchase Requisition", "source_mode", "Source Mode", "Select", "requisition_type", options="APP Linked\nOne-Off")
+    _ensure_cf("Purchase Requisition", "required_by_date", "Required By Date", "Date", "request_date")
+    _ensure_cf("Purchase Requisition", "delivery_location", "Delivery Location", "Data", "justification")
+    _ensure_cf("Purchase Requisition", "budget_reference", "Budget Reference", "Data", "delivery_location")
+    _ensure_cf("Purchase Requisition", "program_code", "Program Code", "Data", "budget_reference")
+    _ensure_cf("Purchase Requisition", "currency", "Currency", "Link", "project", options="Currency")
+    _ensure_cf("Purchase Requisition", "total_estimated_cost", "Total Estimated Cost", "Currency", "currency", read_only=1)
+    _ensure_cf("Purchase Requisition", "total_committed_amount", "Total Committed Amount", "Currency", "total_estimated_cost", read_only=1)
+    _ensure_cf("Purchase Requisition", "total_released_amount", "Total Released Amount", "Currency", "total_committed_amount", read_only=1)
+    _ensure_cf("Purchase Requisition", "budget_status", "Budget Status", "Select", "total_released_amount", options="Unchecked\nAvailable\nWarning\nBlocked\nCommitted\nReleased")
+    _ensure_cf("Purchase Requisition", "approval_status", "Approval Status", "Select", "status", options="Pending\nApproved\nRejected\nReturned")
+    _ensure_cf("Purchase Requisition", "emergency_flag", "Emergency", "Check", "approval_status")
+    _ensure_cf("Purchase Requisition", "one_off_flag", "One-Off", "Check", "emergency_flag")
+    _ensure_cf("Purchase Requisition", "exception_flag", "Exception", "Check", "one_off_flag")
+    _ensure_cf("Purchase Requisition", "tender_readiness_status", "Tender Readiness Status", "Select", "exception_flag", options="Not Ready\nReady for Tender\nTender Created\nFully Handed Off")
+    _ensure_cf("Purchase Requisition", "linked_tender_count", "Linked Tender Count", "Int", "tender_readiness_status", default="0", read_only=1)
+    _ensure_cf("Purchase Requisition", "submitted_on", "Submitted On", "Datetime", "linked_tender_count", read_only=1)
+    _ensure_cf("Purchase Requisition", "approved_on", "Approved On", "Datetime", "submitted_on", read_only=1)
+    _ensure_cf("Purchase Requisition", "cancelled_on", "Cancelled On", "Datetime", "approved_on", read_only=1)
+    _ensure_cf("Purchase Requisition", "closed_on", "Closed On", "Datetime", "cancelled_on", read_only=1)
+    _ensure_cf("Purchase Requisition", "items", "Items", "Table", "procurement_plan_item", options="Purchase Requisition Item")
+    _ensure_cf("Purchase Requisition", "approvals", "Approvals", "Table", "items", options="Purchase Requisition Approval")
+
+    # Align legacy status field options with Phase 1.5 workflow states.
+    status_options = "Draft\nSubmitted\nHoD Review\nFinance Review\nAO Review\nProcurement Review\nApproved\nRejected\nCancelled\nClosed"
+    ps_filters = {
+        "doc_type": "Purchase Requisition",
+        "field_name": "status",
+        "property": "options",
+    }
+    if frappe.db.exists("Property Setter", ps_filters):
+        ps_name = frappe.db.get_value("Property Setter", ps_filters, "name")
+        frappe.db.set_value("Property Setter", ps_name, "value", status_options)
+    else:
+        frappe.get_doc(
+            {
+                "doctype": "Property Setter",
+                "doc_type": "Purchase Requisition",
+                "doctype_or_field": "DocField",
+                "field_name": "status",
+                "property": "options",
+                "property_type": "Text",
+                "value": status_options,
+            }
+        ).insert(ignore_permissions=True)
+    phase15_setup_purchase_requisition_workflow()
+
+
+def phase1_on_submit_purchase_requisition(doc, method=None) -> None:
+    # Legacy wrapper retained for compatibility.
+    phase1_on_update_purchase_requisition(doc, method)
+
+
+def phase1_on_update_purchase_requisition(doc, method=None) -> None:
+    """Phase 1.5 trigger: create commitments when requisition reaches Approved."""
+    status = getattr(doc, "status", None)
+    previous = doc.get_doc_before_save()
+
+    if status == "Submitted" and not getattr(doc, "submitted_on", None):
+        doc.db_set("submitted_on", now_datetime(), update_modified=False)
+
+    if status == "Cancelled":
+        # Release active requisition commitments.
+        names = frappe.get_all(
+            "Purchase Requisition Commitment",
+            filters={"purchase_requisition": doc.name, "status": ("in", ["Active", "Partially Consumed", "Consumed"])},
+            pluck="name",
+        )
+        for cname in names or []:
+            c = frappe.get_doc("Purchase Requisition Commitment", cname)
+            c.released_amount = flt(c.committed_amount or 0) - flt(c.actualized_amount or 0)
+            c.status = "Released"
+            c.released_on = now_datetime()
+            c.release_reason = "Requisition cancelled"
+            c.save(ignore_permissions=True)
+        doc.db_set("cancelled_on", now_datetime(), update_modified=False)
+        return
+
+    if status != "Approved":
+        return
+    if previous and getattr(previous, "status", None) == "Approved":
+        return
+
+    # Idempotency: if commitments already exist for this requisition, skip recreate.
+    existing = frappe.db.count("Purchase Requisition Commitment", {"purchase_requisition": doc.name})
+    if existing:
+        return
+
+    # If table items exist, create one commitment per row; otherwise fallback to single-field legacy mode.
+    items = list(getattr(doc, "items", []) or [])
+    created = []
+    if items:
+        for row in items:
+            line_amount = _phase15_line_amount(row)
+            if line_amount <= 0:
+                continue
+            commitment = frappe.get_doc(
+                {
+                    "doctype": "Purchase Requisition Commitment",
+                    "purchase_requisition": doc.name,
+                    "requisition_item_idx": row.idx,
+                    "entity": getattr(doc, "entity", None) or getattr(doc, "organization", None),
+                    "financial_year": getattr(doc, "financial_year", None),
+                    "budget_head": getattr(row, "budget_head", None) or getattr(doc, "budget_reference", None) or "",
+                    "cost_center": getattr(row, "cost_center", None) or getattr(doc, "cost_center", None),
+                    "project": getattr(row, "project", None) or getattr(doc, "project", None),
+                    "committed_amount": line_amount,
+                    "status": "Active",
+                    "created_from_stage": "Requisition Approval",
+                    "created_on": now_datetime(),
+                }
+            ).insert(ignore_permissions=True)
+            created.append(commitment.name)
+
+            # Update linked APP line lifecycle and committed totals.
+            ppi_name = getattr(row, "procurement_plan_item", None)
+            if ppi_name and frappe.db.exists("Procurement Plan Item", ppi_name):
+                ppi = frappe.get_doc("Procurement Plan Item", ppi_name)
+                ppi.db_set("committed_amount", flt(ppi.committed_amount or 0) + line_amount, update_modified=False)
+                ppi.db_set("budget_status", "Committed", update_modified=False)
+                if getattr(ppi, "line_status", None) in {"Approved in APP", "Reserved", "Draft", "Validated"}:
+                    ppi.db_set("line_status", "Requisitioned", update_modified=False)
+                if getattr(ppi, "procurement_plan", None):
+                    _phase1_recalculate_plan_totals(frappe.get_doc("Procurement Plan", ppi.procurement_plan))
+    else:
+        plan_item_name = getattr(doc, "procurement_plan_item", None)
+        amount = _phase1_requisition_amount(doc)
+        if plan_item_name and amount > 0:
+            ppi = frappe.get_doc("Procurement Plan Item", plan_item_name)
+            company, fiscal_year = frappe.db.get_value(
+                "Procurement Plan", ppi.procurement_plan, ["company", "fiscal_year"]
+            ) or (None, None)
+            commitment = frappe.get_doc(
+                {
+                    "doctype": "Purchase Requisition Commitment",
+                    "purchase_requisition": doc.name,
+                    "requisition_item_idx": 1,
+                    "entity": company,
+                    "financial_year": fiscal_year,
+                    "budget_head": getattr(ppi, "budget_head", None) or "",
+                    "cost_center": getattr(ppi, "cost_center", None),
+                    "project": getattr(ppi, "project", None),
+                    "committed_amount": amount,
+                    "status": "Active",
+                    "created_from_stage": "Requisition Approval",
+                    "created_on": now_datetime(),
+                }
+            ).insert(ignore_permissions=True)
+            created.append(commitment.name)
+            ppi.db_set("committed_amount", flt(ppi.committed_amount or 0) + amount, update_modified=False)
+            ppi.db_set("budget_status", "Committed", update_modified=False)
+            if getattr(ppi, "line_status", None) in {"Approved in APP", "Reserved", "Draft", "Validated"}:
+                ppi.db_set("line_status", "Requisitioned", update_modified=False)
+            if getattr(ppi, "procurement_plan", None):
+                _phase1_recalculate_plan_totals(frappe.get_doc("Procurement Plan", ppi.procurement_plan))
+
+    # Snapshot and requisition totals/statuses
+    snapshot_payload = frappe.as_json(doc.as_dict(), indent=2)
+    frappe.get_doc(
+        {
+            "doctype": "Purchase Requisition Snapshot",
+            "purchase_requisition": doc.name,
+            "snapshot_type": "Approval",
+            "snapshot_json": snapshot_payload,
+            "created_by": frappe.session.user,
+            "created_on": now_datetime(),
+        }
+    ).insert(ignore_permissions=True)
+
+    committed_total = (
+        frappe.db.sql(
+            """
+            select coalesce(sum(committed_amount - released_amount), 0)
+            from `tabPurchase Requisition Commitment`
+            where purchase_requisition=%s and status in ('Active','Partially Consumed','Consumed')
+            """,
+            doc.name,
+        )[0][0]
+        if doc.name
+        else 0
+    )
+    doc.db_set("total_committed_amount", committed_total, update_modified=False)
+    doc.db_set("approved_on", now_datetime(), update_modified=False)
+    doc.db_set("tender_readiness_status", "Ready for Tender", update_modified=False)
+    doc.db_set("budget_status", "Committed", update_modified=False)
+
+    if created:
+        log_ken_tender_audit_event(
+            action="phase15_requisition_commitments_created",
+            reference_doctype="Purchase Requisition",
+            reference_name=doc.name,
+            details={"commitments": created},
+        )
+
+
+def phase15_on_submit_purchase_requisition_amendment(doc, method=None) -> None:
+    req = frappe.get_doc("Purchase Requisition", doc.purchase_requisition)
+    if getattr(req, "linked_tender_count", 0) and getattr(doc, "amendment_type", None) in {"Scope", "Quantity", "Budget"}:
+        frappe.throw("Material amendments are blocked after tender handoff")
+
+    # Snapshot amendment approval for immutable evidence.
+    payload = frappe.as_json({"requisition": req.as_dict(), "amendment": doc.as_dict()}, indent=2)
+    frappe.get_doc(
+        {
+            "doctype": "Purchase Requisition Snapshot",
+            "purchase_requisition": req.name,
+            "snapshot_type": "Amendment Approval",
+            "snapshot_json": payload,
+            "created_by": frappe.session.user,
+            "created_on": now_datetime(),
+        }
+    ).insert(ignore_permissions=True)
+
+
+def _phase15_get_requisition_plan_items(req_doc) -> list[str]:
+    plan_items = []
+    for row in getattr(req_doc, "items", []) or []:
+        plan_item = getattr(row, "procurement_plan_item", None)
+        if plan_item:
+            plan_items.append(plan_item)
+
+    # Legacy fallback path
+    if not plan_items and getattr(req_doc, "procurement_plan_item", None):
+        plan_items.append(req_doc.procurement_plan_item)
+
+    # Preserve order while removing duplicates
+    seen = set()
+    unique = []
+    for name in plan_items:
+        if name in seen:
+            continue
+        seen.add(name)
+        unique.append(name)
+    return unique
+
+
+def _phase15_upsert_requisition_handoff(req_doc, tender_names: list[str]) -> str:
+    existing = frappe.get_all(
+        "Requisition Tender Handoff",
+        filters={"purchase_requisition": req_doc.name},
+        fields=["name"],
+        order_by="creation desc",
+        limit=1,
+    )
+    tender_ref = ", ".join(tender_names)
+    if existing:
+        handoff = frappe.get_doc("Requisition Tender Handoff", existing[0].name)
+        handoff.handoff_status = "Tender Created"
+        handoff.tender_reference = tender_ref
+        handoff.approved_for_tender_by = frappe.session.user
+        handoff.approved_for_tender_on = now_datetime()
+        handoff.notes = "Updated by controlled Phase 1.5 handoff service."
+        handoff.save(ignore_permissions=True)
+        return handoff.name
+
+    handoff = frappe.get_doc(
+        {
+            "doctype": "Requisition Tender Handoff",
+            "purchase_requisition": req_doc.name,
+            "handoff_status": "Tender Created",
+            "prepared_by": getattr(req_doc, "requestor", None) or frappe.session.user,
+            "prepared_on": now_datetime(),
+            "approved_for_tender_by": frappe.session.user,
+            "approved_for_tender_on": now_datetime(),
+            "tender_reference": tender_ref,
+            "notes": "Generated by controlled Phase 1.5 handoff service.",
+        }
+    ).insert(ignore_permissions=True)
+    return handoff.name
+
+
+@frappe.whitelist()
+def phase15_handoff_requisition_to_tender(
+    requisition_name: str, publish_immediately: int = 1, remarks: str | None = None
+) -> dict:
+    """Create Tender record(s) from an approved, ready PR and log handoff evidence."""
+    req = frappe.get_doc("Purchase Requisition", requisition_name)
+    if getattr(req, "status", None) != "Approved":
+        frappe.throw("Only Approved Purchase Requisition records can be handed off to Tender")
+    if getattr(req, "tender_readiness_status", None) not in {"Ready for Tender", "Tender Created", "Fully Handed Off"}:
+        frappe.throw("Purchase Requisition is not in a tender-ready state")
+
+    plan_items = _phase15_get_requisition_plan_items(req)
+    if not plan_items:
+        frappe.throw("No linked Procurement Plan Item found for tender handoff")
+
+    created_tenders = []
+    reused_tenders = []
+
+    for ppi_name in plan_items:
+        ppi = frappe.get_doc("Procurement Plan Item", ppi_name)
+        if getattr(ppi, "status", None) != "Approved":
+            frappe.throw(f"Procurement Plan Item must be Approved for handoff: {ppi_name}")
+
+        existing = frappe.get_all(
+            "Tender",
+            filters={"procurement_plan_item": ppi_name, "status": ("!=", "Closed")},
+            fields=["name", "status"],
+            order_by="creation desc",
+            limit=1,
+        )
+        if existing:
+            reused_tenders.append(existing[0].name)
+            continue
+
+        tender_doc = frappe.get_doc(
+            {
+                "doctype": "Tender",
+                "company": ppi.company,
+                "procurement_plan_item": ppi_name,
+                "status": "Published" if cint(publish_immediately) else "Draft",
+                "publish_date": now_datetime().date(),
+            }
+        ).insert(ignore_permissions=True)
+        created_tenders.append(tender_doc.name)
+
+    all_tenders = created_tenders + reused_tenders
+    handoff_name = _phase15_upsert_requisition_handoff(req, all_tenders)
+
+    req.db_set("linked_tender_count", len(all_tenders), update_modified=False)
+    req.db_set(
+        "tender_readiness_status",
+        "Fully Handed Off" if all_tenders else "Ready for Tender",
+        update_modified=False,
+    )
+
+    log_ken_tender_audit_event(
+        action="phase15_requisition_tender_handoff",
+        reference_doctype="Purchase Requisition",
+        reference_name=req.name,
+        details={
+            "handoff": handoff_name,
+            "created_tenders": created_tenders,
+            "reused_tenders": reused_tenders,
+            "remarks": remarks or "",
+        },
+    )
+
+    return {
+        "purchase_requisition": req.name,
+        "handoff": handoff_name,
+        "created_tenders": created_tenders,
+        "reused_tenders": reused_tenders,
+        "linked_tender_count": len(all_tenders),
+        "tender_readiness_status": frappe.db.get_value(
+            "Purchase Requisition", req.name, "tender_readiness_status"
+        ),
+    }
+
+
 def validate_plan_item(doc, method) -> None:
     if not doc.item_code:
         frappe.throw("Item is required")
@@ -510,6 +1976,10 @@ def approve_plan_item(docname: str) -> str:
 
     current_level = pending_levels[0]
     approved_any = False
+
+    # Governance: enforce Phase 1 controls before allowing the first approval step.
+    # This keeps validations aligned with the design gate (no execution without strategy + budget + method governance).
+    _phase1_validate_item_before_first_approval(doc)
 
     for row in doc.approvals:
         if row.status != "Pending":

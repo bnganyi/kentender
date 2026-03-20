@@ -1,0 +1,18 @@
+{
+  "doctype": "DocType",
+  "name": "Requisition Tender Handoff",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:RTH-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "purchase_requisition", "fieldtype": "Link", "label": "Purchase Requisition", "options": "Purchase Requisition", "reqd": 1},
+    {"fieldname": "handoff_status", "fieldtype": "Select", "label": "Handoff Status", "options": "Draft\nReady\nTender Created\nClosed", "default": "Draft"},
+    {"fieldname": "prepared_by", "fieldtype": "Link", "label": "Prepared By", "options": "User"},
+    {"fieldname": "prepared_on", "fieldtype": "Datetime", "label": "Prepared On"},
+    {"fieldname": "approved_for_tender_by", "fieldtype": "Link", "label": "Approved For Tender By", "options": "User"},
+    {"fieldname": "approved_for_tender_on", "fieldtype": "Datetime", "label": "Approved For Tender On"},
+    {"fieldname": "tender_reference", "fieldtype": "Data", "label": "Tender Reference"},
+    {"fieldname": "notes", "fieldtype": "Small Text", "label": "Notes"}
+  ]
+}

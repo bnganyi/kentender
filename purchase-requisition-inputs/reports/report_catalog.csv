@@ -1,0 +1,12 @@
+Report Name,Purpose,Primary Doctype,Priority
+Requisitions by Department,Operational visibility,Purchase Requisition,High
+Requisitions by Status,Workflow monitoring,Purchase Requisition,High
+Budget vs Committed by Requisition,Financial control,Purchase Requisition Commitment,High
+Requisition Aging,SLA monitoring,Purchase Requisition,High
+Approval Turnaround Time,Governance performance,Purchase Requisition Approval,Medium
+APP to Requisition Traceability,Planning lineage,Purchase Requisition Item,High
+One-Off Requisition Register,Exception oversight,Purchase Requisition Exception,High
+Emergency Requisition Register,Exception oversight,Purchase Requisition Exception,High
+Split Fragmentation Alert Report,Compliance control,Purchase Requisition Exception,High
+Requisition to Tender Conversion,Pipeline monitoring,Requisition Tender Handoff,Medium
+Commitment Creation and Release Log,Audit trail,Purchase Requisition Commitment,High

@@ -1,6 +1,16 @@
 doc_events = {
+	"Procurement Plan": {
+		"before_insert": "kentender.kentender.api.phase1_procurement_plan_before_insert",
+		"validate": "kentender.kentender.api.phase1_procurement_plan_validate",
+		"on_submit": "kentender.kentender.api.phase1_procurement_plan_on_submit",
+		"on_update_after_submit": "kentender.kentender.api.phase1_procurement_plan_on_update_after_submit",
+	},
 	"Procurement Plan Item": {
 		"validate": "kentender.kentender.api.validate_plan_item",
+	},
+	"Procurement Plan Revision": {
+		"validate": "kentender.kentender.api.phase1_procurement_plan_revision_validate",
+		"on_update": "kentender.kentender.api.phase1_procurement_plan_revision_on_update",
 	},
 	"Contract": {
 		"validate": "kentender.kentender.api.validate_contract",
@@ -88,6 +98,13 @@ doc_events = {
 		"validate": "kentender.kentender.api.validate_payment_entry_clm",
 		"before_submit": "kentender.kentender.api.before_submit_payment_entry_clm",
 	},
+	"Purchase Requisition": {
+		"validate": "kentender.kentender.api.phase1_validate_purchase_requisition",
+		"on_update": "kentender.kentender.api.phase1_on_update_purchase_requisition",
+	},
+	"Purchase Requisition Amendment": {
+		"on_submit": "kentender.kentender.api.phase15_on_submit_purchase_requisition_amendment",
+	},
 	"Tender": {
 		"on_submit": "kentender.kentender.api.validate_tender",
 	},
@@ -106,6 +123,8 @@ scheduler_events = {
 		"kentender.kentender.api.create_monthly_contract_monitoring_reports",
 	],
 }
+
+after_migrate = "kentender.kentender.api.phase1_after_migrate_setup"
 app_name = "kentender"
 app_title = "KenTender"
 app_publisher = "Midas"

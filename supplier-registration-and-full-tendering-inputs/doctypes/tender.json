@@ -1,0 +1,171 @@
+{
+  "doctype": "DocType",
+  "name": "Tender",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "tender_number",
+    "entity",
+    "title",
+    "procurement_type",
+    "method",
+    "requisition_source_mode",
+    "estimated_value",
+    "currency",
+    "advertisement_date",
+    "closing_datetime",
+    "opening_datetime",
+    "submission_mode",
+    "evaluation_method",
+    "tender_status",
+    "security_required",
+    "security_amount",
+    "clarification_deadline",
+    "site_visit_required",
+    "prebid_required",
+    "prebid_datetime",
+    "linked_requisition_count",
+    "remarks"
+  ],
+  "fields": [
+    {
+      "fieldname": "tender_number",
+      "label": "Tender Number",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "entity",
+      "label": "Entity",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "title",
+      "label": "Title",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "procurement_type",
+      "label": "Procurement Type",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Goods\nWorks\nNon-Consulting Services\nConsulting Services\nAsset Disposal"
+    },
+    {
+      "fieldname": "method",
+      "label": "Method",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Open Tender\nRestricted Tender\nDirect Procurement\nRequest for Quotations\nTwo-Stage Tender\nFramework Agreement"
+    },
+    {
+      "fieldname": "requisition_source_mode",
+      "label": "Requisition Source Mode",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Single\nMultiple"
+    },
+    {
+      "fieldname": "estimated_value",
+      "label": "Estimated Value",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "currency",
+      "label": "Currency",
+      "fieldtype": "Link",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "advertisement_date",
+      "label": "Advertisement Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "closing_datetime",
+      "label": "Closing Datetime",
+      "fieldtype": "Datetime",
+      "reqd": 1
+    },
+    {
+      "fieldname": "opening_datetime",
+      "label": "Opening Datetime",
+      "fieldtype": "Datetime",
+      "reqd": 1
+    },
+    {
+      "fieldname": "submission_mode",
+      "label": "Submission Mode",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Electronic\nManual\nHybrid"
+    },
+    {
+      "fieldname": "evaluation_method",
+      "label": "Evaluation Method",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Pass-Fail\nWeighted Score\nLeast Evaluated Cost\nQCBS\nOther"
+    },
+    {
+      "fieldname": "tender_status",
+      "label": "Tender Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Draft\nInternal Review\nApproved for Publication\nPublished\nClosed\nOpened\nUnder Evaluation\nAward Recommended\nAward Approved\nAward Published\nCancelled",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "security_required",
+      "label": "Security Required",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "security_amount",
+      "label": "Security Amount",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "clarification_deadline",
+      "label": "Clarification Deadline",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "site_visit_required",
+      "label": "Site Visit Required",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "prebid_required",
+      "label": "Prebid Required",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "prebid_datetime",
+      "label": "Prebid Datetime",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "linked_requisition_count",
+      "label": "Linked Requisition Count",
+      "fieldtype": "Int",
+      "read_only": 1
+    },
+    {
+      "fieldname": "remarks",
+      "label": "Remarks",
+      "fieldtype": "Small Text"
+    }
+  ],
+  "permissions": [],
+  "autoname": "format:TND-.YYYY.-.#####"
+}

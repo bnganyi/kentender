@@ -1,0 +1,76 @@
+{
+  "doctype": "DocType",
+  "name": "Supplier Status Action",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "supplier",
+    "action_type",
+    "reason",
+    "requested_by",
+    "approved_by",
+    "effective_date",
+    "end_date",
+    "status"
+  ],
+  "fields": [
+    {
+      "fieldname": "supplier",
+      "label": "Supplier",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Supplier Master",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "action_type",
+      "label": "Action Type",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Activate\nSuspend\nReinstate\nDebar\nBlacklist\nMark Expired\nReactivate",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Long Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "requested_by",
+      "label": "Requested By",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "approved_by",
+      "label": "Approved By",
+      "fieldtype": "Link",
+      "options": "User"
+    },
+    {
+      "fieldname": "effective_date",
+      "label": "Effective Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "end_date",
+      "label": "End Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Draft\nApproved\nRejected\nClosed"
+    }
+  ],
+  "permissions": [],
+  "autoname": "format:SUP-ACT-.YYYY.-.#####"
+}

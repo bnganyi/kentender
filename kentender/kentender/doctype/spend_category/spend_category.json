@@ -1,0 +1,53 @@
+{
+  "doctype": "DocType",
+  "name": "Spend Category",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "field:category_code",
+  "fields": [
+    {
+      "fieldname": "category_code",
+      "label": "Category Code",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "category_title",
+      "label": "Category Title",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nActive\nRetired",
+      "default": "Active",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Long Text"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Procurement Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 0
+    }
+  ]
+}
+

@@ -1,0 +1,82 @@
+{
+  "doctype": "DocType",
+  "name": "Award Recommendation",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "tender",
+    "lot",
+    "recommended_submission",
+    "recommended_supplier",
+    "recommended_amount",
+    "recommendation_basis",
+    "prepared_by",
+    "prepared_on",
+    "status"
+  ],
+  "fields": [
+    {
+      "fieldname": "tender",
+      "label": "Tender",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Tender",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "lot",
+      "label": "Lot",
+      "fieldtype": "Link",
+      "options": "Tender Lot"
+    },
+    {
+      "fieldname": "recommended_submission",
+      "label": "Recommended Submission",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Tender Submission"
+    },
+    {
+      "fieldname": "recommended_supplier",
+      "label": "Recommended Supplier",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Supplier Master"
+    },
+    {
+      "fieldname": "recommended_amount",
+      "label": "Recommended Amount",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "recommendation_basis",
+      "label": "Recommendation Basis",
+      "fieldtype": "Long Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "prepared_by",
+      "label": "Prepared By",
+      "fieldtype": "Link",
+      "options": "User"
+    },
+    {
+      "fieldname": "prepared_on",
+      "label": "Prepared On",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Draft\nCommittee Review\nApproved\nRejected",
+      "in_list_view": 1
+    }
+  ],
+  "permissions": []
+}

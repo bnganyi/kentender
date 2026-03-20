@@ -1,0 +1,83 @@
+{
+  "doctype": "DocType",
+  "name": "Bid Opening Record",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "tender",
+    "submission",
+    "lot",
+    "opened_by_committee",
+    "opening_datetime",
+    "bid_price_readout",
+    "security_confirmed",
+    "late_bid_flag",
+    "remarks",
+    "signed_off"
+  ],
+  "fields": [
+    {
+      "fieldname": "tender",
+      "label": "Tender",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Tender",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "submission",
+      "label": "Submission",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Tender Submission",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "lot",
+      "label": "Lot",
+      "fieldtype": "Link",
+      "options": "Tender Lot"
+    },
+    {
+      "fieldname": "opened_by_committee",
+      "label": "Opened By Committee",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "opening_datetime",
+      "label": "Opening Datetime",
+      "fieldtype": "Datetime",
+      "reqd": 1
+    },
+    {
+      "fieldname": "bid_price_readout",
+      "label": "Bid Price Readout",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "security_confirmed",
+      "label": "Security Confirmed",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "late_bid_flag",
+      "label": "Late Bid Flag",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "remarks",
+      "label": "Remarks",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "signed_off",
+      "label": "Signed Off",
+      "fieldtype": "Check"
+    }
+  ],
+  "permissions": []
+}

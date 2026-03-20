@@ -1,0 +1,266 @@
+{
+  "doctype": "DocType",
+  "name": "Purchase Requisition",
+  "module": "KenTender",
+  "custom": 1,
+  "is_submittable": 1,
+  "track_changes": 1,
+  "autoname": "format:PR-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "entity",
+      "fieldtype": "Link",
+      "label": "Entity",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "department",
+      "fieldtype": "Link",
+      "label": "Department",
+      "options": "Department",
+      "reqd": 1
+    },
+    {
+      "fieldname": "requestor",
+      "fieldtype": "Link",
+      "label": "Requestor",
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "financial_year",
+      "fieldtype": "Link",
+      "label": "Financial Year",
+      "options": "Fiscal Year",
+      "reqd": 1
+    },
+    {
+      "fieldname": "requisition_type",
+      "fieldtype": "Select",
+      "label": "Requisition Type",
+      "options": "Standard\nAggregated\nEmergency\nOne-Off\nAmendment\nCancellation",
+      "reqd": 1
+    },
+    {
+      "fieldname": "source_mode",
+      "fieldtype": "Select",
+      "label": "Source Mode",
+      "options": "APP Linked\nOne-Off",
+      "reqd": 1
+    },
+    {
+      "fieldname": "request_date",
+      "fieldtype": "Date",
+      "label": "Request Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "required_by_date",
+      "fieldtype": "Date",
+      "label": "Required By Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "justification",
+      "fieldtype": "Small Text",
+      "label": "Justification",
+      "reqd": 1
+    },
+    {
+      "fieldname": "technical_summary",
+      "fieldtype": "Small Text",
+      "label": "Technical Summary"
+    },
+    {
+      "fieldname": "delivery_location",
+      "fieldtype": "Data",
+      "label": "Delivery Location",
+      "reqd": 1
+    },
+    {
+      "fieldname": "budget_reference",
+      "fieldtype": "Data",
+      "label": "Budget Reference"
+    },
+    {
+      "fieldname": "program_code",
+      "fieldtype": "Data",
+      "label": "Program Code"
+    },
+    {
+      "fieldname": "cost_center",
+      "fieldtype": "Link",
+      "label": "Cost Center",
+      "options": "Cost Center"
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "label": "Project",
+      "options": "Project"
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "label": "Currency",
+      "options": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "total_estimated_cost",
+      "fieldtype": "Currency",
+      "label": "Total Estimated Cost",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_committed_amount",
+      "fieldtype": "Currency",
+      "label": "Total Committed Amount",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_released_amount",
+      "fieldtype": "Currency",
+      "label": "Total Released Amount",
+      "read_only": 1
+    },
+    {
+      "fieldname": "budget_status",
+      "fieldtype": "Select",
+      "label": "Budget Status",
+      "options": "Unchecked\nAvailable\nWarning\nBlocked\nCommitted\nReleased",
+      "default": "Unchecked"
+    },
+    {
+      "fieldname": "tender_readiness_status",
+      "fieldtype": "Select",
+      "label": "Tender Readiness Status",
+      "options": "Not Ready\nReady for Tender\nTender Created\nFully Handed Off",
+      "default": "Not Ready"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nSubmitted\nHoD Review\nFinance Review\nAO Review\nProcurement Review\nApproved\nRejected\nCancelled\nClosed",
+      "default": "Draft",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approval_status",
+      "fieldtype": "Select",
+      "label": "Approval Status",
+      "options": "Pending\nApproved\nRejected\nReturned",
+      "default": "Pending"
+    },
+    {
+      "fieldname": "emergency_flag",
+      "fieldtype": "Check",
+      "label": "Emergency"
+    },
+    {
+      "fieldname": "one_off_flag",
+      "fieldtype": "Check",
+      "label": "One-Off"
+    },
+    {
+      "fieldname": "exception_flag",
+      "fieldtype": "Check",
+      "label": "Exception"
+    },
+    {
+      "fieldname": "linked_tender_count",
+      "fieldtype": "Int",
+      "label": "Linked Tender Count",
+      "default": "0",
+      "read_only": 1
+    },
+    {
+      "fieldname": "submitted_on",
+      "fieldtype": "Datetime",
+      "label": "Submitted On",
+      "read_only": 1
+    },
+    {
+      "fieldname": "approved_on",
+      "fieldtype": "Datetime",
+      "label": "Approved On",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cancelled_on",
+      "fieldtype": "Datetime",
+      "label": "Cancelled On",
+      "read_only": 1
+    },
+    {
+      "fieldname": "closed_on",
+      "fieldtype": "Datetime",
+      "label": "Closed On",
+      "read_only": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "items",
+      "fieldtype": "Table",
+      "label": "Items",
+      "options": "Purchase Requisition Item",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approvals",
+      "fieldtype": "Table",
+      "label": "Approvals",
+      "options": "Purchase Requisition Approval"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Requestor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "submit": 1
+    },
+    {
+      "role": "Head of Department",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Finance/Budget Officer",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Procurement Officer",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Internal Auditor",
+      "read": 1
+    },
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    }
+  ]
+}

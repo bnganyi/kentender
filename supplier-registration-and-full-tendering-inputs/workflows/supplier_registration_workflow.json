@@ -1,0 +1,81 @@
+{
+  "doctype": "Workflow",
+  "workflow_name": "Supplier Registration Workflow",
+  "document_type": "Supplier Registration Application",
+  "is_active": 1,
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": "0",
+      "allow_edit": "Supplier Bidder User"
+    },
+    {
+      "state": "Submitted",
+      "doc_status": "0",
+      "allow_edit": "Supplier Registration Officer"
+    },
+    {
+      "state": "Compliance Review",
+      "doc_status": "0",
+      "allow_edit": "Supplier Registration Officer"
+    },
+    {
+      "state": "Procurement Review",
+      "doc_status": "0",
+      "allow_edit": "Head of Procurement"
+    },
+    {
+      "state": "Approved",
+      "doc_status": "1",
+      "allow_edit": "System Administrator"
+    },
+    {
+      "state": "Rejected",
+      "doc_status": "2",
+      "allow_edit": "System Administrator"
+    },
+    {
+      "state": "Suspended",
+      "doc_status": "0",
+      "allow_edit": "Head of Procurement"
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit",
+      "next_state": "Submitted",
+      "allowed": "Supplier Bidder User"
+    },
+    {
+      "state": "Submitted",
+      "action": "Move to Compliance Review",
+      "next_state": "Compliance Review",
+      "allowed": "Supplier Registration Officer"
+    },
+    {
+      "state": "Compliance Review",
+      "action": "Move to Procurement Review",
+      "next_state": "Procurement Review",
+      "allowed": "Supplier Registration Officer"
+    },
+    {
+      "state": "Procurement Review",
+      "action": "Approve",
+      "next_state": "Approved",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Procurement Review",
+      "action": "Reject",
+      "next_state": "Rejected",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Approved",
+      "action": "Suspend",
+      "next_state": "Suspended",
+      "allowed": "Head of Procurement"
+    }
+  ]
+}

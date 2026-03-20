@@ -1,0 +1,101 @@
+{
+  "doctype": "DocType",
+  "name": "Purchase Requisition Commitment",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:PRC-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "purchase_requisition",
+      "fieldtype": "Link",
+      "label": "Purchase Requisition",
+      "options": "Purchase Requisition",
+      "reqd": 1
+    },
+    {
+      "fieldname": "requisition_item_idx",
+      "fieldtype": "Int",
+      "label": "Requisition Item Row",
+      "reqd": 1
+    },
+    {
+      "fieldname": "entity",
+      "fieldtype": "Link",
+      "label": "Entity",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "financial_year",
+      "fieldtype": "Link",
+      "label": "Financial Year",
+      "options": "Fiscal Year",
+      "reqd": 1
+    },
+    {
+      "fieldname": "budget_head",
+      "fieldtype": "Data",
+      "label": "Budget Head",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cost_center",
+      "fieldtype": "Link",
+      "label": "Cost Center",
+      "options": "Cost Center",
+      "reqd": 1
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "label": "Project",
+      "options": "Project"
+    },
+    {
+      "fieldname": "committed_amount",
+      "fieldtype": "Currency",
+      "label": "Committed Amount",
+      "reqd": 1
+    },
+    {
+      "fieldname": "actualized_amount",
+      "fieldtype": "Currency",
+      "label": "Actualized Amount",
+      "default": "0"
+    },
+    {
+      "fieldname": "released_amount",
+      "fieldtype": "Currency",
+      "label": "Released Amount",
+      "default": "0"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Active\nPartially Consumed\nConsumed\nReleased\nCancelled",
+      "default": "Active"
+    },
+    {
+      "fieldname": "created_from_stage",
+      "fieldtype": "Data",
+      "label": "Created From Stage"
+    },
+    {
+      "fieldname": "created_on",
+      "fieldtype": "Datetime",
+      "label": "Created On"
+    },
+    {
+      "fieldname": "released_on",
+      "fieldtype": "Datetime",
+      "label": "Released On"
+    },
+    {
+      "fieldname": "release_reason",
+      "fieldtype": "Small Text",
+      "label": "Release Reason"
+    }
+  ]
+}

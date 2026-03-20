@@ -1,0 +1,67 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Publication Record",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "tender",
+    "publication_channel",
+    "publication_date",
+    "published_by",
+    "notice_reference",
+    "attachment",
+    "status"
+  ],
+  "fields": [
+    {
+      "fieldname": "tender",
+      "label": "Tender",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Tender",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "publication_channel",
+      "label": "Publication Channel",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Portal\nWebsite\nNewspaper\nGazette\nOther"
+    },
+    {
+      "fieldname": "publication_date",
+      "label": "Publication Date",
+      "fieldtype": "Datetime",
+      "reqd": 1
+    },
+    {
+      "fieldname": "published_by",
+      "label": "Published By",
+      "fieldtype": "Link",
+      "options": "User"
+    },
+    {
+      "fieldname": "notice_reference",
+      "label": "Notice Reference",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "attachment",
+      "label": "Attachment",
+      "fieldtype": "Attach"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Published\nWithdrawn\nArchived",
+      "in_list_view": 1
+    }
+  ],
+  "permissions": []
+}

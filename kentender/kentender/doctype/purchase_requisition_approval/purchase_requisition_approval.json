@@ -1,0 +1,15 @@
+{
+  "doctype": "DocType",
+  "name": "Purchase Requisition Approval",
+  "module": "KenTender",
+  "custom": 1,
+  "istable": 1,
+  "fields": [
+    {"fieldname": "approval_stage", "fieldtype": "Select", "label": "Approval Stage", "options": "Submission\nHoD Review\nFinance Review\nAO Review\nProcurement Review\nFinal Approval", "reqd": 1},
+    {"fieldname": "approver_role", "fieldtype": "Data", "label": "Approver Role", "reqd": 1},
+    {"fieldname": "approver_user", "fieldtype": "Link", "label": "Approver User", "options": "User"},
+    {"fieldname": "action", "fieldtype": "Select", "label": "Action", "options": "Pending\nApproved\nRejected\nReturned\nSkipped", "default": "Pending"},
+    {"fieldname": "action_date", "fieldtype": "Datetime", "label": "Action Date"},
+    {"fieldname": "comments", "fieldtype": "Small Text", "label": "Comments"}
+  ]
+}

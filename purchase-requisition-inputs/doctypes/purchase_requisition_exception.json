@@ -1,0 +1,73 @@
+{
+  "doctype": "DocType",
+  "name": "Purchase Requisition Exception",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:PRE-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "purchase_requisition",
+      "fieldtype": "Link",
+      "label": "Purchase Requisition",
+      "options": "Purchase Requisition",
+      "reqd": 1
+    },
+    {
+      "fieldname": "exception_type",
+      "fieldtype": "Select",
+      "label": "Exception Type",
+      "options": "One-Off\nEmergency\nBudget Override\nThreshold Override\nSplit Risk\nRetrospective Justification",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason",
+      "fieldtype": "Small Text",
+      "label": "Reason",
+      "reqd": 1
+    },
+    {
+      "fieldname": "risk_level",
+      "fieldtype": "Select",
+      "label": "Risk Level",
+      "options": "Low\nMedium\nHigh",
+      "default": "Medium"
+    },
+    {
+      "fieldname": "requested_by",
+      "fieldtype": "Link",
+      "label": "Requested By",
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reviewed_by",
+      "fieldtype": "Link",
+      "label": "Reviewed By",
+      "options": "User"
+    },
+    {
+      "fieldname": "approved_by",
+      "fieldtype": "Link",
+      "label": "Approved By",
+      "options": "User"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nUnder Review\nApproved\nRejected\nClosed",
+      "default": "Draft"
+    },
+    {
+      "fieldname": "post_review_required",
+      "fieldtype": "Check",
+      "label": "Post Review Required"
+    },
+    {
+      "fieldname": "post_review_due_date",
+      "fieldtype": "Date",
+      "label": "Post Review Due Date"
+    }
+  ]
+}

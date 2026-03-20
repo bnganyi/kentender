@@ -1,0 +1,8 @@
+Role,Purchase Requisition,Purchase Requisition Amendment,Purchase Requisition Commitment,Purchase Requisition Exception,Requisition Tender Handoff,Notes
+Requestor,"Create/Edit own draft, Submit",Create draft amendment,No direct access,Create for one-off/emergency support,View own,Cannot approve own requisition
+Head of Department,Read/Review/Approve stage,Review amendment,Read,Read/Review,Read,Department legitimacy review
+Finance/Budget Officer,Read/Review,Review budget amendments,Create/Update during approval,Review budget overrides,Read,Budget validation and encumbrance
+Accounting Officer,Read/Approve AO stage,Approve high-impact amendments,Read,Approve high-risk exceptions,Read,Commitment authority
+Procurement Officer,Read/Final approve,Review execution impact,Read,Review split-risk/emergency,Prepare/Approve handoff,Tender readiness control
+Head of Procurement,Read/Final governance,Approve critical amendments,Read,Approve critical exceptions,Approve handoff,Executive procurement oversight
+Internal Auditor,Read only,Read only,Read only,Read only,Read only,No transactional edits

@@ -1,0 +1,13 @@
+Report Name,Purpose,Primary Audience
+Supplier Registration Status Report,Track supplier application progression and bottlenecks,Supplier Registration Officer; Head of Procurement
+Supplier Compliance Expiry Report,Show documents nearing expiry or already expired,Supplier Governance; Internal Auditor
+Suspended Debarred Supplier Register,Provide current ineligible supplier list,Procurement; Oversight
+Tender Publication Register,Evidence of publication channels and dates,Procurement; Internal Auditor
+Bid Receipt Summary,List all received submissions and late flags,Opening Committee; Procurement
+Opening Register Report,Formal opening day register and readout,Opening Committee; Oversight
+Evaluation Progress Report,Track evaluator completion and pending stages,Evaluation Chair; Procurement
+Consensus Ranking Report,Show final consensus results by submission/lot,Evaluation Chair; Approving Authority
+Award Decision Register,Track awards through approval and publication,Procurement; Approving Authority
+Challenge Review Case Register,Monitor complaints and review cases,Procurement; Legal; Oversight
+Requisition to Award Traceability Report,Trace upstream requisition into tender and award,Internal Auditor; Management
+Tender Full Audit Trail,Chronological action log from setup to award handoff,Internal Auditor

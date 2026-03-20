@@ -1,0 +1,68 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Notification Log",
+  "module": "KenTender Phase 2",
+  "custom": 0,
+  "is_submittable": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "tender",
+    "supplier",
+    "notification_type",
+    "sent_on",
+    "channel",
+    "status",
+    "reference"
+  ],
+  "fields": [
+    {
+      "fieldname": "tender",
+      "label": "Tender",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "Tender",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "supplier",
+      "label": "Supplier",
+      "fieldtype": "Link",
+      "options": "Supplier Master"
+    },
+    {
+      "fieldname": "notification_type",
+      "label": "Notification Type",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Invitation\nClarification\nAddendum\nRegret\nIntention to Award\nFinal Award",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "sent_on",
+      "label": "Sent On",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "channel",
+      "label": "Channel",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Email\nPortal\nSMS\nLetter"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "options": "Queued\nSent\nFailed\nAcknowledged"
+    },
+    {
+      "fieldname": "reference",
+      "label": "Reference",
+      "fieldtype": "Data"
+    }
+  ],
+  "permissions": []
+}
