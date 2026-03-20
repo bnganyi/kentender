@@ -1,0 +1,94 @@
+{
+  "doctype": "DocType",
+  "name": "Session Action",
+  "module": "KenTender",
+  "custom": 1,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:SA-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "options": "Governance Session",
+      "label": "Session",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "agenda_item",
+      "fieldtype": "Link",
+      "options": "Session Agenda Item",
+      "label": "Agenda Item"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Long Text",
+      "label": "Description",
+      "reqd": 1
+    },
+    {
+      "fieldname": "assigned_to",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Assigned To"
+    },
+    {
+      "fieldname": "due_date",
+      "fieldtype": "Date",
+      "label": "Due Date"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Open\nIn Progress\nCompleted\nOverdue\nCancelled",
+      "reqd": 1,
+      "default": "Open"
+    }
+    ,
+    {
+      "fieldname": "linked_task",
+      "fieldtype": "Link",
+      "options": "Task",
+      "label": "Linked Task"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Contract Implementation Team",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Inspection and Acceptance Committee",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Head of Finance",
+      "read": 1
+    }
+  ]
+}
+

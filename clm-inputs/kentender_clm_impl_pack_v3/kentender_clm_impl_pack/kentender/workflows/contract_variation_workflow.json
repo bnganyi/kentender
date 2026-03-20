@@ -1,0 +1,84 @@
+{
+  "workflow_name": "Contract Variation Workflow",
+  "document_type": "Contract Variation",
+  "is_active": 1,
+  "workflow_state_field": "status",
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": 0
+    },
+    {
+      "state": "Submitted",
+      "doc_status": 0
+    },
+    {
+      "state": "Under Technical Review",
+      "doc_status": 0
+    },
+    {
+      "state": "Under Financial Review",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Approval",
+      "doc_status": 0
+    },
+    {
+      "state": "Approved",
+      "doc_status": 0
+    },
+    {
+      "state": "Rejected",
+      "doc_status": 0
+    },
+    {
+      "state": "Implemented",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit Variation",
+      "next_state": "Submitted",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Submitted",
+      "action": "Start Technical Review",
+      "next_state": "Under Technical Review",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Under Technical Review",
+      "action": "Forward to Finance",
+      "next_state": "Under Financial Review",
+      "allowed": "Contract Implementation Team"
+    },
+    {
+      "state": "Under Financial Review",
+      "action": "Forward for Approval",
+      "next_state": "Pending Approval",
+      "allowed": "Head of Finance"
+    },
+    {
+      "state": "Pending Approval",
+      "action": "Approve Variation",
+      "next_state": "Approved",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Pending Approval",
+      "action": "Reject Variation",
+      "next_state": "Rejected",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Approved",
+      "action": "Implement Variation",
+      "next_state": "Implemented",
+      "allowed": "Head of Procurement"
+    }
+  ]
+}

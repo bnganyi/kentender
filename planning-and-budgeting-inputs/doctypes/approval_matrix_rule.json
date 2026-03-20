@@ -1,0 +1,58 @@
+{
+  "doctype": "DocType",
+  "name": "Approval Matrix Rule",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "policy_profile",
+      "label": "Policy Profile",
+      "fieldtype": "Link",
+      "options": "Procurement Policy Profile",
+      "reqd": 1
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "options": "Department"
+    },
+    {
+      "fieldname": "procurement_type",
+      "label": "Procurement Type",
+      "fieldtype": "Select",
+      "options": "Goods\nWorks\nServices\nConsulting\nAsset Disposal"
+    },
+    {
+      "fieldname": "category",
+      "label": "Category",
+      "fieldtype": "Link",
+      "options": "Spend Category"
+    },
+    {
+      "fieldname": "value_from",
+      "label": "Value From",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "value_to",
+      "label": "Value To",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approval_sequence_json",
+      "label": "Approval Sequence JSON",
+      "fieldtype": "Code",
+      "options": "JSON",
+      "reqd": 1
+    },
+    {
+      "fieldname": "active",
+      "label": "Active",
+      "fieldtype": "Check",
+      "default": 1
+    }
+  ]
+}

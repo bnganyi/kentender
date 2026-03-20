@@ -1,0 +1,130 @@
+{
+  "doctype": "DocType",
+  "name": "Claim",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 1,
+  "autoname": "format:CLM-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "claim_by",
+      "fieldtype": "Select",
+      "options": "Procuring Entity\nSupplier",
+      "label": "Claim By",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "claim_type",
+      "fieldtype": "Select",
+      "options": "Liquidated Damages\nPerformance Penalty\nInterest on Delayed Payment\nCompensation Claim\nVariation Claim\nOther",
+      "label": "Claim Type",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "claim_date",
+      "fieldtype": "Date",
+      "label": "Claim Date",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Amount",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "penalty_rate_per_day",
+      "fieldtype": "Float",
+      "label": "Penalty Rate Per Day",
+      "in_list_view": 0
+    },
+    {
+      "fieldname": "penalty_formula",
+      "fieldtype": "Small Text",
+      "label": "Penalty Formula",
+      "in_list_view": 0
+    },
+    {
+      "fieldname": "penalty_expected_completion_date",
+      "fieldtype": "Date",
+      "label": "Expected Completion Date",
+      "in_list_view": 0
+    },
+    {
+      "fieldname": "penalty_actual_completion_date",
+      "fieldtype": "Date",
+      "label": "Actual Completion Date",
+      "in_list_view": 0
+    },
+    {
+      "fieldname": "penalty_delay_days",
+      "fieldtype": "Int",
+      "label": "Penalty Delay Days",
+      "in_list_view": 0
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Small Text",
+      "label": "Description",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Draft\nSubmitted\nUnder Review\nApproved\nRejected\nSettled",
+      "label": "Status",
+      "default": "Draft",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "reference_variation",
+      "fieldtype": "Link",
+      "options": "Contract Variation",
+      "label": "Reference Variation"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Supplier",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    }
+  ]
+}
+

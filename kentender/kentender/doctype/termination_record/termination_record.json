@@ -1,0 +1,103 @@
+{
+  "doctype": "DocType",
+  "name": "Termination Record",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 1,
+  "autoname": "format:TR-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "termination_date",
+      "fieldtype": "Date",
+      "label": "Termination Date",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "termination_reason",
+      "fieldtype": "Small Text",
+      "label": "Termination Reason",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approved_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Approved By",
+      "reqd": 1
+    },
+    {
+      "fieldname": "legal_advice_reference",
+      "fieldtype": "Data",
+      "label": "Legal Advice Reference"
+    },
+    {
+      "fieldname": "notice_issued_to_supplier",
+      "fieldtype": "Check",
+      "label": "Notice Issued to Supplier"
+    },
+    {
+      "fieldname": "supporting_documents_provided",
+      "fieldtype": "Check",
+      "label": "Supporting Documents Provided"
+    },
+    {
+      "fieldname": "settlement_status",
+      "fieldtype": "Select",
+      "options": "Pending\nIn Progress\nCompleted",
+      "label": "Settlement Status",
+      "default": "Pending",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "final_financial_reconciliation",
+      "fieldtype": "Currency",
+      "label": "Final Financial Reconciliation"
+    },
+    {
+      "fieldname": "handover_completed",
+      "fieldtype": "Check",
+      "label": "Handover Completed"
+    },
+    {
+      "fieldname": "discharge_document_reference",
+      "fieldtype": "Data",
+      "label": "Discharge Document Reference"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    }
+  ]
+}
+

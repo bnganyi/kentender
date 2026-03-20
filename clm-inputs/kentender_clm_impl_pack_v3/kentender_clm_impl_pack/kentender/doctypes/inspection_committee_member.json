@@ -1,0 +1,58 @@
+{
+  "doctype": "DocType",
+  "name": "Inspection Committee Member",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1
+    },
+    {
+      "fieldname": "employee",
+      "fieldtype": "Link",
+      "options": "Employee",
+      "label": "Employee",
+      "reqd": 1
+    },
+    {
+      "fieldname": "member_type",
+      "fieldtype": "Select",
+      "options": "Chairperson\nMember\nSecretary\nTechnical Specialist",
+      "label": "Member Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "department",
+      "fieldtype": "Link",
+      "options": "Department",
+      "label": "Department"
+    },
+    {
+      "fieldname": "qualification",
+      "fieldtype": "Data",
+      "label": "Qualification"
+    },
+    {
+      "fieldname": "appointed_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Appointed By"
+    },
+    {
+      "fieldname": "appointed_on",
+      "fieldtype": "Datetime",
+      "label": "Appointed On"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Proposed\nUnder Review\nApproved\nActive\nDissolved\nRejected",
+      "label": "Status",
+      "reqd": 1
+    }
+  ]
+}

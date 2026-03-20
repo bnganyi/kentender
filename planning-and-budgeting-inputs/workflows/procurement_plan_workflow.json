@@ -1,0 +1,119 @@
+{
+  "workflow_name": "Procurement Plan Workflow",
+  "document_type": "Procurement Plan",
+  "workflow_state_field": "status",
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": 0,
+      "allow_edit": "Procurement Planner"
+    },
+    {
+      "state": "Department Consolidation",
+      "doc_status": 0,
+      "allow_edit": "Procurement Planner"
+    },
+    {
+      "state": "Procurement Review",
+      "doc_status": 0,
+      "allow_edit": "Head of Procurement"
+    },
+    {
+      "state": "Finance Review",
+      "doc_status": 0,
+      "allow_edit": "Finance/Budget Officer"
+    },
+    {
+      "state": "Submitted",
+      "doc_status": 0,
+      "allow_edit": "Accounting Officer"
+    },
+    {
+      "state": "Approved",
+      "doc_status": 1,
+      "allow_edit": "Accounting Officer"
+    },
+    {
+      "state": "Published",
+      "doc_status": 1,
+      "allow_edit": "Procurement Manager"
+    },
+    {
+      "state": "Locked",
+      "doc_status": 1,
+      "allow_edit": "System Manager"
+    },
+    {
+      "state": "Superseded",
+      "doc_status": 1,
+      "allow_edit": "System Manager"
+    },
+    {
+      "state": "Cancelled",
+      "doc_status": 2,
+      "allow_edit": "System Manager"
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Consolidate",
+      "next_state": "Department Consolidation",
+      "allowed": "Procurement Planner"
+    },
+    {
+      "state": "Department Consolidation",
+      "action": "Send to Procurement Review",
+      "next_state": "Procurement Review",
+      "allowed": "Procurement Planner"
+    },
+    {
+      "state": "Procurement Review",
+      "action": "Send to Finance",
+      "next_state": "Finance Review",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Procurement Review",
+      "action": "Return to Planner",
+      "next_state": "Department Consolidation",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Finance Review",
+      "action": "Submit for Approval",
+      "next_state": "Submitted",
+      "allowed": "Finance/Budget Officer"
+    },
+    {
+      "state": "Finance Review",
+      "action": "Return to Procurement",
+      "next_state": "Procurement Review",
+      "allowed": "Finance/Budget Officer"
+    },
+    {
+      "state": "Submitted",
+      "action": "Approve",
+      "next_state": "Approved",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Submitted",
+      "action": "Reject",
+      "next_state": "Department Consolidation",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Approved",
+      "action": "Publish",
+      "next_state": "Published",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Published",
+      "action": "Lock",
+      "next_state": "Locked",
+      "allowed": "System Manager"
+    }
+  ]
+}

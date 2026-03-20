@@ -1,0 +1,34 @@
+[
+  {
+    "doctype": "Role",
+    "role_name": "Head of Procurement"
+  },
+  {
+    "doctype": "Role",
+    "role_name": "Accounting Officer"
+  },
+  {
+    "doctype": "Role",
+    "role_name": "Contract Implementation Team"
+  },
+  {
+    "doctype": "Role",
+    "role_name": "Inspection and Acceptance Committee"
+  },
+  {
+    "doctype": "Role",
+    "role_name": "Head of User Department"
+  },
+  {
+    "doctype": "Role",
+    "role_name": "Head of Finance"
+  },
+  {
+    "doctype": "Role",
+    "role_name": "Supplier"
+  },
+  {
+    "doctype": "Role",
+    "role_name": "System Manager"
+  }
+]

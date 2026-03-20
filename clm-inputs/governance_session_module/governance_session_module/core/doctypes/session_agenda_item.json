@@ -1,0 +1,46 @@
+{
+  "doctype": "DocType",
+  "name": "Session Agenda Item",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "options": "Governance Session",
+      "label": "Session",
+      "reqd": 1
+    },
+    {
+      "fieldname": "sequence",
+      "fieldtype": "Int",
+      "label": "Sequence"
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Data",
+      "label": "Subject",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reference_doctype",
+      "fieldtype": "Data",
+      "label": "Reference DocType"
+    },
+    {
+      "fieldname": "reference_name",
+      "fieldtype": "Data",
+      "label": "Reference Name"
+    },
+    {
+      "fieldname": "discussion",
+      "fieldtype": "Long Text",
+      "label": "Discussion"
+    },
+    {
+      "fieldname": "decision_required",
+      "fieldtype": "Check",
+      "label": "Decision Required"
+    }
+  ]
+}

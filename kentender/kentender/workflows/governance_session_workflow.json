@@ -1,0 +1,151 @@
+[
+  {
+    "workflow_name": "Governance Session Workflow",
+    "document_type": "Governance Session",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Scheduled",
+        "doc_status": 0
+      },
+      {
+        "state": "In Session",
+        "doc_status": 0
+      },
+      {
+        "state": "Minutes Drafted",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved",
+        "doc_status": 0
+      },
+      {
+        "state": "Locked",
+        "doc_status": 0
+      },
+      {
+        "state": "Cancelled",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Schedule",
+        "next_state": "Scheduled",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "Scheduled",
+        "action": "Start Session",
+        "next_state": "In Session",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "In Session",
+        "action": "Draft Minutes",
+        "next_state": "Minutes Drafted",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "Minutes Drafted",
+        "action": "Submit for Review",
+        "next_state": "Under Review",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "Under Review",
+        "action": "Approve Minutes",
+        "next_state": "Approved",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "Approved",
+        "action": "Lock Minutes",
+        "next_state": "Locked",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "Draft",
+        "action": "Cancel",
+        "next_state": "Cancelled",
+        "allowed": "System Manager"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Session Resolution Workflow",
+    "document_type": "Session Resolution",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Proposed",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved",
+        "doc_status": 0
+      },
+      {
+        "state": "Rejected",
+        "doc_status": 0
+      },
+      {
+        "state": "Implemented",
+        "doc_status": 0
+      },
+      {
+        "state": "Closed",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Propose",
+        "next_state": "Proposed",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "Proposed",
+        "action": "Approve",
+        "next_state": "Approved",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "Proposed",
+        "action": "Reject",
+        "next_state": "Rejected",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "Approved",
+        "action": "Implement",
+        "next_state": "Implemented",
+        "allowed": "System Manager"
+      },
+      {
+        "state": "Implemented",
+        "action": "Close",
+        "next_state": "Closed",
+        "allowed": "System Manager"
+      }
+    ]
+  }
+]
+

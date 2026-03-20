@@ -1,0 +1,51 @@
+{
+  "doctype": "DocType",
+  "name": "Session Resolution",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "options": "Governance Session",
+      "label": "Session",
+      "reqd": 1
+    },
+    {
+      "fieldname": "agenda_item",
+      "fieldtype": "Link",
+      "options": "Session Agenda Item",
+      "label": "Agenda Item"
+    },
+    {
+      "fieldname": "resolution_type",
+      "fieldtype": "Select",
+      "options": "Recommend Approval\nApprove\nReject\nRecommend Penalty\nRecommend Acceptance\nRecommend Rejection\nRecommend Variation\nRecommend Stop Work\nEscalate\nRequest Clarification\nRecommend Termination\nEndorse Payment\nNote for Record",
+      "label": "Resolution Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "resolution_text",
+      "fieldtype": "Long Text",
+      "label": "Resolution Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Draft\nProposed\nApproved\nRejected\nImplemented\nClosed",
+      "label": "Status",
+      "reqd": 1
+    },
+    {
+      "fieldname": "implementation_reference_doctype",
+      "fieldtype": "Data",
+      "label": "Implementation Reference DocType"
+    },
+    {
+      "fieldname": "implementation_reference_name",
+      "fieldtype": "Data",
+      "label": "Implementation Reference Name"
+    }
+  ]
+}

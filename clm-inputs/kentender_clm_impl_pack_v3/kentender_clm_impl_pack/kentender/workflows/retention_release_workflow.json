@@ -1,0 +1,64 @@
+{
+  "workflow_name": "Retention Release Workflow",
+  "document_type": "Retention Release Request",
+  "is_active": 1,
+  "workflow_state_field": "status",
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Review",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Approval",
+      "doc_status": 0
+    },
+    {
+      "state": "Approved",
+      "doc_status": 0
+    },
+    {
+      "state": "Rejected",
+      "doc_status": 0
+    },
+    {
+      "state": "Released",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit for Review",
+      "next_state": "Pending Review",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Pending Review",
+      "action": "Forward for Approval",
+      "next_state": "Pending Approval",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Pending Approval",
+      "action": "Approve Release",
+      "next_state": "Approved",
+      "allowed": "Head of Finance"
+    },
+    {
+      "state": "Pending Approval",
+      "action": "Reject Release",
+      "next_state": "Rejected",
+      "allowed": "Head of Finance"
+    },
+    {
+      "state": "Approved",
+      "action": "Execute Release",
+      "next_state": "Released",
+      "allowed": "Head of Finance"
+    }
+  ]
+}

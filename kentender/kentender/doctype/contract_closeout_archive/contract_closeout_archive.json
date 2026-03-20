@@ -1,0 +1,56 @@
+{
+  "doctype": "DocType",
+  "name": "Contract Closeout Archive",
+  "module": "KenTender",
+  "custom": 1,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:CCA-{YYYY}-{#####}",
+  "title_field": "contract",
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "archive_sequence",
+      "fieldtype": "Int",
+      "label": "Archive Sequence",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "archived_on",
+      "fieldtype": "Datetime",
+      "label": "Archived On",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "archived_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Archived By"
+    },
+    {
+      "fieldname": "snapshot_json",
+      "fieldtype": "Long Text",
+      "label": "Snapshot JSON",
+      "reqd": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 0,
+      "delete": 0
+    }
+  ]
+}
+

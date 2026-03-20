@@ -1,0 +1,8 @@
+Report Name,Purpose,Primary DocType,Audience,Priority
+APP Summary by Entity/FY,High-level APP summary for management and oversight,Procurement Plan,"Executive, Audit",Must Have
+APP Lines by Strategic Objective,Confirms strategy-to-spend traceability,Procurement Plan Item,"Planning, Audit",Must Have
+Budget vs Planned vs Committed vs Actual,Budget control dashboard,Procurement Plan Item,Finance,Must Have
+Method Override Register,Tracks deviations from rules-driven method selection,Budget Override Record,"Procurement, Audit",Must Have
+Fragmentation / Aggregation Alert Report,Flags potential split procurement,Procurement Plan Item,"Procurement, Audit",Must Have
+APP to Requisition Traceability,Confirms downstream control linkage,Purchase Requisition,"Procurement, Audit",Must Have
+Published APP Register,Publication and lock evidence,Published Plan Record,Audit,Must Have

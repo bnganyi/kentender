@@ -1,0 +1,106 @@
+{
+  "doctype": "DocType",
+  "name": "Session Signature",
+  "module": "KenTender",
+  "custom": 1,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:SSG-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "options": "Governance Session",
+      "label": "Session",
+      "reqd": 1
+    },
+    {
+      "fieldname": "signer",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Signer",
+      "reqd": 1
+    },
+    {
+      "fieldname": "signer_role",
+      "fieldtype": "Data",
+      "label": "Signer Role",
+      "reqd": 1
+    },
+    {
+      "fieldname": "signature_target_type",
+      "fieldtype": "Select",
+      "options": "Minutes\nAttendance\nResolution",
+      "label": "Signature Target Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "target_name",
+      "fieldtype": "Data",
+      "label": "Target Name"
+    },
+    {
+      "fieldname": "signature_method",
+      "fieldtype": "Select",
+      "options": "OTP\nInternal\nExternal",
+      "label": "Signature Method",
+      "reqd": 1
+    },
+    {
+      "fieldname": "signature_hash",
+      "fieldtype": "Data",
+      "label": "Signature Hash",
+      "reqd": 1
+    },
+    {
+      "fieldname": "signed_at",
+      "fieldtype": "Datetime",
+      "label": "Signed At",
+      "reqd": 1
+    },
+    {
+      "fieldname": "verification_status",
+      "fieldtype": "Select",
+      "options": "Pending\nVerified\nFailed",
+      "label": "Verification Status",
+      "reqd": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Contract Implementation Team",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Inspection and Acceptance Committee",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Head of Finance",
+      "read": 1
+    }
+  ]
+}
+

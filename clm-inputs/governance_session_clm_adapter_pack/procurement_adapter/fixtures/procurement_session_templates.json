@@ -1,0 +1,47 @@
+[
+  {
+    "template_name": "Procurement - CIT Meeting",
+    "session_type": "CIT Meeting",
+    "context_type": "Procurement",
+    "required_reference_doctype": "Contract",
+    "default_agenda_subjects": [
+      "Milestone Progress Review",
+      "Issues and Delays",
+      "Recommendations"
+    ]
+  },
+  {
+    "template_name": "Procurement - Inspection Session",
+    "session_type": "Inspection Session",
+    "context_type": "Procurement",
+    "required_reference_doctype": "Task",
+    "default_agenda_subjects": [
+      "Inspection Findings",
+      "Test Results",
+      "Acceptance Decision"
+    ]
+  },
+  {
+    "template_name": "Procurement - Dispute Session",
+    "session_type": "Dispute Session",
+    "context_type": "Procurement",
+    "required_reference_doctype": "Dispute Case",
+    "default_agenda_subjects": [
+      "Claim Review",
+      "Negotiation Position",
+      "Escalation / Stop Work Recommendation"
+    ]
+  },
+  {
+    "template_name": "Procurement - Monitoring Review",
+    "session_type": "Monitoring Review",
+    "context_type": "Procurement",
+    "required_reference_doctype": "Monthly Contract Monitoring Report",
+    "default_agenda_subjects": [
+      "Milestone Progress",
+      "Payment Status",
+      "Outstanding Obligations",
+      "Contract Risks"
+    ]
+  }
+]

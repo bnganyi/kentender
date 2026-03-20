@@ -1,0 +1,713 @@
+[
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract",
+    "role": "Head of Finance",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Implementation Team Member",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Implementation Team Member",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Implementation Team Member",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Inspection Committee Member",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Inspection Committee Member",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Inspection Committee Member",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Acceptance Certificate",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Acceptance Certificate",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Acceptance Certificate",
+    "role": "Head of User Department",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Acceptance Certificate",
+    "role": "Head of Finance",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Acceptance Certificate",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Retention Ledger",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Retention Ledger",
+    "role": "Head of Finance",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Retention Ledger",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Retention Ledger",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Retention Release Request",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Retention Release Request",
+    "role": "Head of Finance",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Retention Release Request",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Retention Release Request",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Variation",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Variation",
+    "role": "Contract Implementation Team",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Variation",
+    "role": "Head of Finance",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Variation",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Variation",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Claim",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Claim",
+    "role": "Supplier",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Claim",
+    "role": "Contract Implementation Team",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Claim",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Claim",
+    "role": "Head of Finance",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Claim",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Dispute Case",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Dispute Case",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Dispute Case",
+    "role": "Contract Implementation Team",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Dispute Case",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Termination Record",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Termination Record",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Termination Record",
+    "role": "Head of Finance",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Termination Record",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Defect Liability Case",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Defect Liability Case",
+    "role": "Contract Implementation Team",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Defect Liability Case",
+    "role": "Inspection and Acceptance Committee",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Defect Liability Case",
+    "role": "Supplier",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Defect Liability Case",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Defect Liability Case",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Monthly Contract Monitoring Report",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Monthly Contract Monitoring Report",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Monthly Contract Monitoring Report",
+    "role": "Head of Finance",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Monthly Contract Monitoring Report",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Activity Log",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Activity Log",
+    "role": "Contract Implementation Team",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Activity Log",
+    "role": "Inspection and Acceptance Committee",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Activity Log",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Contract Activity Log",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 1
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Task",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Task",
+    "role": "Contract Implementation Team",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Task",
+    "role": "Supplier",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Task",
+    "role": "Inspection and Acceptance Committee",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Task",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Purchase Invoice",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Purchase Invoice",
+    "role": "Head of Finance",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Purchase Invoice",
+    "role": "Supplier",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Purchase Invoice",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Purchase Invoice",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Purchase Receipt",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Purchase Receipt",
+    "role": "Inspection and Acceptance Committee",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Purchase Receipt",
+    "role": "Contract Implementation Team",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Purchase Receipt",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Project",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Project",
+    "role": "Contract Implementation Team",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Project",
+    "role": "Accounting Officer",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Project",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Quality Inspection",
+    "role": "Inspection and Acceptance Committee",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Quality Inspection",
+    "role": "Head of Procurement",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Quality Inspection",
+    "role": "Contract Implementation Team",
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0
+  },
+  {
+    "doctype": "Custom DocPerm",
+    "parent": "Quality Inspection",
+    "role": "System Manager",
+    "read": 1,
+    "write": 1,
+    "create": 1,
+    "delete": 0
+  }
+]

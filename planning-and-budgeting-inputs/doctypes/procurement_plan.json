@@ -1,0 +1,206 @@
+{
+  "doctype": "DocType",
+  "name": "Procurement Plan",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "is_submittable": 1,
+  "track_changes": 1,
+  "autoname": "naming_series:",
+  "fields": [
+    {
+      "fieldname": "plan_name",
+      "label": "Plan Name",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "app_number",
+      "label": "APP Number",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "entity",
+      "label": "Entity",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "financial_year",
+      "label": "Financial Year",
+      "fieldtype": "Link",
+      "options": "Fiscal Year",
+      "reqd": 1
+    },
+    {
+      "fieldname": "plan_type",
+      "label": "Plan Type",
+      "fieldtype": "Select",
+      "options": "Annual\nSupplementary\nRevision",
+      "reqd": 1
+    },
+    {
+      "fieldname": "development_plan_reference",
+      "label": "National Development Plan",
+      "fieldtype": "Link",
+      "options": "National Development Plan"
+    },
+    {
+      "fieldname": "corporate_plan_reference",
+      "label": "Corporate Strategic Plan",
+      "fieldtype": "Link",
+      "options": "Corporate Strategic Plan"
+    },
+    {
+      "fieldname": "budget_reference",
+      "label": "Budget Reference",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "budget_approval_date",
+      "label": "Budget Approval Date",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "budget_approved_by",
+      "label": "Budget Approved By",
+      "fieldtype": "Link",
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "policy_profile",
+      "label": "Policy Profile",
+      "fieldtype": "Link",
+      "options": "Procurement Policy Profile",
+      "reqd": 1
+    },
+    {
+      "fieldname": "created_by_department",
+      "label": "Created By Department",
+      "fieldtype": "Link",
+      "options": "Department",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nDepartment Consolidation\nProcurement Review\nFinance Review\nSubmitted\nApproved\nPublished\nLocked\nSuperseded\nCancelled",
+      "reqd": 1,
+      "default": "Draft"
+    },
+    {
+      "fieldname": "currency",
+      "label": "Currency",
+      "fieldtype": "Link",
+      "options": "Currency",
+      "reqd": 1,
+      "default": "KES"
+    },
+    {
+      "fieldname": "total_budget",
+      "label": "Total Budget",
+      "fieldtype": "Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_planned_amount",
+      "label": "Total Planned Amount",
+      "fieldtype": "Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_reserved_amount",
+      "label": "Total Reserved Amount",
+      "fieldtype": "Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_committed_amount",
+      "label": "Total Committed Amount",
+      "fieldtype": "Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_actual_amount",
+      "label": "Total Actual Amount",
+      "fieldtype": "Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "plan_version",
+      "label": "Plan Version",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "default": "1.0"
+    },
+    {
+      "fieldname": "parent_plan_version",
+      "label": "Parent Plan Version",
+      "fieldtype": "Link",
+      "options": "Procurement Plan"
+    },
+    {
+      "fieldname": "revision_type",
+      "label": "Revision Type",
+      "fieldtype": "Select",
+      "options": "Original\nSupplementary\nFormal Revision\nAdministrative Update"
+    },
+    {
+      "fieldname": "revision_reason",
+      "label": "Revision Reason",
+      "fieldtype": "Long Text"
+    },
+    {
+      "fieldname": "submission_date",
+      "label": "Submission Date",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "approval_date",
+      "label": "Approval Date",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "published_date",
+      "label": "Published Date",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "locked_on",
+      "label": "Locked On",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "locked_by",
+      "label": "Locked By",
+      "fieldtype": "Link",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "approval_memo_attachment",
+      "label": "Approval Memo Attachment",
+      "fieldtype": "Attach"
+    },
+    {
+      "fieldname": "publication_reference",
+      "label": "Publication Reference",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "remarks",
+      "label": "Remarks",
+      "fieldtype": "Small Text"
+    }
+  ]
+}

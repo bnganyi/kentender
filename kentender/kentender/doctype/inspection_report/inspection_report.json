@@ -1,0 +1,111 @@
+{
+  "doctype": "DocType",
+  "name": "Inspection Report",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 1,
+  "autoname": "format:INR-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "milestone_task",
+      "fieldtype": "Link",
+      "options": "Task",
+      "label": "Milestone Task"
+    },
+    {
+      "fieldname": "inspection_test_plan",
+      "fieldtype": "Link",
+      "options": "Inspection Test Plan",
+      "label": "Inspection Test Plan",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "quality_inspection",
+      "fieldtype": "Link",
+      "options": "Quality Inspection",
+      "label": "Quality Inspection",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "column_break_outcome",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "outcome",
+      "fieldtype": "Select",
+      "options": "Passed\nFailed\nConditional",
+      "label": "Outcome",
+      "reqd": 1,
+      "default": "Passed",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "reported_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Reported By",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reported_on",
+      "fieldtype": "Datetime",
+      "label": "Reported On",
+      "reqd": 1
+    },
+    {
+      "fieldname": "section_findings",
+      "fieldtype": "Section Break",
+      "label": "Findings"
+    },
+    {
+      "fieldname": "findings",
+      "fieldtype": "Small Text",
+      "label": "Findings Summary",
+      "reqd": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Head of User Department",
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "doctype": "DocType",
+  "name": "Monthly Contract Monitoring Report",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "label": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "report_month",
+      "fieldtype": "Date",
+      "label": "Report Month",
+      "reqd": 1
+    },
+    {
+      "fieldname": "prepared_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Prepared By"
+    },
+    {
+      "fieldname": "prepared_on",
+      "fieldtype": "Datetime",
+      "label": "Prepared On"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Draft\nPrepared\nReviewed\nSubmitted",
+      "label": "Status",
+      "reqd": 1
+    },
+    {
+      "fieldname": "milestone_summary",
+      "fieldtype": "Long Text",
+      "label": "Milestone Summary"
+    },
+    {
+      "fieldname": "payment_summary",
+      "fieldtype": "Long Text",
+      "label": "Payment Summary"
+    },
+    {
+      "fieldname": "outstanding_obligations",
+      "fieldtype": "Long Text",
+      "label": "Outstanding Obligations"
+    },
+    {
+      "fieldname": "contract_risks",
+      "fieldtype": "Long Text",
+      "label": "Contract Risks"
+    },
+    {
+      "fieldname": "progress_percent",
+      "fieldtype": "Percent",
+      "label": "Progress Percent"
+    },
+    {
+      "fieldname": "amount_invoiced",
+      "fieldtype": "Currency",
+      "label": "Amount Invoiced"
+    },
+    {
+      "fieldname": "amount_paid",
+      "fieldtype": "Currency",
+      "label": "Amount Paid"
+    },
+    {
+      "fieldname": "outstanding_amount",
+      "fieldtype": "Currency",
+      "label": "Outstanding Amount"
+    },
+    {
+      "fieldname": "retention_balance",
+      "fieldtype": "Currency",
+      "label": "Retention Balance"
+    },
+    {
+      "fieldname": "open_claims_count",
+      "fieldtype": "Int",
+      "label": "Open Claims Count"
+    },
+    {
+      "fieldname": "open_disputes_count",
+      "fieldtype": "Int",
+      "label": "Open Disputes Count"
+    },
+    {
+      "fieldname": "open_defects_count",
+      "fieldtype": "Int",
+      "label": "Open Defects Count"
+    },
+    {
+      "fieldname": "overall_risk_level",
+      "fieldtype": "Select",
+      "options": "Low\nMedium\nHigh\nCritical",
+      "label": "Overall Risk Level"
+    }
+  ],
+  "is_submittable": 1
+}

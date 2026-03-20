@@ -1,0 +1,99 @@
+{
+  "doctype": "DocType",
+  "name": "Retention Ledger",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:RL-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "purchase_invoice",
+      "fieldtype": "Link",
+      "options": "Purchase Invoice",
+      "label": "Purchase Invoice",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "payment_entry",
+      "fieldtype": "Link",
+      "options": "Payment Entry",
+      "label": "Payment Entry"
+    },
+    {
+      "fieldname": "retention_type",
+      "fieldtype": "Select",
+      "options": "Deduction\nRelease\nAdjustment\nPlanned",
+      "label": "Retention Type",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "posting_date",
+      "fieldtype": "Date",
+      "label": "Posting Date",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Amount",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "balance_after_transaction",
+      "fieldtype": "Currency",
+      "label": "Balance After Transaction",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "release_date",
+      "fieldtype": "Date",
+      "label": "Release Date"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Pending\nHeld\nReleased\nAdjusted",
+      "label": "Status",
+      "default": "Pending",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Head of Finance",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "read": 1
+    }
+  ]
+}
+

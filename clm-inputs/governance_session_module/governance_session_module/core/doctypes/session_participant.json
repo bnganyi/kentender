@@ -1,0 +1,52 @@
+{
+  "doctype": "DocType",
+  "name": "Session Participant",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "options": "Governance Session",
+      "label": "Session",
+      "reqd": 1
+    },
+    {
+      "fieldname": "employee",
+      "fieldtype": "Link",
+      "options": "Employee",
+      "label": "Employee"
+    },
+    {
+      "fieldname": "user",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "User"
+    },
+    {
+      "fieldname": "participant_role",
+      "fieldtype": "Select",
+      "options": "Chairperson\nSecretary\nMember\nTechnical Specialist\nAdvisor\nObserver\nSupplier Representative\nLegal Counsel\nFinance Representative",
+      "label": "Participant Role",
+      "reqd": 1
+    },
+    {
+      "fieldname": "attendance_status",
+      "fieldtype": "Select",
+      "options": "Present\nAbsent\nExcused\nRemote",
+      "label": "Attendance Status",
+      "reqd": 1
+    },
+    {
+      "fieldname": "signature_status",
+      "fieldtype": "Select",
+      "options": "Pending\nSigned\nFailed",
+      "label": "Signature Status"
+    },
+    {
+      "fieldname": "signed_attendance",
+      "fieldtype": "Check",
+      "label": "Signed Attendance"
+    }
+  ]
+}

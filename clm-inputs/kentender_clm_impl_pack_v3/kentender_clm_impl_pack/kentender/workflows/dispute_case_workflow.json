@@ -1,0 +1,76 @@
+{
+  "workflow_name": "Dispute Case Workflow",
+  "document_type": "Dispute Case",
+  "is_active": 1,
+  "workflow_state_field": "current_stage",
+  "states": [
+    {
+      "state": "Notice of Claim",
+      "doc_status": 0
+    },
+    {
+      "state": "Negotiation",
+      "doc_status": 0
+    },
+    {
+      "state": "Mediation",
+      "doc_status": 0
+    },
+    {
+      "state": "Arbitration",
+      "doc_status": 0
+    },
+    {
+      "state": "Resolved",
+      "doc_status": 0
+    },
+    {
+      "state": "Closed",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Notice of Claim",
+      "action": "Begin Negotiation",
+      "next_state": "Negotiation",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Negotiation",
+      "action": "Escalate to Mediation",
+      "next_state": "Mediation",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Mediation",
+      "action": "Escalate to Arbitration",
+      "next_state": "Arbitration",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Negotiation",
+      "action": "Resolve Dispute",
+      "next_state": "Resolved",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Mediation",
+      "action": "Resolve Dispute",
+      "next_state": "Resolved",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Arbitration",
+      "action": "Resolve Dispute",
+      "next_state": "Resolved",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Resolved",
+      "action": "Close Dispute",
+      "next_state": "Closed",
+      "allowed": "Head of Procurement"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+[
+  {
+    "dt": "Project",
+    "fieldname": "contract",
+    "fieldtype": "Link",
+    "options": "Contract",
+    "label": "Contract",
+    "insert_after": "project_name"
+  },
+  {
+    "dt": "Task",
+    "fieldname": "contract",
+    "fieldtype": "Link",
+    "options": "Contract",
+    "label": "Contract",
+    "insert_after": "project"
+  },
+  {
+    "dt": "Task",
+    "fieldname": "is_contract_milestone",
+    "fieldtype": "Check",
+    "label": "Is Contract Milestone",
+    "insert_after": "contract"
+  },
+  {
+    "dt": "Task",
+    "fieldname": "payment_percentage",
+    "fieldtype": "Percent",
+    "label": "Payment Percentage",
+    "insert_after": "is_contract_milestone"
+  },
+  {
+    "dt": "Task",
+    "fieldname": "acceptance_criteria",
+    "fieldtype": "Small Text",
+    "label": "Acceptance Criteria",
+    "insert_after": "payment_percentage"
+  },
+  {
+    "dt": "Task",
+    "fieldname": "deliverables",
+    "fieldtype": "Small Text",
+    "label": "Deliverables",
+    "insert_after": "acceptance_criteria"
+  },
+  {
+    "dt": "Task",
+    "fieldname": "supplier_confirmed",
+    "fieldtype": "Check",
+    "label": "Supplier Confirmed",
+    "insert_after": "deliverables"
+  },
+  {
+    "dt": "Task",
+    "fieldname": "milestone_status",
+    "fieldtype": "Select",
+    "options": "Pending\nIn Progress\nCompleted by Supplier\nVerified by CIT\nSent for Inspection\nAccepted\nRejected\nPayment Eligible",
+    "label": "Milestone Status",
+    "insert_after": "supplier_confirmed"
+  },
+  {
+    "dt": "Task",
+    "fieldname": "contract_type",
+    "fieldtype": "Select",
+    "options": "Goods\nWorks\nServices",
+    "label": "Contract Type",
+    "insert_after": "milestone_status"
+  },
+  {
+    "dt": "Task",
+    "fieldname": "quality_inspection_required",
+    "fieldtype": "Check",
+    "label": "Quality Inspection Required",
+    "insert_after": "contract_type"
+  },
+  {
+    "dt": "Purchase Receipt",
+    "fieldname": "contract",
+    "fieldtype": "Link",
+    "options": "Contract",
+    "label": "Contract",
+    "insert_after": "supplier"
+  },
+  {
+    "dt": "Purchase Receipt",
+    "fieldname": "milestone_task",
+    "fieldtype": "Link",
+    "options": "Task",
+    "label": "Milestone Task",
+    "insert_after": "contract"
+  },
+  {
+    "dt": "Purchase Invoice",
+    "fieldname": "contract",
+    "fieldtype": "Link",
+    "options": "Contract",
+    "label": "Contract",
+    "insert_after": "supplier"
+  },
+  {
+    "dt": "Purchase Invoice",
+    "fieldname": "acceptance_certificate",
+    "fieldtype": "Link",
+    "options": "Acceptance Certificate",
+    "label": "Acceptance Certificate",
+    "insert_after": "contract"
+  },
+  {
+    "dt": "Purchase Invoice",
+    "fieldname": "milestone_task",
+    "fieldtype": "Link",
+    "options": "Task",
+    "label": "Milestone Task",
+    "insert_after": "acceptance_certificate"
+  },
+  {
+    "dt": "Contract",
+    "fieldname": "close_out_status",
+    "fieldtype": "Select",
+    "options": "Not Ready\nReady for Close-Out\nUnder Final Review\nArchived",
+    "label": "Close-Out Status",
+    "insert_after": "status"
+  },
+  {
+    "dt": "Contract",
+    "fieldname": "handover_completed",
+    "fieldtype": "Check",
+    "label": "Handover Completed",
+    "insert_after": "close_out_status"
+  },
+  {
+    "dt": "Contract",
+    "fieldname": "all_payments_completed",
+    "fieldtype": "Check",
+    "label": "All Payments Completed",
+    "insert_after": "handover_completed"
+  },
+  {
+    "dt": "Contract",
+    "fieldname": "close_out_date",
+    "fieldtype": "Date",
+    "label": "Close-Out Date",
+    "insert_after": "all_payments_completed"
+  },
+  {
+    "dt": "Contract",
+    "fieldname": "dlp_start_date",
+    "fieldtype": "Date",
+    "label": "DLP Start Date",
+    "insert_after": "close_out_date"
+  },
+  {
+    "dt": "Contract",
+    "fieldname": "dlp_end_date",
+    "fieldtype": "Date",
+    "label": "DLP End Date",
+    "insert_after": "dlp_start_date"
+  },
+  {
+    "dt": "Contract",
+    "fieldname": "dlp_status",
+    "fieldtype": "Select",
+    "options": "Not Started\nActive\nCompleted\nReopened",
+    "label": "DLP Status",
+    "insert_after": "dlp_end_date"
+  },
+  {
+    "dt": "Dispute Case",
+    "fieldname": "stop_work_reason",
+    "fieldtype": "Small Text",
+    "label": "Stop Work Reason",
+    "insert_after": "stop_work_order_issued"
+  },
+  {
+    "dt": "Dispute Case",
+    "fieldname": "cit_recommendation",
+    "fieldtype": "Small Text",
+    "label": "CIT Recommendation",
+    "insert_after": "stop_work_reason"
+  },
+  {
+    "dt": "Dispute Case",
+    "fieldname": "procurement_recommendation",
+    "fieldtype": "Small Text",
+    "label": "Head of Procurement Recommendation",
+    "insert_after": "cit_recommendation"
+  },
+  {
+    "dt": "Termination Record",
+    "fieldname": "workflow_state",
+    "fieldtype": "Select",
+    "options": "Draft\nUnder Legal Review\nPending Accounting Officer Approval\nApproved\nExecuted\nCancelled",
+    "label": "Workflow State",
+    "insert_after": "contract"
+  },
+  {
+    "dt": "Termination Record",
+    "fieldname": "legal_advice_reference",
+    "fieldtype": "Data",
+    "label": "Legal Advice Reference",
+    "insert_after": "termination_reason"
+  },
+  {
+    "dt": "Termination Record",
+    "fieldname": "notice_issued_to_supplier",
+    "fieldtype": "Check",
+    "label": "Notice Issued to Supplier",
+    "insert_after": "legal_advice_reference"
+  },
+  {
+    "dt": "Termination Record",
+    "fieldname": "site_property_handover_completed",
+    "fieldtype": "Check",
+    "label": "Site/Property Handover Completed",
+    "insert_after": "notice_issued_to_supplier"
+  }
+]

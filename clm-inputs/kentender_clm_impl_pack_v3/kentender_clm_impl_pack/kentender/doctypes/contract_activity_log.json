@@ -1,0 +1,53 @@
+{
+  "doctype": "DocType",
+  "name": "Contract Activity Log",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "options": "Project",
+      "label": "Project"
+    },
+    {
+      "fieldname": "task",
+      "fieldtype": "Link",
+      "options": "Task",
+      "label": "Task"
+    },
+    {
+      "fieldname": "activity_type",
+      "fieldtype": "Select",
+      "options": "Site Handover\nSite Meeting\nMeeting Minutes\nMilestone Verification\nDelivery Confirmation\nImplementation Note\nInspection Note\nOther",
+      "label": "Activity Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "activity_date",
+      "fieldtype": "Datetime",
+      "label": "Activity Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "recorded_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Recorded By",
+      "reqd": 1
+    },
+    {
+      "fieldname": "summary",
+      "fieldtype": "Long Text",
+      "label": "Summary",
+      "reqd": 1
+    }
+  ]
+}

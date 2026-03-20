@@ -1,0 +1,20 @@
+DocType,Role,Read,Write,Create,Submit,Cancel,Amend,Notes
+National Development Plan,Planning Authority,1,1,1,1,0,0,Activate and maintain reference record
+Corporate Strategic Plan,Planning Authority,1,1,1,1,0,0,Strategic bridge record
+Strategic Objective,Planning Authority,1,1,1,0,0,0,Reference record
+Procurement Policy Profile,System Administrator,1,1,1,1,0,0,Configuration owner; business sign-off by procurement leadership
+Procurement Plan,Procurement Planner,1,1,1,0,0,0,Drafting and consolidation
+Procurement Plan,Head of Procurement,1,1,0,0,0,0,Review and publish action
+Procurement Plan,Finance/Budget Officer,1,1,0,0,0,0,Budget review only
+Procurement Plan,Accounting Officer,1,0,0,1,0,0,Final approval
+Procurement Plan Item,Department Planning Officer,1,1,1,0,0,0,Department draft lines
+Procurement Plan Item,Procurement Planner,1,1,1,0,0,0,Consolidated APP item maintenance
+Procurement Commitment,Finance/Budget Officer,1,1,1,0,0,0,Commitment lifecycle
+Budget Override Record,Finance/Budget Officer,1,1,1,0,0,0,Override processing
+Budget Override Record,Accounting Officer,1,0,0,1,0,0,Critical override approval
+Procurement Plan Revision,Procurement Planner,1,1,1,0,0,0,Prepare revision
+Procurement Plan Revision,Accounting Officer,1,0,0,1,0,0,Approve revision
+Purchase Requisition,Department Planning Officer,1,1,1,1,0,0,Downstream handoff gate
+Purchase Requisition,Finance/Budget Officer,1,1,0,0,0,0,Finance review
+All Phase 1 Records,Internal Auditor,1,0,0,0,0,0,Read-only oversight
+All Phase 1 Records,Oversight Viewer,1,0,0,0,0,0,Read-only external oversight

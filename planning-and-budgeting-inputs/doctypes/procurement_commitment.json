@@ -1,0 +1,107 @@
+{
+  "doctype": "DocType",
+  "name": "Procurement Commitment",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "commitment_number",
+      "label": "Commitment Number",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "procurement_plan_item",
+      "label": "Procurement Plan Item",
+      "fieldtype": "Link",
+      "options": "Procurement Plan Item",
+      "reqd": 1
+    },
+    {
+      "fieldname": "entity",
+      "label": "Entity",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "financial_year",
+      "label": "Financial Year",
+      "fieldtype": "Link",
+      "options": "Fiscal Year",
+      "reqd": 1
+    },
+    {
+      "fieldname": "budget_head",
+      "label": "Budget Head",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cost_center",
+      "label": "Cost Center",
+      "fieldtype": "Link",
+      "options": "Cost Center",
+      "reqd": 1
+    },
+    {
+      "fieldname": "commitment_stage",
+      "label": "Commitment Stage",
+      "fieldtype": "Select",
+      "options": "Planning Reservation\nRequisition Commitment\nContract Commitment",
+      "reqd": 1
+    },
+    {
+      "fieldname": "committed_amount",
+      "label": "Committed Amount",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "actualized_amount",
+      "label": "Actualized Amount",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "released_amount",
+      "label": "Released Amount",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Active\nConsumed\nReleased\nCancelled",
+      "reqd": 1,
+      "default": "Active"
+    },
+    {
+      "fieldname": "created_from_doc_type",
+      "label": "Created From DocType",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "created_from_doc_name",
+      "label": "Created From DocName",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "created_on",
+      "label": "Created On",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "released_on",
+      "label": "Released On",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "release_reason",
+      "label": "Release Reason",
+      "fieldtype": "Small Text"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "doctype": "DocType",
+  "name": "KenTender Audit Event",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "hash",
+  "fields": [
+    {
+      "fieldname": "event_timestamp",
+      "fieldtype": "Datetime",
+      "label": "Event Timestamp",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "action",
+      "fieldtype": "Data",
+      "label": "Action",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "reference_doctype",
+      "fieldtype": "Link",
+      "options": "DocType",
+      "label": "Reference DocType",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "reference_name",
+      "fieldtype": "Dynamic Link",
+      "options": "reference_doctype",
+      "label": "Reference Name",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "actor",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Actor",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "actor_roles",
+      "fieldtype": "Small Text",
+      "label": "Actor Roles"
+    },
+    {
+      "fieldname": "details_json",
+      "fieldtype": "Long Text",
+      "label": "Details (JSON)"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "read": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1
+    },
+    {
+      "role": "Head of Finance",
+      "read": 1
+    }
+  ]
+}

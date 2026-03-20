@@ -1,0 +1,68 @@
+{
+  "doctype": "DocType",
+  "name": "Defect Liability Case",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "options": "Project",
+      "label": "Project"
+    },
+    {
+      "fieldname": "reported_on",
+      "fieldtype": "Datetime",
+      "label": "Reported On",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reported_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Reported By"
+    },
+    {
+      "fieldname": "defect_description",
+      "fieldtype": "Small Text",
+      "label": "Defect Description",
+      "reqd": 1
+    },
+    {
+      "fieldname": "severity",
+      "fieldtype": "Select",
+      "options": "Low\nMedium\nHigh\nCritical",
+      "label": "Severity",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Open\nUnder Review\nAssigned\nUnder Remedy\nVerified\nClosed\nEscalated",
+      "label": "Status",
+      "reqd": 1
+    },
+    {
+      "fieldname": "resolution_due_date",
+      "fieldtype": "Date",
+      "label": "Resolution Due Date"
+    },
+    {
+      "fieldname": "resolved_on",
+      "fieldtype": "Datetime",
+      "label": "Resolved On"
+    },
+    {
+      "fieldname": "contract_reopened",
+      "fieldtype": "Check",
+      "label": "Contract Reopened"
+    }
+  ]
+}

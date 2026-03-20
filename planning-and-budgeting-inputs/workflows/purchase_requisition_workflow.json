@@ -1,0 +1,58 @@
+{
+  "workflow_name": "Purchase Requisition Workflow",
+  "document_type": "Purchase Requisition",
+  "workflow_state_field": "status",
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": 0,
+      "allow_edit": "Department Planning Officer"
+    },
+    {
+      "state": "Submitted",
+      "doc_status": 0,
+      "allow_edit": "Department Planning Officer"
+    },
+    {
+      "state": "Finance Review",
+      "doc_status": 0,
+      "allow_edit": "Finance/Budget Officer"
+    },
+    {
+      "state": "Approved",
+      "doc_status": 1,
+      "allow_edit": "Accounting Officer"
+    },
+    {
+      "state": "Rejected",
+      "doc_status": 2,
+      "allow_edit": "Accounting Officer"
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit",
+      "next_state": "Submitted",
+      "allowed": "Department Planning Officer"
+    },
+    {
+      "state": "Submitted",
+      "action": "Send to Finance",
+      "next_state": "Finance Review",
+      "allowed": "Head of Department"
+    },
+    {
+      "state": "Finance Review",
+      "action": "Approve",
+      "next_state": "Approved",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Finance Review",
+      "action": "Reject",
+      "next_state": "Rejected",
+      "allowed": "Accounting Officer"
+    }
+  ]
+}

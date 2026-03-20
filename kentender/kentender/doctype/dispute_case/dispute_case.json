@@ -1,0 +1,117 @@
+{
+  "doctype": "DocType",
+  "name": "Dispute Case",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 1,
+  "autoname": "format:DS-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "claim",
+      "fieldtype": "Link",
+      "options": "Claim",
+      "label": "Claim",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "notice_date",
+      "fieldtype": "Date",
+      "label": "Notice Date",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "current_stage",
+      "fieldtype": "Select",
+      "options": "Notice of Claim\nNegotiation\nMediation\nArbitration",
+      "label": "Current Stage",
+      "reqd": 1,
+      "default": "Notice of Claim",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Open\nIn Progress\nResolved\nClosed",
+      "label": "Status",
+      "reqd": 1,
+      "default": "Open",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "stop_work_order_issued",
+      "fieldtype": "Check",
+      "label": "Stop Work Order Issued"
+    },
+    {
+      "fieldname": "stop_work_reason",
+      "fieldtype": "Small Text",
+      "label": "Stop Work Reason"
+    },
+    {
+      "fieldname": "cit_recommendation",
+      "fieldtype": "Check",
+      "label": "CIT Recommendation"
+    },
+    {
+      "fieldname": "head_of_procurement_recommendation",
+      "fieldtype": "Check",
+      "label": "Head of Procurement Recommendation"
+    },
+    {
+      "fieldname": "issued_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Issued By"
+    },
+    {
+      "fieldname": "summary",
+      "fieldtype": "Small Text",
+      "label": "Summary",
+      "reqd": 1
+    },
+    {
+      "fieldname": "resolution",
+      "fieldtype": "Small Text",
+      "label": "Resolution"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Supplier",
+      "read": 1
+    }
+  ]
+}
+

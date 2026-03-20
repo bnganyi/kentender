@@ -1,0 +1,64 @@
+{
+  "workflow_name": "Acceptance Certificate Workflow",
+  "document_type": "Acceptance Certificate",
+  "is_active": 1,
+  "workflow_state_field": "workflow_state",
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": 0
+    },
+    {
+      "state": "Under Review",
+      "doc_status": 0
+    },
+    {
+      "state": "Approved",
+      "doc_status": 0
+    },
+    {
+      "state": "Rejected",
+      "doc_status": 0
+    },
+    {
+      "state": "Issued",
+      "doc_status": 0
+    },
+    {
+      "state": "Cancelled",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit",
+      "next_state": "Under Review",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Under Review",
+      "action": "Approve",
+      "next_state": "Approved",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Under Review",
+      "action": "Reject",
+      "next_state": "Rejected",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Approved",
+      "action": "Issue Certificate",
+      "next_state": "Issued",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Issued",
+      "action": "Cancel",
+      "next_state": "Cancelled",
+      "allowed": "Accounting Officer"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "doctype": "DocType",
+  "name": "Budget Override Record",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "reference_doctype",
+      "label": "Reference DocType",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reference_name",
+      "label": "Reference Name",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "override_type",
+      "label": "Override Type",
+      "fieldtype": "Select",
+      "options": "Budget\nMethod\nAmount\nTiming\nApproval Path",
+      "reqd": 1
+    },
+    {
+      "fieldname": "field_name",
+      "label": "Field Name",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "old_value",
+      "label": "Old Value",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "new_value",
+      "label": "New Value",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Long Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "requested_by",
+      "label": "Requested By",
+      "fieldtype": "Link",
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approved_by",
+      "label": "Approved By",
+      "fieldtype": "Link",
+      "options": "User"
+    },
+    {
+      "fieldname": "approved_on",
+      "label": "Approved On",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nApproved\nRejected",
+      "default": "Draft",
+      "reqd": 1
+    }
+  ]
+}

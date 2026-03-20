@@ -1,0 +1,93 @@
+{
+  "doctype": "DocType",
+  "name": "Inspection Test Plan",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 1,
+  "autoname": "format:ITP-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "title",
+      "fieldtype": "Data",
+      "label": "Title",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "milestone_task",
+      "fieldtype": "Link",
+      "options": "Task",
+      "label": "Milestone Task"
+    },
+    {
+      "fieldname": "column_break_scope",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "prepared_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Prepared By",
+      "reqd": 1
+    },
+    {
+      "fieldname": "prepared_on",
+      "fieldtype": "Datetime",
+      "label": "Prepared On",
+      "reqd": 1
+    },
+    {
+      "fieldname": "section_scope",
+      "fieldtype": "Section Break",
+      "label": "Scope & Methods"
+    },
+    {
+      "fieldname": "scope",
+      "fieldtype": "Small Text",
+      "label": "Scope & Test Criteria",
+      "reqd": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Head of User Department",
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1
+    }
+  ]
+}

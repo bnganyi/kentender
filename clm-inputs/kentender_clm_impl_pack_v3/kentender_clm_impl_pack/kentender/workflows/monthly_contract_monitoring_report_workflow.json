@@ -1,0 +1,44 @@
+{
+  "workflow_name": "Monthly Contract Monitoring Report Workflow",
+  "document_type": "Monthly Contract Monitoring Report",
+  "is_active": 1,
+  "workflow_state_field": "status",
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": 0
+    },
+    {
+      "state": "Prepared",
+      "doc_status": 0
+    },
+    {
+      "state": "Reviewed",
+      "doc_status": 0
+    },
+    {
+      "state": "Submitted",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Prepare Report",
+      "next_state": "Prepared",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Prepared",
+      "action": "Review Report",
+      "next_state": "Reviewed",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Reviewed",
+      "action": "Submit Report",
+      "next_state": "Submitted",
+      "allowed": "Head of Procurement"
+    }
+  ]
+}

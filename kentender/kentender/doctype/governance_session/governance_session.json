@@ -1,0 +1,140 @@
+{
+  "doctype": "DocType",
+  "name": "Governance Session",
+  "module": "KenTender",
+  "custom": 1,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:GS-{YYYY}-{#####}",
+  "title_field": "title",
+  "fields": [
+    {
+      "fieldname": "title",
+      "fieldtype": "Data",
+      "label": "Title",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "context_type",
+      "fieldtype": "Select",
+      "label": "Context Type",
+      "options": "Procurement\nHR\nAudit\nBoard\nProject\nCompliance\nGeneral",
+      "reqd": 1
+    },
+    {
+      "fieldname": "context_reference_doctype",
+      "fieldtype": "Data",
+      "label": "Context Reference Doctype"
+    },
+    {
+      "fieldname": "context_reference_name",
+      "fieldtype": "Data",
+      "label": "Context Reference Name"
+    },
+    {
+      "fieldname": "session_template",
+      "fieldtype": "Data",
+      "label": "Session Template"
+    },
+    {
+      "fieldname": "session_type",
+      "fieldtype": "Data",
+      "label": "Session Type"
+    },
+    {
+      "fieldname": "meeting_date",
+      "fieldtype": "Date",
+      "label": "Meeting Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "mode",
+      "fieldtype": "Select",
+      "options": "Physical\nVirtual\nHybrid\nCirculation",
+      "label": "Mode",
+      "reqd": 1
+    },
+    {
+      "fieldname": "chairperson",
+      "fieldtype": "Link",
+      "options": "Employee",
+      "label": "Chairperson"
+    },
+    {
+      "fieldname": "secretary",
+      "fieldtype": "Link",
+      "options": "Employee",
+      "label": "Secretary"
+    },
+    {
+      "fieldname": "quorum_required",
+      "fieldtype": "Int",
+      "label": "Quorum Required"
+    },
+    {
+      "fieldname": "quorum_met",
+      "fieldtype": "Check",
+      "label": "Quorum Met"
+    },
+    {
+      "fieldname": "minutes_status",
+      "fieldtype": "Select",
+      "options": "Draft\nUnder Review\nApproved\nLocked",
+      "label": "Minutes Status",
+      "default": "Draft"
+    },
+    {
+      "fieldname": "confidentiality_level",
+      "fieldtype": "Select",
+      "options": "Public\nInternal\nRestricted",
+      "label": "Confidentiality Level"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nScheduled\nIn Session\nMinutes Drafted\nUnder Review\nApproved\nLocked\nCancelled",
+      "reqd": 1,
+      "default": "Draft",
+      "in_list_view": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Contract Implementation Team",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Inspection and Acceptance Committee",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Head of Finance",
+      "read": 1
+    }
+  ]
+}
+

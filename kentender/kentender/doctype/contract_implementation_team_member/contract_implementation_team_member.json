@@ -1,0 +1,92 @@
+{
+  "doctype": "DocType",
+  "name": "Contract Implementation Team Member",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:CIT-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "employee",
+      "fieldtype": "Link",
+      "options": "Employee",
+      "label": "Employee",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "member_type",
+      "fieldtype": "Select",
+      "options": "Chairperson\nMember\nSecretary\nNon-member Advisor",
+      "label": "Member Type",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "role_in_team",
+      "fieldtype": "Data",
+      "label": "Role in Team"
+    },
+    {
+      "fieldname": "department",
+      "fieldtype": "Link",
+      "options": "Department",
+      "label": "Department"
+    },
+    {
+      "fieldname": "qualification",
+      "fieldtype": "Data",
+      "label": "Qualification"
+    },
+    {
+      "fieldname": "appointed_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Appointed By"
+    },
+    {
+      "fieldname": "appointed_on",
+      "fieldtype": "Datetime",
+      "label": "Appointed On"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Proposed\nApproved\nActive\nRemoved",
+      "label": "Status",
+      "default": "Proposed",
+      "reqd": 1,
+      "in_list_view": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1
+    }
+  ]
+}
+

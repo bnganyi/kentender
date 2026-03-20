@@ -1,0 +1,60 @@
+{
+  "doctype": "DocType",
+  "name": "Claim",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1
+    },
+    {
+      "fieldname": "claim_by",
+      "fieldtype": "Select",
+      "options": "Procuring Entity\nSupplier",
+      "label": "Claim By",
+      "reqd": 1
+    },
+    {
+      "fieldname": "claim_type",
+      "fieldtype": "Select",
+      "options": "Liquidated Damages\nPerformance Penalty\nInterest on Delayed Payment\nCompensation Claim\nVariation Claim\nOther",
+      "label": "Claim Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "claim_date",
+      "fieldtype": "Date",
+      "label": "Claim Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Amount"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Small Text",
+      "label": "Description",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Draft\nSubmitted\nUnder Review\nRecommended\nApproved\nRejected\nSettled\nEscalated to Dispute",
+      "label": "Status",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reference_variation",
+      "fieldtype": "Link",
+      "options": "Contract Variation",
+      "label": "Reference Variation"
+    }
+  ],
+  "is_submittable": 1
+}

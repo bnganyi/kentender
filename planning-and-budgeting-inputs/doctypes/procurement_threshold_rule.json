@@ -1,0 +1,72 @@
+{
+  "doctype": "DocType",
+  "name": "Procurement Threshold Rule",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "policy_profile",
+      "label": "Policy Profile",
+      "fieldtype": "Link",
+      "options": "Procurement Policy Profile",
+      "reqd": 1
+    },
+    {
+      "fieldname": "procurement_type",
+      "label": "Procurement Type",
+      "fieldtype": "Select",
+      "options": "Goods\nWorks\nServices\nConsulting\nAsset Disposal",
+      "reqd": 1
+    },
+    {
+      "fieldname": "category",
+      "label": "Category",
+      "fieldtype": "Link",
+      "options": "Spend Category"
+    },
+    {
+      "fieldname": "minimum_amount",
+      "label": "Minimum Amount",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "maximum_amount",
+      "label": "Maximum Amount",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "recommended_method",
+      "label": "Recommended Method",
+      "fieldtype": "Select",
+      "options": "Open Tender\nRestricted Tender\nRFQ\nRFP\nDirect Procurement",
+      "reqd": 1
+    },
+    {
+      "fieldname": "allowed_methods",
+      "label": "Allowed Methods",
+      "fieldtype": "Small Text",
+      "description": "Comma-separated starter implementation; may become child table later.",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approval_level",
+      "label": "Approval Level",
+      "fieldtype": "Select",
+      "options": "Department\nProcurement Head\nAccounting Officer\nSpecial Committee",
+      "reqd": 1
+    },
+    {
+      "fieldname": "special_conditions",
+      "label": "Special Conditions",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "active",
+      "label": "Active",
+      "fieldtype": "Check",
+      "default": 1
+    }
+  ]
+}

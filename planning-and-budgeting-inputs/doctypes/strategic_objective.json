@@ -1,0 +1,67 @@
+{
+  "doctype": "DocType",
+  "name": "Strategic Objective",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "objective_code",
+      "label": "Objective Code",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "objective_title",
+      "label": "Objective Title",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "corporate_strategic_plan",
+      "label": "Corporate Strategic Plan",
+      "fieldtype": "Link",
+      "options": "Corporate Strategic Plan",
+      "reqd": 1
+    },
+    {
+      "fieldname": "priority",
+      "label": "National Development Priority",
+      "fieldtype": "Link",
+      "options": "National Development Priority",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "performance_indicator",
+      "label": "Performance Indicator",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "target_value",
+      "label": "Target Value",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "responsible_department",
+      "label": "Responsible Department",
+      "fieldtype": "Link",
+      "options": "Department",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nActive\nRetired",
+      "default": "Draft",
+      "reqd": 1
+    }
+  ]
+}

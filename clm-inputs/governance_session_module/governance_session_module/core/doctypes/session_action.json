@@ -1,0 +1,51 @@
+{
+  "doctype": "DocType",
+  "name": "Session Action",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "options": "Governance Session",
+      "label": "Session",
+      "reqd": 1
+    },
+    {
+      "fieldname": "agenda_item",
+      "fieldtype": "Link",
+      "options": "Session Agenda Item",
+      "label": "Agenda Item"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Long Text",
+      "label": "Description",
+      "reqd": 1
+    },
+    {
+      "fieldname": "assigned_to",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Assigned To"
+    },
+    {
+      "fieldname": "due_date",
+      "fieldtype": "Date",
+      "label": "Due Date"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Open\nIn Progress\nCompleted\nOverdue\nCancelled",
+      "label": "Status",
+      "reqd": 1
+    },
+    {
+      "fieldname": "linked_task",
+      "fieldtype": "Link",
+      "options": "Task",
+      "label": "Linked Task"
+    }
+  ]
+}

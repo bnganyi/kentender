@@ -1,0 +1,95 @@
+{
+  "doctype": "DocType",
+  "name": "Governance Session",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "title",
+      "fieldtype": "Data",
+      "label": "Title",
+      "reqd": 1
+    },
+    {
+      "fieldname": "context_type",
+      "fieldtype": "Select",
+      "options": "Procurement\nHR\nAudit\nBoard\nProject\nCompliance\nGeneral",
+      "label": "Context Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "context_reference_doctype",
+      "fieldtype": "Data",
+      "label": "Context Reference DocType"
+    },
+    {
+      "fieldname": "context_reference_name",
+      "fieldtype": "Data",
+      "label": "Context Reference Name"
+    },
+    {
+      "fieldname": "session_template",
+      "fieldtype": "Data",
+      "label": "Session Template"
+    },
+    {
+      "fieldname": "session_type",
+      "fieldtype": "Data",
+      "label": "Session Type"
+    },
+    {
+      "fieldname": "meeting_date",
+      "fieldtype": "Date",
+      "label": "Meeting Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "mode",
+      "fieldtype": "Select",
+      "options": "Physical\nVirtual\nHybrid\nCirculation",
+      "label": "Mode",
+      "reqd": 1
+    },
+    {
+      "fieldname": "chairperson",
+      "fieldtype": "Link",
+      "options": "Employee",
+      "label": "Chairperson"
+    },
+    {
+      "fieldname": "secretary",
+      "fieldtype": "Link",
+      "options": "Employee",
+      "label": "Secretary"
+    },
+    {
+      "fieldname": "quorum_required",
+      "fieldtype": "Int",
+      "label": "Quorum Required"
+    },
+    {
+      "fieldname": "quorum_met",
+      "fieldtype": "Check",
+      "label": "Quorum Met"
+    },
+    {
+      "fieldname": "minutes_status",
+      "fieldtype": "Select",
+      "options": "Draft\nUnder Review\nApproved\nLocked",
+      "label": "Minutes Status"
+    },
+    {
+      "fieldname": "confidentiality_level",
+      "fieldtype": "Select",
+      "options": "Public\nInternal\nRestricted",
+      "label": "Confidentiality Level"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Draft\nScheduled\nIn Session\nMinutes Drafted\nUnder Review\nApproved\nLocked\nCancelled",
+      "label": "Status",
+      "reqd": 1
+    }
+  ]
+}

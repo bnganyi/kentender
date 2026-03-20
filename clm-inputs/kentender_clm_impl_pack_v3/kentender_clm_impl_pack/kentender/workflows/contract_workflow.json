@@ -1,0 +1,104 @@
+{
+  "workflow_name": "Contract Workflow",
+  "document_type": "Contract",
+  "is_active": 1,
+  "workflow_state_field": "status",
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Internal Review",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Supplier Signature",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Accounting Officer Signature",
+      "doc_status": 0
+    },
+    {
+      "state": "Active",
+      "doc_status": 0
+    },
+    {
+      "state": "Suspended",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Termination Approval",
+      "doc_status": 0
+    },
+    {
+      "state": "Terminated",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Close-Out",
+      "doc_status": 0
+    },
+    {
+      "state": "Closed",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit for Review",
+      "next_state": "Pending Internal Review",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Pending Internal Review",
+      "action": "Approve Internal",
+      "next_state": "Pending Supplier Signature",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Pending Supplier Signature",
+      "action": "Supplier Signs",
+      "next_state": "Pending Accounting Officer Signature",
+      "allowed": "Supplier"
+    },
+    {
+      "state": "Pending Accounting Officer Signature",
+      "action": "Approve & Activate",
+      "next_state": "Active",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Active",
+      "action": "Suspend",
+      "next_state": "Suspended",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Active",
+      "action": "Request Termination",
+      "next_state": "Pending Termination Approval",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Pending Termination Approval",
+      "action": "Approve Termination",
+      "next_state": "Terminated",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Active",
+      "action": "Ready for Close-Out",
+      "next_state": "Pending Close-Out",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Pending Close-Out",
+      "action": "Close Contract",
+      "next_state": "Closed",
+      "allowed": "Accounting Officer"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "doctype": "DocType",
+  "name": "Dispute Case",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1
+    },
+    {
+      "fieldname": "claim",
+      "fieldtype": "Link",
+      "options": "Claim",
+      "label": "Claim"
+    },
+    {
+      "fieldname": "notice_date",
+      "fieldtype": "Date",
+      "label": "Notice Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "current_stage",
+      "fieldtype": "Select",
+      "options": "Notice of Claim\nNegotiation\nMediation\nArbitration\nResolved\nClosed",
+      "label": "Current Stage",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Open\nIn Progress\nResolved\nClosed",
+      "label": "Status",
+      "reqd": 1
+    },
+    {
+      "fieldname": "stop_work_order_issued",
+      "fieldtype": "Check",
+      "label": "Stop Work Order Issued"
+    },
+    {
+      "fieldname": "issued_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Issued By"
+    },
+    {
+      "fieldname": "summary",
+      "fieldtype": "Small Text",
+      "label": "Summary"
+    },
+    {
+      "fieldname": "resolution",
+      "fieldtype": "Small Text",
+      "label": "Resolution"
+    },
+    {
+      "fieldname": "stop_work_reason",
+      "fieldtype": "Small Text",
+      "label": "Stop Work Reason"
+    },
+    {
+      "fieldname": "cit_recommendation",
+      "fieldtype": "Small Text",
+      "label": "CIT Recommendation"
+    },
+    {
+      "fieldname": "procurement_recommendation",
+      "fieldtype": "Small Text",
+      "label": "Head of Procurement Recommendation"
+    }
+  ],
+  "is_submittable": 1
+}

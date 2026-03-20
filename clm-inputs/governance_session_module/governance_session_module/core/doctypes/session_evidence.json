@@ -1,0 +1,38 @@
+{
+  "doctype": "DocType",
+  "name": "Session Evidence",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "options": "Governance Session",
+      "label": "Session",
+      "reqd": 1
+    },
+    {
+      "fieldname": "agenda_item",
+      "fieldtype": "Link",
+      "options": "Session Agenda Item",
+      "label": "Agenda Item"
+    },
+    {
+      "fieldname": "evidence_type",
+      "fieldtype": "Select",
+      "options": "Minutes Attachment\nInspection Evidence\nTechnical Report\nFinancial Analysis\nLegal Advice\nSupplier Submission\nPhotos\nSigned Attendance\nSigned Resolution\nSupporting Memo",
+      "label": "Evidence Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "file",
+      "fieldtype": "Attach",
+      "label": "File"
+    },
+    {
+      "fieldname": "summary",
+      "fieldtype": "Small Text",
+      "label": "Summary"
+    }
+  ]
+}

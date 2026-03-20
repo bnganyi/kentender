@@ -1,0 +1,78 @@
+{
+  "doctype": "DocType",
+  "name": "Corporate Strategic Plan",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "plan_name",
+      "label": "Plan Name",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "plan_code",
+      "label": "Plan Code",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "entity",
+      "label": "Entity",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "national_plan",
+      "label": "National Plan",
+      "fieldtype": "Link",
+      "options": "National Development Plan",
+      "reqd": 1
+    },
+    {
+      "fieldname": "start_year",
+      "label": "Start Year",
+      "fieldtype": "Int",
+      "reqd": 1
+    },
+    {
+      "fieldname": "end_year",
+      "label": "End Year",
+      "fieldtype": "Int",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approval_authority",
+      "label": "Approval Authority",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approval_date",
+      "label": "Approval Date",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nSubmitted\nApproved\nActive\nExpired",
+      "reqd": 1,
+      "default": "Draft"
+    },
+    {
+      "fieldname": "document_reference",
+      "label": "Document Reference",
+      "fieldtype": "Attach"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Long Text"
+    }
+  ]
+}

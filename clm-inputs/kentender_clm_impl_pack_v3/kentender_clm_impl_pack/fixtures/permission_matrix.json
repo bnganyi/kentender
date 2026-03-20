@@ -1,0 +1,396 @@
+{
+  "roles": [
+    "Head of Procurement",
+    "Accounting Officer",
+    "Contract Implementation Team",
+    "Inspection and Acceptance Committee",
+    "Head of User Department",
+    "Head of Finance",
+    "Supplier",
+    "System Manager"
+  ],
+  "doctypes": {
+    "Contract": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read",
+        "write"
+      ],
+      "Head of Finance": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Contract Implementation Team Member": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read",
+        "write"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Inspection Committee Member": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read",
+        "write"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Acceptance Certificate": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read",
+        "write"
+      ],
+      "Head of User Department": [
+        "read",
+        "write"
+      ],
+      "Head of Finance": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Retention Ledger": {
+      "Head of Procurement": [
+        "read"
+      ],
+      "Head of Finance": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Retention Release Request": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Head of Finance": [
+        "read",
+        "write"
+      ],
+      "Accounting Officer": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Contract Variation": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Contract Implementation Team": [
+        "read",
+        "write"
+      ],
+      "Head of Finance": [
+        "read",
+        "write"
+      ],
+      "Accounting Officer": [
+        "read",
+        "write"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Claim": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Supplier": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Contract Implementation Team": [
+        "read",
+        "write"
+      ],
+      "Accounting Officer": [
+        "read",
+        "write"
+      ],
+      "Head of Finance": [
+        "read",
+        "write"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Dispute Case": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read",
+        "write"
+      ],
+      "Contract Implementation Team": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Termination Record": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read",
+        "write"
+      ],
+      "Head of Finance": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Defect Liability Case": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Contract Implementation Team": [
+        "read",
+        "write"
+      ],
+      "Inspection and Acceptance Committee": [
+        "read",
+        "write"
+      ],
+      "Supplier": [
+        "read",
+        "write"
+      ],
+      "Accounting Officer": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Monthly Contract Monitoring Report": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read",
+        "write"
+      ],
+      "Head of Finance": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Contract Activity Log": {
+      "Head of Procurement": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Contract Implementation Team": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Inspection and Acceptance Committee": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create",
+        "delete"
+      ]
+    },
+    "Task": {
+      "Head of Procurement": [
+        "read",
+        "write"
+      ],
+      "Contract Implementation Team": [
+        "read",
+        "write"
+      ],
+      "Supplier": [
+        "read",
+        "write"
+      ],
+      "Inspection and Acceptance Committee": [
+        "read",
+        "write"
+      ],
+      "System Manager": [
+        "read",
+        "write"
+      ]
+    },
+    "Purchase Invoice": {
+      "Head of Procurement": [
+        "read",
+        "write"
+      ],
+      "Head of Finance": [
+        "read",
+        "write"
+      ],
+      "Supplier": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Accounting Officer": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write"
+      ]
+    },
+    "Purchase Receipt": {
+      "Head of Procurement": [
+        "read",
+        "write"
+      ],
+      "Inspection and Acceptance Committee": [
+        "read",
+        "write"
+      ],
+      "Contract Implementation Team": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write"
+      ]
+    },
+    "Project": {
+      "Head of Procurement": [
+        "read",
+        "write"
+      ],
+      "Contract Implementation Team": [
+        "read",
+        "write"
+      ],
+      "Accounting Officer": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write"
+      ]
+    },
+    "Quality Inspection": {
+      "Inspection and Acceptance Committee": [
+        "read",
+        "write",
+        "create"
+      ],
+      "Head of Procurement": [
+        "read"
+      ],
+      "Contract Implementation Team": [
+        "read"
+      ],
+      "System Manager": [
+        "read",
+        "write",
+        "create"
+      ]
+    }
+  }
+}

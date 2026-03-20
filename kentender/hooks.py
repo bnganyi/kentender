@@ -4,6 +4,32 @@ doc_events = {
 	},
 	"Contract": {
 		"validate": "kentender.kentender.api.validate_contract",
+		"on_update": "kentender.kentender.api.seed_contract_milestones_on_contract_activation",
+	},
+	"Contract Closeout Archive": {
+		"validate": "kentender.kentender.api.validate_contract_closeout_archive",
+		"on_trash": "kentender.kentender.api.prevent_delete_contract_closeout_archive",
+	},
+	"Governance Session": {
+		"validate": "kentender.kentender.api.validate_governance_session",
+	},
+	"Session Agenda Item": {
+		"validate": "kentender.kentender.api.validate_session_agenda_item",
+	},
+	"Session Resolution": {
+		"validate": "kentender.kentender.api.validate_session_resolution",
+	},
+	"Session Action": {
+		"validate": "kentender.kentender.api.validate_session_action",
+	},
+	"Session Participant": {
+		"validate": "kentender.kentender.api.validate_session_participant",
+	},
+	"Session Evidence": {
+		"validate": "kentender.kentender.api.validate_session_evidence",
+	},
+	"Session Signature": {
+		"validate": "kentender.kentender.api.validate_session_signature",
 	},
 	"Acceptance Certificate": {
 		"validate": "kentender.kentender.api.validate_acceptance_certificate",
@@ -32,18 +58,41 @@ doc_events = {
 	"Dispute Case": {
 		"validate": "kentender.kentender.api.validate_dispute_case",
 	},
+	"KenTender Audit Event": {
+		"validate": "kentender.kentender.api.validate_ken_tender_audit_event",
+		"on_trash": "kentender.kentender.api.prevent_delete_ken_tender_audit_event",
+	},
 	"Task": {
 		"validate": "kentender.kentender.api.validate_task_milestone",
+		"on_update": "kentender.kentender.api.maybe_create_inspection_test_plan_for_milestone",
+	},
+	"Inspection Test Plan": {
+		"validate": "kentender.kentender.api.validate_inspection_test_plan",
+	},
+	"Inspection Report": {
+		"validate": "kentender.kentender.api.validate_inspection_report",
+		"before_submit": "kentender.kentender.api.before_submit_inspection_report",
+	},
+	"Quality Inspection": {
+		"validate": "kentender.kentender.api.validate_quality_inspection_clm",
 	},
 	"Tender Submission": {
 		"validate": "kentender.kentender.api.validate_submission",
+		"after_insert": "kentender.kentender.api.audit_tender_submission_created",
 	},
 	"Purchase Invoice": {
 		"validate": "kentender.kentender.api.validate_purchase_invoice_certificate",
 		"on_submit": "kentender.kentender.api.create_retention_ledger_entry_from_invoice",
 	},
+	"Payment Entry": {
+		"validate": "kentender.kentender.api.validate_payment_entry_clm",
+		"before_submit": "kentender.kentender.api.before_submit_payment_entry_clm",
+	},
 	"Tender": {
 		"on_submit": "kentender.kentender.api.validate_tender",
+	},
+	"Monthly Contract Monitoring Report": {
+		"validate": "kentender.kentender.api.validate_monthly_contract_monitoring_report",
 	},
 }
 
@@ -51,6 +100,7 @@ scheduler_events = {
 	"daily": [
 		"kentender.kentender.api.recheck_supplier_compliance",
 		"kentender.kentender.api.monitor_dlp_expiry",
+		"kentender.kentender.api.remind_retention_release_due",
 	],
 	"monthly": [
 		"kentender.kentender.api.create_monthly_contract_monitoring_reports",

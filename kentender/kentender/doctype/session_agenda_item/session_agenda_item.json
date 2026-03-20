@@ -1,0 +1,88 @@
+{
+  "doctype": "DocType",
+  "name": "Session Agenda Item",
+  "module": "KenTender",
+  "custom": 1,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:SAI-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "options": "Governance Session",
+      "label": "Session",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "sequence",
+      "fieldtype": "Int",
+      "label": "Sequence"
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Data",
+      "label": "Subject",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "reference_doctype",
+      "fieldtype": "Data",
+      "label": "Reference DocType"
+    },
+    {
+      "fieldname": "reference_name",
+      "fieldtype": "Data",
+      "label": "Reference Name"
+    },
+    {
+      "fieldname": "discussion",
+      "fieldtype": "Long Text",
+      "label": "Discussion"
+    },
+    {
+      "fieldname": "decision_required",
+      "fieldtype": "Check",
+      "label": "Decision Required"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Contract Implementation Team",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Inspection and Acceptance Committee",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Head of Finance",
+      "read": 1
+    }
+  ]
+}
+

@@ -1,0 +1,982 @@
+[
+  {
+    "workflow_name": "Contract Workflow",
+    "document_type": "Contract",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Internal Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Supplier Signature",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Accounting Officer Signature",
+        "doc_status": 0
+      },
+      {
+        "state": "Active",
+        "doc_status": 0
+      },
+      {
+        "state": "Suspended",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Termination Approval",
+        "doc_status": 0
+      },
+      {
+        "state": "Terminated",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Close-Out",
+        "doc_status": 0
+      },
+      {
+        "state": "Closed",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Submit for Review",
+        "next_state": "Pending Internal Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Internal Review",
+        "action": "Approve Internal",
+        "next_state": "Pending Supplier Signature",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Supplier Signature",
+        "action": "Supplier Signs",
+        "next_state": "Pending Accounting Officer Signature",
+        "allowed": "Supplier"
+      },
+      {
+        "state": "Pending Accounting Officer Signature",
+        "action": "Approve & Activate",
+        "next_state": "Active",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Active",
+        "action": "Suspend",
+        "next_state": "Suspended",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Active",
+        "action": "Request Termination",
+        "next_state": "Pending Termination Approval",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Termination Approval",
+        "action": "Approve Termination",
+        "next_state": "Terminated",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Active",
+        "action": "Ready for Close-Out",
+        "next_state": "Pending Close-Out",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Close-Out",
+        "action": "Close Contract",
+        "next_state": "Closed",
+        "allowed": "Accounting Officer"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Acceptance Certificate Workflow",
+    "document_type": "Acceptance Certificate",
+    "is_active": 1,
+    "workflow_state_field": "workflow_state",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved",
+        "doc_status": 0
+      },
+      {
+        "state": "Rejected",
+        "doc_status": 0
+      },
+      {
+        "state": "Issued",
+        "doc_status": 0
+      },
+      {
+        "state": "Cancelled",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Submit",
+        "next_state": "Under Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Review",
+        "action": "Approve",
+        "next_state": "Approved",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Review",
+        "action": "Reject",
+        "next_state": "Rejected",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Approved",
+        "action": "Issue Certificate",
+        "next_state": "Issued",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Issued",
+        "action": "Cancel",
+        "next_state": "Cancelled",
+        "allowed": "Accounting Officer"
+      }
+    ]
+  },
+  {
+    "workflow_name": "CLM Purchase Invoice Workflow",
+    "document_type": "Purchase Invoice",
+    "is_active": 1,
+    "workflow_state_field": "approval_status",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Submitted by Supplier",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Procurement Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Finance Verification",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Procurement Certification",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved for Payment",
+        "doc_status": 0
+      },
+      {
+        "state": "Rejected",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Submit Invoice",
+        "next_state": "Submitted by Supplier",
+        "allowed": "Supplier"
+      },
+      {
+        "state": "Submitted by Supplier",
+        "action": "Review",
+        "next_state": "Under Procurement Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Procurement Review",
+        "action": "Forward to Finance",
+        "next_state": "Pending Finance Verification",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Finance Verification",
+        "action": "Verify",
+        "next_state": "Pending Procurement Certification",
+        "allowed": "Head of Finance"
+      },
+      {
+        "state": "Pending Procurement Certification",
+        "action": "Certify",
+        "next_state": "Approved for Payment",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Submitted by Supplier",
+        "action": "Reject",
+        "next_state": "Rejected",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Procurement Review",
+        "action": "Reject",
+        "next_state": "Rejected",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Finance Verification",
+        "action": "Reject",
+        "next_state": "Rejected",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Procurement Certification",
+        "action": "Reject",
+        "next_state": "Rejected",
+        "allowed": "Head of Procurement"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Contract Milestone Workflow",
+    "document_type": "Task",
+    "is_active": 1,
+    "workflow_state_field": "milestone_status",
+    "states": [
+      {
+        "state": "Pending",
+        "doc_status": 0
+      },
+      {
+        "state": "In Progress",
+        "doc_status": 0
+      },
+      {
+        "state": "Completed by Supplier",
+        "doc_status": 0
+      },
+      {
+        "state": "Verified by CIT",
+        "doc_status": 0
+      },
+      {
+        "state": "Sent for Inspection",
+        "doc_status": 0
+      },
+      {
+        "state": "Accepted",
+        "doc_status": 0
+      },
+      {
+        "state": "Rejected",
+        "doc_status": 0
+      },
+      {
+        "state": "Payment Eligible",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Pending",
+        "action": "Start Work",
+        "next_state": "In Progress",
+        "allowed": "Contract Implementation Team"
+      },
+      {
+        "state": "In Progress",
+        "action": "Confirm Completion",
+        "next_state": "Completed by Supplier",
+        "allowed": "Supplier"
+      },
+      {
+        "state": "Completed by Supplier",
+        "action": "Verify by CIT",
+        "next_state": "Verified by CIT",
+        "allowed": "Contract Implementation Team"
+      },
+      {
+        "state": "Verified by CIT",
+        "action": "Send for Inspection",
+        "next_state": "Sent for Inspection",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Sent for Inspection",
+        "action": "Accept Milestone",
+        "next_state": "Accepted",
+        "allowed": "Inspection and Acceptance Committee"
+      },
+      {
+        "state": "Sent for Inspection",
+        "action": "Reject Milestone",
+        "next_state": "Rejected",
+        "allowed": "Inspection and Acceptance Committee"
+      },
+      {
+        "state": "Accepted",
+        "action": "Mark Payment Eligible",
+        "next_state": "Payment Eligible",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Rejected",
+        "action": "Reopen Milestone",
+        "next_state": "In Progress",
+        "allowed": "Head of Procurement"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Retention Release Workflow",
+    "document_type": "Retention Release Request",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Approval",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved",
+        "doc_status": 0
+      },
+      {
+        "state": "Rejected",
+        "doc_status": 0
+      },
+      {
+        "state": "Released",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Submit for Review",
+        "next_state": "Pending Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Review",
+        "action": "Forward for Approval",
+        "next_state": "Pending Approval",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Approval",
+        "action": "Approve Release",
+        "next_state": "Approved",
+        "allowed": "Head of Finance"
+      },
+      {
+        "state": "Pending Approval",
+        "action": "Reject Release",
+        "next_state": "Rejected",
+        "allowed": "Head of Finance"
+      },
+      {
+        "state": "Approved",
+        "action": "Execute Release",
+        "next_state": "Released",
+        "allowed": "Head of Finance"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Contract Variation Workflow",
+    "document_type": "Contract Variation",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Submitted",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Technical Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Financial Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Approval",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved",
+        "doc_status": 0
+      },
+      {
+        "state": "Rejected",
+        "doc_status": 0
+      },
+      {
+        "state": "Implemented",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Submit Variation",
+        "next_state": "Submitted",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Submitted",
+        "action": "Start Technical Review",
+        "next_state": "Under Technical Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Technical Review",
+        "action": "Forward to Finance",
+        "next_state": "Under Financial Review",
+        "allowed": "Contract Implementation Team"
+      },
+      {
+        "state": "Under Financial Review",
+        "action": "Forward for Approval",
+        "next_state": "Pending Approval",
+        "allowed": "Head of Finance"
+      },
+      {
+        "state": "Pending Approval",
+        "action": "Approve Variation",
+        "next_state": "Approved",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Pending Approval",
+        "action": "Reject Variation",
+        "next_state": "Rejected",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Approved",
+        "action": "Implement Variation",
+        "next_state": "Implemented",
+        "allowed": "Head of Procurement"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Claim Workflow",
+    "document_type": "Claim",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Submitted",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Recommended",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved",
+        "doc_status": 0
+      },
+      {
+        "state": "Rejected",
+        "doc_status": 0
+      },
+      {
+        "state": "Settled",
+        "doc_status": 0
+      },
+      {
+        "state": "Escalated to Dispute",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Submit Claim",
+        "next_state": "Submitted",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Draft",
+        "action": "Submit Contractor Claim",
+        "next_state": "Submitted",
+        "allowed": "Supplier"
+      },
+      {
+        "state": "Submitted",
+        "action": "Start Review",
+        "next_state": "Under Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Review",
+        "action": "Recommend Decision",
+        "next_state": "Recommended",
+        "allowed": "Contract Implementation Team"
+      },
+      {
+        "state": "Recommended",
+        "action": "Approve Claim",
+        "next_state": "Approved",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Recommended",
+        "action": "Reject Claim",
+        "next_state": "Rejected",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Approved",
+        "action": "Settle Claim",
+        "next_state": "Settled",
+        "allowed": "Head of Finance"
+      },
+      {
+        "state": "Under Review",
+        "action": "Escalate to Dispute",
+        "next_state": "Escalated to Dispute",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Recommended",
+        "action": "Escalate to Dispute",
+        "next_state": "Escalated to Dispute",
+        "allowed": "Accounting Officer"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Dispute Case Workflow",
+    "document_type": "Dispute Case",
+    "is_active": 1,
+    "workflow_state_field": "current_stage",
+    "states": [
+      {
+        "state": "Notice of Claim",
+        "doc_status": 0
+      },
+      {
+        "state": "Negotiation",
+        "doc_status": 0
+      },
+      {
+        "state": "Mediation",
+        "doc_status": 0
+      },
+      {
+        "state": "Arbitration",
+        "doc_status": 0
+      },
+      {
+        "state": "Resolved",
+        "doc_status": 0
+      },
+      {
+        "state": "Closed",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Notice of Claim",
+        "action": "Begin Negotiation",
+        "next_state": "Negotiation",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Negotiation",
+        "action": "Escalate to Mediation",
+        "next_state": "Mediation",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Mediation",
+        "action": "Escalate to Arbitration",
+        "next_state": "Arbitration",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Negotiation",
+        "action": "Resolve Dispute",
+        "next_state": "Resolved",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Mediation",
+        "action": "Resolve Dispute",
+        "next_state": "Resolved",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Arbitration",
+        "action": "Resolve Dispute",
+        "next_state": "Resolved",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Resolved",
+        "action": "Close Dispute",
+        "next_state": "Closed",
+        "allowed": "Head of Procurement"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Termination Record Workflow",
+    "document_type": "Termination Record",
+    "is_active": 1,
+    "workflow_state_field": "workflow_state",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Legal Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Pending Accounting Officer Approval",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved",
+        "doc_status": 0
+      },
+      {
+        "state": "Executed",
+        "doc_status": 0
+      },
+      {
+        "state": "Cancelled",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Send for Legal Review",
+        "next_state": "Under Legal Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Legal Review",
+        "action": "Forward for Approval",
+        "next_state": "Pending Accounting Officer Approval",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Pending Accounting Officer Approval",
+        "action": "Approve Termination",
+        "next_state": "Approved",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Pending Accounting Officer Approval",
+        "action": "Reject Termination",
+        "next_state": "Cancelled",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Approved",
+        "action": "Execute Termination",
+        "next_state": "Executed",
+        "allowed": "Head of Procurement"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Defect Liability Case Workflow",
+    "document_type": "Defect Liability Case",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Open",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Assigned",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Remedy",
+        "doc_status": 0
+      },
+      {
+        "state": "Verified",
+        "doc_status": 0
+      },
+      {
+        "state": "Closed",
+        "doc_status": 0
+      },
+      {
+        "state": "Escalated",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Open",
+        "action": "Review Defect",
+        "next_state": "Under Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Review",
+        "action": "Assign Remedy",
+        "next_state": "Assigned",
+        "allowed": "Contract Implementation Team"
+      },
+      {
+        "state": "Assigned",
+        "action": "Start Remedy",
+        "next_state": "Under Remedy",
+        "allowed": "Supplier"
+      },
+      {
+        "state": "Under Remedy",
+        "action": "Verify Remedy",
+        "next_state": "Verified",
+        "allowed": "Inspection and Acceptance Committee"
+      },
+      {
+        "state": "Verified",
+        "action": "Close Defect Case",
+        "next_state": "Closed",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Review",
+        "action": "Escalate",
+        "next_state": "Escalated",
+        "allowed": "Accounting Officer"
+      }
+    ]
+  },
+  {
+    "workflow_name": "CIT Member Appointment Workflow",
+    "document_type": "Contract Implementation Team Member",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Proposed",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved",
+        "doc_status": 0
+      },
+      {
+        "state": "Active",
+        "doc_status": 0
+      },
+      {
+        "state": "Removed",
+        "doc_status": 0
+      },
+      {
+        "state": "Rejected",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Proposed",
+        "action": "Submit Recommendation",
+        "next_state": "Under Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Review",
+        "action": "Approve Appointment",
+        "next_state": "Approved",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Under Review",
+        "action": "Reject Appointment",
+        "next_state": "Rejected",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Approved",
+        "action": "Activate Member",
+        "next_state": "Active",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Active",
+        "action": "Remove Member",
+        "next_state": "Removed",
+        "allowed": "Accounting Officer"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Inspection Committee Member Workflow",
+    "document_type": "Inspection Committee Member",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Proposed",
+        "doc_status": 0
+      },
+      {
+        "state": "Under Review",
+        "doc_status": 0
+      },
+      {
+        "state": "Approved",
+        "doc_status": 0
+      },
+      {
+        "state": "Active",
+        "doc_status": 0
+      },
+      {
+        "state": "Dissolved",
+        "doc_status": 0
+      },
+      {
+        "state": "Rejected",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Proposed",
+        "action": "Submit Recommendation",
+        "next_state": "Under Review",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Under Review",
+        "action": "Approve Appointment",
+        "next_state": "Approved",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Under Review",
+        "action": "Reject Appointment",
+        "next_state": "Rejected",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Approved",
+        "action": "Activate Committee Member",
+        "next_state": "Active",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Active",
+        "action": "Dissolve Appointment",
+        "next_state": "Dissolved",
+        "allowed": "Accounting Officer"
+      }
+    ]
+  },
+  {
+    "workflow_name": "Monthly Contract Monitoring Report Workflow",
+    "document_type": "Monthly Contract Monitoring Report",
+    "is_active": 1,
+    "workflow_state_field": "status",
+    "states": [
+      {
+        "state": "Draft",
+        "doc_status": 0
+      },
+      {
+        "state": "Prepared",
+        "doc_status": 0
+      },
+      {
+        "state": "Reviewed",
+        "doc_status": 0
+      },
+      {
+        "state": "Submitted",
+        "doc_status": 0
+      }
+    ],
+    "transitions": [
+      {
+        "state": "Draft",
+        "action": "Prepare Report",
+        "next_state": "Prepared",
+        "allowed": "Head of Procurement"
+      },
+      {
+        "state": "Prepared",
+        "action": "Review Report",
+        "next_state": "Reviewed",
+        "allowed": "Accounting Officer"
+      },
+      {
+        "state": "Reviewed",
+        "action": "Submit Report",
+        "next_state": "Submitted",
+        "allowed": "Head of Procurement"
+      }
+    ]
+  }
+]

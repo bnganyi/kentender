@@ -1,0 +1,252 @@
+{
+  "doctype": "DocType",
+  "name": "Procurement Plan Item",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "parent_plan",
+      "label": "Parent Plan",
+      "fieldtype": "Link",
+      "options": "Procurement Plan",
+      "reqd": 1
+    },
+    {
+      "fieldname": "procurement_reference",
+      "label": "Procurement Reference",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "procurement_title",
+      "label": "Procurement Title",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "strategic_plan",
+      "label": "Strategic Plan",
+      "fieldtype": "Link",
+      "options": "Corporate Strategic Plan",
+      "reqd": 1
+    },
+    {
+      "fieldname": "strategic_objective",
+      "label": "Strategic Objective",
+      "fieldtype": "Link",
+      "options": "Strategic Objective",
+      "reqd": 1
+    },
+    {
+      "fieldname": "national_priority",
+      "label": "National Priority",
+      "fieldtype": "Link",
+      "options": "National Development Priority",
+      "reqd": 1
+    },
+    {
+      "fieldname": "procurement_type",
+      "label": "Procurement Type",
+      "fieldtype": "Select",
+      "options": "Goods\nWorks\nNon-Consulting Services\nConsulting Services\nAsset Disposal",
+      "reqd": 1
+    },
+    {
+      "fieldname": "category",
+      "label": "Category",
+      "fieldtype": "Link",
+      "options": "Spend Category",
+      "reqd": 1
+    },
+    {
+      "fieldname": "estimated_cost",
+      "label": "Estimated Cost",
+      "fieldtype": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approved_planned_cost",
+      "label": "Approved Planned Cost",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "procurement_method",
+      "label": "Procurement Method",
+      "fieldtype": "Select",
+      "options": "Open Tender\nRestricted Tender\nRFQ\nRFP\nDirect Procurement",
+      "reqd": 1
+    },
+    {
+      "fieldname": "system_recommended_method",
+      "label": "System Recommended Method",
+      "fieldtype": "Select",
+      "options": "Open Tender\nRestricted Tender\nRFQ\nRFP\nDirect Procurement",
+      "read_only": 1
+    },
+    {
+      "fieldname": "method_override_reason",
+      "label": "Method Override Reason",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "funding_source",
+      "label": "Funding Source",
+      "fieldtype": "Link",
+      "options": "Funding Source",
+      "reqd": 1
+    },
+    {
+      "fieldname": "budget_head",
+      "label": "Budget Head",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cost_center",
+      "label": "Cost Center",
+      "fieldtype": "Link",
+      "options": "Cost Center",
+      "reqd": 1
+    },
+    {
+      "fieldname": "project",
+      "label": "Project",
+      "fieldtype": "Link",
+      "options": "Project"
+    },
+    {
+      "fieldname": "quarter",
+      "label": "Quarter",
+      "fieldtype": "Select",
+      "options": "Q1\nQ2\nQ3\nQ4",
+      "reqd": 1
+    },
+    {
+      "fieldname": "planned_start_date",
+      "label": "Planned Start Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "planned_tender_date",
+      "label": "Planned Tender Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "planned_award_date",
+      "label": "Planned Award Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "planned_contract_start",
+      "label": "Planned Contract Start",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "planned_contract_end",
+      "label": "Planned Contract End",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "responsible_department",
+      "label": "Responsible Department",
+      "fieldtype": "Link",
+      "options": "Department",
+      "reqd": 1
+    },
+    {
+      "fieldname": "priority_level",
+      "label": "Priority Level",
+      "fieldtype": "Select",
+      "options": "High\nMedium\nLow"
+    },
+    {
+      "fieldname": "emergency_flag",
+      "label": "Emergency Flag",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "framework_flag",
+      "label": "Framework Flag",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "recurring_flag",
+      "label": "Recurring Flag",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "aggregation_group",
+      "label": "Aggregation Group",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "anti_split_group",
+      "label": "Anti Split Group",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "risk_score",
+      "label": "Risk Score",
+      "fieldtype": "Float",
+      "read_only": 1
+    },
+    {
+      "fieldname": "risk_level",
+      "label": "Risk Level",
+      "fieldtype": "Select",
+      "options": "Low\nMedium\nHigh",
+      "read_only": 1
+    },
+    {
+      "fieldname": "budget_status",
+      "label": "Budget Status",
+      "fieldtype": "Select",
+      "options": "Unchecked\nAvailable\nWarning\nBlocked\nReserved\nCommitted\nPartially Utilized\nFully Utilized\nReleased",
+      "default": "Unchecked"
+    },
+    {
+      "fieldname": "reserved_budget_amount",
+      "label": "Reserved Budget Amount",
+      "fieldtype": "Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "committed_amount",
+      "label": "Committed Amount",
+      "fieldtype": "Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "actual_amount",
+      "label": "Actual Amount",
+      "fieldtype": "Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "line_status",
+      "label": "Line Status",
+      "fieldtype": "Select",
+      "options": "Draft\nValidated\nUnder Review\nApproved in APP\nReserved\nRequisitioned\nIn Procurement Process\nContracted\nClosed\nCancelled",
+      "default": "Draft",
+      "reqd": 1
+    },
+    {
+      "fieldname": "override_flag",
+      "label": "Override Flag",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "override_reason",
+      "label": "Override Reason",
+      "fieldtype": "Long Text"
+    }
+  ]
+}

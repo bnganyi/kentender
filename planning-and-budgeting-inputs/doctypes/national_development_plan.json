@@ -1,0 +1,90 @@
+{
+  "doctype": "DocType",
+  "name": "National Development Plan",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "autoname": "field:plan_code",
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "plan_name",
+      "label": "Plan Name",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "plan_code",
+      "label": "Plan Code",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "country",
+      "label": "Country",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "default": "Kenya"
+    },
+    {
+      "fieldname": "start_year",
+      "label": "Start Year",
+      "fieldtype": "Int",
+      "reqd": 1
+    },
+    {
+      "fieldname": "end_year",
+      "label": "End Year",
+      "fieldtype": "Int",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approval_authority",
+      "label": "Approval Authority",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approval_date",
+      "label": "Approval Date",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nApproved\nActive\nArchived",
+      "reqd": 1,
+      "default": "Draft"
+    },
+    {
+      "fieldname": "document_reference",
+      "label": "Document Reference",
+      "fieldtype": "Attach"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Long Text"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Planning Authority",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1
+    },
+    {
+      "role": "Internal Auditor",
+      "read": 1
+    },
+    {
+      "role": "Oversight Viewer",
+      "read": 1
+    }
+  ]
+}

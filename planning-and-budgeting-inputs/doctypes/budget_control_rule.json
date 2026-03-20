@@ -1,0 +1,58 @@
+{
+  "doctype": "DocType",
+  "name": "Budget Control Rule",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "policy_profile",
+      "label": "Policy Profile",
+      "fieldtype": "Link",
+      "options": "Procurement Policy Profile",
+      "reqd": 1
+    },
+    {
+      "fieldname": "check_stage",
+      "label": "Check Stage",
+      "fieldtype": "Select",
+      "options": "Plan Approval\nRevision Approval\nRequisition Approval",
+      "reqd": 1
+    },
+    {
+      "fieldname": "control_mode",
+      "label": "Control Mode",
+      "fieldtype": "Select",
+      "options": "Hard Stop\nWarning\nInformational",
+      "reqd": 1
+    },
+    {
+      "fieldname": "allow_override",
+      "label": "Allow Override",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "require_override_reason",
+      "label": "Require Override Reason",
+      "fieldtype": "Check",
+      "default": 1
+    },
+    {
+      "fieldname": "require_override_approver",
+      "label": "Require Override Approver",
+      "fieldtype": "Check",
+      "default": 1
+    },
+    {
+      "fieldname": "applies_to_all_departments",
+      "label": "Applies To All Departments",
+      "fieldtype": "Check",
+      "default": 1
+    },
+    {
+      "fieldname": "active",
+      "label": "Active",
+      "fieldtype": "Check",
+      "default": 1
+    }
+  ]
+}

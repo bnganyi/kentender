@@ -1,0 +1,283 @@
+{
+  "doctype": "DocType",
+  "name": "Contract",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:CT-{YYYY}-{#####}",
+  "title_field": "contract_title",
+  "fields": [
+    {
+      "fieldname": "contract_title",
+      "fieldtype": "Data",
+      "label": "Contract Title",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "label": "Company",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "supplier",
+      "fieldtype": "Link",
+      "options": "Supplier",
+      "label": "Supplier",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "tender",
+      "fieldtype": "Link",
+      "options": "Tender",
+      "label": "Tender",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "purchase_order",
+      "fieldtype": "Link",
+      "options": "Purchase Order",
+      "label": "Purchase Order",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "options": "Project",
+      "label": "Project"
+    },
+    {
+      "fieldname": "contract_type",
+      "fieldtype": "Select",
+      "options": "Goods\nWorks\nServices",
+      "label": "Contract Type",
+      "reqd": 1,
+      "default": "Goods",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "contract_value",
+      "fieldtype": "Currency",
+      "label": "Contract Value",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "options": "Currency",
+      "label": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "start_date",
+      "fieldtype": "Date",
+      "label": "Start Date"
+    },
+    {
+      "fieldname": "end_date",
+      "fieldtype": "Date",
+      "label": "End Date"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Draft\nPending Supplier Signature\nPending Accounting Officer Signature\nActive\nSuspended\nPending Termination Approval\nTerminated\nPending Close-Out\nClosed",
+      "label": "Status",
+      "reqd": 1,
+      "default": "Draft",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "resume_status_after_stop_work",
+      "fieldtype": "Data",
+      "label": "Resume Status After Stop Work",
+      "hidden": 1,
+      "read_only": 1,
+      "description": "System-maintained: contract status to restore when the last active Stop Work order on this contract is withdrawn."
+    },
+    {
+      "fieldname": "signed_by_supplier",
+      "fieldtype": "Check",
+      "label": "Signed by Supplier"
+    },
+    {
+      "fieldname": "signed_by_accounting_officer",
+      "fieldtype": "Check",
+      "label": "Signed by Accounting Officer"
+    },
+    {
+      "fieldname": "signature_mode",
+      "fieldtype": "Select",
+      "options": "Role Based\nExternal Verified",
+      "label": "Signature Mode",
+      "default": "Role Based"
+    },
+    {
+      "fieldname": "supplier_signature_provider",
+      "fieldtype": "Data",
+      "label": "Supplier Signature Provider"
+    },
+    {
+      "fieldname": "supplier_signature_hash",
+      "fieldtype": "Data",
+      "label": "Supplier Signature Hash"
+    },
+    {
+      "fieldname": "supplier_signed_at",
+      "fieldtype": "Datetime",
+      "label": "Supplier Signed At"
+    },
+    {
+      "fieldname": "accounting_signature_provider",
+      "fieldtype": "Data",
+      "label": "Accounting Signature Provider"
+    },
+    {
+      "fieldname": "accounting_signature_hash",
+      "fieldtype": "Data",
+      "label": "Accounting Signature Hash"
+    },
+    {
+      "fieldname": "accounting_signed_at",
+      "fieldtype": "Datetime",
+      "label": "Accounting Signed At"
+    },
+    {
+      "fieldname": "supplier_signer_certificate_subject",
+      "fieldtype": "Small Text",
+      "label": "Supplier Signer Certificate Subject",
+      "description": "Populated when using External Verified mode with a verifier that returns certificate metadata."
+    },
+    {
+      "fieldname": "supplier_signer_certificate_serial",
+      "fieldtype": "Data",
+      "label": "Supplier Signer Certificate Serial"
+    },
+    {
+      "fieldname": "supplier_signature_verification_ref",
+      "fieldtype": "Data",
+      "label": "Supplier Signature Verification Ref",
+      "description": "Provider transaction / audit id for the signature verification."
+    },
+    {
+      "fieldname": "accounting_signer_certificate_subject",
+      "fieldtype": "Small Text",
+      "label": "Accounting Officer Signer Certificate Subject"
+    },
+    {
+      "fieldname": "accounting_signer_certificate_serial",
+      "fieldtype": "Data",
+      "label": "Accounting Officer Signer Certificate Serial"
+    },
+    {
+      "fieldname": "accounting_signature_verification_ref",
+      "fieldtype": "Data",
+      "label": "Accounting Officer Signature Verification Ref"
+    },
+    {
+      "fieldname": "activated_on",
+      "fieldtype": "Datetime",
+      "label": "Activated On"
+    },
+    {
+      "fieldname": "retention_percentage",
+      "fieldtype": "Percent",
+      "label": "Retention Percentage"
+    },
+    {
+      "fieldname": "defect_liability_months",
+      "fieldtype": "Int",
+      "label": "Defect Liability Months"
+    },
+    {
+      "fieldname": "final_acceptance_certificate",
+      "fieldtype": "Link",
+      "options": "Acceptance Certificate",
+      "label": "Final Acceptance Certificate"
+    },
+    {
+      "fieldname": "closeout_archived",
+      "fieldtype": "Check",
+      "label": "Closeout Archived",
+      "default": 0
+    },
+    {
+      "fieldname": "closeout_archived_on",
+      "fieldtype": "Datetime",
+      "label": "Closeout Archived On",
+      "hidden": 1
+    },
+    {
+      "fieldname": "closeout_archive_ref",
+      "fieldtype": "Link",
+      "options": "Contract Closeout Archive",
+      "label": "Closeout Archive Ref",
+      "hidden": 1
+    },
+    {
+      "fieldname": "closeout_archive_sequence",
+      "fieldtype": "Int",
+      "label": "Closeout Archive Sequence",
+      "hidden": 1
+    },
+    {
+      "fieldname": "all_payments_completed",
+      "fieldtype": "Check",
+      "label": "All Payments Completed"
+    },
+    {
+      "fieldname": "handover_completed",
+      "fieldtype": "Check",
+      "label": "Handover Completed"
+    },
+    {
+      "fieldname": "dlp_start_date",
+      "fieldtype": "Date",
+      "label": "DLP Start Date"
+    },
+    {
+      "fieldname": "dlp_end_date",
+      "fieldtype": "Date",
+      "label": "DLP End Date"
+    },
+    {
+      "fieldname": "dlp_status",
+      "fieldtype": "Select",
+      "options": "Not Started\nActive\nCompleted\nReopened",
+      "label": "DLP Status",
+      "default": "Not Started"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Head of Finance",
+      "read": 1
+    }
+  ]
+}
+

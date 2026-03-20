@@ -1,0 +1,68 @@
+{
+  "doctype": "DocType",
+  "name": "Retention Ledger",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1
+    },
+    {
+      "fieldname": "purchase_invoice",
+      "fieldtype": "Link",
+      "options": "Purchase Invoice",
+      "label": "Purchase Invoice"
+    },
+    {
+      "fieldname": "payment_entry",
+      "fieldtype": "Link",
+      "options": "Payment Entry",
+      "label": "Payment Entry"
+    },
+    {
+      "fieldname": "retention_type",
+      "fieldtype": "Select",
+      "options": "Deduction\nRelease\nAdjustment\nForfeiture",
+      "label": "Retention Type",
+      "reqd": 1
+    },
+    {
+      "fieldname": "posting_date",
+      "fieldtype": "Date",
+      "label": "Posting Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Amount",
+      "reqd": 1
+    },
+    {
+      "fieldname": "balance_after_transaction",
+      "fieldtype": "Currency",
+      "label": "Balance After Transaction"
+    },
+    {
+      "fieldname": "release_date",
+      "fieldtype": "Date",
+      "label": "Release Date"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Pending\nHeld\nReleased\nAdjusted\nForfeited",
+      "label": "Status",
+      "reqd": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    }
+  ]
+}

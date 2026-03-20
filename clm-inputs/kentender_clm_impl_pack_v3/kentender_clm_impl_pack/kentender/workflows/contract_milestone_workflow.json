@@ -1,0 +1,90 @@
+{
+  "workflow_name": "Contract Milestone Workflow",
+  "document_type": "Task",
+  "is_active": 1,
+  "workflow_state_field": "milestone_status",
+  "states": [
+    {
+      "state": "Pending",
+      "doc_status": 0
+    },
+    {
+      "state": "In Progress",
+      "doc_status": 0
+    },
+    {
+      "state": "Completed by Supplier",
+      "doc_status": 0
+    },
+    {
+      "state": "Verified by CIT",
+      "doc_status": 0
+    },
+    {
+      "state": "Sent for Inspection",
+      "doc_status": 0
+    },
+    {
+      "state": "Accepted",
+      "doc_status": 0
+    },
+    {
+      "state": "Rejected",
+      "doc_status": 0
+    },
+    {
+      "state": "Payment Eligible",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Pending",
+      "action": "Start Work",
+      "next_state": "In Progress",
+      "allowed": "Contract Implementation Team"
+    },
+    {
+      "state": "In Progress",
+      "action": "Confirm Completion",
+      "next_state": "Completed by Supplier",
+      "allowed": "Supplier"
+    },
+    {
+      "state": "Completed by Supplier",
+      "action": "Verify by CIT",
+      "next_state": "Verified by CIT",
+      "allowed": "Contract Implementation Team"
+    },
+    {
+      "state": "Verified by CIT",
+      "action": "Send for Inspection",
+      "next_state": "Sent for Inspection",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Sent for Inspection",
+      "action": "Accept Milestone",
+      "next_state": "Accepted",
+      "allowed": "Inspection and Acceptance Committee"
+    },
+    {
+      "state": "Sent for Inspection",
+      "action": "Reject Milestone",
+      "next_state": "Rejected",
+      "allowed": "Inspection and Acceptance Committee"
+    },
+    {
+      "state": "Accepted",
+      "action": "Mark Payment Eligible",
+      "next_state": "Payment Eligible",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Rejected",
+      "action": "Reopen Milestone",
+      "next_state": "In Progress",
+      "allowed": "Head of Procurement"
+    }
+  ]
+}

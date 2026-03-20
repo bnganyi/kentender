@@ -1,0 +1,38 @@
+[
+  {
+    "session_type": "CIT Meeting",
+    "resolution_type": "Recommend Approval",
+    "reference_doctype": "Task",
+    "unlock": "Milestone Verification Review"
+  },
+  {
+    "session_type": "Inspection Session",
+    "resolution_type": "Recommend Acceptance",
+    "reference_doctype": "Task",
+    "unlock": "Milestone Acceptance Review"
+  },
+  {
+    "session_type": "Inspection Session",
+    "resolution_type": "Recommend Rejection",
+    "reference_doctype": "Task",
+    "unlock": "Milestone Rejection Review"
+  },
+  {
+    "session_type": "Dispute Session",
+    "resolution_type": "Recommend Stop Work",
+    "reference_doctype": "Dispute Case",
+    "unlock": "Stop Work Review"
+  },
+  {
+    "session_type": "Monitoring Review",
+    "resolution_type": "Escalate",
+    "reference_doctype": "Monthly Contract Monitoring Report",
+    "unlock": "Risk Escalation Review"
+  },
+  {
+    "session_type": "Monitoring Review",
+    "resolution_type": "Endorse Payment",
+    "reference_doctype": "Purchase Invoice",
+    "unlock": "Payment Certification"
+  }
+]

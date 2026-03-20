@@ -1,0 +1,66 @@
+{
+  "doctype": "DocType",
+  "name": "Procurement Plan Revision",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "parent_plan",
+      "label": "Parent Plan",
+      "fieldtype": "Link",
+      "options": "Procurement Plan",
+      "reqd": 1
+    },
+    {
+      "fieldname": "revision_number",
+      "label": "Revision Number",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "revision_type",
+      "label": "Revision Type",
+      "fieldtype": "Select",
+      "options": "Supplementary\nFormal Revision\nAdministrative Update",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Long Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "prepared_by",
+      "label": "Prepared By",
+      "fieldtype": "Link",
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "submitted_on",
+      "label": "Submitted On",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "approved_by",
+      "label": "Approved By",
+      "fieldtype": "Link",
+      "options": "User"
+    },
+    {
+      "fieldname": "approved_on",
+      "label": "Approved On",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nUnder Review\nApproved\nPublished\nRejected",
+      "default": "Draft",
+      "reqd": 1
+    }
+  ]
+}

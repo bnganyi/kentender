@@ -1,0 +1,96 @@
+{
+  "workflow_name": "Claim Workflow",
+  "document_type": "Claim",
+  "is_active": 1,
+  "workflow_state_field": "status",
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": 0
+    },
+    {
+      "state": "Submitted",
+      "doc_status": 0
+    },
+    {
+      "state": "Under Review",
+      "doc_status": 0
+    },
+    {
+      "state": "Recommended",
+      "doc_status": 0
+    },
+    {
+      "state": "Approved",
+      "doc_status": 0
+    },
+    {
+      "state": "Rejected",
+      "doc_status": 0
+    },
+    {
+      "state": "Settled",
+      "doc_status": 0
+    },
+    {
+      "state": "Escalated to Dispute",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit Claim",
+      "next_state": "Submitted",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Draft",
+      "action": "Submit Contractor Claim",
+      "next_state": "Submitted",
+      "allowed": "Supplier"
+    },
+    {
+      "state": "Submitted",
+      "action": "Start Review",
+      "next_state": "Under Review",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Under Review",
+      "action": "Recommend Decision",
+      "next_state": "Recommended",
+      "allowed": "Contract Implementation Team"
+    },
+    {
+      "state": "Recommended",
+      "action": "Approve Claim",
+      "next_state": "Approved",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Recommended",
+      "action": "Reject Claim",
+      "next_state": "Rejected",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Approved",
+      "action": "Settle Claim",
+      "next_state": "Settled",
+      "allowed": "Head of Finance"
+    },
+    {
+      "state": "Under Review",
+      "action": "Escalate to Dispute",
+      "next_state": "Escalated to Dispute",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Recommended",
+      "action": "Escalate to Dispute",
+      "next_state": "Escalated to Dispute",
+      "allowed": "Accounting Officer"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "doctype": "DocType",
+  "name": "Procurement Policy Profile",
+  "module": "KenTender Phase 1",
+  "custom": 1,
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "policy_name",
+      "label": "Policy Name",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "entity",
+      "label": "Entity",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "financial_year",
+      "label": "Financial Year",
+      "fieldtype": "Link",
+      "options": "Fiscal Year",
+      "reqd": 1
+    },
+    {
+      "fieldname": "effective_from",
+      "label": "Effective From",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "effective_to",
+      "label": "Effective To",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "procurement_regime",
+      "label": "Procurement Regime",
+      "fieldtype": "Select",
+      "options": "Public Sector Default\nCounty\nState Corporation\nCustom",
+      "default": "Public Sector Default",
+      "reqd": 1
+    },
+    {
+      "fieldname": "hard_stop_budget_check",
+      "label": "Hard Stop Budget Check",
+      "fieldtype": "Check",
+      "default": 1
+    },
+    {
+      "fieldname": "allow_budget_override",
+      "label": "Allow Budget Override",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "soft_warn_threshold_percent",
+      "label": "Soft Warn Threshold Percent",
+      "fieldtype": "Percent",
+      "default": 5
+    },
+    {
+      "fieldname": "anti_split_detection_window_days",
+      "label": "Anti Split Detection Window Days",
+      "fieldtype": "Int",
+      "default": 30
+    },
+    {
+      "fieldname": "require_strategy_linkage",
+      "label": "Require Strategy Linkage",
+      "fieldtype": "Check",
+      "default": 1
+    },
+    {
+      "fieldname": "require_method_justification_for_non_competitive",
+      "label": "Require Method Justification For Non Competitive",
+      "fieldtype": "Check",
+      "default": 1
+    },
+    {
+      "fieldname": "require_emergency_post_review",
+      "label": "Require Emergency Post Review",
+      "fieldtype": "Check",
+      "default": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nActive\nRetired",
+      "default": "Draft",
+      "reqd": 1
+    }
+  ]
+}

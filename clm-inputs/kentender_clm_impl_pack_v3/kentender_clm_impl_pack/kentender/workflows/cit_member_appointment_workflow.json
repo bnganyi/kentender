@@ -1,0 +1,64 @@
+{
+  "workflow_name": "CIT Member Appointment Workflow",
+  "document_type": "Contract Implementation Team Member",
+  "is_active": 1,
+  "workflow_state_field": "status",
+  "states": [
+    {
+      "state": "Proposed",
+      "doc_status": 0
+    },
+    {
+      "state": "Under Review",
+      "doc_status": 0
+    },
+    {
+      "state": "Approved",
+      "doc_status": 0
+    },
+    {
+      "state": "Active",
+      "doc_status": 0
+    },
+    {
+      "state": "Removed",
+      "doc_status": 0
+    },
+    {
+      "state": "Rejected",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Proposed",
+      "action": "Submit Recommendation",
+      "next_state": "Under Review",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Under Review",
+      "action": "Approve Appointment",
+      "next_state": "Approved",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Under Review",
+      "action": "Reject Appointment",
+      "next_state": "Rejected",
+      "allowed": "Accounting Officer"
+    },
+    {
+      "state": "Approved",
+      "action": "Activate Member",
+      "next_state": "Active",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Active",
+      "action": "Remove Member",
+      "next_state": "Removed",
+      "allowed": "Accounting Officer"
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+ "app": "kentender",
+ "charts": [],
+ "content": "[{\"id\":\"clmHubHeader\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>KenTender - CLM Hub</b></span>\",\"col\":12}}]",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "file",
+ "idx": 1,
+ "is_hidden": 0,
+ "label": "CLM Hub",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Contracts & Governance",
+   "link_count": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "Contract",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Contract",
+   "link_count": 0,
+   "link_to": "Contract",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Task",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Task (Milestones)",
+   "link_count": 0,
+   "link_to": "Task",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Governance Session",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Governance Session",
+   "link_count": 0,
+   "link_to": "Governance Session",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Contract Closeout Archive",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Contract Closeout Archive",
+   "link_count": 0,
+   "link_to": "Contract Closeout Archive",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Inspection & Acceptance",
+   "link_count": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "Quality Inspection",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Quality Inspection",
+   "link_count": 0,
+   "link_to": "Quality Inspection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Inspection Test Plan",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Inspection Test Plan",
+   "link_count": 0,
+   "link_to": "Inspection Test Plan",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Inspection Report",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Inspection Report",
+   "link_count": 0,
+   "link_to": "Inspection Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Acceptance Certificate",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Acceptance Certificate",
+   "link_count": 0,
+   "link_to": "Acceptance Certificate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Invoices & Retention",
+   "link_count": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "Purchase Invoice",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Invoice",
+   "link_count": 0,
+   "link_to": "Purchase Invoice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Payment Entry",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payment Entry",
+   "link_count": 0,
+   "link_to": "Payment Entry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Retention Ledger",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Retention Ledger",
+   "link_count": 0,
+   "link_to": "Retention Ledger",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Monthly Contract Monitoring Report",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Monthly Contract Monitoring Report",
+   "link_count": 0,
+   "link_to": "Monthly Contract Monitoring Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Variations, Claims, Disputes",
+   "link_count": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "Contract Variation",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Contract Variation",
+   "link_count": 0,
+   "link_to": "Contract Variation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Claim",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Claim",
+   "link_count": 0,
+   "link_to": "Claim",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Dispute Case",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Dispute Case",
+   "link_count": 0,
+   "link_to": "Dispute Case",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Termination & DLP",
+   "link_count": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "Termination Record",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Termination Record",
+   "link_count": 0,
+   "link_to": "Termination Record",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Defect Liability Case",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Defect Liability Case",
+   "link_count": 0,
+   "link_to": "Defect Liability Case",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "module": "CLM",
+ "name": "CLM Hub",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "restrict_to_domain": "",
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [],
+ "title": "CLM Hub",
+ "type": "Workspace"
+}
+

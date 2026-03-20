@@ -1,0 +1,137 @@
+{
+  "doctype": "DocType",
+  "name": "Acceptance Certificate",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 1,
+  "autoname": "format:AC-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "certificate_type",
+      "fieldtype": "Select",
+      "options": "Interim Acceptance\nCertificate of Conformance\nCertificate of Acceptance\nFinal Acceptance",
+      "label": "Certificate Type",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "options": "Project",
+      "label": "Project"
+    },
+    {
+      "fieldname": "task",
+      "fieldtype": "Link",
+      "options": "Task",
+      "label": "Milestone Task"
+    },
+    {
+      "fieldname": "quality_inspection",
+      "fieldtype": "Link",
+      "options": "Quality Inspection",
+      "label": "Quality Inspection"
+    },
+    {
+      "fieldname": "inspection_report",
+      "fieldtype": "Link",
+      "options": "Inspection Report",
+      "label": "Inspection Report"
+    },
+    {
+      "fieldname": "purchase_receipt",
+      "fieldtype": "Link",
+      "options": "Purchase Receipt",
+      "label": "Purchase Receipt"
+    },
+    {
+      "fieldname": "issued_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Issued By",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "issued_on",
+      "fieldtype": "Datetime",
+      "label": "Issued On",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "decision",
+      "fieldtype": "Select",
+      "options": "Approved\nRejected\nConditional",
+      "label": "Decision",
+      "reqd": 1,
+      "default": "Approved",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "workflow_state",
+      "fieldtype": "Select",
+      "options": "Draft\nPending Technical Review\nPending Accounting Officer Approval\nIssued\nRejected",
+      "label": "Workflow State",
+      "reqd": 1,
+      "default": "Draft",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "certificate_reference",
+      "fieldtype": "Data",
+      "label": "Certificate Reference",
+      "unique": 1,
+      "in_list_view": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Head of User Department",
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1,
+      "write": 1,
+      "submit": 1
+    },
+    {
+      "role": "Head of Finance",
+      "read": 1
+    }
+  ]
+}
+

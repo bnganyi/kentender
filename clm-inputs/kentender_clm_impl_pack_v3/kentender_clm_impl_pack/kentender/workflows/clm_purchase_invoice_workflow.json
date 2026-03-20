@@ -1,0 +1,92 @@
+{
+  "workflow_name": "CLM Purchase Invoice Workflow",
+  "document_type": "Purchase Invoice",
+  "is_active": 1,
+  "workflow_state_field": "approval_status",
+  "states": [
+    {
+      "state": "Draft",
+      "doc_status": 0
+    },
+    {
+      "state": "Submitted by Supplier",
+      "doc_status": 0
+    },
+    {
+      "state": "Under Procurement Review",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Finance Verification",
+      "doc_status": 0
+    },
+    {
+      "state": "Pending Procurement Certification",
+      "doc_status": 0
+    },
+    {
+      "state": "Approved for Payment",
+      "doc_status": 0
+    },
+    {
+      "state": "Rejected",
+      "doc_status": 0
+    }
+  ],
+  "transitions": [
+    {
+      "state": "Draft",
+      "action": "Submit Invoice",
+      "next_state": "Submitted by Supplier",
+      "allowed": "Supplier"
+    },
+    {
+      "state": "Submitted by Supplier",
+      "action": "Review",
+      "next_state": "Under Procurement Review",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Under Procurement Review",
+      "action": "Forward to Finance",
+      "next_state": "Pending Finance Verification",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Pending Finance Verification",
+      "action": "Verify",
+      "next_state": "Pending Procurement Certification",
+      "allowed": "Head of Finance"
+    },
+    {
+      "state": "Pending Procurement Certification",
+      "action": "Certify",
+      "next_state": "Approved for Payment",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Submitted by Supplier",
+      "action": "Reject",
+      "next_state": "Rejected",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Under Procurement Review",
+      "action": "Reject",
+      "next_state": "Rejected",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Pending Finance Verification",
+      "action": "Reject",
+      "next_state": "Rejected",
+      "allowed": "Head of Procurement"
+    },
+    {
+      "state": "Pending Procurement Certification",
+      "action": "Reject",
+      "next_state": "Rejected",
+      "allowed": "Head of Procurement"
+    }
+  ]
+}

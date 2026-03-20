@@ -1,0 +1,80 @@
+doctype,role,read,write,create,delete
+Contract,Head of Procurement,1,1,1,0
+Contract,Accounting Officer,1,1,0,0
+Contract,Head of Finance,1,0,0,0
+Contract,System Manager,1,1,1,1
+Contract Implementation Team Member,Head of Procurement,1,1,1,0
+Contract Implementation Team Member,Accounting Officer,1,1,0,0
+Contract Implementation Team Member,System Manager,1,1,1,1
+Inspection Committee Member,Head of Procurement,1,1,1,0
+Inspection Committee Member,Accounting Officer,1,1,0,0
+Inspection Committee Member,System Manager,1,1,1,1
+Acceptance Certificate,Head of Procurement,1,1,1,0
+Acceptance Certificate,Accounting Officer,1,1,0,0
+Acceptance Certificate,Head of User Department,1,1,0,0
+Acceptance Certificate,Head of Finance,1,0,0,0
+Acceptance Certificate,System Manager,1,1,1,1
+Retention Ledger,Head of Procurement,1,0,0,0
+Retention Ledger,Head of Finance,1,1,1,0
+Retention Ledger,Accounting Officer,1,0,0,0
+Retention Ledger,System Manager,1,1,1,1
+Retention Release Request,Head of Procurement,1,1,1,0
+Retention Release Request,Head of Finance,1,1,0,0
+Retention Release Request,Accounting Officer,1,0,0,0
+Retention Release Request,System Manager,1,1,1,1
+Contract Variation,Head of Procurement,1,1,1,0
+Contract Variation,Contract Implementation Team,1,1,0,0
+Contract Variation,Head of Finance,1,1,0,0
+Contract Variation,Accounting Officer,1,1,0,0
+Contract Variation,System Manager,1,1,1,1
+Claim,Head of Procurement,1,1,1,0
+Claim,Supplier,1,1,1,0
+Claim,Contract Implementation Team,1,1,0,0
+Claim,Accounting Officer,1,1,0,0
+Claim,Head of Finance,1,1,0,0
+Claim,System Manager,1,1,1,1
+Dispute Case,Head of Procurement,1,1,1,0
+Dispute Case,Accounting Officer,1,1,0,0
+Dispute Case,Contract Implementation Team,1,0,0,0
+Dispute Case,System Manager,1,1,1,1
+Termination Record,Head of Procurement,1,1,1,0
+Termination Record,Accounting Officer,1,1,0,0
+Termination Record,Head of Finance,1,0,0,0
+Termination Record,System Manager,1,1,1,1
+Defect Liability Case,Head of Procurement,1,1,1,0
+Defect Liability Case,Contract Implementation Team,1,1,0,0
+Defect Liability Case,Inspection and Acceptance Committee,1,1,0,0
+Defect Liability Case,Supplier,1,1,0,0
+Defect Liability Case,Accounting Officer,1,0,0,0
+Defect Liability Case,System Manager,1,1,1,1
+Monthly Contract Monitoring Report,Head of Procurement,1,1,1,0
+Monthly Contract Monitoring Report,Accounting Officer,1,1,0,0
+Monthly Contract Monitoring Report,Head of Finance,1,0,0,0
+Monthly Contract Monitoring Report,System Manager,1,1,1,1
+Contract Activity Log,Head of Procurement,1,1,1,0
+Contract Activity Log,Contract Implementation Team,1,1,1,0
+Contract Activity Log,Inspection and Acceptance Committee,1,1,1,0
+Contract Activity Log,Accounting Officer,1,0,0,0
+Contract Activity Log,System Manager,1,1,1,1
+Task,Head of Procurement,1,1,0,0
+Task,Contract Implementation Team,1,1,0,0
+Task,Supplier,1,1,0,0
+Task,Inspection and Acceptance Committee,1,1,0,0
+Task,System Manager,1,1,0,0
+Purchase Invoice,Head of Procurement,1,1,0,0
+Purchase Invoice,Head of Finance,1,1,0,0
+Purchase Invoice,Supplier,1,1,1,0
+Purchase Invoice,Accounting Officer,1,0,0,0
+Purchase Invoice,System Manager,1,1,0,0
+Purchase Receipt,Head of Procurement,1,1,0,0
+Purchase Receipt,Inspection and Acceptance Committee,1,1,0,0
+Purchase Receipt,Contract Implementation Team,1,0,0,0
+Purchase Receipt,System Manager,1,1,0,0
+Project,Head of Procurement,1,1,0,0
+Project,Contract Implementation Team,1,1,0,0
+Project,Accounting Officer,1,0,0,0
+Project,System Manager,1,1,0,0
+Quality Inspection,Inspection and Acceptance Committee,1,1,1,0
+Quality Inspection,Head of Procurement,1,0,0,0
+Quality Inspection,Contract Implementation Team,1,0,0,0
+Quality Inspection,System Manager,1,1,1,0

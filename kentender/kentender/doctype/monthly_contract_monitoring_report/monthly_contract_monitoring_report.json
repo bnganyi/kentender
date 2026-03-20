@@ -1,0 +1,79 @@
+{
+  "doctype": "DocType",
+  "name": "Monthly Contract Monitoring Report",
+  "module": "KenTender",
+  "custom": 0,
+  "istable": 0,
+  "is_submittable": 0,
+  "autoname": "format:MCMR-{YYYY}-{#####}",
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "report_month",
+      "fieldtype": "Date",
+      "label": "Report Month",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "milestone_progress_summary",
+      "fieldtype": "Small Text",
+      "label": "Milestone Progress Summary"
+    },
+    {
+      "fieldname": "payment_status_summary",
+      "fieldtype": "Small Text",
+      "label": "Payment Status Summary"
+    },
+    {
+      "fieldname": "outstanding_obligations",
+      "fieldtype": "Small Text",
+      "label": "Outstanding Obligations"
+    },
+    {
+      "fieldname": "contract_risks",
+      "fieldtype": "Small Text",
+      "label": "Contract Risks"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Draft\nSubmitted\nReviewed",
+      "label": "Status",
+      "default": "Draft",
+      "reqd": 1,
+      "in_list_view": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "create": 1,
+      "read": 1,
+      "write": 1,
+      "delete": 1
+    },
+    {
+      "role": "Head of Procurement",
+      "create": 1,
+      "read": 1,
+      "write": 1
+    },
+    {
+      "role": "Accounting Officer",
+      "read": 1
+    },
+    {
+      "role": "Head of Finance",
+      "read": 1
+    }
+  ]
+}
+

@@ -1,0 +1,83 @@
+{
+  "doctype": "DocType",
+  "name": "Termination Record",
+  "module": "KenTender",
+  "custom": 1,
+  "fields": [
+    {
+      "fieldname": "contract",
+      "fieldtype": "Link",
+      "options": "Contract",
+      "label": "Contract",
+      "reqd": 1
+    },
+    {
+      "fieldname": "workflow_state",
+      "fieldtype": "Select",
+      "options": "Draft\nUnder Legal Review\nPending Accounting Officer Approval\nApproved\nExecuted\nCancelled",
+      "label": "Workflow State",
+      "reqd": 1
+    },
+    {
+      "fieldname": "termination_date",
+      "fieldtype": "Date",
+      "label": "Termination Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "termination_reason",
+      "fieldtype": "Small Text",
+      "label": "Termination Reason",
+      "reqd": 1
+    },
+    {
+      "fieldname": "approved_by",
+      "fieldtype": "Link",
+      "options": "User",
+      "label": "Approved By"
+    },
+    {
+      "fieldname": "settlement_status",
+      "fieldtype": "Select",
+      "options": "Pending\nIn Progress\nCompleted",
+      "label": "Settlement Status",
+      "reqd": 1
+    },
+    {
+      "fieldname": "final_financial_reconciliation",
+      "fieldtype": "Currency",
+      "label": "Final Financial Reconciliation"
+    },
+    {
+      "fieldname": "handover_completed",
+      "fieldtype": "Check",
+      "label": "Handover Completed"
+    },
+    {
+      "fieldname": "discharge_document_reference",
+      "fieldtype": "Data",
+      "label": "Discharge Document Reference"
+    },
+    {
+      "fieldname": "legal_advice_reference",
+      "fieldtype": "Data",
+      "label": "Legal Advice Reference"
+    },
+    {
+      "fieldname": "notice_issued_to_supplier",
+      "fieldtype": "Check",
+      "label": "Notice Issued to Supplier"
+    },
+    {
+      "fieldname": "supporting_documents_provided",
+      "fieldtype": "Check",
+      "label": "Supporting Documents Provided"
+    },
+    {
+      "fieldname": "site_property_handover_completed",
+      "fieldtype": "Check",
+      "label": "Site/Property Handover Completed"
+    }
+  ],
+  "is_submittable": 1
+}
