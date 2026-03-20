@@ -1,0 +1,24 @@
+{
+  "doctype": "DocType",
+  "name": "Supplier Master",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:SUPM-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "supplier_code", "label": "Supplier Code", "fieldtype": "Data", "unique": 1},
+    {"fieldname": "supplier_name", "label": "Supplier Name", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "legal_name", "label": "Legal Name", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "registration_number", "label": "Registration Number", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "tax_id", "label": "Tax ID", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "email", "label": "Email", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "phone", "label": "Phone", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "supplier_status", "label": "Supplier Status", "fieldtype": "Select", "options": "Draft\nActive\nInactive\nSuspended\nDebarred\nExpired Compliance\nBlacklisted", "default": "Draft"},
+    {"fieldname": "registration_status", "label": "Registration Status", "fieldtype": "Select", "options": "Pending\nApproved\nRejected\nRenewal Due", "default": "Pending"},
+    {"fieldname": "country", "label": "Country", "fieldtype": "Data"},
+    {"fieldname": "physical_address", "label": "Physical Address", "fieldtype": "Small Text"},
+    {"fieldname": "last_review_date", "label": "Last Review Date", "fieldtype": "Date"},
+    {"fieldname": "next_review_date", "label": "Next Review Date", "fieldtype": "Date"},
+    {"fieldname": "notes", "label": "Notes", "fieldtype": "Small Text"}
+  ]
+}

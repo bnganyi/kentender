@@ -1,0 +1,18 @@
+{
+  "doctype": "DocType",
+  "name": "Supplier Status Action",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:SSA-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "supplier", "label": "Supplier", "fieldtype": "Link", "options": "Supplier Master", "reqd": 1},
+    {"fieldname": "action_type", "label": "Action Type", "fieldtype": "Select", "options": "Activate\nSuspend\nReinstate\nDebar\nBlacklist\nMark Expired\nReactivate", "reqd": 1},
+    {"fieldname": "reason", "label": "Reason", "fieldtype": "Small Text", "reqd": 1},
+    {"fieldname": "requested_by", "label": "Requested By", "fieldtype": "Link", "options": "User"},
+    {"fieldname": "approved_by", "label": "Approved By", "fieldtype": "Link", "options": "User"},
+    {"fieldname": "effective_date", "label": "Effective Date", "fieldtype": "Date"},
+    {"fieldname": "end_date", "label": "End Date", "fieldtype": "Date"},
+    {"fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Draft\nApproved\nRejected\nApplied", "default": "Draft"}
+  ]
+}

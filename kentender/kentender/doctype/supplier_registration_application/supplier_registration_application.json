@@ -1,0 +1,23 @@
+{
+  "doctype": "DocType",
+  "name": "Supplier Registration Application",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:SRA-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "application_number", "label": "Application Number", "fieldtype": "Data", "unique": 1},
+    {"fieldname": "supplier_name", "label": "Supplier Name", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "legal_name", "label": "Legal Name", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "registration_number", "label": "Registration Number", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "tax_id", "label": "Tax ID", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "email", "label": "Email", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "phone", "label": "Phone", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "country", "label": "Country", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "physical_address", "label": "Physical Address", "fieldtype": "Small Text", "reqd": 1},
+    {"fieldname": "application_status", "label": "Application Status", "fieldtype": "Select", "options": "Draft\nSubmitted\nCompliance Review\nProcurement Review\nApproved\nRejected\nSuspended", "default": "Draft", "reqd": 1},
+    {"fieldname": "submitted_on", "label": "Submitted On", "fieldtype": "Datetime"},
+    {"fieldname": "approved_on", "label": "Approved On", "fieldtype": "Datetime"},
+    {"fieldname": "remarks", "label": "Remarks", "fieldtype": "Small Text"}
+  ]
+}

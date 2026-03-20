@@ -1,0 +1,20 @@
+{
+  "doctype": "DocType",
+  "name": "Challenge Review Case",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:CRC-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "award_decision", "label": "Award Decision", "fieldtype": "Link", "options": "Award Decision"},
+    {"fieldname": "supplier", "label": "Supplier", "fieldtype": "Link", "options": "Supplier"},
+    {"fieldname": "case_number", "label": "Case Number", "fieldtype": "Data", "unique": 1},
+    {"fieldname": "case_type", "label": "Case Type", "fieldtype": "Select", "options": "Complaint\nAdministrative Review\nAppeal\nClarification"},
+    {"fieldname": "filed_on", "label": "Filed On", "fieldtype": "Datetime"},
+    {"fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Open\nUnder Review\nResolved\nDismissed", "default": "Open"},
+    {"fieldname": "decision", "label": "Decision", "fieldtype": "Small Text"},
+    {"fieldname": "decision_date", "label": "Decision Date", "fieldtype": "Date"},
+    {"fieldname": "notes", "label": "Notes", "fieldtype": "Small Text"}
+  ]
+}

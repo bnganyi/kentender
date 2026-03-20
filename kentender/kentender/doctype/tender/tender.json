@@ -25,8 +25,26 @@
       "fieldname": "status",
       "label": "Status",
       "fieldtype": "Select",
-      "options": "Draft\nPublished\nClosed\nEvaluated\nAwarded",
+      "options": "Draft\nInternal Review\nApproved for Publication\nPublished\nClosed\nOpened\nUnder Evaluation\nAward Recommended\nAward Approved\nAward Published\nEvaluated\nAwarded\nCancelled",
       "default": "Draft"
+    },
+    {
+      "fieldname": "method",
+      "label": "Method",
+      "fieldtype": "Select",
+      "options": "Open Tender\nRestricted Tender\nRFQ\nRFP\nDirect Procurement"
+    },
+    {
+      "fieldname": "procurement_type",
+      "label": "Procurement Type",
+      "fieldtype": "Select",
+      "options": "Goods\nWorks\nNon-Consulting Services\nConsulting Services\nAsset Disposal"
+    },
+    {
+      "fieldname": "evaluation_method",
+      "label": "Evaluation Method",
+      "fieldtype": "Select",
+      "options": "Pass-Fail\nWeighted Score\nLeast Evaluated Cost\nQCBS\nOther"
     },
     {
       "fieldname": "publish_date",
@@ -37,6 +55,40 @@
       "fieldname": "submission_deadline",
       "label": "Submission Deadline",
       "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "closing_datetime",
+      "label": "Closing Datetime",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "opening_datetime",
+      "label": "Opening Datetime",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "linked_requisition_count",
+      "label": "Linked Requisition Count",
+      "fieldtype": "Int",
+      "default": "0",
+      "read_only": 1
+    },
+    {
+      "fieldname": "security_required",
+      "label": "Security Required",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "security_amount",
+      "label": "Security Amount",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "challenge_hold",
+      "label": "Challenge Hold",
+      "fieldtype": "Check",
+      "default": "0",
+      "read_only": 1
     },
     {
       "fieldname": "purchase_order",

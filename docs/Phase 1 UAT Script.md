@@ -21,6 +21,10 @@ Current priority modules to add next:
 - Desk dashboard/report UI packaging (API layer already validated)
 - scheduled evidence-bundle packaging and distribution controls
 
+Phase 2 UAT baseline:
+- `docs/uat/phase2-uat-01-supplier-to-award-lifecycle.md`
+- `docs/Phase 2 UAT Script.md`
+
 ## Preconditions (common baseline)
 - Bench and site are up.
 - Policy profiles / threshold rules / approval matrix rules are created and active.

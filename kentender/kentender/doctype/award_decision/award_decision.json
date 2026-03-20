@@ -1,0 +1,19 @@
+{
+  "doctype": "DocType",
+  "name": "Award Decision",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:AD-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "award_recommendation", "label": "Award Recommendation", "fieldtype": "Link", "options": "Award Recommendation"},
+    {"fieldname": "award_status", "label": "Award Status", "fieldtype": "Select", "options": "Draft\nApproved\nRejected\nCancelled\nFinalized", "default": "Draft"},
+    {"fieldname": "approved_supplier", "label": "Approved Supplier", "fieldtype": "Link", "options": "Supplier"},
+    {"fieldname": "approved_submission", "label": "Approved Submission", "fieldtype": "Link", "options": "Tender Submission"},
+    {"fieldname": "approved_amount", "label": "Approved Amount", "fieldtype": "Currency"},
+    {"fieldname": "decision_date", "label": "Decision Date", "fieldtype": "Date"},
+    {"fieldname": "approved_by", "label": "Approved By", "fieldtype": "Link", "options": "User"},
+    {"fieldname": "decision_notes", "label": "Decision Notes", "fieldtype": "Small Text"}
+  ]
+}

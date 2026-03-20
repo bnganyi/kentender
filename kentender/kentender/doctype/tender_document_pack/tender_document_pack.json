@@ -1,0 +1,18 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Document Pack",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "document_pack_status", "label": "Document Pack Status", "fieldtype": "Select", "options": "Draft\nReviewed\nApproved\nPublished", "default": "Draft"},
+    {"fieldname": "instructions_document", "label": "Instructions Document", "fieldtype": "Attach"},
+    {"fieldname": "specification_document", "label": "Specification Document", "fieldtype": "Attach"},
+    {"fieldname": "boq_document", "label": "BOQ Document", "fieldtype": "Attach"},
+    {"fieldname": "qualification_document", "label": "Qualification Document", "fieldtype": "Attach"},
+    {"fieldname": "evaluation_criteria_document", "label": "Evaluation Criteria Document", "fieldtype": "Attach"},
+    {"fieldname": "draft_contract_document", "label": "Draft Contract Document", "fieldtype": "Attach"},
+    {"fieldname": "notes", "label": "Notes", "fieldtype": "Small Text"}
+  ]
+}

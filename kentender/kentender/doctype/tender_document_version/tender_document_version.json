@@ -1,0 +1,18 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Document Version",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:TDV-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "document_type", "label": "Document Type", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "version_number", "label": "Version Number", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "attachment", "label": "Attachment", "fieldtype": "Attach", "reqd": 1},
+    {"fieldname": "change_summary", "label": "Change Summary", "fieldtype": "Small Text"},
+    {"fieldname": "published_flag", "label": "Published", "fieldtype": "Check", "default": 0},
+    {"fieldname": "created_on", "label": "Created On", "fieldtype": "Datetime"},
+    {"fieldname": "created_by", "label": "Created By", "fieldtype": "Link", "options": "User"}
+  ]
+}

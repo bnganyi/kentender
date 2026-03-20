@@ -1,0 +1,19 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Clarification",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:TCL-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "supplier", "label": "Supplier", "fieldtype": "Link", "options": "Supplier"},
+    {"fieldname": "question_reference", "label": "Question Reference", "fieldtype": "Data"},
+    {"fieldname": "question_text", "label": "Question Text", "fieldtype": "Small Text", "reqd": 1},
+    {"fieldname": "submitted_on", "label": "Submitted On", "fieldtype": "Datetime"},
+    {"fieldname": "response_text", "label": "Response Text", "fieldtype": "Small Text"},
+    {"fieldname": "responded_on", "label": "Responded On", "fieldtype": "Datetime"},
+    {"fieldname": "response_visibility", "label": "Response Visibility", "fieldtype": "Select", "options": "Public to All\nPrivate Administrative", "default": "Public to All"},
+    {"fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Open\nResponded\nClosed", "default": "Open"}
+  ]
+}

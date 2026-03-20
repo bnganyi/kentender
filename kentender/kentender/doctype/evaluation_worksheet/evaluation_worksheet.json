@@ -1,0 +1,17 @@
+{
+  "doctype": "DocType",
+  "name": "Evaluation Worksheet",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:EVW-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "submission", "label": "Submission", "fieldtype": "Link", "options": "Tender Submission", "reqd": 1},
+    {"fieldname": "evaluator", "label": "Evaluator", "fieldtype": "Link", "options": "User", "reqd": 1},
+    {"fieldname": "evaluation_stage", "label": "Evaluation Stage", "fieldtype": "Select", "options": "Preliminary\nTechnical\nFinancial\nPost Qualification", "reqd": 1},
+    {"fieldname": "worksheet_status", "label": "Worksheet Status", "fieldtype": "Select", "options": "Assigned\nUnder Review\nSubmitted by Evaluator\nConsensus Review\nRecommended\nDisqualified", "default": "Assigned"},
+    {"fieldname": "submitted_on", "label": "Submitted On", "fieldtype": "Datetime"},
+    {"fieldname": "comments", "label": "Comments", "fieldtype": "Small Text"}
+  ]
+}

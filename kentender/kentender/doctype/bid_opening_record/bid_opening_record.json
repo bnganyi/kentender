@@ -1,0 +1,19 @@
+{
+  "doctype": "DocType",
+  "name": "Bid Opening Record",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:BOR-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "submission", "label": "Submission", "fieldtype": "Link", "options": "Tender Submission", "reqd": 1},
+    {"fieldname": "opening_datetime", "label": "Opening Datetime", "fieldtype": "Datetime", "reqd": 1},
+    {"fieldname": "opened_by_committee", "label": "Opened By Committee", "fieldtype": "Data"},
+    {"fieldname": "bid_price_readout", "label": "Bid Price Readout", "fieldtype": "Currency"},
+    {"fieldname": "security_confirmed", "label": "Security Confirmed", "fieldtype": "Check", "default": 0},
+    {"fieldname": "late_bid_flag", "label": "Late Bid", "fieldtype": "Check", "default": 0},
+    {"fieldname": "remarks", "label": "Remarks", "fieldtype": "Small Text"},
+    {"fieldname": "signed_off", "label": "Signed Off", "fieldtype": "Check", "default": 0}
+  ]
+}

@@ -59,6 +59,57 @@
       "in_list_view": 0
     },
     {
+      "fieldname": "submission_status",
+      "label": "Submission Status",
+      "fieldtype": "Select",
+      "options": "Draft\nSubmitted\nLocked\nWithdrawn\nReplaced\nLate\nOpened\nEvaluated\nNon-Responsive\nResponsive",
+      "default": "Draft",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "submitted_on",
+      "label": "Submitted On",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "server_received_on",
+      "label": "Server Received On",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "withdrawn_on",
+      "label": "Withdrawn On",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "replacement_of_submission",
+      "label": "Replacement Of Submission",
+      "fieldtype": "Link",
+      "options": "Tender Submission"
+    },
+    {
+      "fieldname": "security_provided",
+      "label": "Security Provided",
+      "fieldtype": "Check"
+    },
+    {
+      "fieldname": "security_reference",
+      "label": "Security Reference",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "read_only_after_deadline",
+      "label": "Read Only After Deadline",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "sealed_flag",
+      "label": "Sealed Flag",
+      "fieldtype": "Check",
+      "default": "1"
+    },
+    {
       "fieldname": "total_score",
       "label": "Total Score",
       "fieldtype": "Float",

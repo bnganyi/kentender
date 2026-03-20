@@ -6,7 +6,7 @@ import io
 import json
 import frappe
 from frappe import _
-from frappe.utils import cint, flt, get_datetime, now_datetime
+from frappe.utils import add_days, cint, flt, get_datetime, now_datetime
 from erpnext.setup.utils import get_exchange_rate
 
 CONTRACT_STATUS_TRANSITIONS = {
@@ -1430,6 +1430,66 @@ def phase15_setup_purchase_requisition_workflow() -> dict:
     return {"purchase_requisition_workflow": workflow_name}
 
 
+@frappe.whitelist()
+def phase2_setup_workflows() -> dict:
+    supplier_states = [
+        {"state": "Draft", "doc_status": 0, "allow_edit": "Supplier Registration Officer"},
+        {"state": "Submitted", "doc_status": 0, "allow_edit": "Supplier Registration Officer"},
+        {"state": "Compliance Review", "doc_status": 0, "allow_edit": "Supplier Registration Officer"},
+        {"state": "Procurement Review", "doc_status": 0, "allow_edit": "Head of Procurement"},
+        {"state": "Approved", "doc_status": 1, "allow_edit": "Head of Procurement"},
+        {"state": "Rejected", "doc_status": 2, "allow_edit": "System Manager"},
+        {"state": "Suspended", "doc_status": 1, "allow_edit": "System Manager"},
+    ]
+    supplier_transitions = [
+        {"state": "Draft", "action": "Submit Application", "next_state": "Submitted", "allowed": "Supplier Registration Officer"},
+        {"state": "Submitted", "action": "Start Compliance Review", "next_state": "Compliance Review", "allowed": "Supplier Registration Officer"},
+        {"state": "Compliance Review", "action": "Forward Procurement Review", "next_state": "Procurement Review", "allowed": "Supplier Registration Officer"},
+        {"state": "Procurement Review", "action": "Approve Supplier", "next_state": "Approved", "allowed": "Head of Procurement"},
+        {"state": "Procurement Review", "action": "Reject Supplier", "next_state": "Rejected", "allowed": "Head of Procurement"},
+    ]
+    tender_states = [
+        {"state": "Draft", "doc_status": 0, "allow_edit": "Procurement Officer"},
+        {"state": "Internal Review", "doc_status": 0, "allow_edit": "Head of Procurement"},
+        {"state": "Approved for Publication", "doc_status": 0, "allow_edit": "Head of Procurement"},
+        {"state": "Published", "doc_status": 0, "allow_edit": "Procurement Officer"},
+        {"state": "Closed", "doc_status": 0, "allow_edit": "Opening Committee Member"},
+        {"state": "Opened", "doc_status": 0, "allow_edit": "Tender Committee Secretary"},
+        {"state": "Under Evaluation", "doc_status": 0, "allow_edit": "Evaluation Committee Chair"},
+        {"state": "Award Recommended", "doc_status": 0, "allow_edit": "Evaluation Committee Chair"},
+        {"state": "Award Approved", "doc_status": 0, "allow_edit": "Accounting Officer"},
+        {"state": "Award Published", "doc_status": 0, "allow_edit": "Procurement Officer"},
+        {"state": "Cancelled", "doc_status": 2, "allow_edit": "System Manager"},
+    ]
+    tender_transitions = [
+        {"state": "Draft", "action": "Send Internal Review", "next_state": "Internal Review", "allowed": "Procurement Officer"},
+        {"state": "Internal Review", "action": "Approve Publication", "next_state": "Approved for Publication", "allowed": "Head of Procurement"},
+        {"state": "Approved for Publication", "action": "Publish Tender", "next_state": "Published", "allowed": "Procurement Officer"},
+        {"state": "Published", "action": "Close Tender", "next_state": "Closed", "allowed": "Opening Committee Member"},
+        {"state": "Closed", "action": "Open Bids", "next_state": "Opened", "allowed": "Opening Committee Member"},
+        {"state": "Opened", "action": "Start Evaluation", "next_state": "Under Evaluation", "allowed": "Tender Committee Secretary"},
+        {"state": "Under Evaluation", "action": "Recommend Award", "next_state": "Award Recommended", "allowed": "Evaluation Committee Chair"},
+        {"state": "Award Recommended", "action": "Approve Award", "next_state": "Award Approved", "allowed": "Accounting Officer"},
+        {"state": "Award Approved", "action": "Publish Award", "next_state": "Award Published", "allowed": "Procurement Officer"},
+    ]
+    supplier_wf = _phase1_upsert_workflow(
+        workflow_name="Supplier Registration Workflow",
+        document_type="Supplier Registration Application",
+        workflow_state_field="application_status",
+        states=supplier_states,
+        transitions=supplier_transitions,
+    )
+    tender_wf = _phase1_upsert_workflow(
+        workflow_name="Tender Workflow",
+        document_type="Tender",
+        workflow_state_field="status",
+        states=tender_states,
+        transitions=tender_transitions,
+    )
+    frappe.clear_cache()
+    return {"supplier_registration_workflow": supplier_wf, "tender_workflow": tender_wf}
+
+
 def _phase1_requisition_amount(doc) -> float:
     for fieldname in ("estimated_cost", "grand_total", "base_grand_total"):
         value = flt(getattr(doc, fieldname, 0) or 0)
@@ -1628,6 +1688,9 @@ def phase1_after_migrate_setup() -> None:
             }
         ).insert(ignore_permissions=True)
     phase15_setup_purchase_requisition_workflow()
+    # Phase 2 workflow baseline.
+    if frappe.db.exists("DocType", "Supplier Registration Application"):
+        phase2_setup_workflows()
 
 
 def phase1_on_submit_purchase_requisition(doc, method=None) -> None:
@@ -2105,6 +2168,171 @@ def validate_tender(doc, method) -> None:
     plan_item = frappe.get_doc("Procurement Plan Item", doc.procurement_plan_item)
     if plan_item.status != "Approved":
         frappe.throw("Plan Item must be approved before creating Tender")
+
+    # Phase 2 controls
+    if not getattr(doc, "method", None):
+        doc.method = getattr(plan_item, "procurement_method", None)
+    if not getattr(doc, "procurement_type", None):
+        doc.procurement_type = getattr(plan_item, "procurement_type", None)
+
+    closing = getattr(doc, "closing_datetime", None) or getattr(doc, "submission_deadline", None)
+    opening = getattr(doc, "opening_datetime", None)
+    if opening and closing and opening < closing:
+        frappe.throw("Opening datetime cannot be earlier than closing datetime")
+
+    status = getattr(doc, "status", None) or "Draft"
+    if status not in {"Draft", "Internal Review", "Cancelled"}:
+        linked_count = cint(getattr(doc, "linked_requisition_count", 0) or 0)
+        if linked_count <= 0:
+            # Treat plan-item lineage as minimum valid source when requisition count is not yet populated.
+            if not getattr(doc, "procurement_plan_item", None):
+                frappe.throw("Tender must originate from an approved requisition/APP lineage")
+
+        if status in {"Approved for Publication", "Published"}:
+            packs = frappe.db.count("Tender Document Pack", {"tender": doc.name})
+            if packs <= 0:
+                frappe.throw("Tender Document Pack is required before publication")
+
+
+def phase2_validate_supplier_registration_application(doc, method=None) -> None:
+    required = ["supplier_name", "legal_name", "registration_number", "tax_id", "email", "phone", "country"]
+    missing = [f for f in required if not getattr(doc, f, None)]
+    if missing:
+        frappe.throw(f"Supplier application missing required fields: {', '.join(missing)}")
+
+    existing = frappe.get_all(
+        "Supplier Master",
+        filters={"tax_id": doc.tax_id, "registration_number": doc.registration_number},
+        pluck="name",
+        limit=1,
+    )
+    if existing and getattr(doc, "application_status", None) in {"Submitted", "Compliance Review", "Procurement Review", "Approved"}:
+        frappe.throw(f"Supplier already exists for this registration/tax pair: {existing[0]}")
+
+    if doc.application_status == "Approved":
+        docs_verified = frappe.db.count(
+            "Supplier Compliance Document",
+            {"application": doc.name, "verification_status": "Verified"},
+        )
+        if docs_verified <= 0:
+            frappe.throw("Cannot approve application without at least one verified compliance document")
+        if not getattr(doc, "approved_on", None):
+            doc.approved_on = now_datetime()
+
+
+def phase2_sync_supplier_master_from_application(doc, method=None) -> None:
+    if getattr(doc, "application_status", None) != "Approved":
+        return
+
+    supplier_master_name = frappe.db.get_value(
+        "Supplier Master",
+        {"tax_id": doc.tax_id, "registration_number": doc.registration_number},
+        "name",
+    )
+    if supplier_master_name:
+        sm = frappe.get_doc("Supplier Master", supplier_master_name)
+    else:
+        sm = frappe.get_doc({"doctype": "Supplier Master"})
+
+    sm.supplier_name = doc.supplier_name
+    sm.legal_name = doc.legal_name
+    sm.registration_number = doc.registration_number
+    sm.tax_id = doc.tax_id
+    sm.email = doc.email
+    sm.phone = doc.phone
+    sm.country = doc.country
+    sm.physical_address = doc.physical_address
+    sm.registration_status = "Approved"
+    sm.supplier_status = "Active"
+    sm.last_review_date = now_datetime().date()
+    sm.flags.ignore_permissions = True
+    if sm.is_new():
+        sm.insert(ignore_permissions=True)
+    else:
+        sm.save(ignore_permissions=True)
+
+    # Ensure ERPNext Supplier exists for Tender Submission link compatibility.
+    supplier_name = frappe.db.get_value("Supplier", {"supplier_name": doc.supplier_name}, "name")
+    if not supplier_name:
+        frappe.get_doc(
+            {
+                "doctype": "Supplier",
+                "supplier_name": doc.supplier_name,
+                "supplier_group": frappe.db.get_value("Supplier Group", {}, "name") or "All Supplier Groups",
+                "supplier_type": "Company",
+            }
+        ).insert(ignore_permissions=True)
+
+    log_ken_tender_audit_event(
+        action="phase2_supplier_master_synced",
+        reference_doctype="Supplier Registration Application",
+        reference_name=doc.name,
+        details={"supplier_master": sm.name},
+    )
+
+
+def phase2_validate_supplier_master(doc, method=None) -> None:
+    old = doc.get_doc_before_save()
+    if old and old.supplier_status != doc.supplier_status and not getattr(frappe.flags, "in_override", False):
+        frappe.throw("Supplier status can only be changed through Supplier Status Action")
+
+
+def phase2_apply_supplier_status_action(doc, method=None) -> None:
+    mapping = {
+        "Activate": "Active",
+        "Reactivate": "Active",
+        "Reinstate": "Active",
+        "Suspend": "Suspended",
+        "Debar": "Debarred",
+        "Blacklist": "Blacklisted",
+        "Mark Expired": "Expired Compliance",
+    }
+    target = mapping.get(getattr(doc, "action_type", None))
+    if not target:
+        return
+    supplier = frappe.get_doc("Supplier Master", doc.supplier)
+    prev = supplier.supplier_status
+    prev_in_override = getattr(frappe.flags, "in_override", False)
+    frappe.flags.in_override = True
+    try:
+        supplier.supplier_status = target
+        supplier.last_review_date = now_datetime().date()
+        supplier.save(ignore_permissions=True)
+    finally:
+        frappe.flags.in_override = prev_in_override
+
+    if target in {"Suspended", "Debarred", "Blacklisted"}:
+        frappe.get_doc(
+            {
+                "doctype": "Suspension Debarment Register",
+                "supplier": supplier.name,
+                "action_type": "Suspension" if target == "Suspended" else ("Debarment" if target == "Debarred" else "Blacklist"),
+                "reason": doc.reason,
+                "effective_from": doc.effective_date or now_datetime().date(),
+                "effective_to": doc.end_date,
+                "status": "Active",
+            }
+        ).insert(ignore_permissions=True)
+
+    log_ken_tender_audit_event(
+        action="phase2_supplier_status_action_applied",
+        reference_doctype="Supplier Status Action",
+        reference_name=doc.name,
+        details={"from": prev, "to": target, "supplier": supplier.name},
+    )
+
+
+def phase2_validate_evaluation_worksheet(doc, method=None) -> None:
+    declaration = frappe.db.exists(
+        "Evaluator Declaration",
+        {
+            "tender": doc.tender,
+            "committee_member": doc.evaluator,
+            "status": ("in", ["Signed", "Both"]),
+        },
+    )
+    if not declaration:
+        frappe.throw("Evaluator declaration must be signed before evaluation starts")
 
 
 def validate_contract(doc, method) -> None:
@@ -6640,6 +6868,20 @@ def validate_submission(doc, method) -> None:
         _log_tender_submission_block(doc, "supplier_compliance_blocked", str(e))
         raise
 
+    # Phase 2 supplier status gate.
+    supplier_master = frappe.db.get_value("Supplier Master", {"supplier_name": doc.supplier}, ["name", "supplier_status"], as_dict=True)
+    if supplier_master and supplier_master.supplier_status in {"Suspended", "Debarred", "Blacklisted"}:
+        msg = f"Supplier status '{supplier_master.supplier_status}' is not eligible for submissions"
+        _log_tender_submission_block(doc, "supplier_status_blocked", msg)
+        frappe.throw(msg)
+
+    if not getattr(doc, "server_received_on", None):
+        doc.server_received_on = now_datetime()
+    if not getattr(doc, "submitted_on", None):
+        doc.submitted_on = now_datetime()
+    if not getattr(doc, "submission_status", None):
+        doc.submission_status = "Submitted"
+
     # Phase 2: compute weighted evaluation score (if score rows exist).
     if doc.meta.get_field("total_score"):
         doc.total_score = calculate_total_score(doc)
@@ -6716,6 +6958,391 @@ def run_check(supplier: str) -> None:
             frappe.db.get_value("Supplier Compliance Profile", {"supplier": supplier}, "name"),
             {"status": "Verified", "last_checked": now_datetime()},
         )
+
+
+def phase2_validate_award_decision(doc, method=None) -> None:
+    if doc.award_status in {"Approved", "Finalized"}:
+        if not getattr(doc, "award_recommendation", None):
+            frappe.throw("Award Recommendation is required before approval/finalization")
+        if not getattr(doc, "approved_submission", None):
+            frappe.throw("Approved Submission is required before approval/finalization")
+
+    if getattr(doc, "award_status", None) == "Finalized":
+        active_case = frappe.db.exists(
+            "Challenge Review Case",
+            {
+                "award_decision": doc.name,
+                "status": ("in", ["Open", "Under Review"]),
+            },
+        )
+        if active_case:
+            frappe.throw(
+                f"Cannot finalize award while Challenge/Review Case is active: {active_case}"
+            )
+
+
+def phase2_on_update_award_decision(doc, method=None) -> None:
+    if getattr(doc, "award_status", None) != "Finalized":
+        return
+
+    if not getattr(doc, "approved_submission", None):
+        return
+
+    tender = frappe.get_doc("Tender", doc.tender)
+    if not getattr(tender, "purchase_order", None):
+        award_tender(doc.tender, doc.approved_submission)
+        tender.reload()
+
+    existing_handoff = frappe.db.exists("Award Contract Handoff", {"award_decision": doc.name})
+    if not existing_handoff:
+        frappe.get_doc(
+            {
+                "doctype": "Award Contract Handoff",
+                "award_decision": doc.name,
+                "handoff_status": "Prepared",
+                "prepared_by": frappe.session.user,
+                "prepared_on": now_datetime(),
+                "notes": f"Auto-created from finalized award decision {doc.name}",
+            }
+        ).insert(ignore_permissions=True)
+
+    prev_in_override = getattr(frappe.flags, "in_override", False)
+    frappe.flags.in_override = True
+    try:
+        tender.status = "Award Published"
+        tender.save(ignore_permissions=True)
+    finally:
+        frappe.flags.in_override = prev_in_override
+
+    log_ken_tender_audit_event(
+        action="phase2_award_finalized",
+        reference_doctype="Award Decision",
+        reference_name=doc.name,
+        details={
+            "tender": doc.tender,
+            "submission": doc.approved_submission,
+            "purchase_order": frappe.db.get_value("Tender", doc.tender, "purchase_order"),
+        },
+    )
+
+
+def phase2_flag_expired_supplier_documents() -> None:
+    today = now_datetime().date()
+    expired_docs = frappe.get_all(
+        "Supplier Compliance Document",
+        filters={"expiry_date": ("<", today), "verification_status": ("!=", "Expired")},
+        fields=["name", "supplier"],
+        limit=5000,
+    )
+    suppliers = set()
+    for row in expired_docs or []:
+        frappe.db.set_value(
+            "Supplier Compliance Document",
+            row.name,
+            {"verification_status": "Expired"},
+            update_modified=False,
+        )
+        if row.supplier:
+            suppliers.add(row.supplier)
+
+    for supplier_name in suppliers:
+        supplier = frappe.get_doc("Supplier Master", supplier_name)
+        if supplier.supplier_status == "Active":
+            prev_in_override = getattr(frappe.flags, "in_override", False)
+            frappe.flags.in_override = True
+            try:
+                supplier.supplier_status = "Expired Compliance"
+                supplier.save(ignore_permissions=True)
+            finally:
+                frappe.flags.in_override = prev_in_override
+
+
+def phase2_auto_close_due_tenders() -> None:
+    due = frappe.get_all(
+        "Tender",
+        filters={"status": "Published", "submission_deadline": ("<=", now_datetime())},
+        pluck="name",
+        limit=2000,
+    )
+    for tender_name in due or []:
+        tender = frappe.get_doc("Tender", tender_name)
+        prev_in_override = getattr(frappe.flags, "in_override", False)
+        frappe.flags.in_override = True
+        try:
+            tender.status = "Closed"
+            tender.save(ignore_permissions=True)
+        finally:
+            frappe.flags.in_override = prev_in_override
+
+
+def phase2_notify_challenge_window_expiry() -> None:
+    open_cases = frappe.get_all(
+        "Challenge Review Case",
+        filters={"status": ("in", ["Open", "Under Review"])},
+        fields=["name", "tender", "supplier", "filed_on"],
+        limit=2000,
+    )
+    for row in open_cases or []:
+        if not row.tender:
+            continue
+        exists = frappe.db.exists(
+            "Tender Notification Log",
+            {
+                "tender": row.tender,
+                "supplier": row.supplier,
+                "notification_type": "Intention to Award",
+                "reference": row.name,
+            },
+        )
+        if exists:
+            continue
+        frappe.get_doc(
+            {
+                "doctype": "Tender Notification Log",
+                "tender": row.tender,
+                "supplier": row.supplier,
+                "notification_type": "Intention to Award",
+                "sent_on": now_datetime(),
+                "channel": "Portal",
+                "status": "Queued",
+                "reference": row.name,
+            }
+        ).insert(ignore_permissions=True)
+
+
+@frappe.whitelist()
+def phase2_run_uat_smoke() -> dict:
+    """Run a controlled Phase 2 UAT smoke and return created evidence IDs."""
+    stamp = now_datetime().strftime("%Y%m%d%H%M%S")
+    out: dict = {}
+
+    sra = frappe.get_doc(
+        {
+            "doctype": "Supplier Registration Application",
+            "supplier_name": f"Phase2 UAT Supplier {stamp}",
+            "legal_name": f"Phase2 UAT Supplier {stamp} Limited",
+            "registration_number": f"P2REG-{stamp}",
+            "tax_id": f"P2TAX-{stamp}",
+            "email": f"phase2-uat-{stamp}@example.com",
+            "phone": "+254700000001",
+            "country": "Kenya",
+            "physical_address": "Nairobi",
+            "application_status": "Draft",
+        }
+    ).insert(ignore_permissions=True)
+    out["sra"] = sra.name
+
+    scd = frappe.get_doc(
+        {
+            "doctype": "Supplier Compliance Document",
+            "application": sra.name,
+            "document_type": "Tax Compliance",
+            "document_number": f"TAX-{stamp}",
+            "issue_date": now_datetime().date(),
+            "expiry_date": add_days(now_datetime().date(), 60),
+            "verification_status": "Verified",
+        }
+    ).insert(ignore_permissions=True)
+    out["scd"] = scd.name
+
+    sra.db_set("application_status", "Approved", update_modified=False)
+    sra.db_set("approved_on", now_datetime(), update_modified=False)
+    sra.reload()
+    phase2_sync_supplier_master_from_application(sra)
+
+    sm = frappe.get_doc(
+        "Supplier Master",
+        {"tax_id": sra.tax_id, "registration_number": sra.registration_number},
+    )
+    out["supplier_master"] = sm.name
+
+    plan_item = frappe.get_all(
+        "Procurement Plan Item",
+        filters={"status": "Approved"},
+        fields=["name"],
+        limit=1,
+    )
+    if not plan_item:
+        frappe.throw("No approved Procurement Plan Item available for Phase 2 UAT")
+    plan_item_name = plan_item[0].name
+
+    ppi_meta = frappe.get_meta("Procurement Plan Item")
+    company_field = "entity" if ppi_meta.has_field("entity") else ("company" if ppi_meta.has_field("company") else None)
+    company = frappe.db.get_value("Procurement Plan Item", plan_item_name, company_field) if company_field else None
+    company = company or frappe.db.get_value("Company", {}, "name")
+
+    tender = frappe.get_doc(
+        {
+            "doctype": "Tender",
+            "company": company,
+            "procurement_plan_item": plan_item_name,
+            "status": "Draft",
+            "publish_date": now_datetime().date(),
+            "submission_deadline": add_days(now_datetime(), 2),
+            "closing_datetime": add_days(now_datetime(), 2),
+            "opening_datetime": add_days(now_datetime(), 2),
+            "method": "Open Tender",
+            "procurement_type": "Goods",
+            "evaluation_method": "Weighted Score",
+            "linked_requisition_count": 1,
+        }
+    ).insert(ignore_permissions=True)
+    out["tender"] = tender.name
+
+    pack = frappe.get_doc(
+        {
+            "doctype": "Tender Document Pack",
+            "tender": tender.name,
+            "document_pack_status": "Approved",
+            "instructions_document": "/files/phase2-uat-instructions.txt",
+            "specification_document": "/files/phase2-uat-specification.txt",
+        }
+    ).insert(ignore_permissions=True)
+    out["doc_pack"] = pack.name
+    tender.db_set("status", "Published", update_modified=False)
+    tender.reload()
+
+    supplier = frappe.db.get_value("Supplier", {"supplier_name": sra.supplier_name}, "name")
+    if not supplier:
+        supplier = frappe.db.get_value("Supplier", {}, "name")
+    if not supplier:
+        frappe.throw("No Supplier record available for submission smoke")
+    profile = frappe.db.get_value("Supplier Compliance Profile", {"supplier": supplier}, "name")
+    if profile:
+        frappe.db.set_value(
+            "Supplier Compliance Profile",
+            profile,
+            {"status": "Verified", "last_checked": now_datetime()},
+            update_modified=False,
+        )
+    else:
+        frappe.get_doc(
+            {
+                "doctype": "Supplier Compliance Profile",
+                "supplier": supplier,
+                "status": "Verified",
+                "last_checked": now_datetime(),
+            }
+        ).insert(ignore_permissions=True)
+
+    submission = frappe.get_doc(
+        {
+            "doctype": "Tender Submission",
+            "tender": tender.name,
+            "supplier": supplier,
+            "currency": frappe.get_cached_value("Company", company, "default_currency") or "KES",
+            "quoted_amount": 125000,
+        }
+    ).insert(ignore_permissions=True)
+    criteria = frappe.get_all("Evaluation Criteria", fields=["name"], limit=1)
+    criteria_name = criteria[0].name if criteria else None
+    if not criteria_name:
+        criteria_doc = frappe.get_doc(
+            {
+                "doctype": "Evaluation Criteria",
+                "criteria_name": f"Phase2 UAT Criterion {stamp}",
+                "weight": 1.0,
+                "type": "Technical",
+            }
+        ).insert(ignore_permissions=True)
+        criteria_name = criteria_doc.name
+    submission.append("scores", {"criteria": criteria_name, "score": 85})
+    submission.save(ignore_permissions=True)
+    out["submission"] = submission.name
+
+    declaration = frappe.get_doc(
+        {
+            "doctype": "Evaluator Declaration",
+            "tender": tender.name,
+            "committee_member": frappe.session.user,
+            "declaration_type": "Both",
+            "status": "Signed",
+            "signed_on": now_datetime(),
+        }
+    ).insert(ignore_permissions=True)
+    out["declaration"] = declaration.name
+
+    worksheet = frappe.get_doc(
+        {
+            "doctype": "Evaluation Worksheet",
+            "tender": tender.name,
+            "submission": submission.name,
+            "evaluator": frappe.session.user,
+            "evaluation_stage": "Technical",
+            "worksheet_status": "Submitted by Evaluator",
+        }
+    ).insert(ignore_permissions=True)
+    out["worksheet"] = worksheet.name
+
+    recommendation = frappe.get_doc(
+        {
+            "doctype": "Award Recommendation",
+            "tender": tender.name,
+            "recommended_submission": submission.name,
+            "recommended_supplier": supplier,
+            "recommended_amount": 125000,
+            "recommendation_basis": "Best evaluated and compliant bid.",
+            "prepared_by": frappe.session.user,
+            "prepared_on": now_datetime(),
+            "status": "Approved",
+        }
+    ).insert(ignore_permissions=True)
+    out["recommendation"] = recommendation.name
+
+    decision = frappe.get_doc(
+        {
+            "doctype": "Award Decision",
+            "tender": tender.name,
+            "award_recommendation": recommendation.name,
+            "award_status": "Approved",
+            "approved_supplier": supplier,
+            "approved_submission": submission.name,
+            "approved_amount": 125000,
+            "decision_date": now_datetime().date(),
+            "approved_by": frappe.session.user,
+        }
+    ).insert(ignore_permissions=True)
+    out["decision"] = decision.name
+
+    challenge = frappe.get_doc(
+        {
+            "doctype": "Challenge Review Case",
+            "tender": tender.name,
+            "award_decision": decision.name,
+            "supplier": supplier,
+            "case_number": f"CRC-{stamp}",
+            "case_type": "Administrative Review",
+            "filed_on": now_datetime(),
+            "status": "Open",
+        }
+    ).insert(ignore_permissions=True)
+    out["challenge"] = challenge.name
+
+    blocked_error = None
+    try:
+        decision.reload()
+        decision.award_status = "Finalized"
+        decision.save(ignore_permissions=True)
+    except Exception as exc:
+        blocked_error = str(exc)
+
+    challenge.reload()
+    challenge.status = "Resolved"
+    challenge.decision = "No merit; proceed with award finalization."
+    challenge.decision_date = now_datetime().date()
+    challenge.save(ignore_permissions=True)
+
+    decision.reload()
+    decision.award_status = "Finalized"
+    decision.save(ignore_permissions=True)
+
+    tender.reload()
+    out["handoff"] = frappe.db.get_value("Award Contract Handoff", {"award_decision": decision.name}, "name")
+    out["tender_status"] = tender.status
+    out["purchase_order"] = tender.purchase_order
+    out["challenge_block_message"] = blocked_error
+
+    return out
 
 
 @frappe.whitelist()
@@ -6851,13 +7478,15 @@ def award_tender(tender_name: str, submission_name: str) -> str:
     po.insert()
     po.submit()
 
-    tender.purchase_order = po.name
-    tender.status = "Awarded"
+    tender.db_set("purchase_order", po.name, update_modified=False)
+    # Keep compatibility with phase-2 workflow-enabled instances.
+    target_status = "Award Published" if frappe.db.exists("Workflow", "Tender Workflow") else "Awarded"
+    tender.db_set("status", target_status, update_modified=False)
     tender.add_comment(
         "Workflow",
         f"Awarded to supplier {submission.supplier}. Purchase Order: {po.name}",
     )
-    tender.save()
+    tender.reload()
 
     log_ken_tender_audit_event(
         action="tender_awarded",

@@ -1,0 +1,16 @@
+{
+  "doctype": "DocType",
+  "name": "Supplier Category Registration",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "fields": [
+    {"fieldname": "supplier", "label": "Supplier", "fieldtype": "Link", "options": "Supplier Master", "reqd": 1},
+    {"fieldname": "category", "label": "Category", "fieldtype": "Link", "options": "Spend Category", "reqd": 1},
+    {"fieldname": "registration_status", "label": "Registration Status", "fieldtype": "Select", "options": "Pending\nApproved\nExpired\nSuspended\nRejected", "default": "Pending"},
+    {"fieldname": "effective_from", "label": "Effective From", "fieldtype": "Date"},
+    {"fieldname": "effective_to", "label": "Effective To", "fieldtype": "Date"},
+    {"fieldname": "approved_by", "label": "Approved By", "fieldtype": "Link", "options": "User"},
+    {"fieldname": "remarks", "label": "Remarks", "fieldtype": "Small Text"}
+  ]
+}

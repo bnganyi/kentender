@@ -32,3 +32,14 @@ This directory contains module-focused technical documentation for KenTender **P
   - `docs/Phase 1 Coverage + Traceability (Master).md`
   - `docs/Phase 1 Coverage Checkpoint Matrix.md`
 
+## Phase 2 extension references
+- Technical baseline:
+  - `docs/technical/phase2-supplier-registration-and-full-tendering-lifecycle.md`
+- UAT baseline:
+  - `docs/uat/phase2-uat-01-supplier-to-award-lifecycle.md`
+ - Phase 2 technical index:
+   - `docs/Phase 2 Technical Reference Index.md`
+ - Phase 2 traceability:
+   - `docs/Phase 2 Coverage + Traceability (Master).md`
+   - `docs/Phase 2 Coverage Checkpoint Matrix.md`
+

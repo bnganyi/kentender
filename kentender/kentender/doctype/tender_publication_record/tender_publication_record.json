@@ -1,0 +1,17 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Publication Record",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:TPR-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "publication_channel", "label": "Publication Channel", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "publication_date", "label": "Publication Date", "fieldtype": "Datetime", "reqd": 1},
+    {"fieldname": "published_by", "label": "Published By", "fieldtype": "Link", "options": "User"},
+    {"fieldname": "notice_reference", "label": "Notice Reference", "fieldtype": "Data"},
+    {"fieldname": "attachment", "label": "Attachment", "fieldtype": "Attach"},
+    {"fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Published\nRevised\nWithdrawn", "default": "Published"}
+  ]
+}

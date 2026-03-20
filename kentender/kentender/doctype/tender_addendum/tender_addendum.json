@@ -1,0 +1,19 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Addendum",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:TAD-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "addendum_number", "label": "Addendum Number", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "title", "label": "Title", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "change_summary", "label": "Change Summary", "fieldtype": "Small Text"},
+    {"fieldname": "effective_date", "label": "Effective Date", "fieldtype": "Date"},
+    {"fieldname": "closing_date_extended", "label": "Closing Date Extended", "fieldtype": "Check", "default": 0},
+    {"fieldname": "new_closing_datetime", "label": "New Closing Datetime", "fieldtype": "Datetime"},
+    {"fieldname": "attachment", "label": "Attachment", "fieldtype": "Attach"},
+    {"fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Draft\nPublished\nCancelled", "default": "Draft"}
+  ]
+}

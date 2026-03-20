@@ -1,0 +1,20 @@
+{
+  "doctype": "DocType",
+  "name": "Evaluation Consensus Record",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:ECR-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "submission", "label": "Submission", "fieldtype": "Link", "options": "Tender Submission", "reqd": 1},
+    {"fieldname": "preliminary_result", "label": "Preliminary Result", "fieldtype": "Data"},
+    {"fieldname": "technical_score", "label": "Technical Score", "fieldtype": "Float"},
+    {"fieldname": "financial_score", "label": "Financial Score", "fieldtype": "Float"},
+    {"fieldname": "final_rank", "label": "Final Rank", "fieldtype": "Int"},
+    {"fieldname": "recommendation_status", "label": "Recommendation Status", "fieldtype": "Select", "options": "Recommended\nDisqualified\nPending", "default": "Pending"},
+    {"fieldname": "disqualification_reason", "label": "Disqualification Reason", "fieldtype": "Small Text"},
+    {"fieldname": "consensus_notes", "label": "Consensus Notes", "fieldtype": "Small Text"},
+    {"fieldname": "approved_by_committee", "label": "Approved by Committee", "fieldtype": "Check", "default": 0}
+  ]
+}

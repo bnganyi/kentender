@@ -105,8 +105,25 @@ doc_events = {
 	"Purchase Requisition Amendment": {
 		"on_submit": "kentender.kentender.api.phase15_on_submit_purchase_requisition_amendment",
 	},
+	"Supplier Registration Application": {
+		"validate": "kentender.kentender.api.phase2_validate_supplier_registration_application",
+		"on_update_after_submit": "kentender.kentender.api.phase2_sync_supplier_master_from_application",
+	},
+	"Supplier Master": {
+		"validate": "kentender.kentender.api.phase2_validate_supplier_master",
+	},
+	"Supplier Status Action": {
+		"on_submit": "kentender.kentender.api.phase2_apply_supplier_status_action",
+	},
+	"Evaluation Worksheet": {
+		"validate": "kentender.kentender.api.phase2_validate_evaluation_worksheet",
+	},
+	"Award Decision": {
+		"validate": "kentender.kentender.api.phase2_validate_award_decision",
+		"on_update": "kentender.kentender.api.phase2_on_update_award_decision",
+	},
 	"Tender": {
-		"on_submit": "kentender.kentender.api.validate_tender",
+		"validate": "kentender.kentender.api.validate_tender",
 	},
 	"Monthly Contract Monitoring Report": {
 		"validate": "kentender.kentender.api.validate_monthly_contract_monitoring_report",
@@ -116,6 +133,9 @@ doc_events = {
 scheduler_events = {
 	"daily": [
 		"kentender.kentender.api.recheck_supplier_compliance",
+		"kentender.kentender.api.phase2_flag_expired_supplier_documents",
+		"kentender.kentender.api.phase2_auto_close_due_tenders",
+		"kentender.kentender.api.phase2_notify_challenge_window_expiry",
 		"kentender.kentender.api.monitor_dlp_expiry",
 		"kentender.kentender.api.remind_retention_release_due",
 	],

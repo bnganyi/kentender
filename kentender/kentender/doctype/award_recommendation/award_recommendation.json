@@ -1,0 +1,18 @@
+{
+  "doctype": "DocType",
+  "name": "Award Recommendation",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:AR-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "recommended_submission", "label": "Recommended Submission", "fieldtype": "Link", "options": "Tender Submission", "reqd": 1},
+    {"fieldname": "recommended_supplier", "label": "Recommended Supplier", "fieldtype": "Link", "options": "Supplier", "reqd": 1},
+    {"fieldname": "recommended_amount", "label": "Recommended Amount", "fieldtype": "Currency", "reqd": 1},
+    {"fieldname": "recommendation_basis", "label": "Recommendation Basis", "fieldtype": "Small Text", "reqd": 1},
+    {"fieldname": "prepared_by", "label": "Prepared By", "fieldtype": "Link", "options": "User"},
+    {"fieldname": "prepared_on", "label": "Prepared On", "fieldtype": "Datetime"},
+    {"fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Draft\nCommittee Review\nApproved\nRejected", "default": "Draft"}
+  ]
+}

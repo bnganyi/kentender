@@ -1,0 +1,16 @@
+{
+  "doctype": "DocType",
+  "name": "Award Contract Handoff",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:ACH-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "award_decision", "label": "Award Decision", "fieldtype": "Link", "options": "Award Decision", "reqd": 1},
+    {"fieldname": "handoff_status", "label": "Handoff Status", "fieldtype": "Select", "options": "Draft\nPrepared\nHanded Off\nCompleted", "default": "Draft"},
+    {"fieldname": "prepared_by", "label": "Prepared By", "fieldtype": "Link", "options": "User"},
+    {"fieldname": "prepared_on", "label": "Prepared On", "fieldtype": "Datetime"},
+    {"fieldname": "contract_reference", "label": "Contract Reference", "fieldtype": "Link", "options": "Contract"},
+    {"fieldname": "notes", "label": "Notes", "fieldtype": "Small Text"}
+  ]
+}

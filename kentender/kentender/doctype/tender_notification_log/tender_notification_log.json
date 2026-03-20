@@ -1,0 +1,17 @@
+{
+  "doctype": "DocType",
+  "name": "Tender Notification Log",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:TNL-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "tender", "label": "Tender", "fieldtype": "Link", "options": "Tender", "reqd": 1},
+    {"fieldname": "supplier", "label": "Supplier", "fieldtype": "Link", "options": "Supplier"},
+    {"fieldname": "notification_type", "label": "Notification Type", "fieldtype": "Select", "options": "Invitation\nClarification\nAddendum\nRegret\nIntention to Award\nFinal Award", "reqd": 1},
+    {"fieldname": "sent_on", "label": "Sent On", "fieldtype": "Datetime"},
+    {"fieldname": "channel", "label": "Channel", "fieldtype": "Select", "options": "Email\nPortal\nLetter\nSMS", "default": "Portal"},
+    {"fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Queued\nSent\nFailed", "default": "Queued"},
+    {"fieldname": "reference", "label": "Reference", "fieldtype": "Data"}
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "doctype": "DocType",
+  "name": "Suspension Debarment Register",
+  "module": "KenTender",
+  "custom": 1,
+  "track_changes": 1,
+  "autoname": "format:SDR-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname": "supplier", "label": "Supplier", "fieldtype": "Link", "options": "Supplier Master", "reqd": 1},
+    {"fieldname": "action_type", "label": "Action Type", "fieldtype": "Select", "options": "Suspension\nDebarment\nBlacklist", "reqd": 1},
+    {"fieldname": "reason", "label": "Reason", "fieldtype": "Small Text", "reqd": 1},
+    {"fieldname": "reference_number", "label": "Reference Number", "fieldtype": "Data"},
+    {"fieldname": "effective_from", "label": "Effective From", "fieldtype": "Date"},
+    {"fieldname": "effective_to", "label": "Effective To", "fieldtype": "Date"},
+    {"fieldname": "issuing_authority", "label": "Issuing Authority", "fieldtype": "Data"},
+    {"fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Active\nExpired\nRevoked", "default": "Active"}
+  ]
+}
