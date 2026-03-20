@@ -5,11 +5,11 @@
   "custom": 1,
   "istable": 1,
   "fields": [
-    {"fieldname": "approval_stage", "fieldtype": "Select", "label": "Approval Stage", "options": "Submission\nHoD Review\nFinance Review\nAO Review\nProcurement Review\nFinal Approval", "reqd": 1},
-    {"fieldname": "approver_role", "fieldtype": "Data", "label": "Approver Role", "reqd": 1},
-    {"fieldname": "approver_user", "fieldtype": "Link", "label": "Approver User", "options": "User"},
-    {"fieldname": "action", "fieldtype": "Select", "label": "Action", "options": "Pending\nApproved\nRejected\nReturned\nSkipped", "default": "Pending"},
-    {"fieldname": "action_date", "fieldtype": "Datetime", "label": "Action Date"},
+    {"fieldname": "approval_stage", "fieldtype": "Select", "label": "Approval Stage", "options": "Submission\nHoD Review\nFinance Review\nAO Review\nProcurement Review\nFinal Approval", "reqd": 1, "in_list_view": 1},
+    {"fieldname": "approver_role", "fieldtype": "Data", "label": "Approver Role", "reqd": 1, "in_list_view": 1},
+    {"fieldname": "approver_user", "fieldtype": "Link", "label": "Approver User", "options": "User", "in_list_view": 1},
+    {"fieldname": "action", "fieldtype": "Select", "label": "Action", "options": "Pending\nApproved\nRejected\nReturned\nSkipped", "default": "Pending", "in_list_view": 1},
+    {"fieldname": "action_date", "fieldtype": "Datetime", "label": "Action Date", "in_list_view": 1},
     {"fieldname": "comments", "fieldtype": "Small Text", "label": "Comments"}
   ]
 }

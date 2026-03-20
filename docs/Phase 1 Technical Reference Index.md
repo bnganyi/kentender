@@ -2,6 +2,10 @@
 
 This directory contains module-focused technical documentation for KenTender **Phase 1: Procurement Planning and Budgeting**.
 
+## Cross-cutting backlog
+- System-wide UX (forms, child tables, list views) and role-based field visibility (`permlevel` + Role Permissions):  
+  [`KenTender System Backlog (Cross-Cutting).md`](KenTender%20System%20Backlog%20(Cross-Cutting).md)
+
 ## Terminology conventions
 - `APP` = Annual Procurement Plan (`Procurement Plan` + `Procurement Plan Item`).
 - `Purchase Requisition (PR)` = Phase 1.5 demand-finalization record before tendering.
@@ -20,7 +24,9 @@ This directory contains module-focused technical documentation for KenTender **P
    - Purchase Requisition as mandatory pre-tender control gate
    - Line-level APP linkage and budget/commitment controls
    - Approval, amendment, exception, snapshot, and tender handoff records
-3. [`phase1_reporting_and_export.md`](phase1_reporting_and_export.md)
+3. [`technical/purchase-requisition-desk-ux.md`](technical/purchase-requisition-desk-ux.md)
+   - Desk form layout (tabs, progressive disclosure, intro copy)
+4. [`phase1_reporting_and_export.md`](phase1_reporting_and_export.md)
    - Phase 1 reporting snapshot API
    - CSV handoff export API
    - Validation evidence for reporting outputs

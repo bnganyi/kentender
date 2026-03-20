@@ -1490,6 +1490,169 @@ def phase2_setup_workflows() -> dict:
     return {"supplier_registration_workflow": supplier_wf, "tender_workflow": tender_wf}
 
 
+def phase1_setup_purchase_requisition_form_layout() -> None:
+    """Desk UX: tabs, column grouping, field order, and progressive disclosure for Purchase Requisition."""
+    dt = "Purchase Requisition"
+    if not frappe.db.exists("DocType", dt):
+        return
+
+    meta = frappe.get_meta(dt, cached=False)
+
+    def _cf_name(fieldname: str) -> str | None:
+        return frappe.db.get_value("Custom Field", {"dt": dt, "fieldname": fieldname}, "name")
+
+    def _set_insert_after(fieldname: str, insert_after: str) -> None:
+        cf = _cf_name(fieldname)
+        if cf:
+            frappe.db.set_value("Custom Field", cf, "insert_after", insert_after, update_modified=False)
+
+    def _ensure_break(fieldname: str, label: str | None, fieldtype: str, insert_after: str) -> None:
+        if frappe.db.exists("Custom Field", {"dt": dt, "fieldname": fieldname}):
+            _set_insert_after(fieldname, insert_after)
+            return
+        frappe.get_doc(
+            {
+                "doctype": "Custom Field",
+                "dt": dt,
+                "fieldname": fieldname,
+                "label": label or "",
+                "fieldtype": fieldtype,
+                "insert_after": insert_after,
+            }
+        ).insert(ignore_permissions=True)
+
+    def _set_depends_on(fieldname: str, expr: str | None) -> None:
+        cf = _cf_name(fieldname)
+        if not cf:
+            return
+        frappe.db.set_value("Custom Field", cf, "depends_on", expr or "", update_modified=False)
+
+    def _delete_cf(fieldname: str) -> None:
+        cf = _cf_name(fieldname)
+        if cf:
+            frappe.delete_doc("Custom Field", cf, force=True, ignore_permissions=True)
+
+    def _upsert_ps_insert_after(field_name: str, insert_after: str) -> None:
+        """Reposition a core DocField (e.g. Requested By) after our section break (full-width band)."""
+        filters = {
+            "doc_type": dt,
+            "doctype_or_field": "DocField",
+            "field_name": field_name,
+            "property": "insert_after",
+        }
+        existing = frappe.db.get_value("Property Setter", filters, "name")
+        if existing:
+            frappe.db.set_value("Property Setter", existing, "value", insert_after, update_modified=False)
+        else:
+            frappe.get_doc(
+                {
+                    "doctype": "Property Setter",
+                    "doc_type": dt,
+                    "doctype_or_field": "DocField",
+                    "field_name": field_name,
+                    "property": "insert_after",
+                    "property_type": "Data",
+                    "value": insert_after,
+                }
+            ).insert(ignore_permissions=True)
+
+    # Remove legacy column breaks (they caused lopsided 2 vs 6 fields with stock fields piling on the right).
+    _delete_cf("kentender_col_pr_left")
+    _delete_cf("kentender_col_pr_right")
+
+    # --- Top band: single full-width column under Request classification (balanced vs Requisition Details) ---
+    if meta.has_field("department") and meta.has_field("entity"):
+        _ensure_break("kentender_sec_pr_context", "Request classification", "Section Break", "department")
+        _set_insert_after("entity", "kentender_sec_pr_context")
+        _set_insert_after("requestor", "entity")
+        _set_insert_after("financial_year", "requestor")
+        _set_insert_after("requisition_type", "financial_year")
+        _set_insert_after("source_mode", "requisition_type")
+        _set_insert_after("required_by_date", "source_mode")
+        # New section resets layout so stock fields are not trapped in a narrow right column.
+        _ensure_break(
+            "kentender_sec_pr_after_class",
+            "Request summary",
+            "Section Break",
+            "required_by_date",
+        )
+        tail = "kentender_sec_pr_after_class"
+        for fname in ("requested_by", "request_by"):
+            if meta.has_field(fname):
+                _upsert_ps_insert_after(fname, tail)
+                tail = fname
+        for fname in ("estimated_cost", "grand_total", "base_grand_total"):
+            if meta.has_field(fname):
+                _upsert_ps_insert_after(fname, tail)
+                break
+    else:
+        _set_insert_after("required_by_date", "source_mode")
+
+    # Anchor for budget tab: after a value/money-like stock field when possible.
+    budget_anchor = None
+    for candidate in (
+        "estimated_cost",
+        "grand_total",
+        "base_total",
+        "net_total",
+        "rounded_total",
+        "additional_discount_percentage",
+        "discount_amount",
+        "tc_name",
+        "terms",
+        "schedule_date",
+        "transaction_date",
+        "material_request_type",
+    ):
+        if meta.has_field(candidate):
+            budget_anchor = candidate
+            break
+    if not budget_anchor:
+        for fallback in ("justification", "description", "remarks", "company", "title"):
+            if meta.has_field(fallback):
+                budget_anchor = fallback
+                break
+
+    if not budget_anchor:
+        frappe.clear_cache(doctype=dt)
+        return
+
+    _ensure_break("kentender_tab_pr_budget", "Budget & APP linkage", "Tab Break", budget_anchor)
+    _set_insert_after("procurement_plan_item", "kentender_tab_pr_budget")
+    _set_insert_after("currency", "procurement_plan_item")
+    _set_insert_after("total_estimated_cost", "currency")
+    _set_insert_after("total_committed_amount", "total_estimated_cost")
+    _set_insert_after("total_released_amount", "total_committed_amount")
+    _set_insert_after("budget_status", "total_released_amount")
+    _set_insert_after("budget_reference", "budget_status")
+    _set_insert_after("program_code", "budget_reference")
+    _set_insert_after("delivery_location", "program_code")
+
+    _ensure_break("kentender_tab_pr_lines", "Line items", "Tab Break", "delivery_location")
+    _set_insert_after("items", "kentender_tab_pr_lines")
+
+    _ensure_break("kentender_tab_pr_approvals", "Approvals & workflow", "Tab Break", "items")
+    _set_insert_after("approvals", "kentender_tab_pr_approvals")
+    _set_insert_after("approval_status", "approvals")
+
+    _set_insert_after("emergency_flag", "approval_status")
+    _set_insert_after("one_off_flag", "emergency_flag")
+    _set_insert_after("exception_flag", "one_off_flag")
+    _set_depends_on("emergency_flag", "eval:doc.requisition_type=='Emergency'")
+    _set_depends_on("one_off_flag", "eval:doc.source_mode=='One-Off'")
+    _set_depends_on("exception_flag", "eval:doc.one_off_flag==1")
+
+    _ensure_break("kentender_tab_pr_tender_audit", "Tender readiness & record audit", "Tab Break", "exception_flag")
+    _set_insert_after("tender_readiness_status", "kentender_tab_pr_tender_audit")
+    _set_insert_after("linked_tender_count", "tender_readiness_status")
+    _set_insert_after("submitted_on", "linked_tender_count")
+    _set_insert_after("approved_on", "submitted_on")
+    _set_insert_after("cancelled_on", "approved_on")
+    _set_insert_after("closed_on", "cancelled_on")
+
+    frappe.clear_cache(doctype=dt)
+
+
 def _phase1_requisition_amount(doc) -> float:
     for fieldname in ("estimated_cost", "grand_total", "base_grand_total"):
         value = flt(getattr(doc, fieldname, 0) or 0)
@@ -1643,7 +1806,7 @@ def phase1_after_migrate_setup() -> None:
     _ensure_cf("Purchase Requisition", "financial_year", "Financial Year", "Link", "request_date", options="Fiscal Year")
     _ensure_cf("Purchase Requisition", "requisition_type", "Requisition Type", "Select", "financial_year", options="Standard\nAggregated\nEmergency\nOne-Off\nAmendment\nCancellation")
     _ensure_cf("Purchase Requisition", "source_mode", "Source Mode", "Select", "requisition_type", options="APP Linked\nOne-Off")
-    _ensure_cf("Purchase Requisition", "required_by_date", "Required By Date", "Date", "request_date")
+    _ensure_cf("Purchase Requisition", "required_by_date", "Required By Date", "Date", "source_mode")
     _ensure_cf("Purchase Requisition", "delivery_location", "Delivery Location", "Data", "justification")
     _ensure_cf("Purchase Requisition", "budget_reference", "Budget Reference", "Data", "delivery_location")
     _ensure_cf("Purchase Requisition", "program_code", "Program Code", "Data", "budget_reference")
@@ -1691,6 +1854,7 @@ def phase1_after_migrate_setup() -> None:
     # Phase 2 workflow baseline.
     if frappe.db.exists("DocType", "Supplier Registration Application"):
         phase2_setup_workflows()
+    phase1_setup_purchase_requisition_form_layout()
 
 
 def phase1_on_submit_purchase_requisition(doc, method=None) -> None:

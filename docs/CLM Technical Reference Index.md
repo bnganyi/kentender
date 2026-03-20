@@ -7,6 +7,9 @@ Use this index to find:
 - Key fields to validate (data traceability)
 - Whitelisted APIs used by the bench/UAT scripts
 
+## Cross-cutting backlog
+- [`KenTender System Backlog (Cross-Cutting).md`](KenTender%20System%20Backlog%20(Cross-Cutting).md) — system-wide form/table/list UX and permlevel / role-based field visibility.
+
 ## Module docs (recommended order)
 1. [`technical/clm-contract-signing-and-closeout.md`](technical/clm-contract-signing-and-closeout.md)
    - Contract signing activation

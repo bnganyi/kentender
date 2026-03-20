@@ -2,6 +2,9 @@
 
 This directory section contains module-focused technical documentation for **Phase 2: Supplier Registration and Full Tendering Lifecycle**.
 
+## Cross-cutting backlog
+- [`KenTender System Backlog (Cross-Cutting).md`](KenTender%20System%20Backlog%20(Cross-Cutting).md) — system-wide form/table/list UX and permlevel / role-based field visibility.
+
 ## Terminology conventions
 - `APP` = Annual Procurement Plan (`Procurement Plan` + `Procurement Plan Item`).
 - `Purchase Requisition (PR)` = approved demand-finalization record that feeds tendering.
