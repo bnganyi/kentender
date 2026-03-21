@@ -1855,6 +1855,44 @@ def phase1_after_migrate_setup() -> None:
     if frappe.db.exists("DocType", "Supplier Registration Application"):
         phase2_setup_workflows()
     phase1_setup_purchase_requisition_form_layout()
+    phase2_sync_phase_2_hub_navigation()
+
+
+def phase2_sync_phase_2_hub_navigation() -> None:
+    """Apply Phase 2 Hub workspace/sidebar JSON (Page-based list links) to the live DB.
+
+    Custom DocType links from Workspace often 404 or open wrong routes; we ship Page stubs
+    that `frappe.set_route` to List views (same pattern as Phase 1 Hub).
+    """
+    import os
+
+    root = frappe.get_app_path("kentender")
+    sb_path = os.path.join(root, "workspace_sidebar", "phase_2_hub.json")
+    ws_path = os.path.join(root, "kentender", "workspace", "phase_2_hub", "phase_2_hub.json")
+
+    if os.path.isfile(sb_path) and frappe.db.exists("Workspace Sidebar", "Phase 2 Hub"):
+        with open(sb_path, encoding="utf-8") as f:
+            sb_data = json.load(f)
+        sb = frappe.get_doc("Workspace Sidebar", "Phase 2 Hub")
+        sb.items = []
+        for row in sb_data.get("items") or []:
+            sb.append("items", row)
+        sb.save(ignore_permissions=True)
+
+    if os.path.isfile(ws_path) and frappe.db.exists("Workspace", "Phase 2 Hub"):
+        with open(ws_path, encoding="utf-8") as f:
+            w_data = json.load(f)
+        w = frappe.get_doc("Workspace", "Phase 2 Hub")
+        w.links = []
+        for row in w_data.get("links") or []:
+            w.append("links", row)
+        w.save(ignore_permissions=True)
+
+    frappe.clear_cache()
+    try:
+        frappe.utils.install.auto_generate_icons_and_sidebar()
+    except Exception:
+        pass
 
 
 def phase1_on_submit_purchase_requisition(doc, method=None) -> None:

@@ -68,11 +68,28 @@ These are applied during `phase1_after_migrate_setup()` when Phase 2 DocTypes ar
 
 ## UI Layer
 
-- Workspace: `kentender/kentender/workspace/phase_2_hub/phase_2_hub.json`
+- Workspace: `kentender/kentender/kentender/workspace/phase_2_hub/phase_2_hub.json`
 - Sidebar: `kentender/workspace_sidebar/phase_2_hub.json`
 
 The hub mirrors the operational sequence:
 Supplier governance -> Tender lifecycle -> Submission/opening/evaluation/award.
+
+### Phase 2 Hub links (Desk routing)
+
+Custom DocTypes linked as `DocType` from Workspace often fail to open the list from the sidebar. Hub links use **`link_type: Page`** pointing at thin **Page** stubs that run `frappe.set_route("List", "<DocType>", "List")` (same approach as Phase 1 Hub). After migrate, `phase2_sync_phase_2_hub_navigation()` reapplies sidebar/workspace JSON to the live DB so links stay in sync.
+
+### Where Page stubs must live (read this before adding links)
+
+The KenTender app’s **module package is nested**: working Desk pages live under **`kentender/kentender/kentender/page/`** (three `kentender` path segments), **not** `kentender/kentender/page/`. Phase 1 stubs (`purchase_requisition_commitment`, `tender`, etc.) are already there. If Phase 2 stubs are missing from that folder, sidebar links will 404 with `FileNotFoundError` even though JSON was edited.
+
+**Convention (match Phase 1 Hub):**
+
+| Piece | Example |
+|-------|---------|
+| Directory + `.js` / `.json` basename | `tender_document_version` (underscores) |
+| `Page` JSON `name` / `page_name` + `link_to` + `frappe.pages[...]` key | `tender-document-version` (hyphens) |
+
+Commit new `page/<folder>/` directories to git—empty folders are not tracked; without the files on disk, every bench clone breaks again.
 
 ## Validation Evidence (fresh run)
 
