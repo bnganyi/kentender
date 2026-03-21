@@ -1,0 +1,6 @@
+source_type,reference,url_or_file,what_it_supports
+Public doc,Frappe Users and Permissions,https://docs.frappe.io/framework/user/en/basics/users-and-permissions,"DocPerm options, permlevel concept, automatic roles."
+Public doc,ERPNext Field Level Permission Management,https://docs.frappe.io/erpnext/changing-the-properties-of-a-field-based-on-role,permlevel field strategy.
+Public doc,ERPNext User Permissions,https://docs.frappe.io/erpnext/user-permissions,"Row-level security, applicable-for, strict permissions."
+Public doc,ERPNext Role Based Permissions,https://docs.frappe.io/erpnext/permissions,Role Permission Manager behavior and permission types.
+Local artifact,KenTender Security Roles Permissions ERPNext Ready,/mnt/data/KenTender_Security_Roles_Permissions_ERPNext_Ready.docx,Security design baseline used to build this workbook.

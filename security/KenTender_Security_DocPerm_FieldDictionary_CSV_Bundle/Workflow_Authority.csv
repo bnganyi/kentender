@@ -1,0 +1,17 @@
+phase,process,document_type_or_family,action_authority,should_not_action,notes
+Phase 1,APP draft/review,Procurement Plan,"Department Planning Officer, Procurement Planner","Oversight Viewer, Internal Auditor","Use workflow, not broad submit rights."
+Phase 1,Finance review,Procurement Plan / Plan Item,Finance/Budget Officer,Department Planning Officer,Finance controls PL2 fields; not strategy fields.
+Phase 1,Final approval / publish,Procurement Plan,"Accounting Officer / Approving Authority, Head of Procurement","Department Planning Officer, Finance/Budget Officer",Publish should lock ordinary fields.
+Phase 1.5,Submit / HoD review,Purchase Requisition,"Requestor, Head of Department",Finance/Budget Officer before HoD unless emergency,Create/approve separation is mandatory.
+Phase 1.5,Finance / AO review,Purchase Requisition,"Finance/Budget Officer, Accounting Officer / Approving Authority",Requestor,Finance controls PL2 fields; AO should not rewrite need.
+Phase 1.5,Procurement readiness,Purchase Requisition / Handoff,"Procurement Officer, Head of Procurement",Requestor,"Procurement should validate completeness, not rewrite business need."
+Phase 2B,Tender publication,Tender,"Procurement Officer, Head of Procurement",Opening/Evaluation roles,Closing/opening timestamps should be system controlled.
+Phase 2B,Bid submission,Tender Submission,Supplier Bidder User,Internal users pre-close,Owner-only/row-level portal access.
+Phase 2B,Bid opening,Bid Opening Register / Record,"Opening Committee Member, Tender Committee Secretary",Procurement setup roles,Opening reveals sealed content only at event.
+Phase 2C,Individual evaluation,Evaluation Worksheet / Score Record,Evaluation Committee Member,"Procurement setup roles, peer evaluators",Prefer assignment- or owner-based access.
+Phase 2C,Consensus / recommendation,Evaluation Consensus / Award Recommendation,"Evaluation Committee Chair, Tender Committee Secretary",General procurement users,Chair must not overwrite member evidence.
+Phase 2C,Award approval / publication,Award Decision / Award Publication,"Accounting Officer / Approving Authority, Procurement Officer",Evaluation Committee Members,Publication blocked while challenge case active.
+Phase 3,Contract activation,Contract,"Contract Manager, Accounting Officer / Approving Authority",Procurement setup roles,Award handoff must be complete first.
+Phase 3,Inspection / acceptance,Inspection Report / Acceptance Certificate,"Inspection & Acceptance Officer, Contract Manager",Accounts Payable Officer,Segregate receipt from payment certification.
+Phase 3,Payment approval,Payment Certificate / Invoice Control,"Accounts Payable Officer, Finance/Budget Officer, Accounting Officer / Approving Authority",Inspection & Acceptance Officer,Payment roles should not edit inspection findings.
+Phase 3,Variation / claim / termination,Contract Variation / Claim Dispute / Termination,"Contract Manager, Accounting Officer / Approving Authority",Accounts Payable Officer,High-value changes require executive workflow.

@@ -1,0 +1,22 @@
+role,primary_purpose,user_type,recommended_module_profile,notes
+Planning Authority,Strategy/policy configuration owner,System User,Internal Procurement,
+Department Planning Officer,Creates departmental planning inputs,System User,Internal Procurement,
+Procurement Planner,Consolidates APP and revisions,System User,Internal Procurement,
+Finance/Budget Officer,"Budget validation, commitments, payment-side financial controls",System User,Internal Procurement,
+Accounting Officer / Approving Authority,Final public-sector approval authority,System User,Internal Procurement,
+Requestor,Creates departmental purchase requisitions,System User,Internal Procurement,
+Head of Department,Approves departmental need,System User,Internal Procurement,
+Procurement Officer,"Tender setup, publication, clarifications, handoff",System User,Internal Procurement,
+Head of Procurement,Procurement governance approvals,System User,Internal Procurement,
+Supplier Registration Officer,Reviews supplier eligibility/compliance,System User,Internal Procurement,
+Supplier Bidder User,Supplier portal user; own supplier data only,Website/System User,Supplier Portal,Do not combine with broad internal desk roles.
+Opening Committee Member,Bid opening only,System User,Internal Procurement,
+Evaluation Committee Member,Individual evaluation only,System User,Internal Procurement,
+Evaluation Committee Chair,Consensus/recommendation lead,System User,Internal Procurement,
+Contract Manager,Contract execution and closeout,System User,Internal Procurement,
+Inspection & Acceptance Officer,"Receipt, inspection, acceptance",System User,Internal Procurement,
+Accounts Payable Officer,"Invoices, payment certificates, retention, settlement",System User,Internal Procurement,
+Internal Auditor,Read-only with audit registers/logs,System User,Internal Procurement,
+Oversight Viewer,Read-only executive/oversight visibility,System User,Internal Procurement,
+Tender Committee Secretary,Committee administration and records,System User,Internal Procurement,
+System Manager,Configuration/support; not routine business approver,System User,Internal Procurement,Keep out of routine business approvals.

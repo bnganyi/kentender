@@ -1,0 +1,17 @@
+role,allow_doctype,for_value_type,recommended_applicable_for,default_value_recommended,strict_permissions_recommended,notes
+Department Planning Officer,Department,Department,Procurement Plan Item; Purchase Requisition,Yes,Yes,Limit to own department's planning inputs.
+Requestor,Department,Department,Purchase Requisition; Purchase Requisition Item,Yes,Yes,Use Company + Department if entities are multi-company.
+Head of Department,Department,Department hierarchy,Purchase Requisition; Procurement Plan Item,Yes,Yes,Can also use hierarchy if you maintain manager structure.
+Procurement Planner,Company,Company,Procurement Plan; Procurement Plan Item; Revisions,Yes,Yes,Multi-entity planners need explicit company permissions.
+Finance/Budget Officer,Company,Company,"Planning, Requisition, Contract, Payment doctypes",Yes,Yes,Also add Cost Center or Project where needed.
+Procurement Officer,Company,Company,"Tender, Award, Handoff, Contract Variation",Yes,Yes,Avoid global read in shared-service environments.
+Supplier Registration Officer,Company,Company,Supplier governance doctypes,Yes,Yes,Use Supplier only if team is partitioned by supplier portfolio.
+Supplier Bidder User,Supplier Master,Supplier,Supplier portal doctypes only,Yes,Yes,Do not rely on role alone; restrict to supplier record.
+Opening Committee Member,Tender,Assigned Tender,Bid Opening Register; Bid Opening Record; Tender Submission*,No,Yes,Assignment-based control is safer than role-only.
+Evaluation Committee Member,Tender,Assigned Tender,Evaluation Worksheet; Evaluation Score Record; Tender Submission*,No,Yes,Also validate committee membership server-side.
+Evaluation Committee Chair,Tender,Assigned Tender,"Consensus, recommendation, due diligence",No,Yes,Chair should not automatically see all tenders.
+Contract Manager,Contract,Assigned Contract / Project,Contract execution and closeout doctypes,No,Yes,Use Contract or Project scoping.
+Inspection & Acceptance Officer,Contract,Assigned Contract / Project,"Receipt, inspection, acceptance doctypes",No,Yes,Helps separate from unrelated contracts.
+Accounts Payable Officer,Company,Company,Payment Certificate; Invoice Control; Retention Register,Yes,Yes,Optional Contract or Cost Center scoping for large entities.
+Internal Auditor,Company,Company,All transactional doctypes,No,No,Usually broad read is acceptable; decide entity scoping locally.
+Oversight Viewer,Company,Company,"Published, award, contract summary, audit views",Yes,No,Usually read-only executive scope by company/entity.

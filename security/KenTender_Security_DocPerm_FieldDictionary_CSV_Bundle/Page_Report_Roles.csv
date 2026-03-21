@@ -1,0 +1,13 @@
+artifact_type,name,allowed_roles,notes
+Workspace,Planning Workspace,Planning Authority; Department Planning Officer; Procurement Planner; Finance/Budget Officer,Do not expose policy masters to ordinary requestors.
+Workspace,Requisition Workspace,Requestor; Head of Department; Finance/Budget Officer; Procurement Officer; Head of Procurement,Separate from Tender Workspace.
+Workspace,Supplier Governance Workspace,Supplier Registration Officer; Head of Procurement; Internal Auditor,Supplier portal users should never see this desk workspace.
+Workspace,Tender Management Workspace,Procurement Officer; Head of Procurement; Internal Auditor,Do not grant to supplier or evaluation roles.
+Workspace,Opening Workspace,Opening Committee Member; Tender Committee Secretary; Internal Auditor,Visible only around opening event.
+Workspace,Evaluation Workspace,Evaluation Committee Member; Evaluation Committee Chair; Tender Committee Secretary; Internal Auditor,Restrict to assigned committees/tenders.
+Workspace,Award Workspace,Procurement Officer; Head of Procurement; Accounting Officer / Approving Authority; Internal Auditor,Committee members usually read-only after recommendation.
+Workspace,Contract Management Workspace,Contract Manager; Inspection & Acceptance Officer; Accounts Payable Officer; Finance/Budget Officer; Internal Auditor,Consider separate AP workspace.
+Report,Permitted Documents for User,System Manager; Internal Auditor,Use during UAT of row-level permissions.
+Report,Tender Full Audit Trail,Internal Auditor; Oversight Viewer; Head of Procurement,Should not expose sealed payload fields unless designed carefully.
+Report,Budget vs Committed vs Actual,Finance/Budget Officer; Accounting Officer / Approving Authority; Internal Auditor,Avoid supplier-facing exposure.
+Report,Evaluation Progress Report,Tender Committee Secretary; Evaluation Committee Chair; Internal Auditor,Do not expose competitor price data in generic reports.
