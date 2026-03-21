@@ -91,6 +91,18 @@ The KenTender app’s **module package is nested**: working Desk pages live unde
 
 Commit new `page/<folder>/` directories to git—empty folders are not tracked; without the files on disk, every bench clone breaks again.
 
+### Blank desk main area (no error)
+
+Frappe caches `Page` JSON in **browser `localStorage`** (`_page:<name>`) when not in developer mode. A stale entry can omit the `script` field, so `on_page_load` never runs and the route stays blank.
+
+KenTender mitigations:
+
+1. **`redirect.html`** in each list-redirect stub folder sets Page `_dynamic_page` so Frappe stops writing new bad cache entries.
+2. **`kentender_page_stub_cache_bust.js`** (via `boot_session` + `kentender_page_stub_version` in `kentender/kentender/kentender/boot.py`, module `kentender.kentender.boot`) clears `_page:*` keys when the version bumps.
+3. **`setTimeout(..., 0)`** around `frappe.set_route` avoids a race with the desk router.
+
+After pulling changes: `bench build --app kentender`, hard-refresh the browser (or clear site data for the desk origin once).
+
 ## Validation Evidence (fresh run)
 
 Reference run IDs (2026-03-21):
