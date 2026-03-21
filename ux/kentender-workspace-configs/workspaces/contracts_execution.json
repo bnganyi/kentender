@@ -1,0 +1,184 @@
+{
+  "doctype": "Workspace",
+  "name": "KT Contracts & Execution",
+  "label": "KT Contracts & Execution",
+  "title": "Contracts & Execution",
+  "sequence_id": 70,
+  "module": "KenTender",
+  "app": "kentender",
+  "type": "Workspace",
+  "public": 1,
+  "is_hidden": 0,
+  "icon": "folder-open",
+  "indicator_color": "yellow",
+  "content": "[{\"id\":\"header-main\",\"type\":\"header\",\"data\":{\"text\":\"Contracts & Execution\",\"level\":2,\"col\":12}},{\"id\":\"header-shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"Quick Actions\",\"level\":4,\"col\":12}},{\"id\":\"shortcut-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Contract Handoffs\",\"col\":4}},{\"id\":\"shortcut-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"PO Handoffs\",\"col\":4}},{\"id\":\"shortcut-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Supplier Performance Baseline\",\"col\":4}},{\"id\":\"shortcut-4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Orders\",\"col\":4}},{\"id\":\"shortcut-5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoices\",\"col\":4}},{\"id\":\"header-queues\",\"type\":\"header\",\"data\":{\"text\":\"Queues & Monitoring\",\"level\":4,\"col\":12}},{\"id\":\"quick-list-1\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Ready for Contract\",\"col\":4}},{\"id\":\"quick-list-2\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Ready for PO\",\"col\":4}},{\"id\":\"quick-list-3\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Open Purchase Orders\",\"col\":4}},{\"id\":\"header-insights\",\"type\":\"header\",\"data\":{\"text\":\"KPIs\",\"level\":4,\"col\":12}},{\"id\":\"number-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Contract Handoffs Pending\",\"col\":3}},{\"id\":\"number-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Open Purchase Orders\",\"col\":3}},{\"id\":\"header-links\",\"type\":\"header\",\"data\":{\"text\":\"Navigation\",\"level\":4,\"col\":12}},{\"id\":\"links-1\",\"type\":\"links\",\"data\":{\"links_name\":\"Award Handoffs\",\"col\":6}},{\"id\":\"links-2\",\"type\":\"links\",\"data\":{\"links_name\":\"Execution\",\"col\":6}}]",
+  "charts": [],
+  "shortcuts": [
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Award Contract Handoff",
+      "doc_view": "List",
+      "label": "Contract Handoffs",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Award PO Handoff",
+      "doc_view": "List",
+      "label": "PO Handoffs",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Supplier Performance Baseline",
+      "doc_view": "List",
+      "label": "Supplier Performance Baseline",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Purchase Order",
+      "doc_view": "List",
+      "label": "Purchase Orders",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Purchase Invoice",
+      "doc_view": "List",
+      "label": "Purchase Invoices",
+      "icon": "",
+      "color": "gray"
+    }
+  ],
+  "links": [
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Award Handoffs",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Award Contract Handoff",
+      "link_type": "DocType",
+      "link_to": "Award Contract Handoff"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Award PO Handoff",
+      "link_type": "DocType",
+      "link_to": "Award PO Handoff"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Supplier Performance Baseline",
+      "link_type": "DocType",
+      "link_to": "Supplier Performance Baseline"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Execution",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Purchase Order",
+      "link_type": "DocType",
+      "link_to": "Purchase Order"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Purchase Invoice",
+      "link_type": "DocType",
+      "link_to": "Purchase Invoice"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Payment Entry",
+      "link_type": "DocType",
+      "link_to": "Payment Entry"
+    }
+  ],
+  "quick_lists": [
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Award Contract Handoff",
+      "label": "Ready for Contract",
+      "quick_list_filter": "[[\"handoff_status\",\"in\",[\"Draft\",\"Ready\"]]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Award PO Handoff",
+      "label": "Ready for PO",
+      "quick_list_filter": "[[\"handoff_status\",\"in\",[\"Draft\",\"Ready\"]]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Purchase Order",
+      "label": "Open Purchase Orders",
+      "quick_list_filter": "[[\"status\",\"not in\",[\"Completed\",\"Closed\",\"Cancelled\"]]]"
+    }
+  ],
+  "number_cards": [
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Contract Handoffs Pending",
+      "label": "Contract Handoffs Pending"
+    },
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Open Purchase Orders",
+      "label": "Open Purchase Orders"
+    }
+  ],
+  "custom_blocks": [],
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Contract Manager"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Stores User"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounts User"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ]
+}

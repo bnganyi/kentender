@@ -1,0 +1,206 @@
+{
+  "doctype": "Workspace",
+  "name": "KT Tendering",
+  "label": "KT Tendering",
+  "title": "Tendering",
+  "sequence_id": 40,
+  "module": "KenTender",
+  "app": "kentender",
+  "type": "Workspace",
+  "public": 1,
+  "is_hidden": 0,
+  "icon": "bullhorn",
+  "indicator_color": "red",
+  "content": "[{\"id\":\"header-main\",\"type\":\"header\",\"data\":{\"text\":\"Tendering\",\"level\":2,\"col\":12}},{\"id\":\"header-shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"Quick Actions\",\"level\":4,\"col\":12}},{\"id\":\"shortcut-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create Tender\",\"col\":4}},{\"id\":\"shortcut-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Draft Tenders\",\"col\":4}},{\"id\":\"shortcut-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Tender Lots\",\"col\":4}},{\"id\":\"shortcut-4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Document Packs\",\"col\":4}},{\"id\":\"shortcut-5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Clarifications\",\"col\":4}},{\"id\":\"shortcut-6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Addenda\",\"col\":4}},{\"id\":\"header-queues\",\"type\":\"header\",\"data\":{\"text\":\"Queues & Monitoring\",\"level\":4,\"col\":12}},{\"id\":\"quick-list-1\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Ready for Publication\",\"col\":4}},{\"id\":\"quick-list-2\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Active Tenders\",\"col\":4}},{\"id\":\"quick-list-3\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Closing Soon\",\"col\":4}},{\"id\":\"header-insights\",\"type\":\"header\",\"data\":{\"text\":\"KPIs\",\"level\":4,\"col\":12}},{\"id\":\"number-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Published Tenders\",\"col\":3}},{\"id\":\"number-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Closings This Week\",\"col\":3}},{\"id\":\"header-links\",\"type\":\"header\",\"data\":{\"text\":\"Navigation\",\"level\":4,\"col\":12}},{\"id\":\"links-1\",\"type\":\"links\",\"data\":{\"links_name\":\"Tender Setup\",\"col\":6}},{\"id\":\"links-2\",\"type\":\"links\",\"data\":{\"links_name\":\"Tender Documents\",\"col\":6}}]",
+  "charts": [],
+  "shortcuts": [
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Tender",
+      "doc_view": "New",
+      "label": "Create Tender",
+      "icon": "",
+      "color": "blue"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Tender",
+      "doc_view": "List",
+      "label": "Draft Tenders",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Tender Lot",
+      "doc_view": "List",
+      "label": "Tender Lots",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Tender Document Pack",
+      "doc_view": "List",
+      "label": "Document Packs",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Tender Clarification",
+      "doc_view": "List",
+      "label": "Clarifications",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Tender Addendum",
+      "doc_view": "List",
+      "label": "Addenda",
+      "icon": "",
+      "color": "gray"
+    }
+  ],
+  "links": [
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Tender Setup",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender",
+      "link_type": "DocType",
+      "link_to": "Tender"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Lot",
+      "link_type": "DocType",
+      "link_to": "Tender Lot"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Eligibility Rule",
+      "link_type": "DocType",
+      "link_to": "Tender Eligibility Rule"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Security Rule",
+      "link_type": "DocType",
+      "link_to": "Tender Security Rule"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Tender Documents",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Document Pack",
+      "link_type": "DocType",
+      "link_to": "Tender Document Pack"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Document Version",
+      "link_type": "DocType",
+      "link_to": "Tender Document Version"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Clarification",
+      "link_type": "DocType",
+      "link_to": "Tender Clarification"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Addendum",
+      "link_type": "DocType",
+      "link_to": "Tender Addendum"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Publication Record",
+      "link_type": "DocType",
+      "link_to": "Tender Publication Record"
+    }
+  ],
+  "quick_lists": [
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Tender",
+      "label": "Ready for Publication",
+      "quick_list_filter": "[[\"tender_status\",\"=\",\"Approved for Publication\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Tender",
+      "label": "Active Tenders",
+      "quick_list_filter": "[[\"tender_status\",\"=\",\"Published\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Tender",
+      "label": "Closing Soon",
+      "quick_list_filter": "[[\"tender_status\",\"=\",\"Published\"]]"
+    }
+  ],
+  "number_cards": [
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Published Tenders",
+      "label": "Published Tenders"
+    },
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Tenders Closing This Week",
+      "label": "Closings This Week"
+    }
+  ],
+  "custom_blocks": [],
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Tender Committee Secretary"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ]
+}

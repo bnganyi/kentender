@@ -1,0 +1,163 @@
+{
+  "doctype": "Workspace",
+  "name": "KT Submissions & Opening",
+  "label": "KT Submissions & Opening",
+  "title": "Submissions & Opening",
+  "sequence_id": 50,
+  "module": "KenTender",
+  "app": "kentender",
+  "type": "Workspace",
+  "public": 1,
+  "is_hidden": 0,
+  "icon": "inbox",
+  "indicator_color": "purple",
+  "content": "[{\"id\":\"header-main\",\"type\":\"header\",\"data\":{\"text\":\"Submissions & Opening\",\"level\":2,\"col\":12}},{\"id\":\"header-shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"Quick Actions\",\"level\":4,\"col\":12}},{\"id\":\"shortcut-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Tender Submissions\",\"col\":4}},{\"id\":\"shortcut-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Bid Receipt Log\",\"col\":4}},{\"id\":\"shortcut-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Opening Register\",\"col\":4}},{\"id\":\"shortcut-4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Opening Records\",\"col\":4}},{\"id\":\"header-queues\",\"type\":\"header\",\"data\":{\"text\":\"Queues & Monitoring\",\"level\":4,\"col\":12}},{\"id\":\"quick-list-1\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Submissions Received\",\"col\":4}},{\"id\":\"quick-list-2\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Late Submissions\",\"col\":4}},{\"id\":\"quick-list-3\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Ready for Opening\",\"col\":4}},{\"id\":\"header-insights\",\"type\":\"header\",\"data\":{\"text\":\"KPIs\",\"level\":4,\"col\":12}},{\"id\":\"number-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Submissions Received\",\"col\":3}},{\"id\":\"number-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Late Bids\",\"col\":3}},{\"id\":\"header-links\",\"type\":\"header\",\"data\":{\"text\":\"Navigation\",\"level\":4,\"col\":12}},{\"id\":\"links-1\",\"type\":\"links\",\"data\":{\"links_name\":\"Submission Control\",\"col\":6}},{\"id\":\"links-2\",\"type\":\"links\",\"data\":{\"links_name\":\"Opening Control\",\"col\":6}}]",
+  "charts": [],
+  "shortcuts": [
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Tender Submission",
+      "doc_view": "List",
+      "label": "Tender Submissions",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Bid Receipt Log",
+      "doc_view": "List",
+      "label": "Bid Receipt Log",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Bid Opening Register",
+      "doc_view": "List",
+      "label": "Opening Register",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Bid Opening Record",
+      "doc_view": "List",
+      "label": "Opening Records",
+      "icon": "",
+      "color": "gray"
+    }
+  ],
+  "links": [
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Submission Control",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Submission",
+      "link_type": "DocType",
+      "link_to": "Tender Submission"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Submission Lot Response",
+      "link_type": "DocType",
+      "link_to": "Tender Submission Lot Response"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Submission Attachment",
+      "link_type": "DocType",
+      "link_to": "Tender Submission Attachment"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Bid Receipt Log",
+      "link_type": "DocType",
+      "link_to": "Bid Receipt Log"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Opening Control",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Bid Opening Register",
+      "link_type": "DocType",
+      "link_to": "Bid Opening Register"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Bid Opening Record",
+      "link_type": "DocType",
+      "link_to": "Bid Opening Record"
+    }
+  ],
+  "quick_lists": [
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Tender Submission",
+      "label": "Submissions Received",
+      "quick_list_filter": "[[\"submission_status\",\"=\",\"Submitted\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Tender Submission",
+      "label": "Late Submissions",
+      "quick_list_filter": "[[\"submission_status\",\"=\",\"Late\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Bid Opening Register",
+      "label": "Ready for Opening",
+      "quick_list_filter": "[[\"register_status\",\"=\",\"Draft\"]]"
+    }
+  ],
+  "number_cards": [
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Tender Submissions Received",
+      "label": "Submissions Received"
+    },
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Late Bids",
+      "label": "Late Bids"
+    }
+  ],
+  "custom_blocks": [],
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Tender Committee Secretary"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Opening Committee Member"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ]
+}

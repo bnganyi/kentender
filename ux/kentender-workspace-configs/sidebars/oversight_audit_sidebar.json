@@ -1,0 +1,67 @@
+{
+  "doctype": "Workspace Sidebar",
+  "name": "Oversight & Audit",
+  "title": "Oversight & Audit",
+  "header_icon": "shield",
+  "module": "KenTender",
+  "standard": 0,
+  "app": "kentender",
+  "items": [
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Section Break",
+      "label": "Oversight Desk",
+      "icon": "shield",
+      "collapsible": 1,
+      "keep_closed": 0
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Dashboard",
+      "link_type": "Workspace",
+      "link_to": "KT Oversight & Audit",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Exception Register",
+      "link_type": "DocType",
+      "link_to": "Exception Register Entry",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Challenge Cases",
+      "link_type": "DocType",
+      "link_to": "Challenge Review Case",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Workflow Actions",
+      "link_type": "DocType",
+      "link_to": "Workflow Action",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "User Permissions",
+      "link_type": "DocType",
+      "link_to": "User Permission",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Role Permission Manager",
+      "link_type": "Page",
+      "link_to": "permission-manager",
+      "icon": ""
+    }
+  ]
+}

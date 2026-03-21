@@ -1,0 +1,83 @@
+{
+  "doctype": "Workspace Sidebar",
+  "name": "Procurement Planning",
+  "title": "Procurement Planning",
+  "header_icon": "goal",
+  "module": "KenTender",
+  "standard": 0,
+  "app": "kentender",
+  "items": [
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Section Break",
+      "label": "Planning Desk",
+      "icon": "compass",
+      "collapsible": 1,
+      "keep_closed": 0
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Dashboard",
+      "link_type": "Workspace",
+      "link_to": "KT Procurement Planning",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Procurement Plans",
+      "link_type": "DocType",
+      "link_to": "Procurement Plan",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Plan Items",
+      "link_type": "DocType",
+      "link_to": "Procurement Plan Item",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Plan Revisions",
+      "link_type": "DocType",
+      "link_to": "Procurement Plan Revision",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Section Break",
+      "label": "Reference Data",
+      "icon": "database",
+      "collapsible": 1,
+      "keep_closed": 0
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Strategic Objectives",
+      "link_type": "DocType",
+      "link_to": "Strategic Objective",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Policy Profiles",
+      "link_type": "DocType",
+      "link_to": "Procurement Policy Profile",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Budget Control Rules",
+      "link_type": "DocType",
+      "link_to": "Budget Control Rule",
+      "icon": ""
+    }
+  ]
+}

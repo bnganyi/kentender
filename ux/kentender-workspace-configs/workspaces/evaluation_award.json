@@ -1,0 +1,228 @@
+{
+  "doctype": "Workspace",
+  "name": "KT Evaluation & Award",
+  "label": "KT Evaluation & Award",
+  "title": "Evaluation & Award",
+  "sequence_id": 60,
+  "module": "KenTender",
+  "app": "kentender",
+  "type": "Workspace",
+  "public": 1,
+  "is_hidden": 0,
+  "icon": "verify",
+  "indicator_color": "cyan",
+  "content": "[{\"id\":\"header-main\",\"type\":\"header\",\"data\":{\"text\":\"Evaluation & Award\",\"level\":2,\"col\":12}},{\"id\":\"header-shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"Quick Actions\",\"level\":4,\"col\":12}},{\"id\":\"shortcut-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Worksheets\",\"col\":4}},{\"id\":\"shortcut-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Consensus Records\",\"col\":4}},{\"id\":\"shortcut-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Award Recommendations\",\"col\":4}},{\"id\":\"shortcut-4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Award Decisions\",\"col\":4}},{\"id\":\"shortcut-5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Challenge Cases\",\"col\":4}},{\"id\":\"shortcut-6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Notifications\",\"col\":4}},{\"id\":\"header-queues\",\"type\":\"header\",\"data\":{\"text\":\"Queues & Monitoring\",\"level\":4,\"col\":12}},{\"id\":\"quick-list-1\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Pending Declarations\",\"col\":4}},{\"id\":\"quick-list-2\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Worksheets In Progress\",\"col\":4}},{\"id\":\"quick-list-3\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Pending Approval\",\"col\":4}},{\"id\":\"header-insights\",\"type\":\"header\",\"data\":{\"text\":\"KPIs\",\"level\":4,\"col\":12}},{\"id\":\"number-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Evaluations Pending\",\"col\":3}},{\"id\":\"number-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Awards Awaiting Approval\",\"col\":3}},{\"id\":\"header-links\",\"type\":\"header\",\"data\":{\"text\":\"Navigation\",\"level\":4,\"col\":12}},{\"id\":\"links-1\",\"type\":\"links\",\"data\":{\"links_name\":\"Evaluation\",\"col\":6}},{\"id\":\"links-2\",\"type\":\"links\",\"data\":{\"links_name\":\"Award\",\"col\":6}}]",
+  "charts": [],
+  "shortcuts": [
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Evaluation Worksheet",
+      "doc_view": "List",
+      "label": "My Worksheets",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Evaluation Consensus Record",
+      "doc_view": "List",
+      "label": "Consensus Records",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Award Recommendation",
+      "doc_view": "List",
+      "label": "Award Recommendations",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Award Decision",
+      "doc_view": "List",
+      "label": "Award Decisions",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Challenge Review Case",
+      "doc_view": "List",
+      "label": "Challenge Cases",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Tender Notification Log",
+      "doc_view": "List",
+      "label": "Notifications",
+      "icon": "",
+      "color": "gray"
+    }
+  ],
+  "links": [
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Evaluation",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Evaluation Committee",
+      "link_type": "DocType",
+      "link_to": "Evaluation Committee"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Evaluator Declaration",
+      "link_type": "DocType",
+      "link_to": "Evaluator Declaration"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Evaluation Scheme",
+      "link_type": "DocType",
+      "link_to": "Tender Evaluation Scheme"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Evaluation Worksheet",
+      "link_type": "DocType",
+      "link_to": "Evaluation Worksheet"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Evaluation Consensus Record",
+      "link_type": "DocType",
+      "link_to": "Evaluation Consensus Record"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Post Qualification Check",
+      "link_type": "DocType",
+      "link_to": "Post Qualification Check"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Award",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Award Recommendation",
+      "link_type": "DocType",
+      "link_to": "Award Recommendation"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Award Decision",
+      "link_type": "DocType",
+      "link_to": "Award Decision"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Tender Notification Log",
+      "link_type": "DocType",
+      "link_to": "Tender Notification Log"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Challenge Review Case",
+      "link_type": "DocType",
+      "link_to": "Challenge Review Case"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Award Publication Record",
+      "link_type": "DocType",
+      "link_to": "Award Publication Record"
+    }
+  ],
+  "quick_lists": [
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Evaluator Declaration",
+      "label": "Pending Declarations",
+      "quick_list_filter": "[[\"status\",\"!=\",\"Signed\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Evaluation Worksheet",
+      "label": "Worksheets In Progress",
+      "quick_list_filter": "[[\"worksheet_status\",\"=\",\"Under Review\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Award Recommendation",
+      "label": "Pending Approval",
+      "quick_list_filter": "[[\"status\",\"in\",[\"Draft\",\"Committee Review\"]]]"
+    }
+  ],
+  "number_cards": [
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Evaluations Pending",
+      "label": "Evaluations Pending"
+    },
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Awards Awaiting Approval",
+      "label": "Awards Awaiting Approval"
+    }
+  ],
+  "custom_blocks": [],
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Evaluation Committee Member"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Evaluation Committee Chair"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Tender Committee Secretary"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ]
+}

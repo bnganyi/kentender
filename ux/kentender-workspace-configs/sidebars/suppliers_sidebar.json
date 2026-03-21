@@ -1,0 +1,67 @@
+{
+  "doctype": "Workspace Sidebar",
+  "name": "Suppliers",
+  "title": "Suppliers",
+  "header_icon": "people",
+  "module": "KenTender",
+  "standard": 0,
+  "app": "kentender",
+  "items": [
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Section Break",
+      "label": "Supplier Desk",
+      "icon": "users",
+      "collapsible": 1,
+      "keep_closed": 0
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Dashboard",
+      "link_type": "Workspace",
+      "link_to": "KT Suppliers",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Applications",
+      "link_type": "DocType",
+      "link_to": "Supplier Registration Application",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Supplier Master",
+      "link_type": "DocType",
+      "link_to": "Supplier Master",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Category Registrations",
+      "link_type": "DocType",
+      "link_to": "Supplier Category Registration",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Compliance Documents",
+      "link_type": "DocType",
+      "link_to": "Supplier Compliance Document",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Debarment Register",
+      "link_type": "DocType",
+      "link_to": "Suspension Debarment Register",
+      "icon": ""
+    }
+  ]
+}

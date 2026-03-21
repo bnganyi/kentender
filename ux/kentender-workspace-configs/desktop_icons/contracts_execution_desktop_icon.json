@@ -1,0 +1,44 @@
+{
+  "doctype": "Desktop Icon",
+  "name": "Contracts & Execution",
+  "label": "Contracts & Execution",
+  "icon_type": "App",
+  "link_type": "Workspace Sidebar",
+  "link_to": "Contracts & Execution",
+  "sidebar": "Contracts & Execution",
+  "standard": 0,
+  "app": "kentender",
+  "icon": "folder-open",
+  "bg_color": "blue",
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Contract Manager"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Stores User"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounts User"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ],
+  "hidden": 0
+}

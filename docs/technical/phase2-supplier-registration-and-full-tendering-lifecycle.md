@@ -9,7 +9,6 @@ This implementation introduces the market-facing control layer after approved de
 - Submission hard lock and sealed baseline fields.
 - Opening, evaluation, award, challenge, and handoff records.
 - Phase 2 workflow orchestration and daily controls.
-- Desk-native `Phase 2 Hub` workspace and sidebar navigation.
 
 ## Core Artifacts Added
 
@@ -66,42 +65,9 @@ Provisioned through `phase2_setup_workflows()`:
 
 These are applied during `phase1_after_migrate_setup()` when Phase 2 DocTypes are present.
 
-## UI Layer
+## Desk navigation (UX)
 
-- Workspace: `kentender/kentender/kentender/workspace/phase_2_hub/phase_2_hub.json`
-- Sidebar: `kentender/workspace_sidebar/phase_2_hub.json`
-
-The hub mirrors the operational sequence:
-Supplier governance -> Tender lifecycle -> Submission/opening/evaluation/award.
-
-### Phase 2 Hub links (Desk routing)
-
-Custom DocTypes linked as `DocType` from Workspace often fail to open the list from the sidebar. Hub links use **`link_type: Page`** pointing at thin **Page** stubs that run `frappe.set_route("List", "<DocType>", "List")` (same approach as Phase 1 Hub). After migrate, `phase2_sync_phase_2_hub_navigation()` reapplies sidebar/workspace JSON to the live DB so links stay in sync.
-
-### Where Page stubs must live (read this before adding links)
-
-The KenTender app’s **module package is nested**: working Desk pages live under **`kentender/kentender/kentender/page/`** (three `kentender` path segments), **not** `kentender/kentender/page/`. Phase 1 stubs (`purchase_requisition_commitment`, `tender`, etc.) are already there. If Phase 2 stubs are missing from that folder, sidebar links will 404 with `FileNotFoundError` even though JSON was edited.
-
-**Convention (match Phase 1 Hub):**
-
-| Piece | Example |
-|-------|---------|
-| Directory + `.js` / `.json` basename | `tender_document_version` (underscores) |
-| `Page` JSON `name` / `page_name` + `link_to` + `frappe.pages[...]` key | `tender-document-version` (hyphens) |
-
-Commit new `page/<folder>/` directories to git—empty folders are not tracked; without the files on disk, every bench clone breaks again.
-
-### Blank desk main area (no error)
-
-Frappe caches `Page` JSON in **browser `localStorage`** (`_page:<name>`) when not in developer mode. A stale entry can omit the `script` field, so `on_page_load` never runs and the route stays blank.
-
-KenTender mitigations:
-
-1. **`redirect.html`** in each list-redirect stub folder sets Page `_dynamic_page` so Frappe stops writing new bad cache entries.
-2. **`kentender_page_stub_cache_bust.js`** (via `boot_session` + `kentender_page_stub_version` in `kentender/kentender/kentender/boot.py`, module `kentender.kentender.boot`) clears `_page:*` keys when the version bumps.
-3. **`setTimeout(..., 0)`** around `frappe.set_route` avoids a race with the desk router.
-
-After pulling changes: `bench build --app kentender`, hard-refresh the browser (or clear site data for the desk origin once).
+Phase / CLM **Workspace**, **Workspace Sidebar**, **Page list-redirect stubs**, and the interim **CLM Hub** report were **removed** from the app so navigation can be reintroduced from a clean UX design. DocTypes, workflows, and server logic are unchanged; use **Awesome Bar**, **Role Permissions Manager**, and standard **Workspace** tooling (or new design) to expose menus.
 
 ## Validation Evidence (fresh run)
 

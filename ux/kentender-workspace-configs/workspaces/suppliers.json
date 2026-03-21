@@ -1,0 +1,195 @@
+{
+  "doctype": "Workspace",
+  "name": "KT Suppliers",
+  "label": "KT Suppliers",
+  "title": "Suppliers",
+  "sequence_id": 30,
+  "module": "KenTender",
+  "app": "kentender",
+  "type": "Workspace",
+  "public": 1,
+  "is_hidden": 0,
+  "icon": "people",
+  "indicator_color": "green",
+  "content": "[{\"id\":\"header-main\",\"type\":\"header\",\"data\":{\"text\":\"Suppliers\",\"level\":2,\"col\":12}},{\"id\":\"header-shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"Quick Actions\",\"level\":4,\"col\":12}},{\"id\":\"shortcut-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Supplier Applications\",\"col\":4}},{\"id\":\"shortcut-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Supplier Master\",\"col\":4}},{\"id\":\"shortcut-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Category Registrations\",\"col\":4}},{\"id\":\"shortcut-4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Compliance Documents\",\"col\":4}},{\"id\":\"shortcut-5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Renewal Reviews\",\"col\":4}},{\"id\":\"shortcut-6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Debarment Register\",\"col\":4}},{\"id\":\"header-queues\",\"type\":\"header\",\"data\":{\"text\":\"Queues & Monitoring\",\"level\":4,\"col\":12}},{\"id\":\"quick-list-1\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Pending Review\",\"col\":4}},{\"id\":\"quick-list-2\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Expiring Soon\",\"col\":4}},{\"id\":\"quick-list-3\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Suspended Suppliers\",\"col\":4}},{\"id\":\"header-insights\",\"type\":\"header\",\"data\":{\"text\":\"KPIs\",\"level\":4,\"col\":12}},{\"id\":\"number-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Suppliers\",\"col\":3}},{\"id\":\"number-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Supplier Renewals Due\",\"col\":3}},{\"id\":\"header-links\",\"type\":\"header\",\"data\":{\"text\":\"Navigation\",\"level\":4,\"col\":12}},{\"id\":\"links-1\",\"type\":\"links\",\"data\":{\"links_name\":\"Supplier Governance\",\"col\":6}},{\"id\":\"links-2\",\"type\":\"links\",\"data\":{\"links_name\":\"Supplier Compliance\",\"col\":6}}]",
+  "charts": [],
+  "shortcuts": [
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Supplier Registration Application",
+      "doc_view": "List",
+      "label": "Supplier Applications",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Supplier Master",
+      "doc_view": "List",
+      "label": "Supplier Master",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Supplier Category Registration",
+      "doc_view": "List",
+      "label": "Category Registrations",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Supplier Compliance Document",
+      "doc_view": "List",
+      "label": "Compliance Documents",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Supplier Renewal Review",
+      "doc_view": "List",
+      "label": "Renewal Reviews",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Suspension Debarment Register",
+      "doc_view": "List",
+      "label": "Debarment Register",
+      "icon": "",
+      "color": "gray"
+    }
+  ],
+  "links": [
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Supplier Governance",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Supplier Registration Application",
+      "link_type": "DocType",
+      "link_to": "Supplier Registration Application"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Supplier Master",
+      "link_type": "DocType",
+      "link_to": "Supplier Master"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Supplier Status Action",
+      "link_type": "DocType",
+      "link_to": "Supplier Status Action"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Suspension Debarment Register",
+      "link_type": "DocType",
+      "link_to": "Suspension Debarment Register"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Supplier Compliance",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Supplier Compliance Document",
+      "link_type": "DocType",
+      "link_to": "Supplier Compliance Document"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Supplier Category Registration",
+      "link_type": "DocType",
+      "link_to": "Supplier Category Registration"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Supplier Beneficial Ownership",
+      "link_type": "DocType",
+      "link_to": "Supplier Beneficial Ownership"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Supplier Bank Detail",
+      "link_type": "DocType",
+      "link_to": "Supplier Bank Detail"
+    }
+  ],
+  "quick_lists": [
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Supplier Registration Application",
+      "label": "Pending Review",
+      "quick_list_filter": "[[\"application_status\",\"in\",[\"Submitted\",\"Compliance Review\",\"Procurement Review\"]]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Supplier Compliance Document",
+      "label": "Expiring Soon",
+      "quick_list_filter": "[[\"verification_status\",\"=\",\"Expired\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Supplier Master",
+      "label": "Suspended Suppliers",
+      "quick_list_filter": "[[\"supplier_status\",\"in\",[\"Suspended\",\"Debarred\",\"Blacklisted\"]]]"
+    }
+  ],
+  "number_cards": [
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Active Suppliers",
+      "label": "Active Suppliers"
+    },
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Supplier Renewals Due",
+      "label": "Supplier Renewals Due"
+    }
+  ],
+  "custom_blocks": [],
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Supplier Registration Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ]
+}

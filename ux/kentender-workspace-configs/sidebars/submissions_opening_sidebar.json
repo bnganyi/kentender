@@ -1,0 +1,59 @@
+{
+  "doctype": "Workspace Sidebar",
+  "name": "Submissions & Opening",
+  "title": "Submissions & Opening",
+  "header_icon": "inbox",
+  "module": "KenTender",
+  "standard": 0,
+  "app": "kentender",
+  "items": [
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Section Break",
+      "label": "Submission Desk",
+      "icon": "mail",
+      "collapsible": 1,
+      "keep_closed": 0
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Dashboard",
+      "link_type": "Workspace",
+      "link_to": "KT Submissions & Opening",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Tender Submissions",
+      "link_type": "DocType",
+      "link_to": "Tender Submission",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Receipt Log",
+      "link_type": "DocType",
+      "link_to": "Bid Receipt Log",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Opening Register",
+      "link_type": "DocType",
+      "link_to": "Bid Opening Register",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Opening Records",
+      "link_type": "DocType",
+      "link_to": "Bid Opening Record",
+      "icon": ""
+    }
+  ]
+}

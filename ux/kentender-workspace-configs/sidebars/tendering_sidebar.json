@@ -1,0 +1,67 @@
+{
+  "doctype": "Workspace Sidebar",
+  "name": "Tendering",
+  "title": "Tendering",
+  "header_icon": "bullhorn",
+  "module": "KenTender",
+  "standard": 0,
+  "app": "kentender",
+  "items": [
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Section Break",
+      "label": "Tender Desk",
+      "icon": "briefcase",
+      "collapsible": 1,
+      "keep_closed": 0
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Dashboard",
+      "link_type": "Workspace",
+      "link_to": "KT Tendering",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Tenders",
+      "link_type": "DocType",
+      "link_to": "Tender",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Tender Lots",
+      "link_type": "DocType",
+      "link_to": "Tender Lot",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Document Packs",
+      "link_type": "DocType",
+      "link_to": "Tender Document Pack",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Clarifications",
+      "link_type": "DocType",
+      "link_to": "Tender Clarification",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Addenda",
+      "link_type": "DocType",
+      "link_to": "Tender Addendum",
+      "icon": ""
+    }
+  ]
+}

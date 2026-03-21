@@ -1,0 +1,32 @@
+{
+  "doctype": "Desktop Icon",
+  "name": "Oversight & Audit",
+  "label": "Oversight & Audit",
+  "icon_type": "App",
+  "link_type": "Workspace Sidebar",
+  "link_to": "Oversight & Audit",
+  "sidebar": "Oversight & Audit",
+  "standard": 0,
+  "app": "kentender",
+  "icon": "shield",
+  "bg_color": "blue",
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Oversight Viewer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    }
+  ],
+  "hidden": 0
+}

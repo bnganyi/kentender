@@ -1,0 +1,67 @@
+{
+  "doctype": "Workspace Sidebar",
+  "name": "Evaluation & Award",
+  "title": "Evaluation & Award",
+  "header_icon": "verify",
+  "module": "KenTender",
+  "standard": 0,
+  "app": "kentender",
+  "items": [
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Section Break",
+      "label": "Evaluation Desk",
+      "icon": "check-circle",
+      "collapsible": 1,
+      "keep_closed": 0
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Dashboard",
+      "link_type": "Workspace",
+      "link_to": "KT Evaluation & Award",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Evaluation Worksheets",
+      "link_type": "DocType",
+      "link_to": "Evaluation Worksheet",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Consensus Records",
+      "link_type": "DocType",
+      "link_to": "Evaluation Consensus Record",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Award Recommendations",
+      "link_type": "DocType",
+      "link_to": "Award Recommendation",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Award Decisions",
+      "link_type": "DocType",
+      "link_to": "Award Decision",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Challenge Cases",
+      "link_type": "DocType",
+      "link_to": "Challenge Review Case",
+      "icon": ""
+    }
+  ]
+}

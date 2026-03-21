@@ -1,0 +1,36 @@
+{
+  "doctype": "Desktop Icon",
+  "name": "Tendering",
+  "label": "Tendering",
+  "icon_type": "App",
+  "link_type": "Workspace Sidebar",
+  "link_to": "Tendering",
+  "sidebar": "Tendering",
+  "standard": 0,
+  "app": "kentender",
+  "icon": "bullhorn",
+  "bg_color": "blue",
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Tender Committee Secretary"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ],
+  "hidden": 0
+}

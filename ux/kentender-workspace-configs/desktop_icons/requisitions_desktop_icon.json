@@ -1,0 +1,44 @@
+{
+  "doctype": "Desktop Icon",
+  "name": "Requisitions",
+  "label": "Requisitions",
+  "icon_type": "App",
+  "link_type": "Workspace Sidebar",
+  "link_to": "Requisitions",
+  "sidebar": "Requisitions",
+  "standard": 0,
+  "app": "kentender",
+  "icon": "form",
+  "bg_color": "blue",
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Requestor"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Department"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Finance/Budget Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ],
+  "hidden": 0
+}

@@ -1,0 +1,59 @@
+{
+  "doctype": "Workspace Sidebar",
+  "name": "Contracts & Execution",
+  "title": "Contracts & Execution",
+  "header_icon": "folder-open",
+  "module": "KenTender",
+  "standard": 0,
+  "app": "kentender",
+  "items": [
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Section Break",
+      "label": "Execution Desk",
+      "icon": "file-text",
+      "collapsible": 1,
+      "keep_closed": 0
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Dashboard",
+      "link_type": "Workspace",
+      "link_to": "KT Contracts & Execution",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Contract Handoffs",
+      "link_type": "DocType",
+      "link_to": "Award Contract Handoff",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "PO Handoffs",
+      "link_type": "DocType",
+      "link_to": "Award PO Handoff",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Purchase Orders",
+      "link_type": "DocType",
+      "link_to": "Purchase Order",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Purchase Invoices",
+      "link_type": "DocType",
+      "link_to": "Purchase Invoice",
+      "icon": ""
+    }
+  ]
+}

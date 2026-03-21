@@ -1,0 +1,44 @@
+{
+  "doctype": "Desktop Icon",
+  "name": "Evaluation & Award",
+  "label": "Evaluation & Award",
+  "icon_type": "App",
+  "link_type": "Workspace Sidebar",
+  "link_to": "Evaluation & Award",
+  "sidebar": "Evaluation & Award",
+  "standard": 0,
+  "app": "kentender",
+  "icon": "verify",
+  "bg_color": "blue",
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Evaluation Committee Member"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Evaluation Committee Chair"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Tender Committee Secretary"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ],
+  "hidden": 0
+}

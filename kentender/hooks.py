@@ -146,9 +146,6 @@ scheduler_events = {
 
 after_migrate = "kentender.kentender.api.phase1_after_migrate_setup"
 
-# Bust browser localStorage Page cache when kentender_page_stub_version changes (see kentender/boot.py).
-boot_session = ["kentender.kentender.boot.extend_boot_session"]
-
 app_name = "kentender"
 app_title = "KenTender"
 app_publisher = "Midas"
@@ -177,7 +174,7 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/kentender/css/kentender.css"
-app_include_js = "/assets/kentender/js/kentender_page_stub_cache_bust.js"
+# app_include_js = "/assets/kentender/js/kentender.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/kentender/css/kentender.css"

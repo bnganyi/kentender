@@ -1,0 +1,67 @@
+{
+  "doctype": "Workspace Sidebar",
+  "name": "Requisitions",
+  "title": "Requisitions",
+  "header_icon": "form",
+  "module": "KenTender",
+  "standard": 0,
+  "app": "kentender",
+  "items": [
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Section Break",
+      "label": "Requisition Desk",
+      "icon": "clipboard",
+      "collapsible": 1,
+      "keep_closed": 0
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Dashboard",
+      "link_type": "Workspace",
+      "link_to": "KT Requisitions",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Purchase Requisitions",
+      "link_type": "DocType",
+      "link_to": "Purchase Requisition",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Amendments",
+      "link_type": "DocType",
+      "link_to": "Purchase Requisition Amendment",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Commitments",
+      "link_type": "DocType",
+      "link_to": "Purchase Requisition Commitment",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Exceptions",
+      "link_type": "DocType",
+      "link_to": "Purchase Requisition Exception",
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Sidebar Item",
+      "type": "Link",
+      "label": "Tender Handoffs",
+      "link_type": "DocType",
+      "link_to": "Requisition Tender Handoff",
+      "icon": ""
+    }
+  ]
+}

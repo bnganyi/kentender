@@ -1,0 +1,32 @@
+{
+  "doctype": "Desktop Icon",
+  "name": "Suppliers",
+  "label": "Suppliers",
+  "icon_type": "App",
+  "link_type": "Workspace Sidebar",
+  "link_to": "Suppliers",
+  "sidebar": "Suppliers",
+  "standard": 0,
+  "app": "kentender",
+  "icon": "people",
+  "bg_color": "blue",
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Supplier Registration Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ],
+  "hidden": 0
+}

@@ -1,0 +1,194 @@
+{
+  "doctype": "Workspace",
+  "name": "KT Requisitions",
+  "label": "KT Requisitions",
+  "title": "Requisitions",
+  "sequence_id": 20,
+  "module": "KenTender",
+  "app": "kentender",
+  "type": "Workspace",
+  "public": 1,
+  "is_hidden": 0,
+  "icon": "form",
+  "indicator_color": "orange",
+  "content": "[{\"id\":\"header-main\",\"type\":\"header\",\"data\":{\"text\":\"Requisitions\",\"level\":2,\"col\":12}},{\"id\":\"header-shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"Quick Actions\",\"level\":4,\"col\":12}},{\"id\":\"shortcut-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Requisition\",\"col\":4}},{\"id\":\"shortcut-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Requisitions\",\"col\":4}},{\"id\":\"shortcut-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Requisition Amendments\",\"col\":4}},{\"id\":\"shortcut-4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Active Commitments\",\"col\":4}},{\"id\":\"shortcut-5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exceptions\",\"col\":4}},{\"id\":\"shortcut-6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Tender Handoffs\",\"col\":4}},{\"id\":\"header-queues\",\"type\":\"header\",\"data\":{\"text\":\"Queues & Monitoring\",\"level\":4,\"col\":12}},{\"id\":\"quick-list-1\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Pending My Approval\",\"col\":4}},{\"id\":\"quick-list-2\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Budget Blocked\",\"col\":4}},{\"id\":\"quick-list-3\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Emergency Requests\",\"col\":4}},{\"id\":\"header-insights\",\"type\":\"header\",\"data\":{\"text\":\"KPIs\",\"level\":4,\"col\":12}},{\"id\":\"number-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Requisitions\",\"col\":3}},{\"id\":\"number-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Committed Value\",\"col\":3}},{\"id\":\"header-links\",\"type\":\"header\",\"data\":{\"text\":\"Navigation\",\"level\":4,\"col\":12}},{\"id\":\"links-1\",\"type\":\"links\",\"data\":{\"links_name\":\"Requisition Operations\",\"col\":6}},{\"id\":\"links-2\",\"type\":\"links\",\"data\":{\"links_name\":\"Governance\",\"col\":6}}]",
+  "charts": [],
+  "shortcuts": [
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Purchase Requisition",
+      "doc_view": "New",
+      "label": "New Requisition",
+      "icon": "",
+      "color": "blue"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Purchase Requisition",
+      "doc_view": "List",
+      "label": "My Requisitions",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Purchase Requisition Amendment",
+      "doc_view": "List",
+      "label": "Requisition Amendments",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Purchase Requisition Commitment",
+      "doc_view": "List",
+      "label": "Active Commitments",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Purchase Requisition Exception",
+      "doc_view": "List",
+      "label": "Exceptions",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Requisition Tender Handoff",
+      "doc_view": "List",
+      "label": "Tender Handoffs",
+      "icon": "",
+      "color": "gray"
+    }
+  ],
+  "links": [
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Requisition Operations",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Purchase Requisition",
+      "link_type": "DocType",
+      "link_to": "Purchase Requisition"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Purchase Requisition Amendment",
+      "link_type": "DocType",
+      "link_to": "Purchase Requisition Amendment"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Purchase Requisition Commitment",
+      "link_type": "DocType",
+      "link_to": "Purchase Requisition Commitment"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Requisition Tender Handoff",
+      "link_type": "DocType",
+      "link_to": "Requisition Tender Handoff"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Governance",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Purchase Requisition Exception",
+      "link_type": "DocType",
+      "link_to": "Purchase Requisition Exception"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "APP to Requisition Traceability",
+      "link_type": "Report",
+      "link_to": "APP to Requisition Traceability",
+      "is_query_report": 1
+    }
+  ],
+  "quick_lists": [
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Purchase Requisition",
+      "label": "Pending My Approval",
+      "quick_list_filter": "[[\"status\",\"in\",[\"HoD Review\",\"Finance Review\",\"AO Review\",\"Procurement Review\"]]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Purchase Requisition",
+      "label": "Budget Blocked",
+      "quick_list_filter": "[[\"budget_status\",\"=\",\"Blocked\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Purchase Requisition",
+      "label": "Emergency Requests",
+      "quick_list_filter": "[[\"emergency_flag\",\"=\",1]]"
+    }
+  ],
+  "number_cards": [
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Requisition Pending",
+      "label": "Pending Requisitions"
+    },
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Requisition Commitment Value",
+      "label": "Committed Value"
+    }
+  ],
+  "custom_blocks": [],
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Requestor"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Department"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Finance/Budget Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ]
+}

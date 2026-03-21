@@ -1,0 +1,196 @@
+{
+  "doctype": "Workspace",
+  "name": "KT Procurement Planning",
+  "label": "KT Procurement Planning",
+  "title": "Procurement Planning",
+  "sequence_id": 10,
+  "module": "KenTender",
+  "app": "kentender",
+  "type": "Workspace",
+  "public": 1,
+  "is_hidden": 0,
+  "icon": "goal",
+  "indicator_color": "blue",
+  "content": "[{\"id\":\"header-main\",\"type\":\"header\",\"data\":{\"text\":\"Procurement Planning\",\"level\":2,\"col\":12}},{\"id\":\"header-shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"Quick Actions\",\"level\":4,\"col\":12}},{\"id\":\"shortcut-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Procurement Plan\",\"col\":4}},{\"id\":\"shortcut-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Procurement Plans\",\"col\":4}},{\"id\":\"shortcut-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Plan Items\",\"col\":4}},{\"id\":\"shortcut-4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Strategic Objectives\",\"col\":4}},{\"id\":\"shortcut-5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Budget Control Rules\",\"col\":4}},{\"id\":\"shortcut-6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Threshold Rules\",\"col\":4}},{\"id\":\"header-queues\",\"type\":\"header\",\"data\":{\"text\":\"Queues & Monitoring\",\"level\":4,\"col\":12}},{\"id\":\"quick-list-1\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Draft Plans\",\"col\":4}},{\"id\":\"quick-list-2\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Pending Finance Review\",\"col\":4}},{\"id\":\"quick-list-3\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"High Risk Planned Items\",\"col\":4}},{\"id\":\"header-insights\",\"type\":\"header\",\"data\":{\"text\":\"KPIs\",\"level\":4,\"col\":12}},{\"id\":\"number-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Planned Value\",\"col\":3}},{\"id\":\"number-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Plans Awaiting Approval\",\"col\":3}},{\"id\":\"header-links\",\"type\":\"header\",\"data\":{\"text\":\"Navigation\",\"level\":4,\"col\":12}},{\"id\":\"links-1\",\"type\":\"links\",\"data\":{\"links_name\":\"Planning Actions\",\"col\":6}},{\"id\":\"links-2\",\"type\":\"links\",\"data\":{\"links_name\":\"Planning Reference Data\",\"col\":6}}]",
+  "charts": [],
+  "shortcuts": [
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Procurement Plan",
+      "doc_view": "New",
+      "label": "New Procurement Plan",
+      "icon": "",
+      "color": "blue"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Procurement Plan",
+      "doc_view": "List",
+      "label": "Procurement Plans",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Procurement Plan Item",
+      "doc_view": "List",
+      "label": "Plan Items",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Strategic Objective",
+      "doc_view": "List",
+      "label": "Strategic Objectives",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Budget Control Rule",
+      "doc_view": "List",
+      "label": "Budget Control Rules",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Procurement Threshold Rule",
+      "doc_view": "List",
+      "label": "Threshold Rules",
+      "icon": "",
+      "color": "gray"
+    }
+  ],
+  "links": [
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Planning Actions",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Procurement Plan",
+      "link_type": "DocType",
+      "link_to": "Procurement Plan"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Procurement Plan Item",
+      "link_type": "DocType",
+      "link_to": "Procurement Plan Item"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Procurement Plan Revision",
+      "link_type": "DocType",
+      "link_to": "Procurement Plan Revision"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Planning Reference Data",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Strategic Objective",
+      "link_type": "DocType",
+      "link_to": "Strategic Objective"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Procurement Policy Profile",
+      "link_type": "DocType",
+      "link_to": "Procurement Policy Profile"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Procurement Threshold Rule",
+      "link_type": "DocType",
+      "link_to": "Procurement Threshold Rule"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Approval Matrix Rule",
+      "link_type": "DocType",
+      "link_to": "Approval Matrix Rule"
+    }
+  ],
+  "quick_lists": [
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Procurement Plan",
+      "label": "Draft Plans",
+      "quick_list_filter": "[[\"status\",\"=\",\"Draft\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Procurement Plan",
+      "label": "Pending Finance Review",
+      "quick_list_filter": "[[\"status\",\"=\",\"Finance Review\"]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Procurement Plan Item",
+      "label": "High Risk Planned Items",
+      "quick_list_filter": "[[\"risk_level\",\"=\",\"High\"]]"
+    }
+  ],
+  "number_cards": [
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Planned APP Value",
+      "label": "Planned Value"
+    },
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT APP Pending Approval",
+      "label": "Plans Awaiting Approval"
+    }
+  ],
+  "custom_blocks": [],
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Planning Authority"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Planner"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Finance/Budget Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ]
+}

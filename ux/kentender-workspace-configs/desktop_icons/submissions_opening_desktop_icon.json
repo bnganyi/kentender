@@ -1,0 +1,32 @@
+{
+  "doctype": "Desktop Icon",
+  "name": "Submissions & Opening",
+  "label": "Submissions & Opening",
+  "icon_type": "App",
+  "link_type": "Workspace Sidebar",
+  "link_to": "Submissions & Opening",
+  "sidebar": "Submissions & Opening",
+  "standard": 0,
+  "app": "kentender",
+  "icon": "inbox",
+  "bg_color": "blue",
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Tender Committee Secretary"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Opening Committee Member"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ],
+  "hidden": 0
+}

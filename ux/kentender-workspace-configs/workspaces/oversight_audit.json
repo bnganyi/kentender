@@ -1,0 +1,186 @@
+{
+  "doctype": "Workspace",
+  "name": "KT Oversight & Audit",
+  "label": "KT Oversight & Audit",
+  "title": "Oversight & Audit",
+  "sequence_id": 80,
+  "module": "KenTender",
+  "app": "kentender",
+  "type": "Workspace",
+  "public": 1,
+  "is_hidden": 0,
+  "icon": "shield",
+  "indicator_color": "grey",
+  "content": "[{\"id\":\"header-main\",\"type\":\"header\",\"data\":{\"text\":\"Oversight & Audit\",\"level\":2,\"col\":12}},{\"id\":\"header-shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"Quick Actions\",\"level\":4,\"col\":12}},{\"id\":\"shortcut-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exception Register\",\"col\":4}},{\"id\":\"shortcut-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Published Plans\",\"col\":4}},{\"id\":\"shortcut-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Award Publications\",\"col\":4}},{\"id\":\"shortcut-4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Permissions\",\"col\":4}},{\"id\":\"shortcut-5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow Actions\",\"col\":4}},{\"id\":\"header-queues\",\"type\":\"header\",\"data\":{\"text\":\"Queues & Monitoring\",\"level\":4,\"col\":12}},{\"id\":\"quick-list-1\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Open Exceptions\",\"col\":4}},{\"id\":\"quick-list-2\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Open Challenge Cases\",\"col\":4}},{\"id\":\"quick-list-3\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Open Requisition Exceptions\",\"col\":4}},{\"id\":\"header-insights\",\"type\":\"header\",\"data\":{\"text\":\"KPIs\",\"level\":4,\"col\":12}},{\"id\":\"number-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Open Exceptions\",\"col\":3}},{\"id\":\"number-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Open Challenge Cases\",\"col\":3}},{\"id\":\"header-links\",\"type\":\"header\",\"data\":{\"text\":\"Navigation\",\"level\":4,\"col\":12}},{\"id\":\"links-1\",\"type\":\"links\",\"data\":{\"links_name\":\"Oversight Registers\",\"col\":6}},{\"id\":\"links-2\",\"type\":\"links\",\"data\":{\"links_name\":\"Audit & Security\",\"col\":6}}]",
+  "charts": [],
+  "shortcuts": [
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Exception Register Entry",
+      "doc_view": "List",
+      "label": "Exception Register",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Published Plan Record",
+      "doc_view": "List",
+      "label": "Published Plans",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Award Publication Record",
+      "doc_view": "List",
+      "label": "Award Publications",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "User Permission",
+      "doc_view": "List",
+      "label": "User Permissions",
+      "icon": "",
+      "color": "gray"
+    },
+    {
+      "doctype": "Workspace Shortcut",
+      "type": "DocType",
+      "link_to": "Workflow Action",
+      "doc_view": "List",
+      "label": "Workflow Actions",
+      "icon": "",
+      "color": "gray"
+    }
+  ],
+  "links": [
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Oversight Registers",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Exception Register Entry",
+      "link_type": "DocType",
+      "link_to": "Exception Register Entry"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Published Plan Record",
+      "link_type": "DocType",
+      "link_to": "Published Plan Record"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Award Publication Record",
+      "link_type": "DocType",
+      "link_to": "Award Publication Record"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Challenge Review Case",
+      "link_type": "DocType",
+      "link_to": "Challenge Review Case"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Card Break",
+      "label": "Audit & Security",
+      "hidden": 0,
+      "icon": ""
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "User Permission",
+      "link_type": "DocType",
+      "link_to": "User Permission"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Role Permission Manager",
+      "link_type": "Page",
+      "link_to": "permission-manager"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Workflow Action",
+      "link_type": "DocType",
+      "link_to": "Workflow Action"
+    },
+    {
+      "doctype": "Workspace Link",
+      "type": "Link",
+      "label": "Activity Log",
+      "link_type": "DocType",
+      "link_to": "Activity Log"
+    }
+  ],
+  "quick_lists": [
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Exception Register Entry",
+      "label": "Open Exceptions",
+      "quick_list_filter": "[[\"status\",\"not in\",[\"Closed\",\"Resolved\"]]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Challenge Review Case",
+      "label": "Open Challenge Cases",
+      "quick_list_filter": "[[\"status\",\"not in\",[\"Closed\",\"Resolved\"]]]"
+    },
+    {
+      "doctype": "Workspace Quick List",
+      "document_type": "Purchase Requisition Exception",
+      "label": "Open Requisition Exceptions",
+      "quick_list_filter": "[[\"status\",\"not in\",[\"Closed\",\"Approved\"]]]"
+    }
+  ],
+  "number_cards": [
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Open Exceptions",
+      "label": "Open Exceptions"
+    },
+    {
+      "doctype": "Workspace Number Card",
+      "number_card_name": "KT Open Challenge Cases",
+      "label": "Open Challenge Cases"
+    }
+  ],
+  "custom_blocks": [],
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Oversight Viewer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    }
+  ]
+}

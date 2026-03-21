@@ -1,0 +1,40 @@
+{
+  "doctype": "Desktop Icon",
+  "name": "Procurement Planning",
+  "label": "Procurement Planning",
+  "icon_type": "App",
+  "link_type": "Workspace Sidebar",
+  "link_to": "Procurement Planning",
+  "sidebar": "Procurement Planning",
+  "standard": 0,
+  "app": "kentender",
+  "icon": "goal",
+  "bg_color": "blue",
+  "roles": [
+    {
+      "doctype": "Has Role",
+      "role": "Planning Authority"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Procurement Planner"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Finance/Budget Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Head of Procurement"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Accounting Officer"
+    },
+    {
+      "doctype": "Has Role",
+      "role": "Internal Auditor"
+    }
+  ],
+  "hidden": 0
+}
