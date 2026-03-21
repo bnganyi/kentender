@@ -1,6 +1,6 @@
 document_type,role,permlevel,if_owner,apply_user_permissions,select,read,write,create,delete,submit,cancel,amend,report,export,import,share,print,email,set_user_permissions,mask,notes
-Acceptance Certificate,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.; Read acceptance consequences.
-Acceptance Certificate,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive acceptance/exception note.
+Acceptance Certificate,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.; Read acceptance consequences.
+Acceptance Certificate,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive acceptance/exception note.
 Acceptance Certificate,Accounts Payable Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Acceptance Certificate,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Accepted qty / financial consequence.
 Acceptance Certificate,Contract Manager,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
@@ -12,7 +12,7 @@ Acceptance Certificate,Inspection & Acceptance Officer,2,0,0,0,1,1,0,0,0,0,0,0,0
 Acceptance Certificate,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Acceptance Certificate,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.; Read acceptance consequences.
 Acceptance Certificate,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Fraud/forensic metadata.
-Approval Matrix Rule,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read sensitive control fields.
+Approval Matrix Rule,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read sensitive control fields.
 Approval Matrix Rule,Finance/Budget Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Operational reference use only.
 Approval Matrix Rule,Head of Procurement,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
 Approval Matrix Rule,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
@@ -24,9 +24,9 @@ Approval Matrix Rule,Procurement Planner,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,R
 Award Contract Handoff,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,No handoff until final award.
 Award Contract Handoff,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Award Contract Handoff,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,No handoff until final award.
-Award Decision,Accounting Officer / Approving Authority,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Final approval/hold/cancel.
-Award Decision,Accounting Officer / Approving Authority,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
-Award Decision,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
+Award Decision,Accounting Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Final approval/hold/cancel.
+Award Decision,Accounting Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
+Award Decision,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
 Award Decision,Head of Procurement,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Award Decision,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Award Decision,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted fields.
@@ -37,9 +37,9 @@ Award Publication Record,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,
 Award Publication Record,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Hash/lock/forensic metadata.
 Award Publication Record,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Award Publication Record,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Final publication evidence.
-Award Recommendation,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
-Award Recommendation,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted fields.
-Award Recommendation,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
+Award Recommendation,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
+Award Recommendation,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted fields.
+Award Recommendation,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
 Award Recommendation,Evaluation Committee Chair,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Separate from decision.
 Award Recommendation,Evaluation Committee Chair,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.
 Award Recommendation,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
@@ -64,7 +64,7 @@ Bid Receipt Log,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only
 Bid Receipt Log,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Bid Receipt Log,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Receipt ledger.
 Bid Receipt Log,System Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Receipt ledger.
-Budget Control Rule,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read sensitive control fields.
+Budget Control Rule,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read sensitive control fields.
 Budget Control Rule,Finance/Budget Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.; Operational reference use only.
 Budget Control Rule,Head of Procurement,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
 Budget Control Rule,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
@@ -72,25 +72,25 @@ Budget Control Rule,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read 
 Budget Control Rule,Planning Authority,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Control mode master.
 Budget Control Rule,Planning Authority,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Sensitive control values.
 Budget Control Rule,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Operational reference use only.
-Budget Override Record,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
-Budget Override Record,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
-Budget Override Record,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Budget Override Record,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
+Budget Override Record,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
+Budget Override Record,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Budget Override Record,Finance/Budget Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,High-risk monetary override evidence.
 Budget Override Record,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Monetary/bank/control fields.
 Budget Override Record,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Budget Override Record,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
 Budget Override Record,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic metadata.
-Challenge Review Case,Accounting Officer / Approving Authority,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Can hold publication/handoff.
-Challenge Review Case,Accounting Officer / Approving Authority,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
-Challenge Review Case,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
+Challenge Review Case,Accounting Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Can hold publication/handoff.
+Challenge Review Case,Accounting Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
+Challenge Review Case,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
 Challenge Review Case,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Challenge Review Case,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted fields.
 Challenge Review Case,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Challenge Review Case,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Can hold publication/handoff.
 Challenge Review Case,Procurement Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.
-Claim Dispute Record,Accounting Officer / Approving Authority,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Legal/settlement sensitive.
-Claim Dispute Record,Accounting Officer / Approving Authority,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
-Claim Dispute Record,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
+Claim Dispute Record,Accounting Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Legal/settlement sensitive.
+Claim Dispute Record,Accounting Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
+Claim Dispute Record,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
 Claim Dispute Record,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Legal/settlement sensitive.
 Claim Dispute Record,Contract Manager,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.
 Claim Dispute Record,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
@@ -100,8 +100,8 @@ Closeout Record,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Immutable
 Closeout Record,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Closeout Record,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Hash/lock/forensic metadata.
 Closeout Record,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
-Contract,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
-Contract,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
+Contract,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
+Contract,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
 Contract,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/commercial fields.
 Contract,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Live commercial terms restricted.
 Contract,Contract Manager,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Operational obligations/narrative.
@@ -111,8 +111,8 @@ Contract,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial c
 Contract,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic/lock metadata.
 Contract,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read operational record.
 Contract,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read operational record.
-Contract Amendment,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial delta.
-Contract Amendment,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Contract Amendment,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial delta.
+Contract Amendment,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Contract Amendment,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,No silent rewrite of contract.
 Contract Amendment,Contract Manager,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Narrative/support.
 Contract Amendment,Finance/Budget Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read variation/amendment.
@@ -121,8 +121,8 @@ Contract Amendment,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read v
 Contract Amendment,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial delta.
 Contract Amendment,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,No silent rewrite of contract.
 Contract Amendment,Procurement Officer,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Narrative/support.
-Contract Execution Log,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
-Contract Execution Log,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
+Contract Execution Log,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
+Contract Execution Log,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
 Contract Execution Log,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/commercial fields.
 Contract Execution Log,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Operational progress notes.
 Contract Execution Log,Contract Manager,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Operational obligations/narrative.
@@ -131,8 +131,8 @@ Contract Execution Log,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Re
 Contract Execution Log,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
 Contract Execution Log,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic/lock metadata.
 Contract Execution Log,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read operational record.
-Contract Lot,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
-Contract Lot,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
+Contract Lot,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
+Contract Lot,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
 Contract Lot,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/commercial fields.
 Contract Lot,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Per-lot administration.
 Contract Lot,Contract Manager,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Operational obligations/narrative.
@@ -141,8 +141,8 @@ Contract Lot,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read operati
 Contract Lot,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
 Contract Lot,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic/lock metadata.
 Contract Lot,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read operational record.
-Contract Milestone,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
-Contract Milestone,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
+Contract Milestone,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
+Contract Milestone,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
 Contract Milestone,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/commercial fields.
 Contract Milestone,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Operational timeline controls.
 Contract Milestone,Contract Manager,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Operational obligations/narrative.
@@ -151,8 +151,8 @@ Contract Milestone,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read o
 Contract Milestone,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
 Contract Milestone,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic/lock metadata.
 Contract Milestone,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read operational record.
-Contract Progress Update,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
-Contract Progress Update,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
+Contract Progress Update,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
+Contract Progress Update,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive settlement/authority notes.
 Contract Progress Update,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/commercial fields.
 Contract Progress Update,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Project/service progress.
 Contract Progress Update,Contract Manager,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Operational obligations/narrative.
@@ -161,8 +161,8 @@ Contract Progress Update,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,
 Contract Progress Update,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial contract fields.
 Contract Progress Update,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic/lock metadata.
 Contract Progress Update,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read operational record.
-Contract Variation,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial delta.
-Contract Variation,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Contract Variation,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read financial delta.
+Contract Variation,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Contract Variation,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,No silent rewrite of contract.
 Contract Variation,Contract Manager,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Narrative/support.
 Contract Variation,Finance/Budget Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read variation/amendment.
@@ -186,8 +186,8 @@ Defect NCR,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audi
 Defects Liability Review,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Post-completion review.
 Defects Liability Review,Inspection & Acceptance Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Post-completion review.
 Defects Liability Review,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
-Delivery Receipt,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.; Read acceptance consequences.
-Delivery Receipt,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive acceptance/exception note.
+Delivery Receipt,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.; Read acceptance consequences.
+Delivery Receipt,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive acceptance/exception note.
 Delivery Receipt,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Accepted qty / financial consequence.
 Delivery Receipt,Contract Manager,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Delivery Receipt,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Accepted qty / financial consequence.
@@ -204,7 +204,7 @@ Evaluation Committee,Internal Auditor,3,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read
 Evaluation Committee,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Evaluation Committee,Tender Committee Secretary,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Membership and appointments.
 Evaluation Committee,Tender Committee Secretary,3,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Committee-confidential assignments/readout/consensus.
-Evaluation Consensus Record,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
+Evaluation Consensus Record,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Evaluation Consensus Record,Evaluation Committee Chair,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Consensus does not erase individual sheets.
 Evaluation Consensus Record,Evaluation Committee Chair,3,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Committee-confidential assignments/readout/consensus.
 Evaluation Consensus Record,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
@@ -240,9 +240,9 @@ Evaluator Declaration,Evaluation Committee Member,3,0,0,0,1,1,0,0,0,0,0,0,0,0,0,
 Evaluator Declaration,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Evaluator Declaration,Internal Auditor,3,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read committee-confidential fields.
 Evaluator Declaration,Tender Committee Secretary,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
-Exception Register Entry,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
-Exception Register Entry,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
-Exception Register Entry,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Exception Register Entry,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
+Exception Register Entry,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
+Exception Register Entry,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Exception Register Entry,Finance/Budget Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Exception queue with elevated notes.
 Exception Register Entry,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Monetary/bank/control fields.
 Exception Register Entry,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
@@ -257,8 +257,8 @@ Funding Source,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/
 Funding Source,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
 Funding Source,Planning Authority,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Reference master.
 Funding Source,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Operational reference use only.
-Inspection Report,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.; Read acceptance consequences.
-Inspection Report,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive acceptance/exception note.
+Inspection Report,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.; Read acceptance consequences.
+Inspection Report,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive acceptance/exception note.
 Inspection Report,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Accepted qty / financial consequence.
 Inspection Report,Contract Manager,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Inspection Report,Finance/Budget Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
@@ -269,9 +269,9 @@ Inspection Report,Inspection & Acceptance Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,
 Inspection Report,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Inspection Report,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.; Read acceptance consequences.
 Inspection Report,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Fraud/forensic metadata.
-Invoice Control Record,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
-Invoice Control Record,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
-Invoice Control Record,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Invoice Control Record,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
+Invoice Control Record,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
+Invoice Control Record,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Invoice Control Record,Accounts Payable Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Links invoices to acceptance.
 Invoice Control Record,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Monetary/bank/control fields.
 Invoice Control Record,Finance/Budget Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
@@ -290,9 +290,9 @@ National Development Priority,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0
 National Development Priority,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
 National Development Priority,Planning Authority,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Reference child/master; read-heavy.
 National Development Priority,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Operational reference use only.
-Payment Certificate,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
-Payment Certificate,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
-Payment Certificate,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Payment Certificate,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
+Payment Certificate,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
+Payment Certificate,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Payment Certificate,Accounts Payable Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Most fields PL2+.
 Payment Certificate,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Monetary/bank/control fields.
 Payment Certificate,Finance/Budget Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Most fields PL2+.
@@ -300,18 +300,18 @@ Payment Certificate,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
 Payment Certificate,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Payment Certificate,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
 Payment Certificate,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic metadata.
-Post Qualification Check,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
-Post Qualification Check,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted fields.
-Post Qualification Check,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
+Post Qualification Check,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
+Post Qualification Check,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted fields.
+Post Qualification Check,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
 Post Qualification Check,Evaluation Committee Chair,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Due diligence evidence.
 Post Qualification Check,Evaluation Committee Chair,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.
 Post Qualification Check,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Post Qualification Check,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted fields.
 Post Qualification Check,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Due diligence evidence.
 Post Qualification Check,Procurement Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.
-Procurement Plan,Accounting Officer / Approving Authority,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,Workflow action only; constrain by workflow state.
-Procurement Plan,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read finance control fields.
-Procurement Plan,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval and publish notes.
+Procurement Plan,Accounting Officer,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,Workflow action only; constrain by workflow state.
+Procurement Plan,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read finance control fields.
+Procurement Plan,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval and publish notes.
 Procurement Plan,Department Planning Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read APP header.
 Procurement Plan,Finance/Budget Officer,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,Workflow action only; constrain by workflow state.
 Procurement Plan,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Budget and reserve fields.
@@ -323,7 +323,7 @@ Procurement Plan,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Lock has
 Procurement Plan,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read APP header.
 Procurement Plan,Procurement Planner,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,1,0,0,Publish/lock metadata restricted.
 Procurement Plan,Procurement Planner,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Budget and reserve fields.
-Procurement Plan Item,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read finance-sensitive fields.
+Procurement Plan Item,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read finance-sensitive fields.
 Procurement Plan Item,Department Planning Officer,0,0,1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,APP-linked amounts only in draft/revision.
 Procurement Plan Item,Department Planning Officer,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Technical rationale/specification.
 Procurement Plan Item,Finance/Budget Officer,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,Finance validation by workflow.
@@ -336,8 +336,8 @@ Procurement Plan Item,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Rea
 Procurement Plan Item,Procurement Planner,0,0,1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,APP-linked amounts only in draft/revision.
 Procurement Plan Item,Procurement Planner,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Technical rationale/specification.
 Procurement Plan Item,Procurement Planner,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Budget/funding fields.
-Procurement Plan Revision,Accounting Officer / Approving Authority,0,0,0,1,1,1,0,0,1,0,0,1,0,0,0,1,0,0,0,Revision approval only.
-Procurement Plan Revision,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive revision approval note.
+Procurement Plan Revision,Accounting Officer,0,0,0,1,1,1,0,0,1,0,0,1,0,0,0,1,0,0,0,Revision approval only.
+Procurement Plan Revision,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive revision approval note.
 Procurement Plan Revision,Finance/Budget Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read revision.
 Procurement Plan Revision,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial deltas.
 Procurement Plan Revision,Head of Procurement,0,0,0,1,1,1,0,0,1,0,0,1,0,0,0,1,0,0,0,Revision approval only.
@@ -357,7 +357,7 @@ Procurement Policy Profile,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,
 Procurement Policy Profile,Planning Authority,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Threshold edits restricted.
 Procurement Policy Profile,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Operational reference use only.
 Procurement Policy Profile,Procurement Planner,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
-Procurement Risk Rule,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read sensitive control fields.
+Procurement Risk Rule,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read sensitive control fields.
 Procurement Risk Rule,Finance/Budget Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Operational reference use only.
 Procurement Risk Rule,Head of Procurement,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
 Procurement Risk Rule,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
@@ -366,7 +366,7 @@ Procurement Risk Rule,Planning Authority,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,R
 Procurement Risk Rule,Planning Authority,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Sensitive control values.
 Procurement Risk Rule,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Operational reference use only.
 Procurement Risk Rule,Procurement Planner,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
-Procurement Threshold Rule,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read sensitive control fields.
+Procurement Threshold Rule,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read sensitive control fields.
 Procurement Threshold Rule,Finance/Budget Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Operational reference use only.
 Procurement Threshold Rule,Head of Procurement,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
 Procurement Threshold Rule,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
@@ -379,9 +379,9 @@ Published Plan Record,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Rea
 Published Plan Record,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Hash/lock/forensic metadata.
 Published Plan Record,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Published Plan Record,Procurement Planner,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Immutable publication evidence.
-Purchase Requisition,Accounting Officer / Approving Authority,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,Workflow action only; constrain by workflow state.
-Purchase Requisition,Accounting Officer / Approving Authority,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Budget and commitment totals.
-Purchase Requisition,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Exception approval notes.
+Purchase Requisition,Accounting Officer,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,Workflow action only; constrain by workflow state.
+Purchase Requisition,Accounting Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Budget and commitment totals.
+Purchase Requisition,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Exception approval notes.
 Purchase Requisition,Finance/Budget Officer,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,Workflow action only; constrain by workflow state.
 Purchase Requisition,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Budget and commitment totals.
 Purchase Requisition,Head of Department,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,Workflow action only; constrain by workflow state.
@@ -396,8 +396,8 @@ Purchase Requisition,Procurement Officer,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,T
 Purchase Requisition,Procurement Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read finance-sensitive requisition fields.
 Purchase Requisition,Requestor,0,0,1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Requestor must not self-approve.
 Purchase Requisition,Requestor,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Technical summary/justification.
-Purchase Requisition Amendment,Accounting Officer / Approving Authority,0,0,0,1,1,1,0,0,1,0,0,1,0,0,0,1,0,0,0,Amendment approval by workflow.
-Purchase Requisition Amendment,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive amendment approval note.
+Purchase Requisition Amendment,Accounting Officer,0,0,0,1,1,1,0,0,1,0,0,1,0,0,0,1,0,0,0,Amendment approval by workflow.
+Purchase Requisition Amendment,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive amendment approval note.
 Purchase Requisition Amendment,Finance/Budget Officer,0,0,0,1,1,1,0,0,1,0,0,1,0,0,0,1,0,0,0,Amendment approval by workflow.
 Purchase Requisition Amendment,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial delta fields.
 Purchase Requisition Amendment,Head of Procurement,0,0,0,1,1,1,0,0,1,0,0,1,0,0,0,1,0,0,0,Amendment approval by workflow.
@@ -407,31 +407,31 @@ Purchase Requisition Amendment,Procurement Officer,0,0,1,1,1,1,1,0,0,0,0,1,0,0,0
 Purchase Requisition Amendment,Procurement Officer,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Change narrative.
 Purchase Requisition Amendment,Requestor,0,0,1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Material changes only via amendment.
 Purchase Requisition Amendment,Requestor,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Change narrative.
-Purchase Requisition Approval,Accounting Officer / Approving Authority,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Log-only after action.
+Purchase Requisition Approval,Accounting Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Log-only after action.
 Purchase Requisition Approval,Finance/Budget Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Log-only after action.
 Purchase Requisition Approval,Head of Department,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Log-only after action.
 Purchase Requisition Approval,Head of Procurement,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Log-only after action.
 Purchase Requisition Approval,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Purchase Requisition Approval,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Purchase Requisition Approval,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Log-only after action.
-Purchase Requisition Commitment,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
-Purchase Requisition Commitment,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
-Purchase Requisition Commitment,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Purchase Requisition Commitment,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
+Purchase Requisition Commitment,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
+Purchase Requisition Commitment,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Purchase Requisition Commitment,Finance/Budget Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Finance-controlled encumbrance.
 Purchase Requisition Commitment,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Monetary/bank/control fields.
 Purchase Requisition Commitment,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Purchase Requisition Commitment,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
 Purchase Requisition Commitment,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic metadata.
 Purchase Requisition Commitment,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
-Purchase Requisition Exception,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
-Purchase Requisition Exception,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
-Purchase Requisition Exception,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Purchase Requisition Exception,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
+Purchase Requisition Exception,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
+Purchase Requisition Exception,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Purchase Requisition Exception,Finance/Budget Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Emergency/one-off elevated fields.
 Purchase Requisition Exception,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Monetary/bank/control fields.
 Purchase Requisition Exception,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Purchase Requisition Exception,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
 Purchase Requisition Exception,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic metadata.
-Purchase Requisition Item,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read finance-sensitive item fields.
+Purchase Requisition Item,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read finance-sensitive item fields.
 Purchase Requisition Item,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Budget/funding/remaining balance.
 Purchase Requisition Item,Head of Department,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read line details.
 Purchase Requisition Item,Internal Auditor,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read line details.
@@ -451,9 +451,9 @@ Rectification Action,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,R
 Requisition Tender Handoff,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Requisition Tender Handoff,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Freezes scope into tendering.
 Requisition Tender Handoff,Requestor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
-Retention Register,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
-Retention Register,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
-Retention Register,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Retention Register,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
+Retention Register,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
+Retention Register,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Retention Register,Accounts Payable Officer,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Financial control ledger.
 Retention Register,Accounts Payable Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Monetary/bank/control fields.
 Retention Register,Finance/Budget Officer,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Financial control ledger.
@@ -473,8 +473,8 @@ Strategic Objective,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Refer
 Strategic Objective,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
 Strategic Objective,Planning Authority,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Reference master used downstream.
 Strategic Objective,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Operational reference use only.
-Supplier Bank Detail,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
-Supplier Bank Detail,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
+Supplier Bank Detail,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
+Supplier Bank Detail,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive approval note.
 Supplier Bank Detail,Finance/Budget Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Bank data restricted.
 Supplier Bank Detail,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Monetary/bank/control fields.
 Supplier Bank Detail,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
@@ -482,9 +482,9 @@ Supplier Bank Detail,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read
 Supplier Bank Detail,Internal Auditor,5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Forensic metadata.
 Supplier Bank Detail,Supplier Registration Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Bank data restricted.
 Supplier Bank Detail,Supplier Registration Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Monetary/bank/control fields.
-Supplier Beneficial Ownership,Accounting Officer / Approving Authority,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
-Supplier Beneficial Ownership,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
-Supplier Beneficial Ownership,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Enhanced due diligence decision note.
+Supplier Beneficial Ownership,Accounting Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
+Supplier Beneficial Ownership,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
+Supplier Beneficial Ownership,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Enhanced due diligence decision note.
 Supplier Beneficial Ownership,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read controlled record.
 Supplier Beneficial Ownership,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted finance fields.
 Supplier Beneficial Ownership,Supplier Registration Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Restricted due diligence data.
@@ -495,8 +495,8 @@ Supplier Category Registration,Procurement Officer,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0
 Supplier Category Registration,Supplier Bidder User,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read status.
 Supplier Category Registration,Supplier Registration Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Eligibility by category/class.
 Supplier Category Registration,Supplier Registration Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Approval/expiry fields.
-Supplier Compliance Document,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted verification fields.
-Supplier Compliance Document,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Approval/rejection/suspension notes.
+Supplier Compliance Document,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted verification fields.
+Supplier Compliance Document,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Approval/rejection/suspension notes.
 Supplier Compliance Document,Head of Procurement,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read supplier submission.
 Supplier Compliance Document,Head of Procurement,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Approval/rejection/suspension notes.
 Supplier Compliance Document,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read supplier submission.
@@ -512,8 +512,8 @@ Supplier Master,Supplier Registration Officer,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,
 Supplier Performance Baseline,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Starting performance/risk baseline.
 Supplier Performance Baseline,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Supplier Performance Baseline,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Starting performance/risk baseline.
-Supplier Registration Application,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted verification fields.
-Supplier Registration Application,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Approval/rejection/suspension notes.
+Supplier Registration Application,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted verification fields.
+Supplier Registration Application,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Approval/rejection/suspension notes.
 Supplier Registration Application,Head of Procurement,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read supplier submission.
 Supplier Registration Application,Head of Procurement,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Approval/rejection/suspension notes.
 Supplier Registration Application,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read supplier submission.
@@ -524,25 +524,25 @@ Supplier Registration Application,Supplier Registration Officer,2,0,0,0,1,1,0,0,
 Supplier Renewal Review,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Supplier Renewal Review,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Supplier Renewal Review,Supplier Registration Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Periodic refresh.
-Supplier Status Action,Accounting Officer / Approving Authority,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Only route for substantive status change.
-Supplier Status Action,Accounting Officer / Approving Authority,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
-Supplier Status Action,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
+Supplier Status Action,Accounting Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Only route for substantive status change.
+Supplier Status Action,Accounting Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
+Supplier Status Action,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
 Supplier Status Action,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Supplier Status Action,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted fields.
 Supplier Status Action,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Supplier Status Action,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Supplier Status Action,Supplier Registration Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Only route for substantive status change.
 Supplier Status Action,Supplier Registration Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.
-Suspension Debarment Register,Accounting Officer / Approving Authority,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Active record blocks bidding/award.
-Suspension Debarment Register,Accounting Officer / Approving Authority,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
-Suspension Debarment Register,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
+Suspension Debarment Register,Accounting Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Active record blocks bidding/award.
+Suspension Debarment Register,Accounting Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
+Suspension Debarment Register,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
 Suspension Debarment Register,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Suspension Debarment Register,Internal Auditor,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read restricted fields.
 Suspension Debarment Register,Oversight Viewer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Suspension Debarment Register,Procurement Officer,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.
 Suspension Debarment Register,Supplier Registration Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Active record blocks bidding/award.
 Suspension Debarment Register,Supplier Registration Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.
-Tender,Accounting Officer / Approving Authority,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read finance-sensitive tender fields.
+Tender,Accounting Officer,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Read finance-sensitive tender fields.
 Tender,Finance/Budget Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Estimated value and finance-sensitive fields.
 Tender,Head of Procurement,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Setup roles should not see sealed bid content.
 Tender,Head of Procurement,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive tender approval notes.
@@ -593,9 +593,9 @@ Tender Publication Record,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,
 Tender Security Rule,Head of Procurement,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
 Tender Security Rule,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Reference/master read access.
 Tender Security Rule,Procurement Officer,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,Bid security master per tender.
-Termination Record,Accounting Officer / Approving Authority,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Executive/forensic notes restricted.
-Termination Record,Accounting Officer / Approving Authority,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
-Termination Record,Accounting Officer / Approving Authority,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
+Termination Record,Accounting Officer,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Executive/forensic notes restricted.
+Termination Record,Accounting Officer,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.; Read restricted fields.
+Termination Record,Accounting Officer,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Executive decision note.
 Termination Record,Contract Manager,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,Executive/forensic notes restricted.
 Termination Record,Contract Manager,2,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Financial/legal/verification fields.
 Termination Record,Internal Auditor,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,Read-only audit/oversight.

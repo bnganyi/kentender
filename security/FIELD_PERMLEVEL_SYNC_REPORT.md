@@ -1,0 +1,391 @@
+# KenTender Security Field Permlevel Sync (APPLY)
+
+Site: `kentender.midas.com`
+Source: `/home/midasuser/frappe-bench/apps/kentender/security/KenTender_Security_DocPerm_FieldDictionary_CSV_Bundle/Field_Dictionary.csv`
+
+## Summary
+- CSV rows read: 525
+- Unique doctype+field keys: 403
+- Missing doctypes referenced: 19
+- Missing fields referenced: 352
+- Rows skipped due to missing prerequisites: 474
+- To change/changed permlevels: 0
+- Unchanged: 51
+
+## Missing doctypes
+- `Claim Dispute Record`
+- `Closeout Record`
+- `Contract Amendment`
+- `Contract Execution Log`
+- `Contract Lot`
+- `Contract Milestone`
+- `Contract Progress Update`
+- `Defect NCR`
+- `Defects Liability Review`
+- `Delivery Receipt`
+- `Evaluation Criterion Template`
+- `Evaluation Score Record`
+- `Final Performance Review`
+- `Invoice Control Record`
+- `Payment Certificate`
+- `Procurement Plan Snapshot`
+- `Procurement Risk Rule`
+- `Rectification Action`
+- `Retention Register`
+
+## Missing fields (doctype.fieldname)
+- `Acceptance Certificate.accepted_rejected_quantity`
+- `Acceptance Certificate.approval_or_override_note`
+- `Acceptance Certificate.financial_amount`
+- `Acceptance Certificate.forensic_ref`
+- `Acceptance Certificate.linked_document`
+- `Acceptance Certificate.name`
+- `Acceptance Certificate.observation_note`
+- `Acceptance Certificate.reason_or_remarks`
+- `Acceptance Certificate.status`
+- `Approval Matrix Rule.description`
+- `Approval Matrix Rule.interpretation_note`
+- `Approval Matrix Rule.name`
+- `Approval Matrix Rule.status`
+- `Approval Matrix Rule.threshold_or_level`
+- `Approval Matrix Rule.title_or_name`
+- `Award Contract Handoff.internal_note`
+- `Award Contract Handoff.name`
+- `Award Contract Handoff.reference`
+- `Award Contract Handoff.status`
+- `Award Decision.amount_or_legal_exposure`
+- `Award Decision.executive_note`
+- `Award Decision.internal_note`
+- `Award Decision.name`
+- `Award Decision.reference`
+- `Award Decision.status`
+- `Award PO Handoff.internal_note`
+- `Award PO Handoff.name`
+- `Award PO Handoff.reference`
+- `Award PO Handoff.status`
+- `Award Publication Record.hash_or_lock_ref`
+- `Award Publication Record.internal_note`
+- `Award Publication Record.reference`
+- `Award Publication Record.status`
+- `Award Recommendation.amount_or_legal_exposure`
+- `Award Recommendation.executive_note`
+- `Award Recommendation.internal_note`
+- `Award Recommendation.name`
+- `Award Recommendation.reference`
+- `Bid Opening Record.committee_confidential`
+- `Bid Opening Record.internal_note`
+- `Bid Opening Record.name`
+- `Bid Opening Record.reference`
+- `Bid Opening Record.status`
+- `Bid Opening Register.committee_confidential`
+- `Bid Opening Register.internal_note`
+- `Bid Opening Register.name`
+- `Bid Opening Register.reference`
+- `Bid Opening Register.status`
+- `Bid Receipt Log.internal_note`
+- `Bid Receipt Log.reference`
+- `Bid Receipt Log.status`
+- `Budget Control Rule.description`
+- `Budget Control Rule.interpretation_note`
+- `Budget Control Rule.name`
+- `Budget Control Rule.status`
+- `Budget Control Rule.threshold_or_level`
+- `Budget Control Rule.title_or_name`
+- `Budget Override Record.approval_or_override_note`
+- `Budget Override Record.financial_amount`
+- `Budget Override Record.forensic_ref`
+- `Budget Override Record.linked_document`
+- `Budget Override Record.name`
+- `Budget Override Record.reason_or_remarks`
+- `Challenge Review Case.amount_or_legal_exposure`
+- `Challenge Review Case.executive_note`
+- `Challenge Review Case.internal_note`
+- `Challenge Review Case.name`
+- `Challenge Review Case.reference`
+- `Contract.contract_value_or_delta`
+- `Contract.entity_or_company`
+- `Contract.executive_note`
+- `Contract.lock_reference`
+- `Contract.name`
+- `Contract.operational_note`
+- `Contract.subject_or_title`
+- `Contract Variation.contract_value_or_delta`
+- `Contract Variation.entity_or_company`
+- `Contract Variation.executive_note`
+- `Contract Variation.lock_reference`
+- `Contract Variation.name`
+- `Contract Variation.operational_note`
+- `Contract Variation.subject_or_title`
+- `Corporate Strategic Plan.name`
+- `Corporate Strategic Plan.title_or_name`
+- `Evaluation Committee.committee_confidential`
+- `Evaluation Committee.internal_note`
+- `Evaluation Committee.name`
+- `Evaluation Committee.reference`
+- `Evaluation Consensus Record.committee_confidential`
+- `Evaluation Consensus Record.internal_note`
+- `Evaluation Consensus Record.name`
+- `Evaluation Consensus Record.reference`
+- `Evaluation Consensus Record.status`
+- `Evaluation Worksheet.chair_override_flag`
+- `Evaluation Worksheet.criterion_comment`
+- `Evaluation Worksheet.integrity_hash`
+- `Evaluation Worksheet.name`
+- `Evaluation Worksheet.score_or_result`
+- `Evaluation Worksheet.status`
+- `Evaluator Declaration.committee_confidential`
+- `Evaluator Declaration.internal_note`
+- `Evaluator Declaration.name`
+- `Evaluator Declaration.reference`
+- `Exception Register Entry.approval_or_override_note`
+- `Exception Register Entry.financial_amount`
+- `Exception Register Entry.forensic_ref`
+- `Exception Register Entry.linked_document`
+- `Exception Register Entry.name`
+- `Exception Register Entry.reason_or_remarks`
+- `Exception Register Entry.status`
+- `Funding Source.name`
+- `Funding Source.title_or_name`
+- `Inspection Report.accepted_rejected_quantity`
+- `Inspection Report.approval_or_override_note`
+- `Inspection Report.financial_amount`
+- `Inspection Report.forensic_ref`
+- `Inspection Report.linked_document`
+- `Inspection Report.name`
+- `Inspection Report.observation_note`
+- `Inspection Report.reason_or_remarks`
+- `Inspection Report.status`
+- `National Development Plan.name`
+- `National Development Plan.title_or_name`
+- `National Development Priority.name`
+- `National Development Priority.title_or_name`
+- `Post Qualification Check.amount_or_legal_exposure`
+- `Post Qualification Check.executive_note`
+- `Post Qualification Check.internal_note`
+- `Post Qualification Check.name`
+- `Post Qualification Check.reference`
+- `Post Qualification Check.status`
+- `Procurement Plan.entity_or_company`
+- `Procurement Plan.name`
+- `Procurement Plan.publish_hash`
+- `Procurement Plan.subject_or_title`
+- `Procurement Plan Item.budget_reference`
+- `Procurement Plan Item.entity_or_company`
+- `Procurement Plan Item.name`
+- `Procurement Plan Item.publish_hash`
+- `Procurement Plan Item.revision_reason`
+- `Procurement Plan Item.subject_or_title`
+- `Procurement Plan Item.total_reserved_amount`
+- `Procurement Plan Revision.budget_reference`
+- `Procurement Plan Revision.entity_or_company`
+- `Procurement Plan Revision.name`
+- `Procurement Plan Revision.publish_hash`
+- `Procurement Plan Revision.revision_reason`
+- `Procurement Plan Revision.subject_or_title`
+- `Procurement Plan Revision.total_reserved_amount`
+- `Procurement Policy Profile.description`
+- `Procurement Policy Profile.interpretation_note`
+- `Procurement Policy Profile.name`
+- `Procurement Policy Profile.threshold_or_level`
+- `Procurement Policy Profile.title_or_name`
+- `Procurement Threshold Rule.description`
+- `Procurement Threshold Rule.interpretation_note`
+- `Procurement Threshold Rule.name`
+- `Procurement Threshold Rule.status`
+- `Procurement Threshold Rule.threshold_or_level`
+- `Procurement Threshold Rule.title_or_name`
+- `Published Plan Record.hash_or_lock_ref`
+- `Published Plan Record.internal_note`
+- `Published Plan Record.reference`
+- `Published Plan Record.status`
+- `Purchase Requisition.entity_or_company`
+- `Purchase Requisition.exception_approval_note`
+- `Purchase Requisition.name`
+- `Purchase Requisition.subject_or_title`
+- `Purchase Requisition.technical_summary`
+- `Purchase Requisition Amendment.budget_reference`
+- `Purchase Requisition Amendment.entity_or_company`
+- `Purchase Requisition Amendment.exception_approval_note`
+- `Purchase Requisition Amendment.justification`
+- `Purchase Requisition Amendment.name`
+- `Purchase Requisition Amendment.subject_or_title`
+- `Purchase Requisition Amendment.technical_summary`
+- `Purchase Requisition Amendment.total_committed_amount`
+- `Purchase Requisition Approval.internal_note`
+- `Purchase Requisition Approval.reference`
+- `Purchase Requisition Approval.status`
+- `Purchase Requisition Commitment.approval_or_override_note`
+- `Purchase Requisition Commitment.financial_amount`
+- `Purchase Requisition Commitment.forensic_ref`
+- `Purchase Requisition Commitment.linked_document`
+- `Purchase Requisition Commitment.name`
+- `Purchase Requisition Commitment.reason_or_remarks`
+- `Purchase Requisition Exception.approval_or_override_note`
+- `Purchase Requisition Exception.financial_amount`
+- `Purchase Requisition Exception.forensic_ref`
+- `Purchase Requisition Exception.linked_document`
+- `Purchase Requisition Exception.name`
+- `Purchase Requisition Exception.reason_or_remarks`
+- `Purchase Requisition Item.budget_reference`
+- `Purchase Requisition Item.entity_or_company`
+- `Purchase Requisition Item.exception_approval_note`
+- `Purchase Requisition Item.justification`
+- `Purchase Requisition Item.name`
+- `Purchase Requisition Item.status`
+- `Purchase Requisition Item.subject_or_title`
+- `Purchase Requisition Item.technical_summary`
+- `Purchase Requisition Item.total_committed_amount`
+- `Purchase Requisition Snapshot.hash_or_lock_ref`
+- `Purchase Requisition Snapshot.internal_note`
+- `Purchase Requisition Snapshot.reference`
+- `Purchase Requisition Snapshot.status`
+- `Requisition Tender Handoff.internal_note`
+- `Requisition Tender Handoff.name`
+- `Requisition Tender Handoff.reference`
+- `Requisition Tender Handoff.status`
+- `Spend Category.name`
+- `Spend Category.title_or_name`
+- `Strategic Objective.name`
+- `Strategic Objective.title_or_name`
+- `Supplier Bank Detail.account_number_or_id`
+- `Supplier Bank Detail.approval_or_override_note`
+- `Supplier Bank Detail.financial_amount`
+- `Supplier Bank Detail.forensic_ref`
+- `Supplier Bank Detail.linked_document`
+- `Supplier Bank Detail.name`
+- `Supplier Bank Detail.pep_or_verification_flag`
+- `Supplier Bank Detail.reason_or_remarks`
+- `Supplier Bank Detail.status`
+- `Supplier Beneficial Ownership.account_number_or_id`
+- `Supplier Beneficial Ownership.approval_or_override_note`
+- `Supplier Beneficial Ownership.financial_amount`
+- `Supplier Beneficial Ownership.forensic_ref`
+- `Supplier Beneficial Ownership.linked_document`
+- `Supplier Beneficial Ownership.name`
+- `Supplier Beneficial Ownership.pep_or_verification_flag`
+- `Supplier Beneficial Ownership.reason_or_remarks`
+- `Supplier Beneficial Ownership.status`
+- `Supplier Category Registration.approval_rejection_note`
+- `Supplier Category Registration.name`
+- `Supplier Category Registration.portal_note`
+- `Supplier Category Registration.status`
+- `Supplier Category Registration.supplier_ref`
+- `Supplier Category Registration.verification_result`
+- `Supplier Compliance Document.approval_rejection_note`
+- `Supplier Compliance Document.name`
+- `Supplier Compliance Document.portal_note`
+- `Supplier Compliance Document.status`
+- `Supplier Compliance Document.supplier_ref`
+- `Supplier Compliance Document.verification_result`
+- `Supplier Master.bank_verification_status`
+- `Supplier Master.debarment_note`
+- `Supplier Master.description`
+- `Supplier Master.name`
+- `Supplier Master.status`
+- `Supplier Master.title_or_name`
+- `Supplier Performance Baseline.internal_note`
+- `Supplier Performance Baseline.name`
+- `Supplier Performance Baseline.reference`
+- `Supplier Performance Baseline.status`
+- `Supplier Registration Application.approval_rejection_note`
+- `Supplier Registration Application.name`
+- `Supplier Registration Application.portal_note`
+- `Supplier Registration Application.status`
+- `Supplier Registration Application.supplier_ref`
+- `Supplier Registration Application.verification_result`
+- `Supplier Renewal Review.internal_note`
+- `Supplier Renewal Review.name`
+- `Supplier Renewal Review.reference`
+- `Supplier Renewal Review.status`
+- `Supplier Status Action.amount_or_legal_exposure`
+- `Supplier Status Action.executive_note`
+- `Supplier Status Action.internal_note`
+- `Supplier Status Action.name`
+- `Supplier Status Action.reference`
+- `Suspension Debarment Register.amount_or_legal_exposure`
+- `Suspension Debarment Register.executive_note`
+- `Suspension Debarment Register.internal_note`
+- `Suspension Debarment Register.name`
+- `Suspension Debarment Register.reference`
+- `Tender.entity_or_company`
+- `Tender.estimated_value`
+- `Tender.internal_setup_note`
+- `Tender.name`
+- `Tender.publication_lock_ref`
+- `Tender.subject_or_title`
+- `Tender Addendum.internal_note`
+- `Tender Addendum.name`
+- `Tender Addendum.reference`
+- `Tender Clarification.entity_or_company`
+- `Tender Clarification.name`
+- `Tender Clarification.subject_or_title`
+- `Tender Document Pack.entity_or_company`
+- `Tender Document Pack.estimated_value`
+- `Tender Document Pack.internal_setup_note`
+- `Tender Document Pack.method`
+- `Tender Document Pack.name`
+- `Tender Document Pack.publication_lock_ref`
+- `Tender Document Pack.status`
+- `Tender Document Pack.subject_or_title`
+- `Tender Document Version.hash_or_lock_ref`
+- `Tender Document Version.internal_note`
+- `Tender Document Version.reference`
+- `Tender Document Version.status`
+- `Tender Eligibility Rule.description`
+- `Tender Eligibility Rule.interpretation_note`
+- `Tender Eligibility Rule.name`
+- `Tender Eligibility Rule.status`
+- `Tender Eligibility Rule.threshold_or_level`
+- `Tender Eligibility Rule.title_or_name`
+- `Tender Evaluation Scheme.internal_note`
+- `Tender Evaluation Scheme.name`
+- `Tender Evaluation Scheme.reference`
+- `Tender Evaluation Scheme.status`
+- `Tender Lot.entity_or_company`
+- `Tender Lot.internal_setup_note`
+- `Tender Lot.method`
+- `Tender Lot.name`
+- `Tender Lot.publication_lock_ref`
+- `Tender Lot.subject_or_title`
+- `Tender Notification Log.internal_note`
+- `Tender Notification Log.name`
+- `Tender Publication Record.hash_or_lock_ref`
+- `Tender Publication Record.internal_note`
+- `Tender Publication Record.reference`
+- `Tender Security Rule.description`
+- `Tender Security Rule.interpretation_note`
+- `Tender Security Rule.name`
+- `Tender Security Rule.status`
+- `Tender Security Rule.threshold_or_level`
+- `Tender Security Rule.title_or_name`
+- `Tender Submission.decrypt_or_forensic_ref`
+- `Tender Submission.name`
+- `Tender Submission.opening_correction_note`
+- `Tender Submission.portal_note`
+- `Tender Submission.sealed_payload_or_price`
+- `Tender Submission.status`
+- `Tender Submission.supplier_ref`
+- `Tender Submission Attachment.decrypt_or_forensic_ref`
+- `Tender Submission Attachment.opening_correction_note`
+- `Tender Submission Attachment.portal_note`
+- `Tender Submission Attachment.sealed_payload_or_price`
+- `Tender Submission Attachment.security_reference`
+- `Tender Submission Attachment.status`
+- `Tender Submission Attachment.supplier_ref`
+- `Tender Submission Lot Response.decrypt_or_forensic_ref`
+- `Tender Submission Lot Response.name`
+- `Tender Submission Lot Response.opening_correction_note`
+- `Tender Submission Lot Response.portal_note`
+- `Tender Submission Lot Response.sealed_payload_or_price`
+- `Tender Submission Lot Response.security_reference`
+- `Tender Submission Lot Response.status`
+- `Tender Submission Lot Response.supplier_ref`
+- `Termination Record.amount_or_legal_exposure`
+- `Termination Record.executive_note`
+- `Termination Record.internal_note`
+- `Termination Record.name`
+- `Termination Record.reference`
+- `Termination Record.status`
+
+## Changed field permlevels
+- None

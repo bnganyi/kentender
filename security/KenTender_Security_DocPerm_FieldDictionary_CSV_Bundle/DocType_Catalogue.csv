@@ -10,18 +10,18 @@ Phase 1,Planning & Budgeting,Budget Control Rule,A,Planning Authority,"Finance/B
 Phase 1,Planning & Budgeting,Procurement Risk Rule,A,Planning Authority,"Procurement Planner, Internal Auditor",Risk scoring logic master.
 Phase 1,Planning & Budgeting,Spend Category,A,Planning Authority,"Oversight Viewer, Internal Auditor",Reference master.
 Phase 1,Planning & Budgeting,Funding Source,A,Planning Authority,"Oversight Viewer, Internal Auditor",Reference master.
-Phase 1,Planning & Budgeting,Procurement Plan,B,Procurement Planner,"Finance/Budget Officer, Accounting Officer / Approving Authority, Internal Auditor, Oversight Viewer",Publish/lock metadata restricted.
+Phase 1,Planning & Budgeting,Procurement Plan,B,Procurement Planner,"Finance/Budget Officer, Accounting Officer, Internal Auditor, Oversight Viewer",Publish/lock metadata restricted.
 Phase 1,Planning & Budgeting,Procurement Plan Item,B,"Department Planning Officer, Procurement Planner","Finance/Budget Officer, Internal Auditor",APP-linked amounts only in draft/revision.
-Phase 1,Planning & Budgeting,Procurement Plan Revision,B,Procurement Planner,"Accounting Officer / Approving Authority, Internal Auditor",Revision only; no direct edits to locked APP.
-Phase 1,Planning & Budgeting,Budget Override Record,D,Finance/Budget Officer,"Accounting Officer / Approving Authority, Internal Auditor",High-risk monetary override evidence.
-Phase 1,Planning & Budgeting,Exception Register Entry,D,Finance/Budget Officer,"Accounting Officer / Approving Authority, Internal Auditor",Exception queue with elevated notes.
+Phase 1,Planning & Budgeting,Procurement Plan Revision,B,Procurement Planner,"Accounting Officer, Internal Auditor",Revision only; no direct edits to locked APP.
+Phase 1,Planning & Budgeting,Budget Override Record,D,Finance/Budget Officer,"Accounting Officer, Internal Auditor",High-risk monetary override evidence.
+Phase 1,Planning & Budgeting,Exception Register Entry,D,Finance/Budget Officer,"Accounting Officer, Internal Auditor",Exception queue with elevated notes.
 Phase 1,Planning & Budgeting,Published Plan Record,E,Procurement Planner,"Internal Auditor, Oversight Viewer",Immutable publication evidence.
 Phase 1,Planning & Budgeting,Procurement Plan Snapshot,E,"System Manager, Procurement Planner","Internal Auditor, Oversight Viewer",Immutable snapshot.
 Phase 1.5,Purchase Requisition,Purchase Requisition,B,"Requestor, Head of Department","Finance/Budget Officer, Procurement Officer, Internal Auditor",Requestor must not self-approve.
 Phase 1.5,Purchase Requisition,Purchase Requisition Item,B,Requestor,"Finance/Budget Officer, Internal Auditor",APP-linked values capped by remaining balance.
-Phase 1.5,Purchase Requisition,Purchase Requisition Approval,E,"Head of Department, Finance/Budget Officer, Accounting Officer / Approving Authority, Procurement Officer, Head of Procurement","Internal Auditor, Oversight Viewer",Log-only after action.
-Phase 1.5,Purchase Requisition,Purchase Requisition Commitment,D,Finance/Budget Officer,"Accounting Officer / Approving Authority, Internal Auditor",Finance-controlled encumbrance.
-Phase 1.5,Purchase Requisition,Purchase Requisition Exception,D,Finance/Budget Officer,"Accounting Officer / Approving Authority, Internal Auditor",Emergency/one-off elevated fields.
+Phase 1.5,Purchase Requisition,Purchase Requisition Approval,E,"Head of Department, Finance/Budget Officer, Accounting Officer, Procurement Officer, Head of Procurement","Internal Auditor, Oversight Viewer",Log-only after action.
+Phase 1.5,Purchase Requisition,Purchase Requisition Commitment,D,Finance/Budget Officer,"Accounting Officer, Internal Auditor",Finance-controlled encumbrance.
+Phase 1.5,Purchase Requisition,Purchase Requisition Exception,D,Finance/Budget Officer,"Accounting Officer, Internal Auditor",Emergency/one-off elevated fields.
 Phase 1.5,Purchase Requisition,Purchase Requisition Amendment,B,"Requestor, Procurement Officer","Finance/Budget Officer, Internal Auditor",Material changes only via amendment.
 Phase 1.5,Purchase Requisition,Purchase Requisition Snapshot,E,System Manager,"Internal Auditor, Oversight Viewer",Immutable event snapshot.
 Phase 1.5,Purchase Requisition,Requisition Tender Handoff,E,Procurement Officer,"Requestor, Internal Auditor",Freezes scope into tendering.
@@ -29,10 +29,10 @@ Phase 2A,Supplier Registration & Eligibility,Supplier Registration Application,F
 Phase 2A,Supplier Registration & Eligibility,Supplier Master,A,Supplier Registration Officer,"Procurement Officer, Finance/Budget Officer, Internal Auditor",Status changes only via action record.
 Phase 2A,Supplier Registration & Eligibility,Supplier Category Registration,F/A,Supplier Registration Officer,"Procurement Officer, Internal Auditor",Eligibility by category/class.
 Phase 2A,Supplier Registration & Eligibility,Supplier Compliance Document,F,"Supplier Bidder User, Supplier Registration Officer","Procurement Officer, Internal Auditor",Expiry and verification sensitive.
-Phase 2A,Supplier Registration & Eligibility,Supplier Beneficial Ownership,D,Supplier Registration Officer,"Internal Auditor, Accounting Officer / Approving Authority",Restricted due diligence data.
+Phase 2A,Supplier Registration & Eligibility,Supplier Beneficial Ownership,D,Supplier Registration Officer,"Internal Auditor, Accounting Officer",Restricted due diligence data.
 Phase 2A,Supplier Registration & Eligibility,Supplier Bank Detail,D,"Supplier Registration Officer, Finance/Budget Officer",Internal Auditor,Bank data restricted.
-Phase 2A,Supplier Registration & Eligibility,Supplier Status Action,E,"Supplier Registration Officer, Accounting Officer / Approving Authority","Procurement Officer, Internal Auditor, Oversight Viewer",Only route for substantive status change.
-Phase 2A,Supplier Registration & Eligibility,Suspension Debarment Register,E,"Supplier Registration Officer, Accounting Officer / Approving Authority","Procurement Officer, Internal Auditor, Oversight Viewer",Active record blocks bidding/award.
+Phase 2A,Supplier Registration & Eligibility,Supplier Status Action,E,"Supplier Registration Officer, Accounting Officer","Procurement Officer, Internal Auditor, Oversight Viewer",Only route for substantive status change.
+Phase 2A,Supplier Registration & Eligibility,Suspension Debarment Register,E,"Supplier Registration Officer, Accounting Officer","Procurement Officer, Internal Auditor, Oversight Viewer",Active record blocks bidding/award.
 Phase 2A,Supplier Registration & Eligibility,Supplier Renewal Review,E,Supplier Registration Officer,"Procurement Officer, Internal Auditor",Periodic refresh.
 Phase 2B,"Tender Setup, Submission & Opening",Tender,B,Procurement Officer,"Head of Procurement, Internal Auditor, Oversight Viewer",Setup roles should not see sealed bid content.
 Phase 2B,"Tender Setup, Submission & Opening",Tender Lot,B,Procurement Officer,"Head of Procurement, Internal Auditor",Lot structure.
@@ -55,12 +55,12 @@ Phase 2C,"Evaluation, Award & Challenge",Evaluation Criterion Template,A,Procure
 Phase 2C,"Evaluation, Award & Challenge",Tender Evaluation Scheme,E,"Procurement Officer, Evaluation Committee Chair","Internal Auditor, Head of Procurement",Cannot change ad hoc after publication.
 Phase 2C,"Evaluation, Award & Challenge",Evaluation Worksheet,C,Evaluation Committee Member,"Evaluation Committee Chair, Internal Auditor",Member should not edit peer worksheet.
 Phase 2C,"Evaluation, Award & Challenge",Evaluation Score Record,C,Evaluation Committee Member,"Evaluation Committee Chair, Internal Auditor",Criterion-level evidence.
-Phase 2C,"Evaluation, Award & Challenge",Evaluation Consensus Record,E,"Evaluation Committee Chair, Tender Committee Secretary","Accounting Officer / Approving Authority, Internal Auditor",Consensus does not erase individual sheets.
-Phase 2C,"Evaluation, Award & Challenge",Post Qualification Check,E,"Evaluation Committee Chair, Procurement Officer","Accounting Officer / Approving Authority, Internal Auditor",Due diligence evidence.
-Phase 2C,"Evaluation, Award & Challenge",Award Recommendation,E,"Evaluation Committee Chair, Procurement Officer","Accounting Officer / Approving Authority, Internal Auditor",Separate from decision.
-Phase 2C,"Evaluation, Award & Challenge",Award Decision,E,Accounting Officer / Approving Authority,"Head of Procurement, Internal Auditor, Oversight Viewer",Final approval/hold/cancel.
+Phase 2C,"Evaluation, Award & Challenge",Evaluation Consensus Record,E,"Evaluation Committee Chair, Tender Committee Secretary","Accounting Officer, Internal Auditor",Consensus does not erase individual sheets.
+Phase 2C,"Evaluation, Award & Challenge",Post Qualification Check,E,"Evaluation Committee Chair, Procurement Officer","Accounting Officer, Internal Auditor",Due diligence evidence.
+Phase 2C,"Evaluation, Award & Challenge",Award Recommendation,E,"Evaluation Committee Chair, Procurement Officer","Accounting Officer, Internal Auditor",Separate from decision.
+Phase 2C,"Evaluation, Award & Challenge",Award Decision,E,Accounting Officer,"Head of Procurement, Internal Auditor, Oversight Viewer",Final approval/hold/cancel.
 Phase 2C,"Evaluation, Award & Challenge",Tender Notification Log,E,Procurement Officer,"Internal Auditor, Oversight Viewer",All bidder notices.
-Phase 2C,"Evaluation, Award & Challenge",Challenge Review Case,E,"Accounting Officer / Approving Authority, Procurement Officer","Internal Auditor, Oversight Viewer",Can hold publication/handoff.
+Phase 2C,"Evaluation, Award & Challenge",Challenge Review Case,E,"Accounting Officer, Procurement Officer","Internal Auditor, Oversight Viewer",Can hold publication/handoff.
 Phase 2C,"Evaluation, Award & Challenge",Award Publication Record,E,Procurement Officer,"Internal Auditor, Oversight Viewer",Final publication evidence.
 Phase 2C,"Evaluation, Award & Challenge",Award Contract Handoff,E,"Procurement Officer, Contract Manager",Internal Auditor,No handoff until final award.
 Phase 2C,"Evaluation, Award & Challenge",Award PO Handoff,E,Procurement Officer,Internal Auditor,Only where PO execution is appropriate.
@@ -75,13 +75,13 @@ Phase 3,"Contract, Execution, Inspection & Financial Control",Inspection Report,
 Phase 3,"Contract, Execution, Inspection & Financial Control",Acceptance Certificate,D,Inspection & Acceptance Officer,"Contract Manager, Finance/Budget Officer, Accounts Payable Officer, Internal Auditor",Payment prerequisite.
 Phase 3,"Contract, Execution, Inspection & Financial Control",Defect NCR,E,"Inspection & Acceptance Officer, Contract Manager",Internal Auditor,Supplier cannot edit internal defect finding.
 Phase 3,"Contract, Execution, Inspection & Financial Control",Rectification Action,B,Contract Manager,"Inspection & Acceptance Officer, Internal Auditor",Tracks remediation.
-Phase 3,"Contract, Execution, Inspection & Financial Control",Payment Certificate,D,"Accounts Payable Officer, Finance/Budget Officer","Accounting Officer / Approving Authority, Internal Auditor",Most fields PL2+.
-Phase 3,"Contract, Execution, Inspection & Financial Control",Invoice Control Record,D,Accounts Payable Officer,"Finance/Budget Officer, Accounting Officer / Approving Authority, Internal Auditor",Links invoices to acceptance.
-Phase 3,"Contract, Execution, Inspection & Financial Control",Retention Register,D,"Accounts Payable Officer, Finance/Budget Officer","Accounting Officer / Approving Authority, Internal Auditor",Financial control ledger.
-Phase 3,"Contract, Execution, Inspection & Financial Control",Claim Dispute Record,E,"Contract Manager, Accounting Officer / Approving Authority","Internal Auditor, Oversight Viewer",Legal/settlement sensitive.
-Phase 3,"Contract, Execution, Inspection & Financial Control",Contract Variation,B/E,"Contract Manager, Procurement Officer","Accounting Officer / Approving Authority, Internal Auditor",No silent rewrite of contract value/scope.
-Phase 3,"Contract, Execution, Inspection & Financial Control",Contract Amendment,B/E,"Contract Manager, Procurement Officer","Accounting Officer / Approving Authority, Internal Auditor",Formal amendment evidence.
-Phase 3,"Contract, Execution, Inspection & Financial Control",Termination Record,E,"Contract Manager, Accounting Officer / Approving Authority","Internal Auditor, Oversight Viewer",Executive/forensic notes restricted.
+Phase 3,"Contract, Execution, Inspection & Financial Control",Payment Certificate,D,"Accounts Payable Officer, Finance/Budget Officer","Accounting Officer, Internal Auditor",Most fields PL2+.
+Phase 3,"Contract, Execution, Inspection & Financial Control",Invoice Control Record,D,Accounts Payable Officer,"Finance/Budget Officer, Accounting Officer, Internal Auditor",Links invoices to acceptance.
+Phase 3,"Contract, Execution, Inspection & Financial Control",Retention Register,D,"Accounts Payable Officer, Finance/Budget Officer","Accounting Officer, Internal Auditor",Financial control ledger.
+Phase 3,"Contract, Execution, Inspection & Financial Control",Claim Dispute Record,E,"Contract Manager, Accounting Officer","Internal Auditor, Oversight Viewer",Legal/settlement sensitive.
+Phase 3,"Contract, Execution, Inspection & Financial Control",Contract Variation,B/E,"Contract Manager, Procurement Officer","Accounting Officer, Internal Auditor",No silent rewrite of contract value/scope.
+Phase 3,"Contract, Execution, Inspection & Financial Control",Contract Amendment,B/E,"Contract Manager, Procurement Officer","Accounting Officer, Internal Auditor",Formal amendment evidence.
+Phase 3,"Contract, Execution, Inspection & Financial Control",Termination Record,E,"Contract Manager, Accounting Officer","Internal Auditor, Oversight Viewer",Executive/forensic notes restricted.
 Phase 3,"Contract, Execution, Inspection & Financial Control",Closeout Record,E,Contract Manager,"Internal Auditor, Oversight Viewer",Immutable closeout evidence.
 Phase 3,"Contract, Execution, Inspection & Financial Control",Defects Liability Review,E,"Contract Manager, Inspection & Acceptance Officer",Internal Auditor,Post-completion review.
 Phase 3,"Contract, Execution, Inspection & Financial Control",Final Performance Review,E,Contract Manager,"Internal Auditor, Oversight Viewer",Final supplier/contract outcome.

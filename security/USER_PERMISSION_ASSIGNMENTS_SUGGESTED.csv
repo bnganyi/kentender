@@ -1,0 +1,17 @@
+user,role,allow,for_value,applicable_for,hide_descendants,is_default,apply_to_all_doctypes
+planner.test@kentender.local,Department Planning Officer,Department,,Procurement Plan Item; Purchase Requisition,0,0,0
+requestor.test@kentender.local,Requestor,Department,,Purchase Requisition; Purchase Requisition Item,0,0,0
+requestor.test@kentender.local,Head of Department,Department,,Purchase Requisition; Procurement Plan Item,0,0,0
+planner.test@kentender.local,Procurement Planner,Company,,Procurement Plan; Procurement Plan Item; Revisions,0,0,0
+finance.test@kentender.local,Finance/Budget Officer,Company,,Planning, Requisition, Contract, Payment doctypes,0,0,0
+procurement.test@kentender.local,Procurement Officer,Company,,Tender, Award, Handoff, Contract Variation,0,0,0
+supplierreg.test@kentender.local,Supplier Registration Officer,Company,,Supplier governance doctypes,0,0,0
+supplier.portal.test@kentender.local,Supplier Bidder User,Supplier Master,SUPM-2026-00058,Supplier portal doctypes only,0,0,0
+opening.test@kentender.local,Opening Committee Member,Tender,,Bid Opening Register; Bid Opening Record; Tender Submission*,0,0,0
+evaluator.test@kentender.local,Evaluation Committee Member,Tender,,Evaluation Worksheet; Evaluation Score Record; Tender Submission*,0,0,0
+evaluator.test@kentender.local,Evaluation Committee Chair,Tender,,Consensus, recommendation, due diligence,0,0,0
+contracts.test@kentender.local,Contract Manager,Contract,CT-2026-00025,Contract execution and closeout doctypes,0,0,0
+contracts.test@kentender.local,Inspection & Acceptance Officer,Contract,CT-2026-00025,Receipt, inspection, acceptance doctypes,0,0,0
+finance.test@kentender.local,Accounts Payable Officer,Company,,Payment Certificate; Invoice Control; Retention Register,0,0,0
+audit.test@kentender.local,Internal Auditor,Company,,All transactional doctypes,0,0,0
+audit.test@kentender.local,Oversight Viewer,Company,,Published, award, contract summary, audit views,0,0,0

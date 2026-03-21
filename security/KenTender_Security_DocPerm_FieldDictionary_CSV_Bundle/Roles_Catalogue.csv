@@ -3,7 +3,7 @@ Planning Authority,Strategy/policy configuration owner,System User,Internal Proc
 Department Planning Officer,Creates departmental planning inputs,System User,Internal Procurement,
 Procurement Planner,Consolidates APP and revisions,System User,Internal Procurement,
 Finance/Budget Officer,"Budget validation, commitments, payment-side financial controls",System User,Internal Procurement,
-Accounting Officer / Approving Authority,Final public-sector approval authority,System User,Internal Procurement,
+Accounting Officer,Final public-sector approval authority,System User,Internal Procurement,
 Requestor,Creates departmental purchase requisitions,System User,Internal Procurement,
 Head of Department,Approves departmental need,System User,Internal Procurement,
 Procurement Officer,"Tender setup, publication, clarifications, handoff",System User,Internal Procurement,

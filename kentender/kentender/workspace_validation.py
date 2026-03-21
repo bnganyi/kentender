@@ -41,11 +41,10 @@ def _collect_references() -> dict[str, set[str]]:
                 _push(refs, row.get("link_type"), row.get("link_to"))
         for row in ws.get("quick_lists") or []:
             _push(refs, "DocType", row.get("document_type"))
-            _push(refs, "Quick List", row.get("label"))
         for row in ws.get("number_cards") or []:
-            _push(refs, "Number Card", row.get("label"))
+            _push(refs, "Number Card", row.get("number_card_name") or row.get("label"))
         for row in ws.get("charts") or []:
-            _push(refs, "Dashboard Chart", row.get("label"))
+            _push(refs, "Dashboard Chart", row.get("chart_name") or row.get("label"))
 
     for sb in _load_jsons("sidebars"):
         _push(refs, "Workspace Sidebar", sb.get("name"))
@@ -81,7 +80,6 @@ def validate(write_report: int = 1) -> str:
         "Report",
         "Workspace",
         "Workspace Sidebar",
-        "Quick List",
         "Number Card",
         "Dashboard Chart",
         "Desktop Icon",

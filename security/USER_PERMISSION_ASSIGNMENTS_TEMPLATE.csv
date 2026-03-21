@@ -1,0 +1,17 @@
+user,role,allow,for_value,applicable_for,hide_descendants,is_default,apply_to_all_doctypes
+planner.test@kentender.local,Department Planning Officer,Department,All Departments,,0,0,0
+requestor.test@kentender.local,Requestor,Department,All Departments,,0,0,0
+requestor.test@kentender.local,Head of Department,Department,All Departments,,0,0,0
+planner.test@kentender.local,Procurement Planner,Company,Midas,,0,0,0
+finance.test@kentender.local,Finance/Budget Officer,Company,Midas,, Requisition, Contract, Payment doctypes
+procurement.test@kentender.local,Procurement Officer,Company,Midas,, Award, Handoff, Contract Variation
+supplierreg.test@kentender.local,Supplier Registration Officer,Company,Midas,,0,0,0
+supplier.portal.test@kentender.local,Supplier Bidder User,Supplier Master,SUPM-2026-00058,,0,0,0
+opening.test@kentender.local,Opening Committee Member,Tender,TN-2026-00059,,0,0,0
+evaluator.test@kentender.local,Evaluation Committee Member,Tender,TN-2026-00059,,0,0,0
+evaluator.test@kentender.local,Evaluation Committee Chair,Tender,TN-2026-00059,, recommendation, due diligence,0
+contracts.test@kentender.local,Contract Manager,Contract,CT-2026-00025,,0,0,0
+contracts.test@kentender.local,Inspection & Acceptance Officer,Contract,CT-2026-00025,, inspection, acceptance doctypes,0
+finance.test@kentender.local,Accounts Payable Officer,Company,Midas,,0,0,0
+audit.test@kentender.local,Internal Auditor,Company,Midas,,0,0,0
+audit.test@kentender.local,Oversight Viewer,Company,Midas,, award, contract summary, audit views

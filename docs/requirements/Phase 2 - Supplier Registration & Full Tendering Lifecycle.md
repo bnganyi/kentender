@@ -450,7 +450,7 @@ Recommended roles:
 - Opening Committee Member
 - Evaluation Committee Member
 - Evaluation Committee Chair
-- Accounting Officer / Approving Authority
+- Accounting Officer
 - Internal Auditor
 - Oversight / Read-Only Reviewer
 - System Administrator
