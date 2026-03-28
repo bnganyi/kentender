@@ -8,7 +8,6 @@ repos:
     rev: v6.0.0
     hooks:
       - id: trailing-whitespace
-        files: "kentender.*"
         exclude: ".*json$|.*txt$|.*csv|.*md|.*svg"
       - id: check-merge-conflict
       - id: check-ast
@@ -35,14 +34,13 @@ repos:
     hooks:
       - id: prettier
         types_or: [javascript, vue, scss]
-        # Ignore any files that might contain jinja / bundles
         exclude: |
             (?x)^(
-                kentender/public/dist/.*|
+                .*/public/dist/.*|
                 .*node_modules.*|
                 .*boilerplate.*|
-                kentender/templates/includes/.*|
-                kentender/public/js/lib/.*
+                .*/templates/includes/.*|
+                .*/public/js/lib/.*
             )$
 
 
@@ -52,15 +50,14 @@ repos:
       - id: eslint
         types_or: [javascript]
         args: ['--quiet']
-        # Ignore any files that might contain jinja / bundles
         exclude: |
             (?x)^(
-                kentender/public/dist/.*|
+                .*/public/dist/.*|
                 cypress/.*|
                 .*node_modules.*|
                 .*boilerplate.*|
-                kentender/templates/includes/.*|
-                kentender/public/js/lib/.*
+                .*/templates/includes/.*|
+                .*/public/js/lib/.*
             )$
 
 ci:

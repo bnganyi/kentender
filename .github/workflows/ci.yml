@@ -88,7 +88,7 @@ jobs:
       - name: Install
         working-directory: /home/runner/frappe-bench
         run: |
-          bench get-app kentender $GITHUB_WORKSPACE
+          bench get-app kentender $GITHUB_WORKSPACE/kentender
           bench setup requirements --dev
           bench new-site --db-root-password root --admin-password admin test_site
           bench --site test_site install-app kentender
