@@ -42,7 +42,7 @@
    "fieldname": "sensitivity_class",
    "fieldtype": "Select",
    "label": "Sensitivity Class",
-   "options": "Public\nInternal\nConfidential\nRestricted"
+   "options": "Public\nInternal\nConfidential\nRestricted\nSealed Procurement"
   },
   {
    "fieldname": "required_for_processes",

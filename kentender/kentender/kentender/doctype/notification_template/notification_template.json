@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:template_code",
+ "creation": "2026-03-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "template_code",
+  "template_name",
+  "active",
+  "channel",
+  "event_name",
+  "scope_type",
+  "subject_template",
+  "body_template"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Template Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "template_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Template Name",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Active"
+  },
+  {
+   "fieldname": "channel",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Channel",
+   "options": "In-App\nEmail\nSMS",
+   "reqd": 1
+  },
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Event Name",
+   "description": "Logical event key used to select this template at dispatch time (e.g. tender.published).",
+   "reqd": 1
+  },
+  {
+   "default": "Global",
+   "fieldname": "scope_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Scope Type",
+   "options": "Global\nProcuring Entity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "subject_template",
+   "fieldtype": "Small Text",
+   "label": "Subject Template",
+   "description": "Optional subject line pattern (e.g. for Email). May use the same placeholder syntax as the body."
+  },
+  {
+   "fieldname": "body_template",
+   "fieldtype": "Text Editor",
+   "label": "Body Template",
+   "description": "Message body pattern; render with context variables in the dispatch layer (STORY-CORE-022).",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "Notification Template",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

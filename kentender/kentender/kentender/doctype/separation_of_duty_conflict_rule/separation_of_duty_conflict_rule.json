@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:rule_code",
+ "creation": "2026-03-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "rule_code",
+  "active",
+  "section_source",
+  "source_doctype",
+  "source_action",
+  "source_role",
+  "column_break_target",
+  "target_doctype",
+  "target_action",
+  "target_role",
+  "section_scope",
+  "scope_type",
+  "severity",
+  "exception_policy"
+ ],
+ "fields": [
+  {
+   "fieldname": "rule_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Rule Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Active"
+  },
+  {
+   "fieldname": "section_source",
+   "fieldtype": "Section Break",
+   "label": "Source participation (prior)"
+  },
+  {
+   "fieldname": "source_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source DocType",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "source_action",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Source Action",
+   "description": "Logical action already performed (e.g. submit, create).",
+   "reqd": 1
+  },
+  {
+   "fieldname": "source_role",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source Role",
+   "options": "Role",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_target",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "target_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Target DocType",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "target_action",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Target Action",
+   "description": "Proposed action being evaluated (e.g. approve).",
+   "reqd": 1
+  },
+  {
+   "fieldname": "target_role",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Target Role",
+   "options": "Role",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_scope",
+   "fieldtype": "Section Break",
+   "label": "Scope and handling"
+  },
+  {
+   "default": "Same Document",
+   "fieldname": "scope_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Scope Type",
+   "options": "Same Document\nSame Scope Key\nGlobal",
+   "reqd": 1
+  },
+  {
+   "default": "High",
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Severity",
+   "options": "Low\nMedium\nHigh\nCritical",
+   "reqd": 1
+  },
+  {
+   "default": "Block",
+   "fieldname": "exception_policy",
+   "fieldtype": "Select",
+   "label": "Exception Policy",
+   "options": "Block\nAllow With Approval\nWarn Only",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "Separation of Duty Conflict Rule",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

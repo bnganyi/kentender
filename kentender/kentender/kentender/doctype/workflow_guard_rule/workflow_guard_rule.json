@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:rule_code",
+ "creation": "2026-03-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "rule_code",
+  "rule_name",
+  "active",
+  "applies_to_doctype",
+  "event_name",
+  "rule_type",
+  "severity",
+  "evaluation_order",
+  "exception_policy"
+ ],
+ "fields": [
+  {
+   "fieldname": "rule_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Rule Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "rule_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Rule Name",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Active"
+  },
+  {
+   "fieldname": "applies_to_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Applies To DocType",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Event Name",
+   "description": "Logical hook name (e.g. pre_submit, pre_approve, before_transition).",
+   "reqd": 1
+  },
+  {
+   "default": "Validate",
+   "fieldname": "rule_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Rule Type",
+   "options": "Validate\nBlock\nWarn\nInformational",
+   "reqd": 1
+  },
+  {
+   "default": "Medium",
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Severity",
+   "options": "Low\nMedium\nHigh\nCritical",
+   "reqd": 1
+  },
+  {
+   "default": "100",
+   "fieldname": "evaluation_order",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Evaluation Order",
+   "description": "Lower numbers run first within the same DocType and event.",
+   "reqd": 1
+  },
+  {
+   "default": "Block",
+   "fieldname": "exception_policy",
+   "fieldtype": "Select",
+   "label": "Exception Policy",
+   "options": "Block\nAllow With Approval\nWarn Only",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "Workflow Guard Rule",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "evaluation_order",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

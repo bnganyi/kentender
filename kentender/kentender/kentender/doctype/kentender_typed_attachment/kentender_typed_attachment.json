@@ -1,0 +1,121 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-03-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "document_type",
+  "attached_file",
+  "sensitivity_class",
+  "owning_doctype",
+  "owning_docname",
+  "uploaded_by",
+  "uploaded_at",
+  "file_hash",
+  "public_disclosure_eligibility",
+  "sealed_until_event"
+ ],
+ "fields": [
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Document Type",
+   "options": "Document Type Registry",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attached_file",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "File",
+   "options": "File",
+   "reqd": 1
+  },
+  {
+   "default": "Internal",
+   "fieldname": "sensitivity_class",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Sensitivity Class",
+   "options": "Public\nInternal\nConfidential\nRestricted\nSealed Procurement",
+   "reqd": 1
+  },
+  {
+   "fieldname": "owning_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Owning DocType",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "owning_docname",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Owning Document",
+   "reqd": 1
+  },
+  {
+   "default": "Administrator",
+   "fieldname": "uploaded_by",
+   "fieldtype": "Link",
+   "label": "Uploaded By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "uploaded_at",
+   "fieldtype": "Datetime",
+   "label": "Uploaded At",
+   "reqd": 1
+  },
+  {
+   "fieldname": "file_hash",
+   "fieldtype": "Data",
+   "label": "File Hash",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "public_disclosure_eligibility",
+   "fieldtype": "Check",
+   "label": "Public Disclosure Eligibility"
+  },
+  {
+   "fieldname": "sealed_until_event",
+   "fieldtype": "Data",
+   "label": "Sealed Until Event"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "KenTender Typed Attachment",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
