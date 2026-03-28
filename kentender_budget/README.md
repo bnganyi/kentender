@@ -2,6 +2,13 @@
 
 KenTender budget module.
 
+### KenTender architecture (STORY-CORE-002)
+
+**Role:** Budget backbone; consumes strategy context from upstream.  
+**Allowed upstream KenTender deps:** `kentender`, `kentender_strategy`.  
+**Do not** import `kentender_procurement` or downstream apps’ internal `services/`.  
+Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:

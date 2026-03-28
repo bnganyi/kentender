@@ -2,6 +2,13 @@
 
 KenTender compliance module.
 
+### KenTender architecture (STORY-CORE-002)
+
+**Role:** Compliance checks and reporting hooks; anchored on core.  
+**Allowed upstream KenTender deps:** `kentender`.  
+**Do not** deep-import other business apps’ `services/`—use explicit integration points.  
+Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:

@@ -2,6 +2,13 @@
 
 KenTender stores and inventory integration.
 
+### KenTender architecture (STORY-CORE-002)
+
+**Role:** Downstream stores / inventory extension on core.  
+**Allowed upstream KenTender deps:** `kentender`.  
+**Do not** create reverse dependencies: core, strategy, budget, and procurement must not import this app’s internals (use APIs if ever required).  
+Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:

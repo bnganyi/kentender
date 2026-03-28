@@ -2,6 +2,13 @@
 
 KenTender strategy module.
 
+### KenTender architecture (STORY-CORE-002)
+
+**Role:** Strategy layer (plans and policies upstream of budget and procurement).  
+**Allowed upstream KenTender deps:** `kentender` only.  
+**Do not** import `kentender_budget`, `kentender_procurement`, or internal modules of governance/compliance/stores/assets/integrations.  
+Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:

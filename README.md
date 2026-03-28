@@ -14,7 +14,7 @@ End-to-end public eProcurement system. This repository contains **nine** Frappe 
 | [`kentender_assets/`](kentender_assets/) | `kentender_assets` |
 | [`kentender_integrations/`](kentender_integrations/) | `kentender_integrations` |
 
-See [`docs/architecture/README.md`](docs/architecture/README.md) for naming vs the Wave 0 ticket and bench layout.
+See [`docs/architecture/README.md`](docs/architecture/README.md) for naming vs the Wave 0 ticket and bench layout. **App dependency DAG, `required_apps` matrix, and naming conventions:** [`docs/architecture/app-dependencies-and-boundaries.md`](docs/architecture/app-dependencies-and-boundaries.md). **Package layout (services, api, tests, utils):** [`docs/architecture/application-package-layout.md`](docs/architecture/application-package-layout.md).
 
 ### Local bench layout
 

@@ -2,6 +2,13 @@
 
 KenTender governance module.
 
+### KenTender architecture (STORY-CORE-002)
+
+**Role:** Governance overlay; depends on core only among KenTender apps.  
+**Allowed upstream KenTender deps:** `kentender`.  
+**Do not** deep-import strategy, budget, or procurement internals—integrate via whitelisted `api` / documented contracts.  
+Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:

@@ -2,6 +2,13 @@
 
 KenTender external integrations.
 
+### KenTender architecture (STORY-CORE-002)
+
+**Role:** External systems (payments, portals, EDI, etc.); anchored on core.  
+**Allowed upstream KenTender deps:** `kentender`.  
+**Do not** deep-import strategy/budget/procurement modules—expose stable APIs instead.  
+Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:

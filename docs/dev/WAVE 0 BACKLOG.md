@@ -11,11 +11,11 @@
 | Story ID | Title (short) | Epic | Depends on | Step # | Status | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | STORY-CORE-001 | Initialize multi-app KenTender workspace | EPIC-CORE-001 | none | 1 | Done | **Monorepo:** git root `apps/kentender_platform/`; nine app subdirs; bench symlinks `apps/<app> → kentender_platform/<app>`. Core app name stays `kentender` (ticket’s kentender_core role). Layout + docs folders + smoke tests; see [`scripts/link_apps_on_bench.sh`](../../scripts/link_apps_on_bench.sh). |
-| STORY-CORE-002 | Set app dependency boundaries and shared config conventions | EPIC-CORE-001 | STORY-CORE-001 | 2 | Not Started | |
-| STORY-CORE-003 | Create common service module structure across apps | EPIC-CORE-001 | STORY-CORE-001, STORY-CORE-002 | 3 | Not Started | |
-| STORY-CORE-004 | Implement Procuring Entity DocType | EPIC-CORE-002 | STORY-CORE-001 | 4 | Not Started | |
-| STORY-CORE-005 | Implement Department / Business Unit DocType | EPIC-CORE-002 | STORY-CORE-004 | 5 | Not Started | |
-| STORY-CORE-006 | Implement shared master data DocTypes | EPIC-CORE-002 | STORY-CORE-004 | 6 | Not Started | |
+| STORY-CORE-002 | Set app dependency boundaries and shared config conventions | EPIC-CORE-001 | STORY-CORE-001 | 2 | Done | [`app-dependencies-and-boundaries.md`](../architecture/app-dependencies-and-boundaries.md): DAG, matrix, naming, service/circular rules; per-app README sections; `required_apps` set in all nine `hooks.py`. |
+| STORY-CORE-003 | Create common service module structure across apps | EPIC-CORE-001 | STORY-CORE-001, STORY-CORE-002 | 3 | Done | [`application-package-layout.md`](../architecture/application-package-layout.md); `utils/` + docstrings on `services`/`api`; `tests/test_package_layout.py` per app. |
+| STORY-CORE-004 | Implement Procuring Entity DocType | EPIC-CORE-002 | STORY-CORE-001 | 4 | Done | DocType + controller under `kentender/kentender/kentender/doctype/procuring_entity/`; `validate()` (unique code, self-parent, cycle); `kentender/tests/test_procuring_entity.py`. |
+| STORY-CORE-005 | Implement Department / Business Unit DocType | EPIC-CORE-002 | STORY-CORE-004 | 5 | Done | DocType **Procuring Department** (avoids ERPNext `Department`); `format:{department_code}-{procuring_entity}`; entity-scoped code uniqueness + parent entity match + hierarchy; [`procuring_department`](../../kentender/kentender/kentender/doctype/procuring_department/) + [`test_procuring_department.py`](../../kentender/kentender/tests/test_procuring_department.py). |
+| STORY-CORE-006 | Implement shared master data DocTypes | EPIC-CORE-002 | STORY-CORE-004 | 6 | Done | **Funding Source**, **Procurement Category** (hierarchy + duplicate code), **Procurement Method**, **Reference Number Policy**, **Document Type Registry** under `kentender/kentender/kentender/doctype/`; duplicate key validation; [`test_master_data_core006.py`](../../kentender/kentender/tests/test_master_data_core006.py). |
 | STORY-CORE-007 | Implement naming/number generation service | EPIC-CORE-002 | STORY-CORE-006 | 7 | Not Started | |
 | STORY-CORE-015 | Implement Exception Record DocType | EPIC-CORE-005 | STORY-CORE-001 | 8 | Not Started | |
 | STORY-CORE-016 | Implement audit event service and event schema | EPIC-CORE-005 | STORY-CORE-001 | 9 | Not Started | |

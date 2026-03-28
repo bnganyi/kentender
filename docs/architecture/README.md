@@ -20,7 +20,9 @@ The eight other apps live as **sibling directories** in the same repository (`ke
 | `kentender_assets` | Asset management integration |
 | `kentender_integrations` | External systems (payments, portals, EDI, etc.) |
 
-Dependency direction and naming conventions are defined further in STORY-CORE-002; STORY-CORE-001 only scaffolded installable apps and common empty layout folders (`doctype/`, `services/`, `api/`, `tests/`).
+**Dependency direction, install order, naming, and service-layer rules** are defined in [**App dependencies and boundaries**](app-dependencies-and-boundaries.md) (STORY-CORE-002).
+
+**Per-app folder layout and where business logic belongs** (services vs api vs DocType vs utils vs tests) are defined in [**Application package layout**](application-package-layout.md) (STORY-CORE-003).
 
 ## Rename to `kentender_core` (deferred)
 
@@ -33,9 +35,4 @@ Renaming **`kentender` → `kentender_core`** changes the app identity in the si
 
 ## Layout convention (per app)
 
-Inside each app’s Python package (`<app_name>/<app_name>/`):
-
-- `doctype/` — DocTypes (empty until stories add them)
-- `services/` — business logic modules
-- `api/` — HTTP / whitelisted API handlers
-- `tests/` — unit tests
+See [**Application package layout**](application-package-layout.md) for the full table and rules. Summary: under `<app_name>/<app_name>/` use `doctype/`, `services/`, `api/`, `tests/`, and `utils/` (optional pure helpers) as documented there.

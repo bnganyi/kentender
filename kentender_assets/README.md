@@ -2,6 +2,13 @@
 
 KenTender assets module.
 
+### KenTender architecture (STORY-CORE-002)
+
+**Role:** Downstream assets extension on core.  
+**Allowed upstream KenTender deps:** `kentender`.  
+**Do not** create reverse dependencies from upstream KenTender apps into this app’s internals.  
+Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:

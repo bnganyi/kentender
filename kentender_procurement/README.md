@@ -2,6 +2,13 @@
 
 KenTender procurement module.
 
+### KenTender architecture (STORY-CORE-002)
+
+**Role:** Procurement / tendering lifecycle; sits on core, strategy, and budget.  
+**Allowed upstream KenTender deps:** `kentender`, `kentender_strategy`, `kentender_budget`.  
+**Do not** treat `kentender_stores` / `kentender_assets` as hard import dependencies (use explicit APIs if needed).  
+Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:
