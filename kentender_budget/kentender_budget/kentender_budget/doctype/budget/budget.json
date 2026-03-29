@@ -1,0 +1,174 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:business_id",
+ "creation": "2026-03-29 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "business_id",
+  "budget_title",
+  "procuring_entity",
+  "budget_control_period",
+  "version_no",
+  "status",
+  "is_current_active_version",
+  "currency",
+  "total_allocated_amount",
+  "source_reference",
+  "source_budget_system",
+  "approval_status",
+  "workflow_state",
+  "supersedes_budget",
+  "superseded_by_budget",
+  "revision_reason",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "business_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Business ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "budget_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Budget Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "procuring_entity",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Procuring Entity",
+   "options": "Procuring Entity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "budget_control_period",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Budget Control Period",
+   "options": "Budget Control Period",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "version_no",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Version No.",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nUnder Review\nSuperseded\nCancelled",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_current_active_version",
+   "fieldtype": "Check",
+   "label": "Is Current Active Version",
+   "description": "At most one budget per entity and control period should be current."
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total_allocated_amount",
+   "fieldtype": "Currency",
+   "label": "Total Allocated Amount",
+   "options": "currency"
+  },
+  {
+   "fieldname": "source_reference",
+   "fieldtype": "Data",
+   "label": "Source Reference"
+  },
+  {
+   "fieldname": "source_budget_system",
+   "fieldtype": "Data",
+   "label": "Source Budget System"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Approval Status",
+   "options": "Draft\nSubmitted\nApproved\nRejected\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Data",
+   "label": "Workflow State"
+  },
+  {
+   "fieldname": "supersedes_budget",
+   "fieldtype": "Link",
+   "label": "Supersedes Budget",
+   "options": "Budget"
+  },
+  {
+   "fieldname": "superseded_by_budget",
+   "fieldtype": "Link",
+   "label": "Superseded By Budget",
+   "options": "Budget",
+   "read_only": 1
+  },
+  {
+   "fieldname": "revision_reason",
+   "fieldtype": "Small Text",
+   "label": "Revision Reason"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text Editor",
+   "label": "Remarks"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-29 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Budget",
+ "name": "Budget",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "version_no",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

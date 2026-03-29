@@ -1,0 +1,152 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:business_id",
+ "creation": "2026-03-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "business_id",
+  "framework_code",
+  "framework_name",
+  "framework_type",
+  "version_label",
+  "status",
+  "is_locked_reference",
+  "start_date",
+  "end_date",
+  "source_reference",
+  "source_document_url",
+  "import_batch_id",
+  "imported_at",
+  "imported_by",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "business_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Business ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "framework_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Framework Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "framework_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Framework Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "framework_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Framework Type",
+   "options": "National Development Plan\nMedium Term Plan\nCIDP\nSector Plan\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "version_label",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Version Label",
+   "description": "Version or edition label within the same framework code (e.g. 2023-2027).",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nSuperseded\nArchived",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_locked_reference",
+   "fieldtype": "Check",
+   "label": "Locked Reference",
+   "description": "When Active and locked, the record is treated as read-only reference data (STORY-STRAT-003 will tighten rules)."
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "source_reference",
+   "fieldtype": "Small Text",
+   "label": "Source Reference"
+  },
+  {
+   "fieldname": "source_document_url",
+   "fieldtype": "Data",
+   "label": "Source Document URL"
+  },
+  {
+   "fieldname": "import_batch_id",
+   "fieldtype": "Data",
+   "label": "Import Batch ID"
+  },
+  {
+   "fieldname": "imported_at",
+   "fieldtype": "Datetime",
+   "label": "Imported At"
+  },
+  {
+   "fieldname": "imported_by",
+   "fieldtype": "Link",
+   "label": "Imported By",
+   "options": "User"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Strategy",
+ "name": "National Framework",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "framework_code",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

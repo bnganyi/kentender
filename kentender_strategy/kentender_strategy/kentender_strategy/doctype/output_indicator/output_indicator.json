@@ -1,0 +1,148 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:business_id",
+ "creation": "2026-03-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "business_id",
+  "indicator_code",
+  "indicator_name",
+  "entity_strategic_plan",
+  "program",
+  "sub_program",
+  "unit_of_measure",
+  "indicator_type",
+  "baseline_value",
+  "baseline_date",
+  "measurement_notes",
+  "responsible_department",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "business_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Business ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "indicator_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Indicator Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "indicator_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Indicator Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "entity_strategic_plan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Entity Strategic Plan",
+   "options": "Entity Strategic Plan",
+   "reqd": 1
+  },
+  {
+   "fieldname": "program",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Program",
+   "options": "Strategic Program",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sub_program",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sub Program",
+   "options": "Strategic Sub Program",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit_of_measure",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Unit of Measure",
+   "description": "e.g. Nos, %, ratio index — kept as Data to avoid hard ERPNext UOM dependency.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "indicator_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Indicator Type",
+   "options": "Quantitative\nQualitative\nBinary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "baseline_value",
+   "fieldtype": "Float",
+   "label": "Baseline Value",
+   "description": "Numeric baseline where applicable; optional for purely qualitative indicators."
+  },
+  {
+   "fieldname": "baseline_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Baseline Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "measurement_notes",
+   "fieldtype": "Small Text",
+   "label": "Measurement Notes"
+  },
+  {
+   "fieldname": "responsible_department",
+   "fieldtype": "Link",
+   "label": "Responsible Department",
+   "options": "Procuring Department"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nOn Hold\nCancelled",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Strategy",
+ "name": "Output Indicator",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "indicator_code",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,8 +1,8 @@
 # KenTender Master Epic Map
 
-**Wave 0 — detailed tickets, acceptance criteria, and recommended Cursor execution order:** see [`Wave 0 Ticket Pack.md`](Wave%200%20Ticket%20Pack.md) and the thin tracker [`WAVE 0 BACKLOG.md`](WAVE%200%20BACKLOG.md). This document remains the high-level epic/story index and Wave 1 breakdown.
+**Wave 0 — detailed tickets, acceptance criteria, and recommended Cursor execution order:** see [`Wave 0 Ticket Pack.md`](Wave%200%20Ticket%20Pack.md) and the thin tracker [`WAVE 0 BACKLOG.md`](WAVE%200%20BACKLOG.md). **Wave 1** is closed: [`WAVE 1 BACKLOG.md`](Wave%201%20BACKLOG.md). **Wave 2 (procurement):** [`WAVE 2 BACKLOG.md`](Wave%202%20BACKLOG.md), [`docs/prompts/Wave 2 Ticket Pack.md`](../prompts/Wave%202%20Ticket%20Pack.md). This document remains the high-level epic/story index and wave breakdown.
 
-Below is a **Master Epic Map** and a **Wave 0 / Wave 1 story breakdown** designed specifically for Cursor-driven implementation.
+Below is a **Master Epic Map** and a **Wave 0 / Wave 1 / Wave 2** story index designed specifically for Cursor-driven implementation.
 
 This is the point where the project becomes executable.
 
@@ -18,6 +18,7 @@ For now, we’ll fully define:
 
 - **Wave 0 — Platform Foundation**
 - **Wave 1 — Strategy + Budget Backbone**
+- **Wave 2 — Procurement Demand and Planning** (requisition → plan → tender gate; see §2 and [`WAVE 2 BACKLOG.md`](Wave%202%20BACKLOG.md))
 
 That is enough to start building without architectural drift.
 
@@ -206,6 +207,34 @@ App:
 - EPIC-BUD-003  
     Outcome:
 - service interface for requisition/planning/contract variation use
+
+**Wave 2 — Procurement Demand and Planning**
+
+**EPIC-PROC-001 — Purchase Requisition**
+
+App:
+
+- kentender_procurement  
+    Priority:
+- Critical  
+    Depends on:
+- EPIC-BUD-005, EPIC-STRAT-003, EPIC-CORE-003 / EPIC-CORE-004 (guards, actions)  
+    Outcome:
+- internal demand record, items, approvals, amendments, planning linkage, budget reservation on approval
+
+**EPIC-PROC-002 — Procurement Plan**
+
+App:
+
+- kentender_procurement  
+    Priority:
+- Critical  
+    Depends on:
+- EPIC-PROC-001 (requisition + planning link), EPIC-BUD-001–005  
+    Outcome:
+- plan header/items, consolidation, fragmentation controls, revisions, tender eligibility gate
+
+**Tracking:** [`WAVE 2 BACKLOG.md`](Wave%202%20BACKLOG.md) (steps **1–22**). **Prompts:** [`docs/prompts/Wave 2 Ticket Pack.md`](../prompts/Wave%202%20Ticket%20Pack.md).
 
 # 3\. Story breakdown — Wave 0
 
@@ -408,6 +437,14 @@ Outcome:
 - internal API ready for in-app/email/SMS later
 
 # 4\. Story breakdown — Wave 1
+
+**Tracking and prompts:** Sprint status and step order live in [`WAVE 1 BACKLOG.md`](Wave%201%20BACKLOG.md). Full objectives, acceptance criteria, and Cursor prompts are in [`docs/prompts/Wave 1 Ticket Pack.md`](../prompts/Wave%201%20Ticket%20Pack.md). **Important:** implementation order is **not** strictly numeric for strategy — **STORY-STRAT-006** runs **after** **STORY-STRAT-007**, **008**, and **009** (see backlog step list).
+
+**Wave 1 status:** Closed (2026-03-28); all **26** backlog stories are **Done** in [`WAVE 1 BACKLOG.md`](Wave%201%20BACKLOG.md).
+
+**Wave 2 — procurement**
+
+Sprint tracker: [`WAVE 2 BACKLOG.md`](Wave%202%20BACKLOG.md). Full tickets and Cursor prompts: [`docs/prompts/Wave 2 Ticket Pack.md`](../prompts/Wave%202%20Ticket%20Pack.md). Execute **PROC-STORY-001** through **PROC-STORY-022** in the order listed in the pack (requisition **1–10**, then plan **11–22**).
 
 **EPIC-STRAT-001 — National Framework Reference Model**
 
@@ -697,7 +734,32 @@ Then budget:
 14. STORY-BUD-015
 15. STORY-BUD-016
 
-That gives you a clean buildable base for requisitions.
+Then procurement (Wave 2 — [`WAVE 2 BACKLOG.md`](Wave%202%20BACKLOG.md)):
+
+1.  PROC-STORY-001
+2.  PROC-STORY-002
+3.  PROC-STORY-003
+4.  PROC-STORY-004
+5.  PROC-STORY-005
+6.  PROC-STORY-006
+7.  PROC-STORY-007
+8.  PROC-STORY-008
+9.  PROC-STORY-009
+10. PROC-STORY-010
+11. PROC-STORY-011
+12. PROC-STORY-012
+13. PROC-STORY-013
+14. PROC-STORY-014
+15. PROC-STORY-015
+16. PROC-STORY-016
+17. PROC-STORY-017
+18. PROC-STORY-018
+19. PROC-STORY-019
+20. PROC-STORY-020
+21. PROC-STORY-021
+22. PROC-STORY-022
+
+That gives you a clean path from platform through strategy, budget, requisition, and tender-ready procurement plan items.
 
 # 6\. Ticket template for your backlog tool
 

@@ -8,7 +8,7 @@
 
 **Execution order:** Follow the Ticket Pack’s closing list (steps 1–22 below). Do **not** use [`KenTender Master Epic Map.md`](KenTender%20Master%20Epic%20Map.md) §5 for Wave 0 ordering (it can diverge from the pack).
 
-**Wave 0 closure:** All steps **1–22** are **Done** — foundation (workspace, master data, audit, attachments, entity/assignment/permission helpers, SoD, workflow guards, controlled actions, notifications). Next planning surface: **Wave 1** in the Master Epic Map until a Wave 1 ticket pack exists.
+**Wave 0 closure:** All steps **1–22** are **Done** — foundation (workspace, master data, audit, attachments, entity/assignment/permission helpers, SoD, workflow guards, controlled actions, notifications). **Wave 1** tracking: [`WAVE 1 BACKLOG.md`](Wave%201%20BACKLOG.md). Full Wave 1 prompts: [`docs/prompts/Wave 1 Ticket Pack.md`](../prompts/Wave%201%20Ticket%20Pack.md). Epic narrative: [`KenTender Master Epic Map.md`](KenTender%20Master%20Epic%20Map.md) §4.
 
 | Story ID | Title (short) | Epic | Depends on | Step # | Status | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -41,4 +41,8 @@
 
 ## Wave 1
 
-Wave 1 stories remain described in [`KenTender Master Epic Map.md`](KenTender%20Master%20Epic%20Map.md) §4 until a dedicated Wave 1 ticket pack exists.
+Wave 1 is **closed**; tracker [`WAVE 1 BACKLOG.md`](Wave%201%20BACKLOG.md), prompts [`docs/prompts/Wave 1 Ticket Pack.md`](../prompts/Wave%201%20Ticket%20Pack.md).
+
+## Wave 2
+
+Procurement wave: [`WAVE 2 BACKLOG.md`](Wave%202%20BACKLOG.md), prompts [`docs/prompts/Wave 2 Ticket Pack.md`](../prompts/Wave%202%20Ticket%20Pack.md).

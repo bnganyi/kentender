@@ -9,6 +9,10 @@ KenTender procurement module.
 **Do not** treat `kentender_stores` / `kentender_assets` as hard import dependencies (use explicit APIs if needed).  
 Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
 
+### Wave 2 (procurement build)
+
+Sprint tracker: [`docs/dev/WAVE 2 BACKLOG.md`](../docs/dev/WAVE%202%20BACKLOG.md). Full tickets and Cursor prompts: [`docs/prompts/Wave 2 Ticket Pack.md`](../docs/prompts/Wave%202%20Ticket%20Pack.md).
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:

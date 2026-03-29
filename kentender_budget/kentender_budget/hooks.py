@@ -132,13 +132,12 @@ required_apps = ["kentender", "kentender_strategy"]
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Budget Line": {
+		# Runs after controller validate; keeps available_amount in sync (BUD-006).
+		"validate": "kentender_budget.services.budget_line_derived_totals.run_validate_recalculate_derived_totals",
+	},
+}
 
 # Scheduled Tasks
 # ---------------

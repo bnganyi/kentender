@@ -1,0 +1,189 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:business_id",
+ "creation": "2026-03-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "business_id",
+  "plan_title",
+  "procuring_entity",
+  "plan_period_label",
+  "version_no",
+  "status",
+  "is_current_active_version",
+  "start_date",
+  "end_date",
+  "primary_national_framework",
+  "primary_alignment_basis",
+  "supersedes_plan",
+  "superseded_by_plan",
+  "revision_reason",
+  "approval_status",
+  "workflow_state",
+  "strategy_manager",
+  "planning_authority_owner",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "business_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Business ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "plan_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Plan Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "procuring_entity",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Procuring Entity",
+   "options": "Procuring Entity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "plan_period_label",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Plan Period Label",
+   "description": "Human-readable period label (e.g. FY 2026/27).",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "version_no",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Version No.",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nUnder Review\nSuperseded\nCancelled",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_current_active_version",
+   "fieldtype": "Check",
+   "label": "Is Current Active Version",
+   "description": "At most one plan per procuring entity should be current; saving with this checked demotes other plans for the same entity."
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "primary_national_framework",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Primary National Framework",
+   "options": "National Framework",
+   "reqd": 1
+  },
+  {
+   "fieldname": "primary_alignment_basis",
+   "fieldtype": "Small Text",
+   "label": "Primary Alignment Basis"
+  },
+  {
+   "fieldname": "supersedes_plan",
+   "fieldtype": "Link",
+   "label": "Supersedes Plan",
+   "options": "Entity Strategic Plan"
+  },
+  {
+   "fieldname": "superseded_by_plan",
+   "fieldtype": "Link",
+   "label": "Superseded By Plan",
+   "options": "Entity Strategic Plan",
+   "read_only": 1
+  },
+  {
+   "fieldname": "revision_reason",
+   "fieldtype": "Small Text",
+   "label": "Revision Reason"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Approval Status",
+   "options": "Draft\nSubmitted\nApproved\nRejected\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Data",
+   "label": "Workflow State",
+   "description": "Optional workflow engine state key (STORY-STRAT-004 scaffold)."
+  },
+  {
+   "fieldname": "strategy_manager",
+   "fieldtype": "Link",
+   "label": "Strategy Manager",
+   "options": "User"
+  },
+  {
+   "fieldname": "planning_authority_owner",
+   "fieldtype": "Link",
+   "label": "Planning Authority Owner",
+   "options": "User"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text Editor",
+   "label": "Remarks"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Strategy",
+ "name": "Entity Strategic Plan",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
