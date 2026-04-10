@@ -7,6 +7,8 @@ import frappe
 
 
 def execute():
+	if not frappe.db.table_exists("Purchase Requisition"):
+		return
 	# Legacy mirror: approval_status tracks authoritative stage label.
 	frappe.db.sql(
 		"""
