@@ -44,7 +44,6 @@ def log_audit_event(
 	source_module: str | None = None,
 	target_doctype: str | None = None,
 	target_docname: str | None = None,
-	business_id: str | None = None,
 	actor_role: str | None = None,
 	procuring_entity: str | None = None,
 	old_state: str | None = None,
@@ -71,7 +70,6 @@ def log_audit_event(
 	hash_payload = {
 		"actor": resolved_actor,
 		"actor_role": actor_role or "",
-		"business_id": business_id or "",
 		"changed_fields_summary": changed_fields_summary or "",
 		"event_datetime": dt_iso,
 		"event_type": event_type.strip(),
@@ -91,7 +89,6 @@ def log_audit_event(
 			"doctype": AUDIT_EVENT_DOCTYPE,
 			"actor": resolved_actor,
 			"actor_role": actor_role,
-			"business_id": business_id,
 			"changed_fields_summary": changed_fields_summary,
 			"event_datetime": resolved_dt,
 			"event_hash": event_hash,

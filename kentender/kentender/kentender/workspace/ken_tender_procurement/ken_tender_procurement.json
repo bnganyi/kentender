@@ -1,0 +1,349 @@
+{
+ "app": "kentender",
+ "charts": [],
+ "content": "[{\"id\":\"ktpo_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>KenTender \u2014 Procurement Operations</b></span>\",\"col\":12}},{\"id\":\"ktpo_sub\",\"type\":\"paragraph\",\"data\":{\"text\":\"Requisition and planning (Wave 2), tenders and supplier bids (Wave 3). Use the cards below for documents, queues, and reports.\",\"col\":12}}]",
+ "creation": "2026-03-29 12:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "purchase",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "KenTender Procurement",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Requisitions",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Requisition",
+   "link_count": 0,
+   "link_to": "Purchase Requisition",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Requisition Planning Links",
+   "link_count": 0,
+   "link_to": "Requisition Planning Link",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Requisition Amendment Records",
+   "link_count": 0,
+   "link_to": "Requisition Amendment Record",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Planning",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Procurement Plan",
+   "link_count": 0,
+   "link_to": "Procurement Plan",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Procurement Plan Item",
+   "link_count": 0,
+   "link_to": "Procurement Plan Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Plan Fragmentation Alert",
+   "link_count": 0,
+   "link_to": "Plan Fragmentation Alert",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Tenders",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Tender",
+   "link_count": 0,
+   "link_to": "Tender",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Tender Lot",
+   "link_count": 0,
+   "link_to": "Tender Lot",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bids",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bid Submission",
+   "link_count": 0,
+   "link_to": "Bid Submission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bid Envelope Section",
+   "link_count": 0,
+   "link_to": "Bid Envelope Section",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bid Document",
+   "link_count": 0,
+   "link_to": "Bid Document",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bid Submission Event",
+   "link_count": 0,
+   "link_to": "Bid Submission Event",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bid Receipt",
+   "link_count": 0,
+   "link_to": "Bid Receipt",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bid Withdrawal Record",
+   "link_count": 0,
+   "link_to": "Bid Withdrawal Record",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bid Validation Issue",
+   "link_count": 0,
+   "link_to": "Bid Validation Issue",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "My Requisitions",
+   "link_count": 0,
+   "link_to": "My Requisitions",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Planning Ready Requisitions",
+   "link_count": 0,
+   "link_to": "Planning Ready Requisitions",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Planning Queue",
+   "link_count": 0,
+   "link_to": "Planning Queue",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Draft Procurement Plans",
+   "link_count": 0,
+   "link_to": "Draft Procurement Plans",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Active Procurement Plans",
+   "link_count": 0,
+   "link_to": "Active Procurement Plans",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Plan Items Ready for Tender",
+   "link_count": 0,
+   "link_to": "Plan Items Ready for Tender",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Fragmentation Alerts",
+   "link_count": 0,
+   "link_to": "Fragmentation Alerts",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-04-10 16:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "KenTender Procurement",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "KT UAT Procurement Officer"
+  },
+  {
+   "role": "KT UAT Strategy Manager"
+  },
+  {
+   "role": "KT UAT Budget Officer"
+  },
+  {
+   "role": "KT UAT Auditor"
+  }
+ ],
+ "sequence_id": 2.0,
+ "shortcuts": [
+  {
+   "doc_view": "New",
+   "label": "New Requisition",
+   "link_to": "Purchase Requisition",
+   "type": "DocType"
+  },
+  {
+   "label": "My Requisitions",
+   "link_to": "My Requisitions",
+   "report_ref_doctype": "Purchase Requisition",
+   "type": "Report"
+  },
+  {
+   "label": "Planning Ready Requisitions",
+   "link_to": "Planning Ready Requisitions",
+   "report_ref_doctype": "Purchase Requisition",
+   "type": "Report"
+  },
+  {
+   "label": "Planning Queue",
+   "link_to": "Planning Queue",
+   "report_ref_doctype": "Procurement Plan",
+   "type": "Report"
+  },
+  {
+   "label": "Plan Items Ready for Tender",
+   "link_to": "Plan Items Ready for Tender",
+   "report_ref_doctype": "Procurement Plan Item",
+   "type": "Report"
+  },
+  {
+   "label": "Tenders",
+   "link_to": "Tender",
+   "type": "DocType"
+  },
+  {
+   "label": "Bid Submissions",
+   "link_to": "Bid Submission",
+   "type": "DocType"
+  }
+ ],
+ "title": "KenTender Procurement",
+ "type": "Workspace"
+}

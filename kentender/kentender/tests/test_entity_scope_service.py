@@ -11,7 +11,7 @@ from kentender.services.entity_scope_service import (
 	user_has_entity_access,
 	user_may_access_scoped_record,
 )
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 
 _ROLE = "KT C008 Scope Test"
 _USER = "kt_c008_scope@test.com"
@@ -47,23 +47,27 @@ def _ensure_scoped_user():
 	doc.insert(ignore_permissions=True)
 
 
+def _cleanup_c008_data():
+	frappe.db.delete("User Permission", {"user": _USER})
+	if frappe.db.exists("User", _USER):
+		frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
+	frappe.db.delete("Exception Record", {"name": ("like", "_KT_C008_EX%")})
+	frappe.db.delete("Procuring Department", {"department_code": ("like", "_KT_C008_DP%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_C008_%")})
+
+
 class TestEntityScopeService(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_c008_data)
 		self.a = _make_entity(_ENTITY_A)
 		self.a.insert()
 		self.b = _make_entity(_ENTITY_B)
 		self.b.insert()
 
 	def tearDown(self):
-		frappe.db.delete("User Permission", {"user": _USER})
-		if frappe.db.exists("User", _USER):
-			frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
-		frappe.db.delete("Exception Record", {"business_id": ("like", "_KT_C008_EX%")})
-		frappe.db.delete("Procuring Department", {"department_code": ("like", "_KT_C008_DP%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_C008_%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_c008_data)
 		super().tearDown()
 
 	def test_get_record_entity_value(self):
@@ -81,7 +85,7 @@ class TestEntityScopeService(FrappeTestCase):
 		ex = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_C008_EX1",
+				"name": "_KT_C008_EX1",
 				"exception_type": "Other",
 				"procuring_entity": self.a.name,
 				"triggered_by": "Administrator",
@@ -132,7 +136,7 @@ class TestEntityScopeService(FrappeTestCase):
 		ex = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_C008_EX2",
+				"name": "_KT_C008_EX2",
 				"exception_type": "Other",
 				"procuring_entity": self.b.name,
 				"triggered_by": "Administrator",
@@ -162,7 +166,7 @@ class TestEntityScopeService(FrappeTestCase):
 		ex = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_C008_EX3",
+				"name": "_KT_C008_EX3",
 				"exception_type": "Other",
 				"procuring_entity": self.a.name,
 				"triggered_by": "Administrator",
@@ -192,7 +196,7 @@ class TestEntityScopeService(FrappeTestCase):
 		ex = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_C008_EX4",
+				"name": "_KT_C008_EX4",
 				"exception_type": "Other",
 				"procuring_entity": self.a.name,
 				"triggered_by": "Administrator",
@@ -214,7 +218,7 @@ class TestEntityScopeService(FrappeTestCase):
 		ex = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_C008_EX5",
+				"name": "_KT_C008_EX5",
 				"exception_type": "Other",
 				"procuring_entity": self.a.name,
 				"triggered_by": "Administrator",

@@ -12,7 +12,7 @@ from kentender.services.assignment_access_service import (
 	user_assignment_roles_on_target,
 	user_has_assignment,
 )
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 
 _ENTITY = "_KT_ASG_PE"
 _EX = "_KT_ASG_EX1"
@@ -44,6 +44,14 @@ def _ensure_assign_user():
 	doc.insert(ignore_permissions=True)
 
 
+def _cleanup_asg_data():
+	frappe.db.delete(ASSIGNMENT_DOCTYPE, {"target_docname": ("like", "_KT_ASG_%")})
+	frappe.db.delete("Exception Record", {"name": ("like", "_KT_ASG_%")})
+	if frappe.db.exists("User", _USER):
+		frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
+	frappe.db.delete("Procuring Entity", {"entity_code": _ENTITY})
+
+
 class TestAssignmentValidForDate(FrappeTestCase):
 	def test_open_ended(self):
 		self.assertTrue(assignment_valid_for_date(valid_from=None, valid_to=None))
@@ -71,14 +79,12 @@ class TestKenTenderAssignmentDocType(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_asg_data)
 		self.entity = _make_entity(_ENTITY)
 		self.entity.insert()
 
 	def tearDown(self):
-		frappe.db.delete(ASSIGNMENT_DOCTYPE, {"target_docname": ("like", "_KT_ASG_%")})
-		frappe.db.delete("Exception Record", {"business_id": ("like", "_KT_ASG_%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": _ENTITY})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_asg_data)
 		super().tearDown()
 
 	def test_invalid_target_blocked(self):
@@ -99,13 +105,14 @@ class TestAssignmentAccessService(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_asg_data)
 		_ensure_assign_user()
 		self.entity = _make_entity(_ENTITY)
 		self.entity.insert()
 		self.ex = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": _EX,
+				"name": _EX,
 				"exception_type": "Other",
 				"procuring_entity": self.entity.name,
 				"triggered_by": "Administrator",
@@ -115,12 +122,7 @@ class TestAssignmentAccessService(FrappeTestCase):
 		self.ex.insert()
 
 	def tearDown(self):
-		frappe.db.delete(ASSIGNMENT_DOCTYPE, {"target_docname": _EX})
-		frappe.db.delete("Exception Record", {"business_id": _EX})
-		if frappe.db.exists("User", _USER):
-			frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
-		frappe.db.delete("Procuring Entity", {"entity_code": _ENTITY})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_asg_data)
 		super().tearDown()
 
 	def _insert_assignment(self, **kwargs):

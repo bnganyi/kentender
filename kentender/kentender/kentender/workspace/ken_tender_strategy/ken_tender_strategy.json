@@ -1,0 +1,187 @@
+{
+ "app": "kentender",
+ "charts": [],
+ "content": "[{\"id\":\"kts_h\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>KenTender \u2014 Strategy and Planning</b></span>\",\"col\":12}},{\"id\":\"kts_p\",\"type\":\"paragraph\",\"data\":{\"text\":\"National reference model and entity strategic programs. Create data top-down before linking requisitions.\",\"col\":12}}]",
+ "creation": "2026-03-30 12:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "organization",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "KenTender Strategy",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "National reference",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "National Framework",
+   "link_count": 0,
+   "link_to": "National Framework",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "National Pillar",
+   "link_count": 0,
+   "link_to": "National Pillar",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "National Objective",
+   "link_count": 0,
+   "link_to": "National Objective",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entity and delivery chain",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entity Strategic Plan",
+   "link_count": 0,
+   "link_to": "Entity Strategic Plan",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Strategic Program",
+   "link_count": 0,
+   "link_to": "Strategic Program",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Strategic Sub Program",
+   "link_count": 0,
+   "link_to": "Strategic Sub Program",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Output Indicator",
+   "link_count": 0,
+   "link_to": "Output Indicator",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Performance Target",
+   "link_count": 0,
+   "link_to": "Performance Target",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Governance",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Strategic Revision Record",
+   "link_count": 0,
+   "link_to": "Strategic Revision Record",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-03-30 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "KenTender Strategy",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "KT UAT Strategy Manager"
+  },
+  {
+   "role": "KT UAT Budget Officer"
+  },
+  {
+   "role": "KT UAT Requisitioner"
+  },
+  {
+   "role": "KT UAT HOD"
+  },
+  {
+   "role": "KT UAT Finance Approver"
+  },
+  {
+   "role": "KT UAT Procurement Officer"
+  }
+ ],
+ "sequence_id": 3.0,
+ "shortcuts": [
+  {
+   "doc_view": "New",
+   "label": "New National Framework",
+   "link_to": "National Framework",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "New",
+   "label": "New Entity Strategic Plan",
+   "link_to": "Entity Strategic Plan",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "New",
+   "label": "New Strategic Program",
+   "link_to": "Strategic Program",
+   "type": "DocType"
+  }
+ ],
+ "title": "KenTender Strategy",
+ "type": "Workspace"
+}

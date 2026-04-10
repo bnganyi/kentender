@@ -8,6 +8,7 @@
  "field_order": [
   "document_type_code",
   "document_type_name",
+  "display_label",
   "module_scope",
   "sensitivity_class",
   "required_for_processes",
@@ -28,6 +29,14 @@
    "in_list_view": 1,
    "label": "Document Type Name",
    "reqd": 1
+  },
+  {
+   "description": "Derived for link display (code — title).",
+   "fieldname": "display_label",
+   "fieldtype": "Data",
+   "label": "Display Label",
+   "read_only": 1,
+   "hidden": 1
   },
   {
    "default": "Core",
@@ -83,5 +92,8 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "display_label",
+ "show_title_field_in_link": 1,
+ "search_fields": "document_type_code,document_type_name,display_label",
  "track_changes": 1
 }

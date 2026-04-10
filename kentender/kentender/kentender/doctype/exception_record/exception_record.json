@@ -1,135 +1,126 @@
 {
- "actions": [],
- "allow_rename": 0,
- "autoname": "field:business_id",
- "creation": "2026-03-28 00:00:00.000000",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "business_id",
-  "exception_type",
-  "severity",
-  "approval_status",
-  "procuring_entity",
-  "related_doctype",
-  "related_docname",
-  "triggered_by",
-  "justification",
-  "approved_by",
-  "effective_from",
-  "effective_to"
- ],
- "fields": [
-  {
-   "fieldname": "business_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Business ID",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fieldname": "exception_type",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Exception Type",
-   "options": "Emergency Procurement\nRule Bypass\nAccess Override\nData Correction\nOther",
-   "reqd": 1
-  },
-  {
-   "default": "Medium",
-   "fieldname": "severity",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Severity",
-   "options": "Low\nMedium\nHigh\nCritical",
-   "reqd": 1
-  },
-  {
-   "default": "Draft",
-   "fieldname": "approval_status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Approval Status",
-   "options": "Draft\nSubmitted\nUnder Review\nApproved\nRejected\nCancelled",
-   "reqd": 1
-  },
-  {
-   "fieldname": "procuring_entity",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Procuring Entity",
-   "options": "Procuring Entity",
-   "reqd": 1
-  },
-  {
-   "fieldname": "related_doctype",
-   "fieldtype": "Link",
-   "label": "Related DocType",
-   "options": "DocType"
-  },
-  {
-   "fieldname": "related_docname",
-   "fieldtype": "Data",
-   "label": "Related Document"
-  },
-  {
-   "fieldname": "triggered_by",
-   "fieldtype": "Link",
-   "label": "Triggered By",
-   "options": "User",
-   "reqd": 1
-  },
-  {
-   "fieldname": "justification",
-   "fieldtype": "Small Text",
-   "label": "Justification",
-   "reqd": 1
-  },
-  {
-   "fieldname": "approved_by",
-   "fieldtype": "Link",
-   "label": "Approved By",
-   "options": "User",
-   "read_only": 1
-  },
-  {
-   "fieldname": "effective_from",
-   "fieldtype": "Date",
-   "label": "Effective From"
-  },
-  {
-   "fieldname": "effective_to",
-   "fieldtype": "Date",
-   "label": "Effective To"
-  }
- ],
- "grid_page_length": 50,
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-03-28 00:00:00.000000",
- "modified_by": "Administrator",
- "module": "KenTender",
- "name": "Exception Record",
- "naming_rule": "By fieldname",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "row_format": "Dynamic",
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": [],
- "track_changes": 1
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "Prompt",
+	"creation": "2026-03-28 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"exception_type",
+		"severity",
+		"approval_status",
+		"procuring_entity",
+		"related_doctype",
+		"related_docname",
+		"triggered_by",
+		"justification",
+		"approved_by",
+		"effective_from",
+		"effective_to"
+	],
+	"fields": [
+		{
+			"fieldname": "exception_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Exception Type",
+			"options": "Emergency Procurement\nRule Bypass\nAccess Override\nData Correction\nOther",
+			"reqd": 1
+		},
+		{
+			"default": "Medium",
+			"fieldname": "severity",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Severity",
+			"options": "Low\nMedium\nHigh\nCritical",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "approval_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Approval Status",
+			"options": "Draft\nSubmitted\nUnder Review\nApproved\nRejected\nCancelled",
+			"reqd": 1
+		},
+		{
+			"fieldname": "procuring_entity",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procuring Entity",
+			"options": "Procuring Entity",
+			"reqd": 1
+		},
+		{
+			"fieldname": "related_doctype",
+			"fieldtype": "Link",
+			"label": "Related DocType",
+			"options": "DocType"
+		},
+		{
+			"fieldname": "related_docname",
+			"fieldtype": "Data",
+			"label": "Related Document"
+		},
+		{
+			"fieldname": "triggered_by",
+			"fieldtype": "Link",
+			"label": "Triggered By",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"fieldname": "justification",
+			"fieldtype": "Small Text",
+			"label": "Justification",
+			"reqd": 1
+		},
+		{
+			"fieldname": "approved_by",
+			"fieldtype": "Link",
+			"label": "Approved By",
+			"options": "User",
+			"read_only": 1
+		},
+		{
+			"fieldname": "effective_from",
+			"fieldtype": "Date",
+			"label": "Effective From"
+		},
+		{
+			"fieldname": "effective_to",
+			"fieldtype": "Date",
+			"label": "Effective To"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-03-28 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "KenTender",
+	"name": "Exception Record",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 1
 }

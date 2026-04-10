@@ -11,7 +11,7 @@ from kentender.services.separation_of_duty_service import (
 	has_blocking_sod_violation,
 	sod_evaluation_summary,
 )
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 
 
 def _make_rule(**kwargs):
@@ -33,10 +33,23 @@ def _make_rule(**kwargs):
 	return frappe.get_doc(data)
 
 
+def _cleanup_sod_rules_only():
+	frappe.db.delete(RULE_DOCTYPE, {"rule_code": ("like", "_KT_SOD_%")})
+
+
+def _cleanup_sod_eval_data():
+	frappe.db.delete(RULE_DOCTYPE, {"rule_code": ("like", "_KT_SOD_%")})
+	frappe.db.delete("Exception Record", {"name": ("like", "_KT_SOD_%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": "_KT_SOD_PE"})
+
+
 class TestSeparationOfDutyConflictRuleDocType(FrappeTestCase):
+	def setUp(self):
+		super().setUp()
+		run_test_db_cleanup(_cleanup_sod_rules_only)
+
 	def tearDown(self):
-		frappe.db.delete(RULE_DOCTYPE, {"rule_code": ("like", "_KT_SOD_%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_sod_rules_only)
 		super().tearDown()
 
 	def test_duplicate_rule_code_blocked(self):
@@ -49,12 +62,13 @@ class TestSeparationOfDutyEvaluation(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_sod_eval_data)
 		self.entity = _make_entity("_KT_SOD_PE")
 		self.entity.insert()
 		self.ex = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_SOD_EX",
+				"name": "_KT_SOD_EX",
 				"exception_type": "Other",
 				"procuring_entity": self.entity.name,
 				"triggered_by": "Administrator",
@@ -66,10 +80,7 @@ class TestSeparationOfDutyEvaluation(FrappeTestCase):
 		self.rule.insert()
 
 	def tearDown(self):
-		frappe.db.delete(RULE_DOCTYPE, {"rule_code": ("like", "_KT_SOD_%")})
-		frappe.db.delete("Exception Record", {"business_id": ("like", "_KT_SOD_%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": "_KT_SOD_PE"})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_sod_eval_data)
 		super().tearDown()
 
 	def _history_submit(self):
@@ -108,7 +119,7 @@ class TestSeparationOfDutyEvaluation(FrappeTestCase):
 		other = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_SOD_EX2",
+				"name": "_KT_SOD_EX2",
 				"exception_type": "Other",
 				"procuring_entity": self.entity.name,
 				"triggered_by": "Administrator",
@@ -149,7 +160,7 @@ class TestSeparationOfDutyEvaluation(FrappeTestCase):
 		other = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_SOD_EX3",
+				"name": "_KT_SOD_EX3",
 				"exception_type": "Other",
 				"procuring_entity": self.entity.name,
 				"triggered_by": "Administrator",
@@ -188,7 +199,7 @@ class TestSeparationOfDutyEvaluation(FrappeTestCase):
 		other = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_SOD_EX4",
+				"name": "_KT_SOD_EX4",
 				"exception_type": "Other",
 				"procuring_entity": self.entity.name,
 				"triggered_by": "Administrator",

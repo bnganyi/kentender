@@ -14,7 +14,7 @@ from kentender.services.permission_query_service import (
 	or_filters_entity_or_docnames,
 	owner_is_user,
 )
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 
 _ENTITY_A = "_KT_PQ_A"
 _ENTITY_B = "_KT_PQ_B"
@@ -46,6 +46,26 @@ def _ensure_user():
 	doc.insert(ignore_permissions=True)
 
 
+def _cleanup_pq_merge_data():
+	frappe.db.delete("User Permission", {"user": _USER})
+	if frappe.db.exists("User", _USER):
+		frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
+	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PQ_%")})
+
+
+def _cleanup_pq_assign_data():
+	frappe.db.delete(ASSIGNMENT_DOCTYPE, {"target_docname": ("like", "_KT_PQ_EX%")})
+	frappe.db.delete("Exception Record", {"name": ("like", "_KT_PQ_EX%")})
+	if frappe.db.exists("User", _USER):
+		frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
+	frappe.db.delete("Procuring Entity", {"entity_code": "_KT_PQ_E"})
+
+
+def _cleanup_pq_or_data():
+	frappe.db.delete("Exception Record", {"name": ("like", "_KT_PQ_OX%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PQ_O%")})
+
+
 class TestPermissionQueryFragments(FrappeTestCase):
 	def test_owner_is_user(self):
 		self.assertEqual(owner_is_user("Administrator"), {"owner": "Administrator"})
@@ -69,6 +89,7 @@ class TestMergeEntityScopeFilters(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_pq_merge_data)
 		_ensure_user()
 		self.entity_a = _make_entity(_ENTITY_A)
 		self.entity_a.insert()
@@ -85,11 +106,7 @@ class TestMergeEntityScopeFilters(FrappeTestCase):
 		).insert(ignore_permissions=True)
 
 	def tearDown(self):
-		frappe.db.delete("User Permission", {"user": _USER})
-		if frappe.db.exists("User", _USER):
-			frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PQ_%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_pq_merge_data)
 		super().tearDown()
 
 	def test_central_without_active_entity_adds_no_field(self):
@@ -134,13 +151,14 @@ class TestAssignmentQueryIntegration(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_pq_assign_data)
 		_ensure_user()
 		self.entity = _make_entity("_KT_PQ_E")
 		self.entity.insert()
 		self.ex1 = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_PQ_EX1",
+				"name": "_KT_PQ_EX1",
 				"exception_type": "Other",
 				"procuring_entity": self.entity.name,
 				"triggered_by": "Administrator",
@@ -151,7 +169,7 @@ class TestAssignmentQueryIntegration(FrappeTestCase):
 		self.ex2 = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_PQ_EX2",
+				"name": "_KT_PQ_EX2",
 				"exception_type": "Other",
 				"procuring_entity": self.entity.name,
 				"triggered_by": "Administrator",
@@ -172,12 +190,7 @@ class TestAssignmentQueryIntegration(FrappeTestCase):
 		).insert(ignore_permissions=True)
 
 	def tearDown(self):
-		frappe.db.delete(ASSIGNMENT_DOCTYPE, {"target_docname": ("like", "_KT_PQ_EX%")})
-		frappe.db.delete("Exception Record", {"business_id": ("like", "_KT_PQ_EX%")})
-		if frappe.db.exists("User", _USER):
-			frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
-		frappe.db.delete("Procuring Entity", {"entity_code": "_KT_PQ_E"})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_pq_assign_data)
 		super().tearDown()
 
 	def test_list_assigned_target_docnames_for_user(self):
@@ -201,6 +214,7 @@ class TestOrFiltersEntityOrDocnames(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_pq_or_data)
 		self.entity_a = _make_entity("_KT_PQ_OA")
 		self.entity_a.insert()
 		self.entity_b = _make_entity("_KT_PQ_OB")
@@ -208,7 +222,7 @@ class TestOrFiltersEntityOrDocnames(FrappeTestCase):
 		self.ex_a = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_PQ_OX1",
+				"name": "_KT_PQ_OX1",
 				"exception_type": "Other",
 				"procuring_entity": self.entity_a.name,
 				"triggered_by": "Administrator",
@@ -219,7 +233,7 @@ class TestOrFiltersEntityOrDocnames(FrappeTestCase):
 		self.ex_b = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_PQ_OX2",
+				"name": "_KT_PQ_OX2",
 				"exception_type": "Other",
 				"procuring_entity": self.entity_b.name,
 				"triggered_by": "Administrator",
@@ -229,9 +243,7 @@ class TestOrFiltersEntityOrDocnames(FrappeTestCase):
 		self.ex_b.insert()
 
 	def tearDown(self):
-		frappe.db.delete("Exception Record", {"business_id": ("like", "_KT_PQ_OX%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PQ_O%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_pq_or_data)
 		super().tearDown()
 
 	def test_or_filters_union_entity_and_name(self):
@@ -242,7 +254,7 @@ class TestOrFiltersEntityOrDocnames(FrappeTestCase):
 		)
 		rows = frappe.get_all(
 			"Exception Record",
-			filters={"business_id": ("like", "_KT_PQ_OX%")},
+			filters={"name": ("like", "_KT_PQ_OX%")},
 			or_filters=of,
 			pluck="name",
 		)

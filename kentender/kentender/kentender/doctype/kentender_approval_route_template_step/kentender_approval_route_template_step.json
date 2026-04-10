@@ -1,0 +1,111 @@
+{
+ "creation": "2026-04-03 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "step_order",
+  "step_name",
+  "actor_type",
+  "role_required",
+  "assignment_required",
+  "professional_signoff_required",
+  "committee_required",
+  "can_approve",
+  "can_reject",
+  "can_return",
+  "requires_comments",
+  "terminal_on_reject"
+ ],
+ "fields": [
+  {
+   "fieldname": "step_order",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Step Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "step_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Step Name",
+   "reqd": 1
+  },
+  {
+   "default": "Role",
+   "fieldname": "actor_type",
+   "fieldtype": "Select",
+   "label": "Actor Type",
+   "options": "Role\nUser\nAssignment"
+  },
+  {
+   "fieldname": "role_required",
+   "fieldtype": "Link",
+   "label": "Role Required",
+   "options": "Role"
+  },
+  {
+   "default": "0",
+   "fieldname": "assignment_required",
+   "fieldtype": "Check",
+   "label": "Assignment Required"
+  },
+  {
+   "default": "0",
+   "fieldname": "professional_signoff_required",
+   "fieldtype": "Check",
+   "label": "Professional Signoff Required"
+  },
+  {
+   "default": "0",
+   "fieldname": "committee_required",
+   "fieldtype": "Check",
+   "label": "Committee Required"
+  },
+  {
+   "default": "1",
+   "fieldname": "can_approve",
+   "fieldtype": "Check",
+   "label": "Can Approve"
+  },
+  {
+   "default": "1",
+   "fieldname": "can_reject",
+   "fieldtype": "Check",
+   "label": "Can Reject"
+  },
+  {
+   "default": "1",
+   "fieldname": "can_return",
+   "fieldtype": "Check",
+   "label": "Can Return"
+  },
+  {
+   "default": "0",
+   "fieldname": "requires_comments",
+   "fieldtype": "Check",
+   "label": "Requires Comments"
+  },
+  {
+   "default": "0",
+   "fieldname": "terminal_on_reject",
+   "fieldtype": "Check",
+   "label": "Terminal On Reject"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-04-03 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "KenTender Approval Route Template Step",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

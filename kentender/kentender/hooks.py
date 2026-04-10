@@ -88,6 +88,8 @@ required_apps = []
 # before_install = "kentender.install.before_install"
 # after_install = "kentender.install.after_install"
 
+after_migrate = ["kentender.uat.bootstrap.after_migrate"]
+
 # Uninstallation
 # ------------
 
@@ -132,13 +134,11 @@ required_apps = []
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Purchase Requisition": {
+		"validate": "kentender.workflow_engine.safeguards.document_validate_approval_controlled_fields",
+	}
+}
 
 # Scheduled Tasks
 # ---------------

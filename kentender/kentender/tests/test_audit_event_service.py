@@ -21,7 +21,6 @@ class TestAuditEventService(FrappeTestCase):
 			source_module="kentender",
 			target_doctype="Procuring Entity",
 			target_docname="TEST",
-			business_id="BIZ-1",
 			actor_role="System Manager",
 			changed_fields_summary="status",
 			reason="integration test",

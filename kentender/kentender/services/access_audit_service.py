@@ -39,7 +39,6 @@ def log_access_denied(
 	actor: str | None = None,
 	actor_role: str | None = None,
 	procuring_entity: str | None = None,
-	business_id: str | None = None,
 ) -> Document:
 	"""Log a denied access attempt against a target document.
 
@@ -70,7 +69,6 @@ def log_access_denied(
 		source_module=SOURCE_MODULE,
 		target_doctype=resource_doctype.strip(),
 		target_docname=resource_name.strip(),
-		business_id=business_id,
 		procuring_entity=procuring_entity,
 		reason=reason,
 		new_state=json.dumps(detail, sort_keys=True, ensure_ascii=False),
@@ -85,7 +83,6 @@ def log_sensitive_access(
 	actor: str | None = None,
 	actor_role: str | None = None,
 	procuring_entity: str | None = None,
-	business_id: str | None = None,
 	sensitivity_class: str | None = None,
 	context: str | None = None,
 ) -> Document:
@@ -119,7 +116,6 @@ def log_sensitive_access(
 		source_module=SOURCE_MODULE,
 		target_doctype=resource_doctype.strip(),
 		target_docname=resource_name.strip(),
-		business_id=business_id,
 		procuring_entity=procuring_entity,
 		reason=reason,
 		new_state=json.dumps(detail, sort_keys=True, ensure_ascii=False),

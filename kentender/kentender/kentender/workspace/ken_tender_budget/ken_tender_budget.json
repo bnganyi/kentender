@@ -1,0 +1,139 @@
+{
+ "app": "kentender",
+ "charts": [],
+ "content": "[{\"id\":\"ktb_h\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>KenTender \u2014 Budget Control</b></span>\",\"col\":12}},{\"id\":\"ktb_p\",\"type\":\"paragraph\",\"data\":{\"text\":\"Control period, budget, and lines used by purchase requisitions.\",\"col\":12}}]",
+ "creation": "2026-03-30 12:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "accounting",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "KenTender Budget",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Budget structure",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Budget Control Period",
+   "link_count": 0,
+   "link_to": "Budget Control Period",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Budget",
+   "link_count": 0,
+   "link_to": "Budget",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Budget Line",
+   "link_count": 0,
+   "link_to": "Budget Line",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supporting",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Budget Allocation",
+   "link_count": 0,
+   "link_to": "Budget Allocation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Budget Ledger Entry",
+   "link_count": 0,
+   "link_to": "Budget Ledger Entry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-03-30 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "KenTender Budget",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "KT UAT Budget Officer"
+  },
+  {
+   "role": "KT UAT Finance Approver"
+  },
+  {
+   "role": "KT UAT Strategy Manager"
+  },
+  {
+   "role": "KT UAT Requisitioner"
+  },
+  {
+   "role": "KT UAT HOD"
+  },
+  {
+   "role": "KT UAT Procurement Officer"
+  }
+ ],
+ "sequence_id": 4.0,
+ "shortcuts": [
+  {
+   "doc_view": "New",
+   "label": "New Budget Control Period",
+   "link_to": "Budget Control Period",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "New",
+   "label": "New Budget",
+   "link_to": "Budget",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "New",
+   "label": "New Budget Line",
+   "link_to": "Budget Line",
+   "type": "DocType"
+  }
+ ],
+ "title": "KenTender Budget",
+ "type": "Workspace"
+}

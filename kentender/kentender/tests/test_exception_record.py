@@ -4,14 +4,19 @@
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
+
+
+def _cleanup_exc_data():
+	frappe.db.delete("Exception Record", {"name": ("like", "_KT_EXC_%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": "_KT_EXC_PE"})
 
 
 def _make_exception(business_id: str, entity_name: str, **kwargs):
 	return frappe.get_doc(
 		{
 			"doctype": "Exception Record",
-			"business_id": business_id,
+			"name": business_id,
 			"exception_type": kwargs.pop("exception_type", "Other"),
 			"procuring_entity": entity_name,
 			"triggered_by": kwargs.pop("triggered_by", "Administrator"),
@@ -28,16 +33,12 @@ class TestExceptionRecord(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_exc_data)
 		self.entity = _make_entity("_KT_EXC_PE")
 		self.entity.insert()
 
 	def tearDown(self):
-		frappe.db.delete(
-			"Exception Record",
-			{"business_id": ("like", "_KT_EXC_%")},
-		)
-		frappe.db.delete("Procuring Entity", {"entity_code": "_KT_EXC_PE"})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_exc_data)
 		super().tearDown()
 
 	def test_valid_create_with_related_link(self):

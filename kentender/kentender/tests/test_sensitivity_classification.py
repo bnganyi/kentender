@@ -11,7 +11,23 @@ from kentender.services.sensitivity_classification import (
 	is_sensitive,
 	normalize_sensitivity_class,
 )
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
+
+
+def _cleanup_sc_data():
+	frappe.db.delete(
+		"KenTender Typed Attachment",
+		{"owning_docname": "_KT_SC_PE"},
+	)
+	frappe.db.delete(
+		"File",
+		{
+			"attached_to_doctype": "Procuring Entity",
+			"attached_to_name": "_KT_SC_PE",
+		},
+	)
+	frappe.db.delete("Document Type Registry", {"document_type_code": "_KT_SC_DT1"})
+	frappe.db.delete("Procuring Entity", {"entity_code": "_KT_SC_PE"})
 
 
 class TestSensitivityClassificationHelpers(FrappeTestCase):
@@ -55,6 +71,7 @@ class TestKenTenderTypedAttachmentSensitivityValidation(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_sc_data)
 		self.entity = _make_entity("_KT_SC_PE")
 		self.entity.insert()
 		self.dt = frappe.get_doc(
@@ -77,20 +94,7 @@ class TestKenTenderTypedAttachmentSensitivityValidation(FrappeTestCase):
 		self.file_doc.insert(ignore_permissions=True)
 
 	def tearDown(self):
-		frappe.db.delete(
-			"KenTender Typed Attachment",
-			{"owning_docname": self.entity.name},
-		)
-		frappe.db.delete(
-			"File",
-			{
-				"attached_to_doctype": "Procuring Entity",
-				"attached_to_name": self.entity.name,
-			},
-		)
-		frappe.db.delete("Document Type Registry", {"document_type_code": "_KT_SC_DT1"})
-		frappe.db.delete("Procuring Entity", {"entity_code": "_KT_SC_PE"})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_sc_data)
 		super().tearDown()
 
 	def test_invalid_sensitivity_class_rejected(self):

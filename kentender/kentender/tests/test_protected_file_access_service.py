@@ -10,15 +10,33 @@ from kentender.services.protected_file_access_service import (
 	TYPED_ATTACHMENT_DOCTYPE,
 	get_bytes_for_typed_attachment,
 )
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 
 _AUDIT_PE = "_KT_C020_PE"
+
+
+def _cleanup_c020_data():
+	frappe.db.delete(AUDIT_EVENT_DOCTYPE, {"procuring_entity": _AUDIT_PE})
+	frappe.db.delete(
+		TYPED_ATTACHMENT_DOCTYPE,
+		{"owning_docname": _AUDIT_PE},
+	)
+	frappe.db.delete(
+		"File",
+		{
+			"attached_to_doctype": "Procuring Entity",
+			"attached_to_name": _AUDIT_PE,
+		},
+	)
+	frappe.db.delete("Document Type Registry", {"document_type_code": "_KT_C020_DT"})
+	frappe.db.delete("Procuring Entity", {"entity_code": _AUDIT_PE})
 
 
 class TestProtectedFileAccessService(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_c020_data)
 		self.entity = _make_entity(_AUDIT_PE)
 		self.entity.insert()
 		self.dt = frappe.get_doc(
@@ -42,21 +60,7 @@ class TestProtectedFileAccessService(FrappeTestCase):
 		self.file_doc.insert(ignore_permissions=True)
 
 	def tearDown(self):
-		frappe.db.delete(AUDIT_EVENT_DOCTYPE, {"procuring_entity": _AUDIT_PE})
-		frappe.db.delete(
-			TYPED_ATTACHMENT_DOCTYPE,
-			{"owning_docname": self.entity.name},
-		)
-		frappe.db.delete(
-			"File",
-			{
-				"attached_to_doctype": "Procuring Entity",
-				"attached_to_name": self.entity.name,
-			},
-		)
-		frappe.db.delete("Document Type Registry", {"document_type_code": "_KT_C020_DT"})
-		frappe.db.delete("Procuring Entity", {"entity_code": _AUDIT_PE})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_c020_data)
 		super().tearDown()
 
 	def _make_ta(self, sensitivity_class: str):

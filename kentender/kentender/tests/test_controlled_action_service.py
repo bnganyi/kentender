@@ -20,19 +20,27 @@ from kentender.services.workflow_guard_service import (
 	GuardEvalOutcome,
 	WORKFLOW_GUARD_RULE_DOCTYPE,
 )
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
+
+
+def _cleanup_ca_data():
+	frappe.db.delete(AUDIT_EVENT_DOCTYPE, {"target_docname": "_KT_CA_EX"})
+	frappe.db.delete(WORKFLOW_GUARD_RULE_DOCTYPE, {"rule_code": "_KT_CA_R1"})
+	frappe.db.delete("Exception Record", {"name": "_KT_CA_EX"})
+	frappe.db.delete("Procuring Entity", {"entity_code": "_KT_CA_PE"})
 
 
 class TestControlledActionService(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_ca_data)
 		self.entity = _make_entity("_KT_CA_PE")
 		self.entity.insert()
 		self.ex = frappe.get_doc(
 			{
 				"doctype": "Exception Record",
-				"business_id": "_KT_CA_EX",
+				"name": "_KT_CA_EX",
 				"exception_type": "Other",
 				"procuring_entity": self.entity.name,
 				"triggered_by": "Administrator",
@@ -56,11 +64,7 @@ class TestControlledActionService(FrappeTestCase):
 		).insert()
 
 	def tearDown(self):
-		frappe.db.delete(AUDIT_EVENT_DOCTYPE, {"target_docname": self.ex.name})
-		frappe.db.delete(WORKFLOW_GUARD_RULE_DOCTYPE, {"rule_code": "_KT_CA_R1"})
-		frappe.db.delete("Exception Record", {"business_id": "_KT_CA_EX"})
-		frappe.db.delete("Procuring Entity", {"entity_code": "_KT_CA_PE"})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_ca_data)
 		frappe.set_user("Administrator")
 		super().tearDown()
 

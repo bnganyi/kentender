@@ -5,9 +5,12 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
+from kentender.utils.display_label import code_title_label
+
 
 class ProcurementCategory(Document):
 	def validate(self):
+		self.display_label = code_title_label(self.category_code, self.category_name)
 		self._validate_unique_category_code()
 		self._validate_parent_category()
 

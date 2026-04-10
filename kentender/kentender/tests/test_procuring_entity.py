@@ -1,8 +1,30 @@
 # Copyright (c) 2025, Midas and contributors
 # License: MIT. See LICENSE
 
+import time
+from collections.abc import Callable
+
 import frappe
+from frappe.exceptions import QueryDeadlockError
 from frappe.tests.utils import FrappeTestCase
+
+
+def run_test_db_cleanup(cleanup: Callable[[], None], max_attempts: int = 8) -> None:
+	"""Run cleanup (typically frappe.db.delete calls) then commit; retry on MariaDB deadlock.
+
+	Shared-site integration tests can leave rows if a prior test errors, and bulk deletes
+	can occasionally deadlock; repeating the whole cleanup after rollback is safe.
+	"""
+	for attempt in range(max_attempts):
+		try:
+			cleanup()
+			frappe.db.commit()
+			return
+		except QueryDeadlockError:
+			frappe.db.rollback()
+			if attempt + 1 >= max_attempts:
+				raise
+			time.sleep(0.03 * (2**attempt))
 
 
 def _ensure_test_currency() -> str:
@@ -38,10 +60,10 @@ class TestProcuringEntity(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(lambda: frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PE_%")}))
 
 	def tearDown(self):
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PE_%")})
-		frappe.db.commit()
+		run_test_db_cleanup(lambda: frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PE_%")}))
 		super().tearDown()
 
 	def test_valid_create(self):

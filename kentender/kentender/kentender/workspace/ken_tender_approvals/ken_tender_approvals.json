@@ -1,0 +1,73 @@
+{
+ "app": "kentender",
+ "charts": [],
+ "content": "[{\"id\":\"kta_h\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>KenTender — Approvals</b></span>\",\"col\":12}},{\"id\":\"kta_p\",\"type\":\"paragraph\",\"data\":{\"text\":\"Requisition approval queues for heads of department, finance, procurement coordination, and oversight.\",\"col\":12}}]",
+ "creation": "2026-04-02 12:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "check",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "KenTender Approvals",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Queues",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Pending Requisition Approvals",
+   "link_count": 0,
+   "link_to": "Pending Requisition Approvals",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-04-02 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "KenTender Approvals",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "KT UAT HOD"
+  },
+  {
+   "role": "KT UAT Finance Approver"
+  },
+  {
+   "role": "KT UAT Procurement Officer"
+  },
+  {
+   "role": "KT UAT Auditor"
+  }
+ ],
+ "sequence_id": 1.5,
+ "shortcuts": [
+  {
+   "label": "Pending Requisition Approvals",
+   "link_to": "Pending Requisition Approvals",
+   "report_ref_doctype": "Purchase Requisition",
+   "type": "Report"
+  }
+ ],
+ "title": "KenTender Approvals",
+ "type": "Workspace"
+}

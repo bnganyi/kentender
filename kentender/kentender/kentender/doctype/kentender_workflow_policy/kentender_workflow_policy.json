@@ -1,0 +1,151 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:policy_code",
+ "creation": "2026-04-03 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "policy_code",
+  "evaluation_order",
+  "applies_to_doctype",
+  "active",
+  "linked_template",
+  "section_match",
+  "category",
+  "contract_type",
+  "procurement_method",
+  "threshold_min",
+  "threshold_max",
+  "complexity_level",
+  "sector",
+  "requires_professional_opinion",
+  "requires_committee",
+  "risk_level"
+ ],
+ "fields": [
+  {
+   "fieldname": "policy_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Policy Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "100",
+   "fieldname": "evaluation_order",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Evaluation Order",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "applies_to_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Applies To DocType",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Active"
+  },
+  {
+   "fieldname": "linked_template",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Linked Template",
+   "options": "KenTender Approval Route Template",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_match",
+   "fieldtype": "Section Break",
+   "label": "Match criteria"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Procurement Category",
+   "options": "Procurement Category"
+  },
+  {
+   "fieldname": "contract_type",
+   "fieldtype": "Data",
+   "label": "Contract Type"
+  },
+  {
+   "fieldname": "procurement_method",
+   "fieldtype": "Link",
+   "label": "Procurement Method",
+   "options": "Procurement Method"
+  },
+  {
+   "fieldname": "threshold_min",
+   "fieldtype": "Currency",
+   "label": "Threshold Min"
+  },
+  {
+   "fieldname": "threshold_max",
+   "fieldtype": "Currency",
+   "label": "Threshold Max"
+  },
+  {
+   "fieldname": "complexity_level",
+   "fieldtype": "Data",
+   "label": "Complexity Level"
+  },
+  {
+   "fieldname": "sector",
+   "fieldtype": "Data",
+   "label": "Sector"
+  },
+  {
+   "default": "0",
+   "fieldname": "requires_professional_opinion",
+   "fieldtype": "Check",
+   "label": "Requires Professional Opinion"
+  },
+  {
+   "default": "0",
+   "fieldname": "requires_committee",
+   "fieldtype": "Check",
+   "label": "Requires Committee"
+  },
+  {
+   "fieldname": "risk_level",
+   "fieldtype": "Data",
+   "label": "Risk Level"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-03 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "KenTender",
+ "name": "KenTender Workflow Policy",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

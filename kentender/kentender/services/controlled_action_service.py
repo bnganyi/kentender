@@ -133,7 +133,6 @@ def run_controlled_action_gate(
 	audit: bool = True,
 	log_permission_denial_with_access_audit: bool = True,
 	procuring_entity: str | None = None,
-	business_id: str | None = None,
 ) -> ControlledActionResult:
 	"""Validate permission + workflow guards; optionally write audit rows.
 
@@ -185,7 +184,6 @@ def run_controlled_action_gate(
 				denial_reason=str(reason),
 				actor=u,
 				procuring_entity=procuring_entity,
-				business_id=business_id,
 			)
 		if audit:
 			log_audit_event(
@@ -195,7 +193,6 @@ def run_controlled_action_gate(
 				target_doctype=dt,
 				target_docname=dn,
 				procuring_entity=procuring_entity,
-				business_id=business_id,
 				reason=str(reason),
 				new_state=_audit_payload(act, dt, dn, stage="read", ptype="read"),
 			)
@@ -224,7 +221,6 @@ def run_controlled_action_gate(
 				denial_reason=str(reason),
 				actor=u,
 				procuring_entity=procuring_entity,
-				business_id=business_id,
 			)
 		if audit:
 			log_audit_event(
@@ -234,7 +230,6 @@ def run_controlled_action_gate(
 				target_doctype=dt,
 				target_docname=dn,
 				procuring_entity=procuring_entity,
-				business_id=business_id,
 				reason=str(reason),
 				new_state=_audit_payload(act, dt, dn, stage="action_perm", ptype=ptype),
 			)
@@ -274,7 +269,6 @@ def run_controlled_action_gate(
 					target_doctype=dt,
 					target_docname=dn,
 					procuring_entity=procuring_entity,
-					business_id=business_id,
 					reason=str(reason),
 					new_state=_audit_payload(
 						act,
@@ -312,7 +306,6 @@ def run_controlled_action_gate(
 			target_doctype=dt,
 			target_docname=dn,
 			procuring_entity=procuring_entity,
-			business_id=business_id,
 			reason=_("Controlled action gate passed for {0}.").format(frappe.bold(act)),
 			new_state=_audit_payload(
 				act,
@@ -343,7 +336,6 @@ def log_controlled_action_completed(
 	docname: str,
 	actor: str | None = None,
 	procuring_entity: str | None = None,
-	business_id: str | None = None,
 	extra: dict[str, Any] | None = None,
 ) -> Document:
 	"""Append audit row after the business operation succeeds (optional)."""
@@ -355,7 +347,6 @@ def log_controlled_action_completed(
 		target_doctype=doctype,
 		target_docname=docname,
 		procuring_entity=procuring_entity,
-		business_id=business_id,
 		reason=_("Controlled action {0} completed.").format(frappe.bold(action)),
 		new_state=_audit_payload(action, doctype, docname, **payload),
 	)

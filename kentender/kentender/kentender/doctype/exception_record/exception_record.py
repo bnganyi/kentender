@@ -8,28 +8,10 @@ from frappe.model.document import Document
 
 class ExceptionRecord(Document):
 	def validate(self):
-		self._validate_unique_business_id()
 		self._validate_justification()
 		self._validate_related_reference()
 		self._validate_procuring_entity()
 		self._validate_effective_period()
-
-	def _validate_unique_business_id(self):
-		if not self.business_id:
-			return
-		filters = {"business_id": self.business_id}
-		if self.name:
-			filters["name"] = ("!=", self.name)
-		duplicate = frappe.db.get_value("Exception Record", filters, "name")
-		if duplicate:
-			frappe.throw(
-				_("Business ID {0} is already used by {1}.").format(
-					frappe.bold(self.business_id),
-					frappe.bold(duplicate),
-				),
-				frappe.DuplicateEntryError,
-				title=_("Duplicate Business ID"),
-			)
 
 	def _validate_justification(self):
 		text = (self.justification or "").strip()

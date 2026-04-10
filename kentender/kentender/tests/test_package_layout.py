@@ -13,5 +13,7 @@ class TestPackageLayout(unittest.TestCase):
 	def test_standard_packages_import(self):
 		importlib.import_module(f"{_APP}.services")
 		importlib.import_module(f"{_APP}.api")
+		importlib.import_module(f"{_APP}.permissions")
+		importlib.import_module(f"{_APP}.workflow_engine")
 		utils_mod = importlib.import_module(f"{_APP}.utils")
 		self.assertIsNotNone(utils_mod.__doc__)

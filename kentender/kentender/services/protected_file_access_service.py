@@ -53,7 +53,6 @@ def get_bytes_for_typed_attachment(
 	permission_check: Callable[[Document], bool] | None = None,
 	actor: str | None = None,
 	procuring_entity: str | None = None,
-	business_id: str | None = None,
 ) -> bytes:
 	"""Return file bytes for a **KenTender Typed Attachment** after checks and optional audit.
 
@@ -74,7 +73,6 @@ def get_bytes_for_typed_attachment(
 			denial_reason="KenTender Typed Attachment does not exist.",
 			actor=actor,
 			procuring_entity=procuring_entity,
-			business_id=business_id,
 		)
 		raise frappe.PermissionError(_("KenTender Typed Attachment not found."))
 
@@ -88,7 +86,6 @@ def get_bytes_for_typed_attachment(
 			denial_reason="Permission check failed for typed attachment read.",
 			actor=actor,
 			procuring_entity=procuring_entity,
-			business_id=business_id,
 		)
 		raise frappe.PermissionError(_("Not permitted to access this attachment."))
 
@@ -101,7 +98,6 @@ def get_bytes_for_typed_attachment(
 			denial_reason="Linked File is missing or was removed.",
 			actor=actor,
 			procuring_entity=procuring_entity,
-			business_id=business_id,
 		)
 		raise frappe.PermissionError(_("Attachment file is not available."))
 
@@ -116,7 +112,6 @@ def get_bytes_for_typed_attachment(
 			denial_reason=f"Could not read file content: {e!s}",
 			actor=actor,
 			procuring_entity=procuring_entity,
-			business_id=business_id,
 		)
 		raise frappe.PermissionError(_("Could not read attachment file.")) from e
 
@@ -130,7 +125,6 @@ def get_bytes_for_typed_attachment(
 			denial_reason="File content is not available as bytes.",
 			actor=actor,
 			procuring_entity=procuring_entity,
-			business_id=business_id,
 		)
 		raise frappe.PermissionError(_("Attachment file content is invalid."))
 
@@ -143,7 +137,6 @@ def get_bytes_for_typed_attachment(
 			sensitivity_class=doc.sensitivity_class,
 			context=f"attached_file={attached}",
 			procuring_entity=procuring_entity,
-			business_id=business_id,
 		)
 
 	return bytes(raw)

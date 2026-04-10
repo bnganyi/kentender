@@ -5,9 +5,12 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
+from kentender.utils.display_label import code_title_label
+
 
 class ProcuringDepartment(Document):
 	def validate(self):
+		self.display_label = code_title_label(self.department_code, self.department_name)
 		self._validate_unique_department_code_per_entity()
 		self._validate_parent_department()
 
