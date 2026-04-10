@@ -1,0 +1,201 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-04-09 14:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "business_id",
+  "procurement_plan",
+  "related_plan_item",
+  "alert_type",
+  "severity",
+  "risk_score",
+  "rule_trigger_summary",
+  "status",
+  "raised_on",
+  "raised_by_system",
+  "reviewed_by",
+  "review_notes",
+  "exception_record",
+  "display_label"
+ ],
+ "fields": [
+  {
+   "fieldname": "business_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Business ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "procurement_plan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Procurement Plan",
+   "options": "Procurement Plan",
+   "reqd": 1
+  },
+  {
+   "fieldname": "related_plan_item",
+   "fieldtype": "Link",
+   "label": "Related Plan Item",
+   "options": "Procurement Plan Item"
+  },
+  {
+   "fieldname": "alert_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Alert Type",
+   "options": "Similar Demand Split\nThreshold Avoidance Risk\nDuplicate Department Demand\nDuplicate Schedule Window\nRepeated Same Supplier Pattern\nManual Override Risk",
+   "reqd": 1
+  },
+  {
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Severity",
+   "options": "Low\nMedium\nHigh\nCritical",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "risk_score",
+   "fieldtype": "Float",
+   "label": "Risk Score",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "rule_trigger_summary",
+   "fieldtype": "Small Text",
+   "label": "Rule Trigger Summary",
+   "reqd": 1
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Open\nUnder Review\nResolved\nDismissed",
+   "reqd": 1
+  },
+  {
+   "fieldname": "raised_on",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Raised On",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "raised_by_system",
+   "fieldtype": "Check",
+   "label": "Raised By System"
+  },
+  {
+   "fieldname": "reviewed_by",
+   "fieldtype": "Link",
+   "label": "Reviewed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "review_notes",
+   "fieldtype": "Small Text",
+   "label": "Review Notes"
+  },
+  {
+   "fieldname": "exception_record",
+   "fieldtype": "Link",
+   "label": "Exception Record",
+   "options": "Exception Record"
+  },
+  {
+   "description": "Derived for link display.",
+   "fieldname": "display_label",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Display Label",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-09 14:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Procurement",
+ "name": "Plan Fragmentation Alert",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 0,
+   "write": 0,
+   "role": "KT UAT Requisitioner"
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 0,
+   "write": 0,
+   "role": "KT UAT HOD"
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 0,
+   "write": 0,
+   "role": "KT UAT Finance Approver"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Procurement Officer"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "display_label",
+ "show_title_field_in_link": 1,
+ "search_fields": "business_id,procurement_plan,alert_type,status,display_label",
+ "track_changes": 1
+}

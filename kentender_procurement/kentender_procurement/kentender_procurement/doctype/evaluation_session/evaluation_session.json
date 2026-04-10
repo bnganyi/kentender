@@ -1,0 +1,366 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 16:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_identity",
+		"business_id",
+		"tender",
+		"procuring_entity",
+		"display_label",
+		"section_opening",
+		"opening_session",
+		"opening_register",
+		"section_schedule",
+		"status",
+		"workflow_state",
+		"evaluation_start_datetime",
+		"evaluation_end_datetime",
+		"submission_datetime",
+		"section_method",
+		"procurement_method",
+		"evaluation_mode",
+		"currency",
+		"section_criteria",
+		"related_tender_criteria_snapshot_hash",
+		"section_committee",
+		"evaluation_committee_chair",
+		"evaluation_secretariat_user",
+		"committee_assignment_ref",
+		"total_assigned_evaluators",
+		"section_conflict",
+		"conflict_clearance_status",
+		"conflict_clearance_completed_on",
+		"section_counts",
+		"candidate_bid_count",
+		"disqualified_bid_count",
+		"responsive_bid_count",
+		"section_recommendation",
+		"recommended_bid_submission",
+		"recommended_supplier",
+		"recommended_amount",
+		"section_flags",
+		"is_locked_for_edit",
+		"returned_reason",
+		"section_links",
+		"exception_record",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "section_identity",
+			"fieldtype": "Section Break",
+			"label": "Identity"
+		},
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"fieldname": "procuring_entity",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procuring Entity",
+			"options": "Procuring Entity",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list and link display (business_id + tender).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_opening",
+			"fieldtype": "Section Break",
+			"label": "Bid opening context"
+		},
+		{
+			"fieldname": "opening_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Opening Session",
+			"options": "Bid Opening Session",
+			"reqd": 1
+		},
+		{
+			"fieldname": "opening_register",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Opening Register",
+			"options": "Bid Opening Register",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_schedule",
+			"fieldtype": "Section Break",
+			"label": "Schedule"
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nIn Progress\nCompleted\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "workflow_state",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Workflow Stage",
+			"options": "Draft\nIn Progress\nPending Report\nCompleted\nCancelled\nReturned",
+			"reqd": 1
+		},
+		{
+			"fieldname": "evaluation_start_datetime",
+			"fieldtype": "Datetime",
+			"label": "Evaluation Start Datetime"
+		},
+		{
+			"fieldname": "evaluation_end_datetime",
+			"fieldtype": "Datetime",
+			"label": "Evaluation End Datetime"
+		},
+		{
+			"fieldname": "submission_datetime",
+			"fieldtype": "Datetime",
+			"label": "Submission Datetime"
+		},
+		{
+			"fieldname": "section_method",
+			"fieldtype": "Section Break",
+			"label": "Method and currency"
+		},
+		{
+			"fieldname": "procurement_method",
+			"fieldtype": "Select",
+			"label": "Procurement Method",
+			"options": "Open National Tender\nRestricted Bidding\nRequest for Quotation\nSingle Source\nFramework\nDirect Procurement\nOther"
+		},
+		{
+			"default": "Two Envelope",
+			"fieldname": "evaluation_mode",
+			"fieldtype": "Select",
+			"label": "Evaluation Mode",
+			"options": "Two Envelope\nCombined Quality and Price\nLowest Evaluated Bid\nQuality Based\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency"
+		},
+		{
+			"fieldname": "section_criteria",
+			"fieldtype": "Section Break",
+			"label": "Criteria snapshot"
+		},
+		{
+			"fieldname": "related_tender_criteria_snapshot_hash",
+			"fieldtype": "Data",
+			"label": "Related Tender Criteria Snapshot Hash"
+		},
+		{
+			"fieldname": "section_committee",
+			"fieldtype": "Section Break",
+			"label": "Committee"
+		},
+		{
+			"fieldname": "evaluation_committee_chair",
+			"fieldtype": "Link",
+			"label": "Evaluation Committee Chair",
+			"options": "User"
+		},
+		{
+			"fieldname": "evaluation_secretariat_user",
+			"fieldtype": "Link",
+			"label": "Evaluation Secretariat User",
+			"options": "User"
+		},
+		{
+			"fieldname": "committee_assignment_ref",
+			"fieldtype": "Data",
+			"label": "Committee Assignment Ref"
+		},
+		{
+			"default": "0",
+			"fieldname": "total_assigned_evaluators",
+			"fieldtype": "Int",
+			"label": "Total Assigned Evaluators",
+			"non_negative": 1
+		},
+		{
+			"fieldname": "section_conflict",
+			"fieldtype": "Section Break",
+			"label": "Conflict clearance"
+		},
+		{
+			"default": "Pending",
+			"fieldname": "conflict_clearance_status",
+			"fieldtype": "Select",
+			"label": "Conflict Clearance Status",
+			"options": "Pending\nIn Progress\nComplete\nNot Required",
+			"reqd": 1
+		},
+		{
+			"fieldname": "conflict_clearance_completed_on",
+			"fieldtype": "Datetime",
+			"label": "Conflict Clearance Completed On"
+		},
+		{
+			"fieldname": "section_counts",
+			"fieldtype": "Section Break",
+			"label": "Counts"
+		},
+		{
+			"default": "0",
+			"fieldname": "candidate_bid_count",
+			"fieldtype": "Int",
+			"label": "Candidate Bid Count",
+			"non_negative": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "disqualified_bid_count",
+			"fieldtype": "Int",
+			"label": "Disqualified Bid Count",
+			"non_negative": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "responsive_bid_count",
+			"fieldtype": "Int",
+			"label": "Responsive Bid Count",
+			"non_negative": 1
+		},
+		{
+			"fieldname": "section_recommendation",
+			"fieldtype": "Section Break",
+			"label": "Recommendation (derived / late stage)"
+		},
+		{
+			"fieldname": "recommended_bid_submission",
+			"fieldtype": "Link",
+			"label": "Recommended Bid Submission",
+			"options": "Bid Submission"
+		},
+		{
+			"fieldname": "recommended_supplier",
+			"fieldtype": "Data",
+			"label": "Recommended Supplier"
+		},
+		{
+			"fieldname": "recommended_amount",
+			"fieldtype": "Currency",
+			"label": "Recommended Amount",
+			"options": "currency"
+		},
+		{
+			"fieldname": "section_flags",
+			"fieldtype": "Section Break",
+			"label": "Flags"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_locked_for_edit",
+			"fieldtype": "Check",
+			"label": "Locked For Edit"
+		},
+		{
+			"fieldname": "returned_reason",
+			"fieldtype": "Small Text",
+			"label": "Returned Reason"
+		},
+		{
+			"fieldname": "section_links",
+			"fieldtype": "Section Break",
+			"label": "Linked records"
+		},
+		{
+			"fieldname": "exception_record",
+			"fieldtype": "Link",
+			"label": "Exception Record",
+			"options": "Exception Record"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text Editor",
+			"label": "Remarks"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 16:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Evaluation Session",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "business_id,tender,workflow_state,status,opening_session",
+	"track_changes": 1
+}

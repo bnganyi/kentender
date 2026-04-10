@@ -21,7 +21,7 @@ def execute(filters=None):
 			[
 				_("Indicator"),
 				r.get("name"),
-				r.get("business_id"),
+				r.get("name"),
 				r.get("indicator_code"),
 				r.get("indicator_name"),
 				r.get("program"),
@@ -37,7 +37,7 @@ def execute(filters=None):
 			[
 				_("Target"),
 				r.get("name"),
-				r.get("business_id"),
+				r.get("name"),
 				None,
 				r.get("target_title"),
 				r.get("program"),
@@ -55,7 +55,7 @@ def get_columns():
 	return [
 		_("Record Type") + ":Data:90",
 		_("Document") + ":Data:200",
-		_("Business ID") + ":Data:120",
+		_("Reference") + ":Data:120",
 		_("Code") + ":Data:100",
 		_("Title / Name") + ":Data:200",
 		_("Program") + ":Link/Strategic Program:160",

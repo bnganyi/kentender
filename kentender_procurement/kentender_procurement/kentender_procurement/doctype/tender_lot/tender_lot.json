@@ -1,0 +1,205 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-08 14:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"tender",
+		"lot_no",
+		"lot_title",
+		"display_label",
+		"description",
+		"estimated_amount",
+		"currency",
+		"budget_line",
+		"procurement_method",
+		"status",
+		"award_status",
+		"requires_separate_financial_quote"
+	],
+	"fields": [
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"fieldname": "lot_no",
+			"fieldtype": "Int",
+			"in_list_view": 1,
+			"label": "Lot No",
+			"non_negative": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "lot_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Lot Title",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display.",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "description",
+			"fieldtype": "Small Text",
+			"label": "Description"
+		},
+		{
+			"default": "0",
+			"fieldname": "estimated_amount",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "Estimated Amount",
+			"options": "currency",
+			"reqd": 1
+		},
+		{
+			"fetch_from": "tender.currency",
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "budget_line",
+			"fieldtype": "Link",
+			"label": "Budget Line",
+			"options": "Budget Line"
+		},
+		{
+			"default": "Open National Tender",
+			"fieldname": "procurement_method",
+			"fieldtype": "Select",
+			"label": "Procurement Method",
+			"options": "Open National Tender\nRestricted Bidding\nRequest for Quotation\nSingle Source\nFramework\nDirect Procurement\nOther",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nActive\nClosed\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "Not Awarded",
+			"fieldname": "award_status",
+			"fieldtype": "Select",
+			"label": "Award Status",
+			"options": "Not Awarded\nAwarded\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "requires_separate_financial_quote",
+			"fieldtype": "Check",
+			"label": "Requires Separate Financial Quote"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-08 14:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Tender Lot",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Requisitioner",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT HOD",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Finance Approver",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "tender,lot_no,lot_title,display_label,status",
+	"track_changes": 1
+}

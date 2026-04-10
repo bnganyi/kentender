@@ -1,0 +1,167 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-08 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_event",
+		"bid_submission",
+		"event_type",
+		"event_datetime",
+		"event_summary",
+		"display_label",
+		"section_actor",
+		"actor_user",
+		"actor_role_context",
+		"section_client",
+		"ip_address",
+		"user_agent",
+		"section_integrity",
+		"event_hash"
+	],
+	"fields": [
+		{
+			"fieldname": "section_event",
+			"fieldtype": "Section Break",
+			"label": "Event"
+		},
+		{
+			"fieldname": "bid_submission",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Bid Submission",
+			"options": "Bid Submission",
+			"reqd": 1
+		},
+		{
+			"fieldname": "event_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Event Type",
+			"options": "Draft Created\nDocument Added\nValidated\nSubmitted\nSealed\nWithdrawn\nOpened\nRejected\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "event_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Event Datetime",
+			"reqd": 1
+		},
+		{
+			"fieldname": "event_summary",
+			"fieldtype": "Small Text",
+			"label": "Event Summary",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (event type — summary / datetime).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_actor",
+			"fieldtype": "Section Break",
+			"label": "Actor"
+		},
+		{
+			"fieldname": "actor_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Actor User",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"fieldname": "actor_role_context",
+			"fieldtype": "Small Text",
+			"label": "Actor Role Context"
+		},
+		{
+			"fieldname": "section_client",
+			"fieldtype": "Section Break",
+			"label": "Client"
+		},
+		{
+			"fieldname": "ip_address",
+			"fieldtype": "Data",
+			"label": "IP Address"
+		},
+		{
+			"fieldname": "user_agent",
+			"fieldtype": "Small Text",
+			"label": "User Agent"
+		},
+		{
+			"fieldname": "section_integrity",
+			"fieldtype": "Section Break",
+			"label": "Integrity"
+		},
+		{
+			"description": "Integrity fingerprint supplied by emitting code (v1: required on insert).",
+			"fieldname": "event_hash",
+			"fieldtype": "Data",
+			"label": "Event Hash",
+			"reqd": 1
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-08 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Bid Submission Event",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "bid_submission,event_type,event_summary,actor_user",
+	"track_changes": 1
+}

@@ -1,0 +1,143 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-12 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"business_id",
+		"display_label",
+		"inspection_record",
+		"contract",
+		"section_workflow",
+		"status",
+		"workflow_state",
+		"acceptance_decision",
+		"decision_datetime",
+		"approved_by_user",
+		"decision_reason",
+		"section_acceptance",
+		"accepted_value_amount",
+		"accepted_quantity_summary",
+		"accepted_scope_notes",
+		"technical_acceptance_basis",
+		"standards_compliance_status",
+		"section_signals",
+		"contract_progress_update_required",
+		"payment_eligibility_signal_status",
+		"next_action_type",
+		"section_lock",
+		"is_locked",
+		"lock_reason",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{
+			"fieldname": "inspection_record",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Inspection Record",
+			"options": "Inspection Record",
+			"reqd": 1
+		},
+		{
+			"fieldname": "contract",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Contract",
+			"options": "Procurement Contract",
+			"reqd": 1
+		},
+		{"fieldname": "section_workflow", "fieldtype": "Section Break", "label": "Workflow"},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nSubmitted\nApproved\nRejected\nSuperseded\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "workflow_state",
+			"fieldtype": "Select",
+			"label": "Workflow State",
+			"options": "Draft\nIn Review\nPending Approval\nApproved\nRejected",
+			"reqd": 1
+		},
+		{
+			"default": "Pending",
+			"fieldname": "acceptance_decision",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Acceptance Decision",
+			"options": "Pending\nAccepted\nRejected\nConditional\nDeferred",
+			"reqd": 1
+		},
+		{"fieldname": "decision_datetime", "fieldtype": "Datetime", "label": "Decision Datetime"},
+		{"fieldname": "approved_by_user", "fieldtype": "Link", "label": "Approved By User", "options": "User"},
+		{"fieldname": "decision_reason", "fieldtype": "Text Editor", "label": "Decision Reason"},
+		{"fieldname": "section_acceptance", "fieldtype": "Section Break", "label": "Acceptance detail"},
+		{"fieldname": "accepted_value_amount", "fieldtype": "Currency", "label": "Accepted Value Amount"},
+		{"fieldname": "accepted_quantity_summary", "fieldtype": "Small Text", "label": "Accepted Quantity Summary"},
+		{"fieldname": "accepted_scope_notes", "fieldtype": "Text Editor", "label": "Accepted Scope Notes"},
+		{"fieldname": "technical_acceptance_basis", "fieldtype": "Small Text", "label": "Technical Acceptance Basis"},
+		{
+			"default": "Not Assessed",
+			"fieldname": "standards_compliance_status",
+			"fieldtype": "Select",
+			"label": "Standards Compliance Status",
+			"options": "Not Assessed\nCompliant\nPartially Compliant\nNon Compliant",
+			"reqd": 1
+		},
+		{"fieldname": "section_signals", "fieldtype": "Section Break", "label": "Downstream signals"},
+		{"default": "0", "fieldname": "contract_progress_update_required", "fieldtype": "Check", "label": "Contract Progress Update Required"},
+		{
+			"default": "Unknown",
+			"fieldname": "payment_eligibility_signal_status",
+			"fieldtype": "Select",
+			"label": "Payment Eligibility Signal Status",
+			"options": "Unknown\nEligible\nNot Eligible\nConditional",
+			"reqd": 1
+		},
+		{
+			"default": "None",
+			"fieldname": "next_action_type",
+			"fieldtype": "Select",
+			"label": "Next Action Type",
+			"options": "None\nReinspect\nClose Out\nVariation\nPayment\nOther",
+			"reqd": 1
+		},
+		{"fieldname": "section_lock", "fieldtype": "Section Break", "label": "Lock"},
+		{"default": "0", "fieldname": "is_locked", "fieldtype": "Check", "label": "Is Locked"},
+		{"fieldname": "lock_reason", "fieldtype": "Small Text", "label": "Lock Reason"},
+		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-12 12:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Acceptance Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "business_id,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

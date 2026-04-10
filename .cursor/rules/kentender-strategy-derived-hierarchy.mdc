@@ -1,0 +1,38 @@
+---
+description: KenTender default — lock denormalized fields (strategy masters + same pattern elsewhere unless PR opts out)
+globs: "**/kentender_platform/**/*.py,**/kentender_platform/**/doctype/**/*.json"
+alwaysApply: false
+---
+
+# KenTender — denormalized fields (default: locked)
+
+These are **KenTender implementation rules**. Denormalization (storing the same logical fact twice for reporting, filters, or validation) is allowed; **treating the copy as an independent user-editable field is not**, unless the PR explicitly opts out.
+
+## Rule — Denormalized ⇒ read-only + server-assigned
+
+**Default:** If field **B** is a **copy** of or **fully determined** by field **A** (or by a parent document reached through **A**), then:
+
+1. **B** stays **stored** (denormalized) when that helps queries, audit, or validation.
+2. **B** is **`read_only`: 1** in DocType JSON — same pattern as strategy masters (`National Objective.national_framework`, `Strategic Sub Program.entity_strategic_plan`, etc.).
+3. Python **assigns B on save** from the canonical source (sync helpers, `validate`), overwriting stale or client-supplied values.
+4. Stricter cross-record checks stay in shared validators (e.g. `validate_strategic_linkage_set`), not in optional UI discipline alone.
+
+**Opt-out:** B remains user-editable only if the **PR explicitly documents** why both A and B must be independent inputs. That should be rare.
+
+**Canonical parent link:** Prefer **one** lowest-level Link the user chooses; derive upward (plan, program, entity, …) as read-only copies — as already done on strategy DocTypes.
+
+## Structural (master) data
+
+Applies to strategy hierarchy and **any** other master where redundant context fields exist. Reference: `sync_strategic_sub_program_plan`, `sync_output_indicator_hierarchy`, `sync_performance_target_hierarchy`; `Strategic Program._validate_plan_and_entity_alignment` for `procuring_entity`.
+
+Use **`reqd`: 0** on derived copies when filled in `validate` before mandatory checks.
+
+## Transactional / operational documents
+
+Requisitions, plan lines, tenders, awards, contracts, etc. often **carry** denormalized context for snapshot and audit. **The same default applies:** if a field on that document is **redundant** with another field or a single chosen parent (e.g. could be derived from one link), it should be **read_only** and **server-maintained** like masters — unless the PR explicitly requires dual manual entry.
+
+Independently chosen links that are **not** mutually derivable may stay user-editable in allowed workflow states; **immobility after approval** is a separate rule (guards, amendments).
+
+## After DocType JSON changes
+
+Run **`bench --site <site> migrate`** so Desk reloads field properties.

@@ -90,10 +90,11 @@ Per-app **folder roles** (DocType vs `services/` vs `api/` vs `utils/` vs `tests
 - Files named **`test_*.py`** under `<app>/<app>/tests/`.
 - Name tests after the behaviour or module under test.
 
-### `business_id` and human-readable references
+### Document identity (`name`) and human-readable references
 
-- Use **stable, human-readable** business identifiers where the PRD or ticket specifies a format.
-- The internal PRD may evolve; until it defines a global pattern, use: **domain prefix + semantic code** (e.g. procurement vs budget namespaces must not collide), document per DocType in the story that introduces it, and keep generation/validation in **server-side** code (not client-only).
+- **Do not add a separate `business_id` field** on KenTender DocTypes when it would duplicate Frappe’s primary key **`name`**. The canonical business-visible identifier is **`name`**, set explicitly for new docs (**`autoname`: Prompt** or a **Naming Series** / `format:` pattern as appropriate).
+- Use **stable, human-readable** values for `name` where the PRD or ticket specifies a format (domain prefix + semantic code; namespaces must not collide). Document the pattern per DocType in the story that introduces it, and keep generation/validation in **server-side** code (not client-only).
+- **KenTender Audit Event** and similar logs: rely on **`target_doctype` + `target_docname`** (and JSON payloads) for traceability — do not denormalize a redundant copy of the target’s `name` onto the audit row.
 
 ## How to use this document
 

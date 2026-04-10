@@ -31,7 +31,7 @@ class TestBudgetRevision(FrappeTestCase):
 		self.line_a = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BRV_LA",
+				"name": "_KT_BRV_LA",
 				"budget": self.budget.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -41,7 +41,7 @@ class TestBudgetRevision(FrappeTestCase):
 		self.line_b = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BRV_LB",
+				"name": "_KT_BRV_LB",
 				"budget": self.budget.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -50,11 +50,11 @@ class TestBudgetRevision(FrappeTestCase):
 		).insert()
 
 	def tearDown(self):
-		for name in frappe.get_all(BR, filters={"business_id": ("like", "_KT_BRV_%")}, pluck="name") or []:
+		for name in frappe.get_all(BR, filters={"name": ("like", "_KT_BRV_%")}, pluck="name") or []:
 			frappe.delete_doc(BR, name, force=True, ignore_permissions=True)
-		frappe.db.delete(BL, {"business_id": ("like", "_KT_BRV_%")})
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BRV_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BRV_%")})
+		frappe.db.delete(BL, {"name": ("like", "_KT_BRV_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BRV_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BRV_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BRV_%")})
 		frappe.db.commit()
 		super().tearDown()
@@ -63,7 +63,7 @@ class TestBudgetRevision(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": BR,
-				"business_id": "_KT_BRV_R1",
+				"name": "_KT_BRV_R1",
 				"budget": self.budget.name,
 				"procuring_entity": self.entity.name,
 				"revision_type": "Supplementary",
@@ -89,7 +89,7 @@ class TestBudgetRevision(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": BR,
-				"business_id": "_KT_BRV_R2",
+				"name": "_KT_BRV_R2",
 				"budget": self.budget.name,
 				"procuring_entity": self.entity.name,
 				"revision_type": "Virement",
@@ -110,7 +110,7 @@ class TestBudgetRevision(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": BR,
-				"business_id": "_KT_BRV_R3",
+				"name": "_KT_BRV_R3",
 				"budget": self.budget.name,
 				"procuring_entity": self.entity.name,
 				"revision_type": "Adjustment",
@@ -138,7 +138,7 @@ class TestBudgetRevision(FrappeTestCase):
 		line_other = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BRV_LO",
+				"name": "_KT_BRV_LO",
 				"budget": bud2.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -148,7 +148,7 @@ class TestBudgetRevision(FrappeTestCase):
 			doc = frappe.get_doc(
 				{
 					"doctype": BR,
-					"business_id": "_KT_BRV_R4",
+					"name": "_KT_BRV_R4",
 					"budget": self.budget.name,
 					"procuring_entity": self.entity.name,
 					"revision_type": "Adjustment",

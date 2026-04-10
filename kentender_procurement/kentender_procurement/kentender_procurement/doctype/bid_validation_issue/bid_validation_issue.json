@@ -1,0 +1,154 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_issue",
+		"bid_submission",
+		"issue_type",
+		"severity",
+		"issue_message",
+		"display_label",
+		"section_detection",
+		"detected_on",
+		"section_resolution",
+		"resolved_flag",
+		"resolved_on",
+		"resolved_notes"
+	],
+	"fields": [
+		{
+			"fieldname": "section_issue",
+			"fieldtype": "Section Break",
+			"label": "Issue"
+		},
+		{
+			"fieldname": "bid_submission",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Bid Submission",
+			"options": "Bid Submission",
+			"reqd": 1
+		},
+		{
+			"fieldname": "issue_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Issue Type",
+			"options": "Eligibility\nMandatory Document\nStructure\nCommercial\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "severity",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Severity",
+			"options": "Blocking\nWarning\nInfo",
+			"reqd": 1
+		},
+		{
+			"fieldname": "issue_message",
+			"fieldtype": "Small Text",
+			"label": "Issue Message",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list and link display.",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_detection",
+			"fieldtype": "Section Break",
+			"label": "Detection"
+		},
+		{
+			"fieldname": "detected_on",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Detected On",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_resolution",
+			"fieldtype": "Section Break",
+			"label": "Resolution"
+		},
+		{
+			"default": "0",
+			"fieldname": "resolved_flag",
+			"fieldtype": "Check",
+			"label": "Resolved"
+		},
+		{
+			"fieldname": "resolved_on",
+			"fieldtype": "Datetime",
+			"label": "Resolved On"
+		},
+		{
+			"fieldname": "resolved_notes",
+			"fieldtype": "Small Text",
+			"label": "Resolved Notes"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Bid Validation Issue",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "bid_submission,issue_type,severity,issue_message",
+	"track_changes": 1
+}

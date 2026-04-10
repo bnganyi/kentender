@@ -6,7 +6,11 @@ import importlib
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import (
+	_ensure_test_currency,
+	_make_entity,
+	run_test_db_cleanup,
+)
 
 from kentender_strategy.services.strategy_queries import (
 	get_active_strategic_plans_for_entity,
@@ -35,10 +39,23 @@ PILLAR = "National Pillar"
 OBJ = "National Objective"
 
 
+def _cleanup_sq10_data():
+	frappe.db.delete(PT, {"name": ("like", "_KT_SQ10_%")})
+	frappe.db.delete(IND, {"name": ("like", "_KT_SQ10_%")})
+	frappe.db.delete(SUB, {"name": ("like", "_KT_SQ10_%")})
+	frappe.db.delete(PRG, {"name": ("like", "_KT_SQ10_%")})
+	frappe.db.delete(ESP, {"name": ("like", "_KT_SQ10_%")})
+	frappe.db.delete(OBJ, {"name": ("like", "_KT_SQ10_%")})
+	frappe.db.delete(PILLAR, {"name": ("like", "_KT_SQ10_%")})
+	frappe.db.delete(FW, {"name": ("like", "_KT_SQ10_%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_SQ10_%")})
+
+
 class TestStrategyQueries(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_sq10_data)
 		self.entity = _make_entity("_KT_SQ10_PE").insert()
 		self.nf1 = _make_national_framework("_KT_SQ10_NF", "SQ10-NF").insert()
 		self.pl1 = _pillar("_KT_SQ10_PL1", self.nf1.name).insert()
@@ -69,16 +86,7 @@ class TestStrategyQueries(FrappeTestCase):
 		self.perf_target = _target("_KT_SQ10_T1", self.indicator.name).insert()
 
 	def tearDown(self):
-		frappe.db.delete(PT, {"business_id": ("like", "_KT_SQ10_%")})
-		frappe.db.delete(IND, {"business_id": ("like", "_KT_SQ10_%")})
-		frappe.db.delete(SUB, {"business_id": ("like", "_KT_SQ10_%")})
-		frappe.db.delete(PRG, {"business_id": ("like", "_KT_SQ10_%")})
-		frappe.db.delete(ESP, {"business_id": ("like", "_KT_SQ10_%")})
-		frappe.db.delete(OBJ, {"business_id": ("like", "_KT_SQ10_%")})
-		frappe.db.delete(PILLAR, {"business_id": ("like", "_KT_SQ10_%")})
-		frappe.db.delete(FW, {"business_id": ("like", "_KT_SQ10_%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_SQ10_%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_sq10_data)
 		super().tearDown()
 
 	def test_active_plans_respects_current_flag(self):

@@ -16,7 +16,7 @@ OBJECTIVE = "National Objective"
 def _fw(business_id: str, code: str, **kwargs):
 	data = {
 		"doctype": FW,
-		"business_id": business_id,
+		"name": business_id,
 		"framework_code": code,
 		"framework_name": f"FW {code}",
 		"framework_type": "National Development Plan",
@@ -33,7 +33,7 @@ def _fw(business_id: str, code: str, **kwargs):
 def _pillar(business_id: str, fw_name: str, **kwargs):
 	data = {
 		"doctype": PILLAR,
-		"business_id": business_id,
+		"name": business_id,
 		"national_framework": fw_name,
 		"pillar_code": kwargs.pop("pillar_code", "P1"),
 		"pillar_name": "Pillar",
@@ -48,7 +48,7 @@ def _pillar(business_id: str, fw_name: str, **kwargs):
 def _objective(business_id: str, pillar_name: str, **kwargs):
 	data = {
 		"doctype": OBJECTIVE,
-		"business_id": business_id,
+		"name": business_id,
 		"national_pillar": pillar_name,
 		"objective_code": kwargs.pop("objective_code", "O1"),
 		"objective_name": "Objective",
@@ -63,9 +63,9 @@ def _objective(business_id: str, pillar_name: str, **kwargs):
 class TestNationalReferenceImmutability(FrappeTestCase):
 	def tearDown(self):
 		frappe.flags.pop(IGNORE_NATIONAL_REFERENCE_IMMUTABILITY, None)
-		frappe.db.delete(OBJECTIVE, {"business_id": ("like", "_KT_STRAT3_%")})
-		frappe.db.delete(PILLAR, {"business_id": ("like", "_KT_STRAT3_%")})
-		frappe.db.delete(FW, {"business_id": ("like", "_KT_STRAT3_%")})
+		frappe.db.delete(OBJECTIVE, {"name": ("like", "_KT_STRAT3_%")})
+		frappe.db.delete(PILLAR, {"name": ("like", "_KT_STRAT3_%")})
+		frappe.db.delete(FW, {"name": ("like", "_KT_STRAT3_%")})
 		frappe.db.commit()
 		super().tearDown()
 

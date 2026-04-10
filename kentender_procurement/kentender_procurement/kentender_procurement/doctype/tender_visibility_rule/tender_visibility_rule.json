@@ -1,0 +1,153 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-09 18:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"tender",
+		"rule_type",
+		"rule_value",
+		"display_label",
+		"status",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"fieldname": "rule_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Rule Type",
+			"options": "Supplier Category\nInvitation List\nReserved Group\nCompliance Gate\nGeographic Restriction\nPrequalification List",
+			"reqd": 1
+		},
+		{
+			"fieldname": "rule_value",
+			"fieldtype": "Small Text",
+			"in_list_view": 1,
+			"label": "Rule Value",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (rule type — value snippet).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nActive\nRetired",
+			"reqd": 1
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-09 18:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Tender Visibility Rule",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Requisitioner",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT HOD",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Finance Approver",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "tender,rule_type,rule_value,status,display_label",
+	"track_changes": 1
+}

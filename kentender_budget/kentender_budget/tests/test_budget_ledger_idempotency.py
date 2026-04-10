@@ -33,7 +33,7 @@ class TestBudgetLedgerIdempotency(FrappeTestCase):
 		self.line = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BID_LINE",
+				"name": "_KT_BID_LINE",
 				"budget": self.budget.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -44,9 +44,9 @@ class TestBudgetLedgerIdempotency(FrappeTestCase):
 	def tearDown(self):
 		frappe.db.delete(AUD, {"target_docname": self.line.name, "target_doctype": BL})
 		frappe.db.delete(BLE, {"budget_line": self.line.name})
-		frappe.db.delete(BL, {"business_id": ("like", "_KT_BID_%")})
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BID_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BID_%")})
+		frappe.db.delete(BL, {"name": ("like", "_KT_BID_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BID_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BID_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BID_%")})
 		frappe.db.commit()
 		super().tearDown()

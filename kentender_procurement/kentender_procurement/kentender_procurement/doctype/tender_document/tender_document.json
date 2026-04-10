@@ -1,0 +1,221 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-08 16:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"tender",
+		"lot",
+		"document_type",
+		"attached_file",
+		"document_title",
+		"display_label",
+		"document_version_no",
+		"status",
+		"is_mandatory_for_supplier_response",
+		"sensitivity_class",
+		"uploaded_by",
+		"uploaded_at",
+		"hash_value",
+		"supersedes_document"
+	],
+	"fields": [
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"description": "Leave empty for tender-wide documents; set for lot-specific documents.",
+			"fieldname": "lot",
+			"fieldtype": "Link",
+			"label": "Tender Lot",
+			"options": "Tender Lot"
+		},
+		{
+			"fieldname": "document_type",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Document Type",
+			"options": "Document Type Registry",
+			"reqd": 1
+		},
+		{
+			"fieldname": "attached_file",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "File",
+			"options": "File",
+			"reqd": 1
+		},
+		{
+			"fieldname": "document_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Document Title",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display.",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"default": "1",
+			"fieldname": "document_version_no",
+			"fieldtype": "Int",
+			"in_list_view": 1,
+			"label": "Document Version No",
+			"non_negative": 1,
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nActive\nSuperseded\nRetired",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "is_mandatory_for_supplier_response",
+			"fieldtype": "Check",
+			"label": "Mandatory For Supplier Response"
+		},
+		{
+			"default": "Internal",
+			"fieldname": "sensitivity_class",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Sensitivity Class",
+			"options": "Public\nInternal\nConfidential\nRestricted\nSealed Procurement",
+			"reqd": 1
+		},
+		{
+			"fieldname": "uploaded_by",
+			"fieldtype": "Link",
+			"label": "Uploaded By",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"fieldname": "uploaded_at",
+			"fieldtype": "Datetime",
+			"label": "Uploaded At",
+			"reqd": 1
+		},
+		{
+			"fieldname": "hash_value",
+			"fieldtype": "Data",
+			"label": "Hash Value",
+			"read_only": 1
+		},
+		{
+			"description": "Prior version of this document (same tender and lot scope).",
+			"fieldname": "supersedes_document",
+			"fieldtype": "Link",
+			"label": "Supersedes Document",
+			"options": "Tender Document"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-08 16:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Tender Document",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Requisitioner",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT HOD",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Finance Approver",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "tender,document_title,display_label,document_type,status",
+	"track_changes": 1
+}

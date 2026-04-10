@@ -1,0 +1,49 @@
+---
+description: KenTender default — lock calculated fields to match your implementation (opt-out only in PR)
+globs: "**/kentender_platform/**/doctype/**/*.json,**/kentender_platform/**/doctype/**/*.py,**/kentender_platform/**/services/**/*.py"
+alwaysApply: false
+---
+
+# KenTender — calculated fields must match implementation (default: locked)
+
+These are **KenTender implementation rules** for anyone adding or changing DocTypes and Python. They are not statements about what Frappe core provides.
+
+## Rule 1 — If the code computes it, lock it
+
+**Default:** Whenever you implement a value as a function of other data — e.g. `x = f(y, z)`, sum of children, ledger snapshot, service-assigned status — the **output field `x`** is **not** a user input.
+
+You **must**:
+
+1. Set **`read_only`: 1** on that field in DocType JSON.
+2. Add a short **`description`** naming the rule or service (e.g. “`quantity × estimated_unit_cost` per line; header sum in `validate`.”).
+3. Keep **assigning `x` in Python** on every relevant path (`validate`, services, `doc_events`) so stored data always matches the rule.
+
+**Opt-out:** A field stays user-editable only if the **PR explicitly says so** and names the product reason. Silent opt-out is not allowed.
+
+Examples: line `line_total`, header `requested_amount`, budget rollups, reservation snapshots (`reserved_amount`, `available_budget_at_check`, …), planning rollups, `display_label` when formula-driven.
+
+## Rule 2 — DocType JSON is part of the contract
+
+`read_only` in JSON is how Desk reflects Rule 1. Server-side assignment still uses `doc.set`; JSON locking does not replace Python, it **aligns the UI** with what you implemented.
+
+Use **`reqd`: 0** when the value is filled in `validate` before mandatory checks, if applicable.
+
+## Patterns
+
+1. **Same document** — recompute in owner `validate` (see `recompute_requested_amount_from_items`, `budget_line_derived_totals`).
+2. **Children / peers change without the parent form open** — refresh the parent via `doc_events` and shared helpers (e.g. `budget_rollup`).
+3. **Workflow / approval services** — services own the fields they set; those fields stay **read_only** in JSON.
+
+## Related rules
+
+- **Denormalized copies (parent context, hierarchy):** [kentender-strategy-derived-hierarchy.mdc](kentender-strategy-derived-hierarchy.mdc) — same “store + lock + assign in Python” pattern, applied to redundant link/context fields.
+- **Link display:** [kentender-frappe-linked-data.mdc](kentender-frappe-linked-data.mdc).
+
+## Reference implementations
+
+- **Budget** `total_allocated_amount`; **Budget Line** `available_amount`.
+- **Purchase Requisition** `requested_amount` and reservation snapshot fields (set by reservation / amendment services).
+
+## After DocType JSON changes
+
+Run **`bench --site <site> migrate`** so Desk picks up `read_only` and descriptions.

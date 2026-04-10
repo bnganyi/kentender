@@ -1,0 +1,159 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-08 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_core",
+		"bid_submission",
+		"section_type",
+		"section_title",
+		"lot",
+		"display_order",
+		"status",
+		"is_required",
+		"completion_status",
+		"section_hash",
+		"display_label"
+	],
+	"fields": [
+		{
+			"fieldname": "section_core",
+			"fieldtype": "Section Break",
+			"label": "Envelope section"
+		},
+		{
+			"fieldname": "bid_submission",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Bid Submission",
+			"options": "Bid Submission",
+			"reqd": 1
+		},
+		{
+			"default": "Mandatory Documents",
+			"fieldname": "section_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Section Type",
+			"options": "Mandatory Documents\nTechnical Proposal\nFinancial Proposal\nLot Response\nBid Security",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Section Title",
+			"reqd": 1
+		},
+		{
+			"description": "Optional; must belong to the same tender as the bid.",
+			"fieldname": "lot",
+			"fieldtype": "Link",
+			"label": "Tender Lot",
+			"options": "Tender Lot"
+		},
+		{
+			"default": "0",
+			"fieldname": "display_order",
+			"fieldtype": "Int",
+			"label": "Display Order",
+			"non_negative": 1,
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nActive\nLocked\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "is_required",
+			"fieldtype": "Check",
+			"label": "Is Required"
+		},
+		{
+			"default": "Not Started",
+			"fieldname": "completion_status",
+			"fieldtype": "Select",
+			"label": "Completion Status",
+			"options": "Not Started\nIn Progress\nComplete\nNot Applicable",
+			"reqd": 1
+		},
+		{
+			"description": "Aggregate hash for sealed-section logic (set by services).",
+			"fieldname": "section_hash",
+			"fieldtype": "Small Text",
+			"label": "Section Hash",
+			"read_only": 1
+		},
+		{
+			"description": "Derived for list and link display.",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-08 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Bid Envelope Section",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "bid_submission,section_type,section_title,status",
+	"track_changes": 1
+}

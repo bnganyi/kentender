@@ -1,0 +1,162 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 15:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_core",
+		"bid_opening_session",
+		"display_label",
+		"section_attendee",
+		"attendee_user",
+		"attendee_name",
+		"attendee_role_type",
+		"supplier",
+		"section_attendance",
+		"attendance_status",
+		"joined_at",
+		"section_remarks",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "section_core",
+			"fieldtype": "Section Break",
+			"label": "Session"
+		},
+		{
+			"fieldname": "bid_opening_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Bid Opening Session",
+			"options": "Bid Opening Session",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list and link display.",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_attendee",
+			"fieldtype": "Section Break",
+			"label": "Attendee"
+		},
+		{
+			"fieldname": "attendee_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Attendee User",
+			"options": "User"
+		},
+		{
+			"description": "Required for external or walk-in attendees when no portal user is linked.",
+			"fieldname": "attendee_name",
+			"fieldtype": "Data",
+			"label": "Attendee Name"
+		},
+		{
+			"default": "Observer",
+			"fieldname": "attendee_role_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Role Type",
+			"options": "Committee Chair\nCommittee Member\nProcurement Officer\nObserver\nBidder Representative\nExternal Witness\nOther",
+			"reqd": 1
+		},
+		{
+			"description": "Supplier code when the attendee represents a bidder.",
+			"fieldname": "supplier",
+			"fieldtype": "Data",
+			"label": "Supplier"
+		},
+		{
+			"fieldname": "section_attendance",
+			"fieldtype": "Section Break",
+			"label": "Attendance"
+		},
+		{
+			"default": "Invited",
+			"fieldname": "attendance_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Attendance Status",
+			"options": "Invited\nPresent\nAbsent\nLate\nWithdrawn",
+			"reqd": 1
+		},
+		{
+			"fieldname": "joined_at",
+			"fieldtype": "Datetime",
+			"label": "Joined At"
+		},
+		{
+			"fieldname": "section_remarks",
+			"fieldtype": "Section Break",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 15:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Bid Opening Attendance",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "bid_opening_session,attendee_name,attendee_user,supplier,attendance_status",
+	"track_changes": 1
+}

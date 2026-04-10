@@ -28,6 +28,27 @@ Frappe also provides `config/`, `public/`, `templates/`, `patches/`, etc.; use t
 
 - Align with [App dependencies and boundaries — Naming](app-dependencies-and-boundaries.md#naming-conventions): DocTypes PascalCase; services **snake_case**; tests `test_*.py`.
 
+### DocType controller Python class (Frappe — non-negotiable)
+
+The Python class in `doctype/<scrub>/<scrub>.py` **must** match Frappe’s loader, not intuitive Title Case:
+
+- **Algorithm:** `doctype.replace(" ", "").replace("-", "")` (see `frappe.model.base_document.import_controller`).
+- **Trap:** Titles with words like **“of”, “and”, “for”** often stay lowercase in the desk name, so the class gets a **lowercase letter** where you might expect PascalCase. Example: **Conflict of Interest Declaration** → `ConflictofInterestDeclaration` (lowercase `o`), **not** `ConflictOfInterestDeclaration`.
+- **If wrong:** `get_controller` fails with `ImportError`. On **`bench migrate`**, `remove_orphan_doctypes()` treats that as an **orphan DocType** and **deletes the row**, which is painful to debug.
+- **Check before merge:** `bench --site <site> console` → `frappe.clear_cache(); from frappe.model.base_document import get_controller; get_controller("Your DocType Name")` must return a class.
+
+Cursor agents: see repo rule **kentender-frappe-doctype-controller-class**.
+
+### Child table (`istable`) validation (Frappe — easy to get wrong)
+
+DocTypes with **`"istable": 1`** are saved as rows of a parent **Table** field. On parent **insert/save**, Frappe runs the parent’s **`validate`**, but on each child row it runs only built-in **`_validate_*`** checks — **not** the child class’s **`validate()`** method. Custom rules on child rows (link checks, derived fields, score ranges) **will not run** unless you invoke them from **`Parent.validate()`** (e.g. loop `self.lines` and call a shared `validate_<child>_row(self, row)`).
+
+Also: during the parent’s **`validate()`** on **first insert**, the parent row may **not exist in the DB yet** — avoid assuming `frappe.get_doc(parenttype, parent.name)` is enough; pass the **in-memory parent document** and resolve links that already exist (e.g. session → tender via `get_value`).
+
+In-repo pattern: **PROC-STORY-062** (`validate_evaluation_score_line_row` from `EvaluationRecord._validate_score_lines`).
+
+Cursor agents: see repo rule **kentender-frappe-child-table-validation**.
+
 ## Cross-app interaction
 
 - Do **not** import another app’s `services/` internals. Use whitelisted `api`, documented `frappe.call`, or shared contracts in **`kentender`** as described in the boundaries doc.

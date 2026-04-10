@@ -1,0 +1,36 @@
+{
+	"actions": [],
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"editable_grid": 1,
+	"engine": "InnoDB",
+	"field_order": ["item_code", "item_name", "quantity", "unit_of_measure", "remarks"],
+	"fields": [
+		{
+			"fieldname": "item_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Item Code",
+			"reqd": 1
+		},
+		{"fieldname": "item_name", "fieldtype": "Data", "in_list_view": 1, "label": "Item Name"},
+		{
+			"fieldname": "quantity",
+			"fieldtype": "Float",
+			"in_list_view": 1,
+			"label": "Quantity",
+			"reqd": 1
+		},
+		{"fieldname": "unit_of_measure", "fieldtype": "Data", "label": "Unit of Measure"},
+		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"}
+	],
+	"index_web_pages_for_search": 0,
+	"istable": 1,
+	"module": "Kentender Stores",
+	"name": "Stock Movement Line",
+	"owner": "Administrator",
+	"permissions": [],
+	"sort_field": "idx",
+	"sort_order": "ASC",
+	"track_changes": 0
+}

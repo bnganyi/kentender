@@ -1,0 +1,196 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-09 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_identity",
+		"business_id",
+		"receipt_no",
+		"status",
+		"display_label",
+		"section_parties",
+		"bid_submission",
+		"tender",
+		"supplier",
+		"issued_to_user",
+		"section_submission",
+		"submission_timestamp",
+		"submission_hash",
+		"section_issue",
+		"issued_on",
+		"section_integrity",
+		"receipt_hash"
+	],
+	"fields": [
+		{
+			"fieldname": "section_identity",
+			"fieldtype": "Section Break",
+			"label": "Identity"
+		},
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "receipt_no",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Receipt No",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"default": "Issued",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Issued\nSuperseded\nVoided",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list and link display.",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_parties",
+			"fieldtype": "Section Break",
+			"label": "Parties"
+		},
+		{
+			"fieldname": "bid_submission",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Bid Submission",
+			"options": "Bid Submission",
+			"reqd": 1
+		},
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"fieldname": "supplier",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Supplier",
+			"reqd": 1
+		},
+		{
+			"fieldname": "issued_to_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Issued To User",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_submission",
+			"fieldtype": "Section Break",
+			"label": "Submission snapshot"
+		},
+		{
+			"fieldname": "submission_timestamp",
+			"fieldtype": "Datetime",
+			"label": "Submission Timestamp",
+			"reqd": 1
+		},
+		{
+			"fieldname": "submission_hash",
+			"fieldtype": "Small Text",
+			"label": "Submission Hash",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_issue",
+			"fieldtype": "Section Break",
+			"label": "Issue"
+		},
+		{
+			"fieldname": "issued_on",
+			"fieldtype": "Datetime",
+			"label": "Issued On",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_integrity",
+			"fieldtype": "Section Break",
+			"label": "Integrity"
+		},
+		{
+			"fieldname": "receipt_hash",
+			"fieldtype": "Small Text",
+			"label": "Receipt Hash",
+			"reqd": 1
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-09 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Bid Receipt",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "business_id,receipt_no,bid_submission,tender,supplier,status",
+	"track_changes": 1
+}

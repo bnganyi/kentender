@@ -1,0 +1,699 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "Prompt",
+	"creation": "2026-04-08 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"business_id",
+		"title",
+		"tender_number",
+		"display_label",
+		"workflow_state",
+		"status",
+		"approval_status",
+		"column_break_header",
+		"procurement_plan",
+		"procurement_plan_item",
+		"plan_to_tender_link",
+		"origin_type",
+		"parent_tender",
+		"section_org",
+		"procuring_entity",
+		"requesting_department",
+		"responsible_department",
+		"procurement_officer",
+		"head_of_procurement_user",
+		"section_classification",
+		"procurement_category",
+		"procurement_method",
+		"tender_type",
+		"column_break_flags",
+		"is_multi_lot",
+		"is_framework_related",
+		"is_re_tender",
+		"is_emergency_path",
+		"section_description",
+		"description",
+		"short_description",
+		"scope_summary",
+		"section_amounts",
+		"estimated_amount",
+		"currency",
+		"bid_validity_days",
+		"section_security",
+		"tender_security_required",
+		"tender_security_description",
+		"section_submission_rules",
+		"submission_mode",
+		"allows_withdrawal_before_deadline",
+		"allows_resubmission_before_deadline",
+		"section_strategy",
+		"entity_strategic_plan",
+		"program",
+		"sub_program",
+		"column_break_strategy",
+		"output_indicator",
+		"performance_target",
+		"national_objective",
+		"section_budget",
+		"budget",
+		"budget_line",
+		"funding_source",
+		"budget_alignment_status",
+		"section_schedule",
+		"publication_datetime",
+		"clarification_deadline",
+		"submission_deadline",
+		"opening_datetime",
+		"column_break_schedule2",
+		"evaluation_start_target",
+		"award_target_date",
+		"contract_start_target_date",
+		"section_visibility",
+		"visibility_scope",
+		"supplier_eligibility_rule_mode",
+		"reserved_group_type",
+		"public_disclosure_stage",
+		"is_publicly_disclosable",
+		"section_market",
+		"submission_status",
+		"section_counters",
+		"amendment_count",
+		"clarification_count",
+		"latest_amendment_ref",
+		"section_closure",
+		"cancellation_reason",
+		"withdrawal_reason",
+		"section_lock",
+		"is_locked",
+		"lock_reason",
+		"remarks",
+		"section_sensitivity",
+		"sensitivity_class"
+	],
+	"fields": [
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Title",
+			"reqd": 1
+		},
+		{
+			"fieldname": "tender_number",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Tender Number",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (business ID — title).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "workflow_state",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Stage",
+			"options": "Draft\nSubmitted\nUnder Review\nApproved\nPublished\nCancelled\nRejected\nReturned",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"hidden": 1,
+			"label": "Overall Status",
+			"options": "Draft\nPending\nActive\nCompleted\nCancelled",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "approval_status",
+			"fieldtype": "Select",
+			"hidden": 1,
+			"label": "Legacy Approval Status",
+			"options": "Draft\nSubmitted\nUnder Review\nApproved\nPublished\nRejected\nReturned",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "procurement_plan",
+			"fieldtype": "Link",
+			"label": "Procurement Plan",
+			"options": "Procurement Plan"
+		},
+		{
+			"fieldname": "procurement_plan_item",
+			"fieldtype": "Link",
+			"label": "Procurement Plan Item",
+			"options": "Procurement Plan Item"
+		},
+		{
+			"fieldname": "plan_to_tender_link",
+			"fieldtype": "Link",
+			"label": "Plan to Tender Link",
+			"options": "Plan to Tender Link"
+		},
+		{
+			"description": "From Plan Item requires Procurement Plan Item (and typically Procurement Plan).",
+			"fieldname": "origin_type",
+			"fieldtype": "Select",
+			"label": "Origin Type",
+			"options": "Manual\nFrom Plan Item\nRe-tender",
+			"reqd": 1
+		},
+		{
+			"fieldname": "parent_tender",
+			"fieldtype": "Link",
+			"label": "Parent Tender",
+			"options": "Tender"
+		},
+		{
+			"fieldname": "section_org",
+			"fieldtype": "Section Break",
+			"label": "Organisation"
+		},
+		{
+			"fieldname": "procuring_entity",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procuring Entity",
+			"options": "Procuring Entity",
+			"reqd": 1
+		},
+		{
+			"fieldname": "requesting_department",
+			"fieldtype": "Link",
+			"label": "Requesting Department",
+			"options": "Procuring Department"
+		},
+		{
+			"fieldname": "responsible_department",
+			"fieldtype": "Link",
+			"label": "Responsible Department",
+			"options": "Procuring Department"
+		},
+		{
+			"fieldname": "procurement_officer",
+			"fieldtype": "Link",
+			"label": "Procurement Officer",
+			"options": "User"
+		},
+		{
+			"fieldname": "head_of_procurement_user",
+			"fieldtype": "Link",
+			"label": "Head of Procurement",
+			"options": "User"
+		},
+		{
+			"fieldname": "section_classification",
+			"fieldtype": "Section Break",
+			"label": "Classification"
+		},
+		{
+			"fieldname": "procurement_category",
+			"fieldtype": "Link",
+			"label": "Procurement Category",
+			"options": "Procurement Category"
+		},
+		{
+			"fieldname": "procurement_method",
+			"fieldtype": "Select",
+			"label": "Procurement Method",
+			"options": "Open National Tender\nRestricted Bidding\nRequest for Quotation\nSingle Source\nFramework\nDirect Procurement\nOther"
+		},
+		{
+			"fieldname": "tender_type",
+			"fieldtype": "Select",
+			"label": "Tender Type",
+			"options": "Goods\nServices\nWorks\nMixed\nOther"
+		},
+		{
+			"fieldname": "column_break_flags",
+			"fieldtype": "Column Break"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_multi_lot",
+			"fieldtype": "Check",
+			"label": "Is Multi Lot"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_framework_related",
+			"fieldtype": "Check",
+			"label": "Is Framework Related"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_re_tender",
+			"fieldtype": "Check",
+			"label": "Is Re-tender"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_emergency_path",
+			"fieldtype": "Check",
+			"label": "Is Emergency Path"
+		},
+		{
+			"fieldname": "section_description",
+			"fieldtype": "Section Break",
+			"label": "Description"
+		},
+		{
+			"fieldname": "description",
+			"fieldtype": "Text Editor",
+			"label": "Description"
+		},
+		{
+			"fieldname": "short_description",
+			"fieldtype": "Small Text",
+			"label": "Short Description"
+		},
+		{
+			"fieldname": "scope_summary",
+			"fieldtype": "Small Text",
+			"label": "Scope Summary"
+		},
+		{
+			"fieldname": "section_amounts",
+			"fieldtype": "Section Break",
+			"label": "Amounts"
+		},
+		{
+			"default": "0",
+			"fieldname": "estimated_amount",
+			"fieldtype": "Currency",
+			"label": "Estimated Amount",
+			"options": "currency"
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency",
+			"reqd": 1
+		},
+		{
+			"fieldname": "bid_validity_days",
+			"fieldtype": "Int",
+			"label": "Bid Validity (Days)"
+		},
+		{
+			"fieldname": "section_security",
+			"fieldtype": "Section Break",
+			"label": "Tender security"
+		},
+		{
+			"default": "0",
+			"fieldname": "tender_security_required",
+			"fieldtype": "Check",
+			"label": "Tender Security Required"
+		},
+		{
+			"fieldname": "tender_security_description",
+			"fieldtype": "Small Text",
+			"label": "Tender Security Description"
+		},
+		{
+			"fieldname": "section_submission_rules",
+			"fieldtype": "Section Break",
+			"label": "Submission rules"
+		},
+		{
+			"default": "Electronic",
+			"fieldname": "submission_mode",
+			"fieldtype": "Select",
+			"label": "Submission Mode",
+			"options": "Electronic\nPhysical\nHybrid"
+		},
+		{
+			"default": "1",
+			"fieldname": "allows_withdrawal_before_deadline",
+			"fieldtype": "Check",
+			"label": "Allows Withdrawal Before Deadline"
+		},
+		{
+			"default": "0",
+			"fieldname": "allows_resubmission_before_deadline",
+			"fieldtype": "Check",
+			"label": "Allows Resubmission Before Deadline"
+		},
+		{
+			"fieldname": "section_strategy",
+			"fieldtype": "Section Break",
+			"label": "Strategy linkage"
+		},
+		{
+			"fieldname": "entity_strategic_plan",
+			"fieldtype": "Link",
+			"label": "Entity Strategic Plan",
+			"options": "Entity Strategic Plan"
+		},
+		{
+			"fieldname": "program",
+			"fieldtype": "Link",
+			"label": "Program",
+			"options": "Strategic Program"
+		},
+		{
+			"fieldname": "sub_program",
+			"fieldtype": "Link",
+			"label": "Sub Program",
+			"options": "Strategic Sub Program"
+		},
+		{
+			"fieldname": "column_break_strategy",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "output_indicator",
+			"fieldtype": "Link",
+			"label": "Output Indicator",
+			"options": "Output Indicator"
+		},
+		{
+			"fieldname": "performance_target",
+			"fieldtype": "Link",
+			"label": "Performance Target",
+			"options": "Performance Target"
+		},
+		{
+			"fieldname": "national_objective",
+			"fieldtype": "Link",
+			"label": "National Objective",
+			"options": "National Objective"
+		},
+		{
+			"fieldname": "section_budget",
+			"fieldtype": "Section Break",
+			"label": "Budget linkage"
+		},
+		{
+			"fieldname": "budget",
+			"fieldtype": "Link",
+			"label": "Budget",
+			"options": "Budget"
+		},
+		{
+			"fieldname": "budget_line",
+			"fieldtype": "Link",
+			"label": "Budget Line",
+			"options": "Budget Line"
+		},
+		{
+			"fieldname": "funding_source",
+			"fieldtype": "Link",
+			"label": "Funding Source",
+			"options": "Funding Source"
+		},
+		{
+			"default": "Not Assessed",
+			"fieldname": "budget_alignment_status",
+			"fieldtype": "Select",
+			"label": "Budget Alignment Status",
+			"options": "Not Assessed\nAligned\nMisaligned\nPending Review"
+		},
+		{
+			"fieldname": "section_schedule",
+			"fieldtype": "Section Break",
+			"label": "Schedule"
+		},
+		{
+			"fieldname": "publication_datetime",
+			"fieldtype": "Datetime",
+			"label": "Publication Datetime"
+		},
+		{
+			"fieldname": "clarification_deadline",
+			"fieldtype": "Datetime",
+			"label": "Clarification Deadline"
+		},
+		{
+			"fieldname": "submission_deadline",
+			"fieldtype": "Datetime",
+			"label": "Submission Deadline"
+		},
+		{
+			"fieldname": "opening_datetime",
+			"fieldtype": "Datetime",
+			"label": "Opening Datetime"
+		},
+		{
+			"fieldname": "column_break_schedule2",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "evaluation_start_target",
+			"fieldtype": "Datetime",
+			"label": "Evaluation Start Target"
+		},
+		{
+			"fieldname": "award_target_date",
+			"fieldtype": "Date",
+			"label": "Award Target Date"
+		},
+		{
+			"fieldname": "contract_start_target_date",
+			"fieldtype": "Date",
+			"label": "Contract Start Target Date"
+		},
+		{
+			"fieldname": "section_visibility",
+			"fieldtype": "Section Break",
+			"label": "Visibility and disclosure"
+		},
+		{
+			"default": "Procuring Entity",
+			"fieldname": "visibility_scope",
+			"fieldtype": "Select",
+			"label": "Visibility Scope",
+			"options": "Procuring Entity\nNational\nInternational\nRestricted List"
+		},
+		{
+			"default": "Open",
+			"fieldname": "supplier_eligibility_rule_mode",
+			"fieldtype": "Select",
+			"label": "Supplier Eligibility Rule Mode",
+			"options": "Open\nPrequalified\nReserved Group\nMixed"
+		},
+		{
+			"fieldname": "reserved_group_type",
+			"fieldtype": "Select",
+			"label": "Reserved Group Type",
+			"options": "\nMSME\nWomen\nYouth\nPWD\nOther"
+		},
+		{
+			"default": "Not Published",
+			"fieldname": "public_disclosure_stage",
+			"fieldtype": "Select",
+			"label": "Public Disclosure Stage",
+			"options": "Not Published\nSynopsis Only\nFull Tender\nPost Award"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_publicly_disclosable",
+			"fieldtype": "Check",
+			"label": "Is Publicly Disclosable"
+		},
+		{
+			"fieldname": "section_market",
+			"fieldtype": "Section Break",
+			"label": "Market window"
+		},
+		{
+			"default": "Not Open",
+			"fieldname": "submission_status",
+			"fieldtype": "Select",
+			"description": "Tender-side market window (not supplier bid submission).",
+			"label": "Submission Status",
+			"options": "Not Open\nOpen\nClosed\nCancelled"
+		},
+		{
+			"fieldname": "section_counters",
+			"fieldtype": "Section Break",
+			"label": "Amendments and clarifications"
+		},
+		{
+			"default": "0",
+			"fieldname": "amendment_count",
+			"fieldtype": "Int",
+			"label": "Amendment Count",
+			"read_only": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "clarification_count",
+			"fieldtype": "Int",
+			"label": "Clarification Count",
+			"read_only": 1
+		},
+		{
+			"fieldname": "latest_amendment_ref",
+			"fieldtype": "Data",
+			"label": "Latest Amendment Ref"
+		},
+		{
+			"fieldname": "section_closure",
+			"fieldtype": "Section Break",
+			"label": "Cancellation"
+		},
+		{
+			"fieldname": "cancellation_reason",
+			"fieldtype": "Small Text",
+			"label": "Cancellation Reason"
+		},
+		{
+			"fieldname": "withdrawal_reason",
+			"fieldtype": "Small Text",
+			"label": "Withdrawal Reason"
+		},
+		{
+			"fieldname": "section_lock",
+			"fieldtype": "Section Break",
+			"label": "Lock"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_locked",
+			"fieldtype": "Check",
+			"label": "Is Locked"
+		},
+		{
+			"fieldname": "lock_reason",
+			"fieldtype": "Small Text",
+			"label": "Lock Reason"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "section_sensitivity",
+			"fieldtype": "Section Break",
+			"label": "Sensitivity"
+		},
+		{
+			"default": "Internal",
+			"fieldname": "sensitivity_class",
+			"fieldtype": "Select",
+			"label": "Sensitivity Class",
+			"options": "Public\nInternal\nConfidential\nRestricted\nSealed Procurement"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-08 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Tender",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Requisitioner",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT HOD",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Finance Approver",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "business_id,title,tender_number,display_label",
+	"track_changes": 1
+}

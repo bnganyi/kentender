@@ -4,7 +4,11 @@
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import (
+	_ensure_test_currency,
+	_make_entity,
+	run_test_db_cleanup,
+)
 
 from kentender_strategy.services.strategic_linkage_validation import (
 	validate_indicator,
@@ -34,10 +38,23 @@ PILLAR = "National Pillar"
 OBJ = "National Objective"
 
 
+def _cleanup_sl09_data():
+	frappe.db.delete(PT, {"name": ("like", "_KT_SL09_%")})
+	frappe.db.delete(IND, {"name": ("like", "_KT_SL09_%")})
+	frappe.db.delete(SUB, {"name": ("like", "_KT_SL09_%")})
+	frappe.db.delete(PRG, {"name": ("like", "_KT_SL09_%")})
+	frappe.db.delete(ESP, {"name": ("like", "_KT_SL09_%")})
+	frappe.db.delete(OBJ, {"name": ("like", "_KT_SL09_%")})
+	frappe.db.delete(PILLAR, {"name": ("like", "_KT_SL09_%")})
+	frappe.db.delete(FW, {"name": ("like", "_KT_SL09_%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_SL09_%")})
+
+
 class TestStrategicLinkageValidation(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_sl09_data)
 		self.entity = _make_entity("_KT_SL09_PE").insert()
 		self.nf1 = _nf("_KT_SL09_NF1", "SL09-A").insert()
 		self.pl1 = _pillar("_KT_SL09_PL1", self.nf1.name).insert()
@@ -55,16 +72,7 @@ class TestStrategicLinkageValidation(FrappeTestCase):
 		self.target = _target("_KT_SL09_T1", self.indicator.name).insert()
 
 	def tearDown(self):
-		frappe.db.delete(PT, {"business_id": ("like", "_KT_SL09_%")})
-		frappe.db.delete(IND, {"business_id": ("like", "_KT_SL09_%")})
-		frappe.db.delete(SUB, {"business_id": ("like", "_KT_SL09_%")})
-		frappe.db.delete(PRG, {"business_id": ("like", "_KT_SL09_%")})
-		frappe.db.delete(ESP, {"business_id": ("like", "_KT_SL09_%")})
-		frappe.db.delete(OBJ, {"business_id": ("like", "_KT_SL09_%")})
-		frappe.db.delete(PILLAR, {"business_id": ("like", "_KT_SL09_%")})
-		frappe.db.delete(FW, {"business_id": ("like", "_KT_SL09_%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_SL09_%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_sl09_data)
 		super().tearDown()
 
 	def test_validate_program_ok(self):

@@ -5,7 +5,11 @@ import frappe
 from frappe.tests.utils import FrappeTestCase
 from frappe.utils import cint
 
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import (
+	_ensure_test_currency,
+	_make_entity,
+	run_test_db_cleanup,
+)
 
 PLAN = "Entity Strategic Plan"
 FW = "National Framework"
@@ -14,7 +18,7 @@ FW = "National Framework"
 def _make_national_framework(business_id: str, code: str, **kwargs):
 	data = {
 		"doctype": FW,
-		"business_id": business_id,
+		"name": business_id,
 		"framework_code": code,
 		"framework_name": f"NF {code}",
 		"framework_type": "National Development Plan",
@@ -31,7 +35,7 @@ def _make_national_framework(business_id: str, code: str, **kwargs):
 def _make_plan(business_id: str, entity_name: str, fw_name: str, **kwargs):
 	data = {
 		"doctype": PLAN,
-		"business_id": business_id,
+		"name": business_id,
 		"plan_title": kwargs.pop("plan_title", "Strategic Plan"),
 		"procuring_entity": entity_name,
 		"plan_period_label": kwargs.pop("plan_period_label", "2026-2027"),
@@ -47,19 +51,23 @@ def _make_plan(business_id: str, entity_name: str, fw_name: str, **kwargs):
 	return frappe.get_doc(data)
 
 
+def _cleanup_esp_data():
+	frappe.db.delete(PLAN, {"name": ("like", "_KT_ESP_%")})
+	frappe.db.delete(FW, {"name": ("like", "_KT_ESP_%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_ESP_PE%")})
+
+
 class TestEntityStrategicPlan(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_esp_data)
 		self.entity = _make_entity("_KT_ESP_PE")
 		self.entity.insert()
 		self.nf = _make_national_framework("_KT_ESP_NF", "ESP-NF").insert()
 
 	def tearDown(self):
-		frappe.db.delete(PLAN, {"business_id": ("like", "_KT_ESP_%")})
-		frappe.db.delete(FW, {"business_id": ("like", "_KT_ESP_%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_ESP_PE%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_esp_data)
 		super().tearDown()
 
 	def test_valid_create(self):

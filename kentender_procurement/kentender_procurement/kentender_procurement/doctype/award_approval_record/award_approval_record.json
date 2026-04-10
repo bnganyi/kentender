@@ -1,0 +1,109 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 10:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"award_decision",
+		"workflow_step",
+		"decision_level",
+		"display_label",
+		"approver_user",
+		"approver_role",
+		"action_type",
+		"action_datetime",
+		"comments",
+		"exception_record"
+	],
+	"fields": [
+		{
+			"fieldname": "award_decision",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Award Decision",
+			"options": "Award Decision",
+			"reqd": 1
+		},
+		{
+			"fieldname": "workflow_step",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Workflow Step",
+			"reqd": 1
+		},
+		{
+			"fieldname": "decision_level",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Decision Level",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list display (action — award).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "approver_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Approver User",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"fieldname": "approver_role",
+			"fieldtype": "Link",
+			"label": "Approver Role",
+			"options": "Role"
+		},
+		{
+			"fieldname": "action_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Action Type",
+			"options": "Approve\nReject\nReturn for Revision\nRecommend\nRequest Clarification",
+			"reqd": 1
+		},
+		{
+			"fieldname": "action_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Action Datetime",
+			"reqd": 1
+		},
+		{"fieldname": "comments", "fieldtype": "Small Text", "label": "Comments"},
+		{
+			"fieldname": "exception_record",
+			"fieldtype": "Link",
+			"label": "Exception Record",
+			"options": "Exception Record"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 10:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Award Approval Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "award_decision,action_type,approver_user,display_label",
+	"track_changes": 1
+}

@@ -1,0 +1,130 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-12 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"business_id",
+		"display_label",
+		"inspection_record",
+		"contract",
+		"contract_milestone",
+		"contract_deliverable",
+		"checklist_line_ref",
+		"issue_type",
+		"issue_title",
+		"issue_description",
+		"severity",
+		"status",
+		"required_corrective_action",
+		"corrective_action_due_date",
+		"resolved_on",
+		"resolution_summary",
+		"resolved_by_user",
+		"waiver_approved_by_user",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{
+			"fieldname": "inspection_record",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Inspection Record",
+			"options": "Inspection Record",
+			"reqd": 1
+		},
+		{
+			"fieldname": "contract",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Contract",
+			"options": "Procurement Contract",
+			"reqd": 1
+		},
+		{
+			"fieldname": "contract_milestone",
+			"fieldtype": "Link",
+			"label": "Contract Milestone",
+			"options": "Procurement Contract Milestone"
+		},
+		{
+			"fieldname": "contract_deliverable",
+			"fieldtype": "Link",
+			"label": "Contract Deliverable",
+			"options": "Procurement Contract Deliverable"
+		},
+		{
+			"description": "Name of the Inspection Checklist Line row when the issue relates to a checklist item.",
+			"fieldname": "checklist_line_ref",
+			"fieldtype": "Data",
+			"label": "Checklist Line Ref"
+		},
+		{
+			"fieldname": "issue_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Issue Type",
+			"options": "Defect\nNon Compliance\nDocumentation\nSafety\nQuality\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "issue_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Issue Title",
+			"reqd": 1
+		},
+		{"fieldname": "issue_description", "fieldtype": "Text Editor", "label": "Issue Description"},
+		{
+			"fieldname": "severity",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Severity",
+			"options": "Minor\nMajor\nCritical",
+			"reqd": 1
+		},
+		{
+			"default": "Open",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Open\nIn Progress\nResolved\nWaived\nCancelled",
+			"reqd": 1
+		},
+		{"fieldname": "required_corrective_action", "fieldtype": "Small Text", "label": "Required Corrective Action"},
+		{"fieldname": "corrective_action_due_date", "fieldtype": "Date", "label": "Corrective Action Due Date"},
+		{"fieldname": "resolved_on", "fieldtype": "Datetime", "label": "Resolved On"},
+		{"fieldname": "resolution_summary", "fieldtype": "Small Text", "label": "Resolution Summary"},
+		{"fieldname": "resolved_by_user", "fieldtype": "Link", "label": "Resolved By User", "options": "User"},
+		{"fieldname": "waiver_approved_by_user", "fieldtype": "Link", "label": "Waiver Approved By User", "options": "User"},
+		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-12 12:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Non Conformance Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "business_id,issue_title,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

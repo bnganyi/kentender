@@ -9,6 +9,14 @@ KenTender strategy module.
 **Do not** import `kentender_budget`, `kentender_procurement`, or internal modules of governance/compliance/stores/assets/integrations.  
 Details: [App dependencies and boundaries](../docs/architecture/app-dependencies-and-boundaries.md).
 
+### Dev/UAT: purge all strategy data
+
+**System Manager only.** Deletes every document in the core strategy DocTypes (national framework through performance target, including revision records) and clears strategy link fields on **Purchase Requisition** and **Budget Line**. Does not remove entities, budgets, or PR headers.
+
+```bash
+bench --site kentender.midas.com execute kentender_strategy.services.purge_all_strategy_data.purge_all_strategy_data_console
+```
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:

@@ -1,0 +1,541 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "Prompt",
+	"creation": "2026-04-08 14:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"procurement_plan",
+		"display_label",
+		"title",
+		"description",
+		"column_break_header",
+		"status",
+		"origin_type",
+		"manual_entry_justification",
+		"source_summary",
+		"section_org",
+		"procuring_entity",
+		"requesting_department",
+		"responsible_department",
+		"beneficiary_summary",
+		"section_classification",
+		"procurement_category",
+		"complexity_classification",
+		"risk_level",
+		"sector",
+		"procurement_method",
+		"currency",
+		"estimated_amount",
+		"priority_level",
+		"lotting_strategy",
+		"section_flags",
+		"is_framework_related",
+		"is_multi_year",
+		"is_emergency_path",
+		"section_strategy",
+		"entity_strategic_plan",
+		"program",
+		"sub_program",
+		"column_break_strategy",
+		"output_indicator",
+		"performance_target",
+		"national_objective",
+		"section_budget",
+		"budget",
+		"budget_line",
+		"funding_source",
+		"planned_budget_amount",
+		"reserved_source_amount",
+		"unbacked_amount",
+		"budget_alignment_status",
+		"section_schedule",
+		"planned_start_date",
+		"planned_preparation_start_date",
+		"planned_publication_date",
+		"column_break_schedule",
+		"planned_submission_deadline",
+		"planned_award_date",
+		"planned_contract_start_date",
+		"planned_completion_date",
+		"section_tender",
+		"latest_tender",
+		"tender_creation_status",
+		"execution_progress_status",
+		"section_fragmentation",
+		"fragmentation_risk_score",
+		"fragmentation_alert_status",
+		"section_other",
+		"conversion_locked",
+		"cancellation_reason",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "procurement_plan",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procurement Plan",
+			"options": "Procurement Plan",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (business ID — title).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Title",
+			"reqd": 1
+		},
+		{
+			"fieldname": "description",
+			"fieldtype": "Text Editor",
+			"label": "Description"
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nPlanned\nApproved\nActive\nSuperseded\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "Requisition Derived",
+			"fieldname": "origin_type",
+			"fieldtype": "Select",
+			"label": "Origin Type",
+			"options": "Manual\nConsolidated\nRequisition Derived",
+			"reqd": 1
+		},
+		{
+			"fieldname": "manual_entry_justification",
+			"fieldtype": "Small Text",
+			"label": "Manual Entry Justification"
+		},
+		{
+			"fieldname": "source_summary",
+			"fieldtype": "Small Text",
+			"label": "Source Summary"
+		},
+		{
+			"fieldname": "section_org",
+			"fieldtype": "Section Break",
+			"label": "Organisation"
+		},
+		{
+			"fieldname": "procuring_entity",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procuring Entity",
+			"options": "Procuring Entity",
+			"reqd": 1
+		},
+		{
+			"fieldname": "requesting_department",
+			"fieldtype": "Link",
+			"label": "Requesting Department",
+			"options": "Procuring Department"
+		},
+		{
+			"fieldname": "responsible_department",
+			"fieldtype": "Link",
+			"label": "Responsible Department",
+			"options": "Procuring Department"
+		},
+		{
+			"fieldname": "beneficiary_summary",
+			"fieldtype": "Small Text",
+			"label": "Beneficiary Summary"
+		},
+		{
+			"fieldname": "section_classification",
+			"fieldtype": "Section Break",
+			"label": "Classification"
+		},
+		{
+			"fieldname": "procurement_category",
+			"fieldtype": "Link",
+			"label": "Procurement Category",
+			"options": "Procurement Category"
+		},
+		{
+			"description": "Input for future template resolution (PLAN-005). Not enforced yet.",
+			"fieldname": "complexity_classification",
+			"fieldtype": "Select",
+			"label": "Complexity Classification",
+			"options": "\nLow\nMedium\nHigh\nVery High"
+		},
+		{
+			"description": "Input for future template resolution (PLAN-005). Not enforced yet.",
+			"fieldname": "risk_level",
+			"fieldtype": "Select",
+			"label": "Risk Level",
+			"options": "\nLow\nMedium\nHigh\nCritical"
+		},
+		{
+			"description": "Input for future template resolution (PLAN-005). Not enforced yet.",
+			"fieldname": "sector",
+			"fieldtype": "Select",
+			"label": "Sector",
+			"options": "\nGeneric\nHealth\nInfrastructure\nEducation\nICT\nOther"
+		},
+		{
+			"fieldname": "procurement_method",
+			"fieldtype": "Select",
+			"label": "Procurement Method",
+			"options": "Open National Tender\nRestricted Bidding\nRequest for Quotation\nSingle Source\nFramework\nDirect Procurement\nOther"
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Currency",
+			"options": "Currency",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "estimated_amount",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "Estimated Amount",
+			"options": "currency",
+			"reqd": 1
+		},
+		{
+			"default": "Medium",
+			"fieldname": "priority_level",
+			"fieldtype": "Select",
+			"label": "Priority Level",
+			"options": "Low\nMedium\nHigh\nCritical",
+			"reqd": 1
+		},
+		{
+			"default": "Not Set",
+			"fieldname": "lotting_strategy",
+			"fieldtype": "Select",
+			"label": "Lotting Strategy",
+			"options": "Not Set\nSingle Lot\nMulti Lot"
+		},
+		{
+			"fieldname": "section_flags",
+			"fieldtype": "Section Break",
+			"label": "Flags"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_framework_related",
+			"fieldtype": "Check",
+			"label": "Is Framework Related"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_multi_year",
+			"fieldtype": "Check",
+			"label": "Is Multi Year"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_emergency_path",
+			"fieldtype": "Check",
+			"label": "Is Emergency Path"
+		},
+		{
+			"fieldname": "section_strategy",
+			"fieldtype": "Section Break",
+			"label": "Strategy linkage"
+		},
+		{
+			"fieldname": "entity_strategic_plan",
+			"fieldtype": "Link",
+			"label": "Entity Strategic Plan",
+			"options": "Entity Strategic Plan"
+		},
+		{
+			"fieldname": "program",
+			"fieldtype": "Link",
+			"label": "Program",
+			"options": "Strategic Program"
+		},
+		{
+			"fieldname": "sub_program",
+			"fieldtype": "Link",
+			"label": "Sub Program",
+			"options": "Strategic Sub Program"
+		},
+		{
+			"fieldname": "column_break_strategy",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "output_indicator",
+			"fieldtype": "Link",
+			"label": "Output Indicator",
+			"options": "Output Indicator"
+		},
+		{
+			"fieldname": "performance_target",
+			"fieldtype": "Link",
+			"label": "Performance Target",
+			"options": "Performance Target"
+		},
+		{
+			"fieldname": "national_objective",
+			"fieldtype": "Link",
+			"label": "National Objective",
+			"options": "National Objective"
+		},
+		{
+			"fieldname": "section_budget",
+			"fieldtype": "Section Break",
+			"label": "Budget linkage"
+		},
+		{
+			"fieldname": "budget",
+			"fieldtype": "Link",
+			"label": "Budget",
+			"options": "Budget"
+		},
+		{
+			"fieldname": "budget_line",
+			"fieldtype": "Link",
+			"label": "Budget Line",
+			"options": "Budget Line"
+		},
+		{
+			"fieldname": "funding_source",
+			"fieldtype": "Link",
+			"label": "Funding Source",
+			"options": "Funding Source"
+		},
+		{
+			"default": "0",
+			"fieldname": "planned_budget_amount",
+			"fieldtype": "Currency",
+			"label": "Planned Budget Amount",
+			"options": "currency"
+		},
+		{
+			"default": "0",
+			"fieldname": "reserved_source_amount",
+			"fieldtype": "Currency",
+			"label": "Reserved Source Amount",
+			"options": "currency"
+		},
+		{
+			"default": "0",
+			"fieldname": "unbacked_amount",
+			"fieldtype": "Currency",
+			"label": "Unbacked Amount",
+			"options": "currency"
+		},
+		{
+			"default": "Not Assessed",
+			"fieldname": "budget_alignment_status",
+			"fieldtype": "Select",
+			"label": "Budget Alignment Status",
+			"options": "Not Assessed\nAligned\nPartial\nUnfunded"
+		},
+		{
+			"fieldname": "section_schedule",
+			"fieldtype": "Section Break",
+			"label": "Planned schedule"
+		},
+		{
+			"fieldname": "planned_start_date",
+			"fieldtype": "Date",
+			"label": "Planned Start Date"
+		},
+		{
+			"fieldname": "planned_preparation_start_date",
+			"fieldtype": "Date",
+			"label": "Planned Preparation Start Date"
+		},
+		{
+			"fieldname": "planned_publication_date",
+			"fieldtype": "Date",
+			"label": "Planned Publication Date"
+		},
+		{
+			"fieldname": "column_break_schedule",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "planned_submission_deadline",
+			"fieldtype": "Date",
+			"label": "Planned Submission Deadline"
+		},
+		{
+			"fieldname": "planned_award_date",
+			"fieldtype": "Date",
+			"label": "Planned Award Date"
+		},
+		{
+			"fieldname": "planned_contract_start_date",
+			"fieldtype": "Date",
+			"label": "Planned Contract Start Date"
+		},
+		{
+			"fieldname": "planned_completion_date",
+			"fieldtype": "Date",
+			"label": "Planned Completion Date"
+		},
+		{
+			"fieldname": "section_tender",
+			"fieldtype": "Section Break",
+			"label": "Tender and execution"
+		},
+		{
+			"fieldname": "latest_tender",
+			"fieldtype": "Link",
+			"label": "Latest Tender",
+			"options": "Tender"
+		},
+		{
+			"default": "None",
+			"fieldname": "tender_creation_status",
+			"fieldtype": "Select",
+			"label": "Tender Creation Status",
+			"options": "None\nEligible\nBlocked\nCreated"
+		},
+		{
+			"default": "Not Started",
+			"fieldname": "execution_progress_status",
+			"fieldtype": "Select",
+			"label": "Execution Progress Status",
+			"options": "Not Started\nPreparation\nTender Stage\nAwarded\nCompleted\nCancelled"
+		},
+		{
+			"fieldname": "section_fragmentation",
+			"fieldtype": "Section Break",
+			"label": "Fragmentation"
+		},
+		{
+			"default": "0",
+			"fieldname": "fragmentation_risk_score",
+			"fieldtype": "Float",
+			"label": "Fragmentation Risk Score"
+		},
+		{
+			"default": "Not Assessed",
+			"fieldname": "fragmentation_alert_status",
+			"fieldtype": "Select",
+			"label": "Fragmentation Alert Status",
+			"options": "Not Assessed\nClear\nWarning\nBlocked"
+		},
+		{
+			"fieldname": "section_other",
+			"fieldtype": "Section Break",
+			"label": "Other"
+		},
+		{
+			"default": "0",
+			"fieldname": "conversion_locked",
+			"fieldtype": "Check",
+			"label": "Conversion Locked"
+		},
+		{
+			"fieldname": "cancellation_reason",
+			"fieldtype": "Small Text",
+			"label": "Cancellation Reason"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-08 14:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Procurement Plan Item",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Requisitioner"
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT HOD"
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Finance Approver"
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Procurement Officer"
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "name,title,procurement_plan,display_label",
+	"track_changes": 1
+}

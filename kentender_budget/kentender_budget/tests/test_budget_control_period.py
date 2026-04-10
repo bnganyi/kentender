@@ -13,7 +13,7 @@ OPEN_STATUS = "Open"
 def _bcp(business_id: str, entity_name: str, **kw):
 	d = {
 		"doctype": BCP,
-		"business_id": business_id,
+		"name": business_id,
 		"procuring_entity": entity_name,
 		"fiscal_year": kw.pop("fiscal_year", "2026-2027"),
 		"period_label": kw.pop("period_label", "FY26/27"),
@@ -33,7 +33,7 @@ class TestBudgetControlPeriod(FrappeTestCase):
 		self.entity = _make_entity("_KT_BCP01_PE").insert()
 
 	def tearDown(self):
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BCP01_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BCP01_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BCP01_%")})
 		frappe.db.commit()
 		super().tearDown()

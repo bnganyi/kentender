@@ -1,0 +1,36 @@
+---
+description: Frappe DocType conventions for stable IDs vs human-readable link display (KenTender)
+globs: "**/kentender_platform/**/doctype/**/*.json,**/kentender_platform/**/doctype/**/*.py,**/doctype/**/*.json,**/doctype/**/*.py"
+alwaysApply: false
+---
+
+# KenTender — linked data display (Frappe)
+
+## Identity
+
+- Keep **stable machine keys** for document `name` when using `autoname` / `business_id` (integrations, imports, audit).
+- Do **not** replace technical names with human-only titles as the primary key.
+
+## Desk display
+
+- Set **`title_field`** to what planners and operators should read in forms and lists.
+- Enable **`show_title_field_in_link`** on DocTypes that are **targets of Link fields** in user-facing flows, so link widgets show the title instead of raw `name`.
+
+## Search
+
+- Set **`search_fields`** to include **both** short codes and descriptive names (comma-separated, no spaces) so link autocomplete finds records by either.
+
+## Patterns
+
+1. **Title only** — e.g. national framework: `title_field = framework_name` when the name alone is enough in links.
+2. **Code + meaning** — add a stored **`display_label`** (`Data`, **`read_only` + `hidden`** so it does not clutter the source DocType form but still exists for `title_field` / DB / reports), set in `validate` as `{code} — {title}` (Unicode em dash `—`), set `title_field = display_label`, and include `display_label` in `search_fields` when useful.
+
+Use **`kentender.utils.display_label.code_title_label`** for the `code — title` string so behavior stays consistent across apps.
+
+## Immutability / locked references
+
+- Do **not** list derived **`display_label`** in locked-reference **tracked** field lists; it must follow changes to code/name on save without blocking legitimate updates to those source fields.
+
+## Exceptions
+
+- Skip or keep minimal meta for DocTypes that are never linked from operational UI, or where `name` is already human-meaningful. Document rare skips in PR notes.

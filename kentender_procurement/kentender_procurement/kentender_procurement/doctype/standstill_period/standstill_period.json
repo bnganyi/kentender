@@ -1,0 +1,96 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 10:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"award_decision",
+		"display_label",
+		"start_datetime",
+		"end_datetime",
+		"status",
+		"triggered_by_notification_datetime",
+		"complaint_hold_flag",
+		"hold_reason",
+		"released_for_contract_on",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "award_decision",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Award Decision",
+			"options": "Award Decision",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list display (award — status).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "start_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Start Datetime",
+			"reqd": 1
+		},
+		{
+			"fieldname": "end_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "End Datetime",
+			"reqd": 1
+		},
+		{
+			"default": "Active",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Active\nCompleted\nReleased\nCancelled",
+			"reqd": 1
+		},
+		{
+			"fieldname": "triggered_by_notification_datetime",
+			"fieldtype": "Datetime",
+			"label": "Triggered By Notification Datetime"
+		},
+		{
+			"default": "0",
+			"fieldname": "complaint_hold_flag",
+			"fieldtype": "Check",
+			"label": "Complaint Hold Flag"
+		},
+		{"fieldname": "hold_reason", "fieldtype": "Small Text", "label": "Hold Reason"},
+		{"fieldname": "released_for_contract_on", "fieldtype": "Datetime", "label": "Released For Contract On"},
+		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 10:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Standstill Period",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "award_decision,status,display_label",
+	"track_changes": 1
+}

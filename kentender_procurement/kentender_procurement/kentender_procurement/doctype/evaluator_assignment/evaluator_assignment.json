@@ -1,0 +1,174 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 18:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_identity",
+		"evaluation_session",
+		"display_label",
+		"section_member",
+		"evaluator_user",
+		"committee_role",
+		"assignment_status",
+		"is_scoring_member",
+		"section_dates",
+		"appointed_on",
+		"withdrawn_on",
+		"section_replacement",
+		"replacement_user",
+		"section_notes",
+		"notes"
+	],
+	"fields": [
+		{
+			"fieldname": "section_identity",
+			"fieldtype": "Section Break",
+			"label": "Session"
+		},
+		{
+			"fieldname": "evaluation_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Evaluation Session",
+			"options": "Evaluation Session",
+			"reqd": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_member",
+			"fieldtype": "Section Break",
+			"label": "Committee member"
+		},
+		{
+			"description": "Pack field `user`; named evaluator_user for alignment with Conflict of Interest (060) and Frappe Document safety.",
+			"fieldname": "evaluator_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "User",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"fieldname": "committee_role",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Committee Role",
+			"options": "Chair\nMember\nSecretary\nObserver",
+			"reqd": 1
+		},
+		{
+			"default": "Active",
+			"fieldname": "assignment_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Assignment Status",
+			"options": "Draft\nActive\nWithdrawn\nReplaced",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "is_scoring_member",
+			"fieldtype": "Check",
+			"label": "Scoring Member"
+		},
+		{
+			"fieldname": "section_dates",
+			"fieldtype": "Section Break",
+			"label": "Dates"
+		},
+		{
+			"fieldname": "appointed_on",
+			"fieldtype": "Datetime",
+			"label": "Appointed On"
+		},
+		{
+			"fieldname": "withdrawn_on",
+			"fieldtype": "Datetime",
+			"label": "Withdrawn On"
+		},
+		{
+			"fieldname": "section_replacement",
+			"fieldtype": "Section Break",
+			"label": "Replacement"
+		},
+		{
+			"fieldname": "replacement_user",
+			"fieldtype": "Link",
+			"label": "Replacement User",
+			"options": "User"
+		},
+		{
+			"fieldname": "section_notes",
+			"fieldtype": "Section Break",
+			"label": "Notes"
+		},
+		{
+			"fieldname": "notes",
+			"fieldtype": "Small Text",
+			"label": "Notes"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 18:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Evaluator Assignment",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "evaluation_session,evaluator_user,committee_role,assignment_status,display_label",
+	"track_changes": 1
+}

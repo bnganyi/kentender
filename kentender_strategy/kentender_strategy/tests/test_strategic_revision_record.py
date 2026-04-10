@@ -4,7 +4,11 @@
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import (
+	_ensure_test_currency,
+	_make_entity,
+	run_test_db_cleanup,
+)
 
 from kentender_strategy.tests.test_entity_strategic_plan import _make_national_framework, _make_plan
 
@@ -16,7 +20,7 @@ FW = "National Framework"
 def _revision(business_id: str, old_plan: str, new_plan: str, **kw):
 	d = {
 		"doctype": SRR,
-		"business_id": business_id,
+		"name": business_id,
 		"entity_strategic_plan_old": old_plan,
 		"entity_strategic_plan_new": new_plan,
 		"revision_reason": kw.pop("revision_reason", "Annual update"),
@@ -26,21 +30,25 @@ def _revision(business_id: str, old_plan: str, new_plan: str, **kw):
 	return frappe.get_doc(d)
 
 
+def _cleanup_srr06_data():
+	frappe.db.delete(SRR, {"name": ("like", "_KT_SRR06_%")})
+	frappe.db.delete(PLAN, {"name": ("like", "_KT_SRR06_%")})
+	frappe.db.delete(FW, {"name": ("like", "_KT_SRR06_%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_SRR06_%")})
+
+
 class TestStrategicRevisionRecord(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_srr06_data)
 		self.entity = _make_entity("_KT_SRR06_PE").insert()
 		self.nf = _make_national_framework("_KT_SRR06_NF", "SRR06-NF").insert()
 		self.plan_v1 = _make_plan("_KT_SRR06_P1", self.entity.name, self.nf.name, version_no=1).insert()
 		self.plan_v2 = _make_plan("_KT_SRR06_P2", self.entity.name, self.nf.name, version_no=2).insert()
 
 	def tearDown(self):
-		frappe.db.delete(SRR, {"business_id": ("like", "_KT_SRR06_%")})
-		frappe.db.delete(PLAN, {"business_id": ("like", "_KT_SRR06_%")})
-		frappe.db.delete(FW, {"business_id": ("like", "_KT_SRR06_%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_SRR06_%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_srr06_data)
 		super().tearDown()
 
 	def test_valid_revision_record(self):

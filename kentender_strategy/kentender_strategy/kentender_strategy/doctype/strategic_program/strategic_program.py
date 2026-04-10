@@ -5,41 +5,24 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
+from kentender.utils.display_label import code_title_label
 from kentender_strategy.services.strategic_linkage_validation import assert_procuring_department_scoped
 
 
 class StrategicProgram(Document):
 	def validate(self):
 		self._normalize_text_fields()
-		self._validate_unique_business_id()
+		self.display_label = code_title_label(self.program_code, self.program_name)
 		self._validate_unique_program_code_per_plan()
 		self._validate_plan_and_entity_alignment()
 		self._validate_national_objective_alignment()
 		self._validate_responsible_department_scope()
 
 	def _normalize_text_fields(self):
-		for fn in ("business_id", "program_code", "program_name"):
+		for fn in ("program_code", "program_name"):
 			val = getattr(self, fn, None)
 			if val and str(val).strip():
 				setattr(self, fn, str(val).strip())
-
-	def _validate_unique_business_id(self):
-		bid = (self.business_id or "").strip()
-		if not bid:
-			return
-		filters = {"business_id": bid}
-		if self.name:
-			filters["name"] = ("!=", self.name)
-		existing = frappe.db.get_value("Strategic Program", filters, "name")
-		if existing:
-			frappe.throw(
-				_("Business ID {0} is already used by {1}.").format(
-					frappe.bold(bid),
-					frappe.bold(existing),
-				),
-				frappe.DuplicateEntryError,
-				title=_("Duplicate Business ID"),
-			)
 
 	def _validate_unique_program_code_per_plan(self):
 		plan = (self.entity_strategic_plan or "").strip()

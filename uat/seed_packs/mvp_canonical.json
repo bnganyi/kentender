@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "description": "Canonical MVP (through Purchase Requisition) seed keys. Derived from docs/testing MVP ticket pack; Excel workbooks can be merged here later.",
+  "business_id_prefix": "UAT-MVP",
+  "fiscal_year": "2026-2027",
+  "currency_code": "USD",
+  "entity": {
+    "entity_code": "UAT-MVP-PE",
+    "entity_name": "UAT MVP Demo Entity",
+    "entity_type": "Other"
+  },
+  "departments": [
+    {
+      "department_code": "OPS",
+      "department_name": "Operations",
+      "hod_email_key": "hod"
+    },
+    {
+      "department_code": "FIN",
+      "department_name": "Finance",
+      "hod_email_key": "hod"
+    }
+  ],
+  "funding_source": {
+    "funding_source_code": "UAT-MVP-GOV",
+    "funding_source_name": "UAT MVP Government of Kenya",
+    "funding_source_type": "Revenue"
+  },
+  "procurement_category": {
+    "category_code": "UAT-MVP-GOODS",
+    "category_name": "UAT MVP Goods",
+    "category_type": "Goods"
+  },
+  "procurement_method": {
+    "method_code": "UAT-MVP-OT",
+    "method_name": "UAT MVP Open Tender"
+  },
+  "document_type_registry": {
+    "document_type_code": "UAT-MVP-PR-SPEC",
+    "document_type_name": "UAT MVP Requisition Specification",
+    "module_scope": "Procurement"
+  },
+  "strategy": {
+    "national_framework": {
+      "name": "UAT-MVP-NF",
+      "framework_code": "UAT-MVP-NF-CODE",
+      "framework_name": "UAT MVP National Framework",
+      "framework_type": "National Development Plan",
+      "version_label": "v1"
+    },
+    "national_pillar": {
+      "name": "UAT-MVP-PL",
+      "pillar_code": "P1",
+      "pillar_name": "UAT MVP Pillar One"
+    },
+    "national_objective": {
+      "name": "UAT-MVP-OBJ",
+      "objective_code": "O1",
+      "objective_name": "UAT MVP Objective One"
+    },
+    "entity_strategic_plan": {
+      "name": "UAT-MVP-ESP",
+      "plan_title": "UAT MVP Entity Strategic Plan",
+      "plan_period_label": "FY 2026/27",
+      "version_no": 1
+    },
+    "program": {
+      "name": "UAT-MVP-PG",
+      "program_code": "PG-UAT",
+      "program_name": "UAT MVP Program"
+    },
+    "sub_program": {
+      "name": "UAT-MVP-SG",
+      "sub_program_code": "SG-UAT",
+      "sub_program_name": "UAT MVP Sub Program"
+    },
+    "output_indicator": {
+      "name": "UAT-MVP-IND",
+      "indicator_code": "IND-UAT",
+      "indicator_name": "UAT MVP Output Indicator"
+    },
+    "performance_target": {
+      "name": "UAT-MVP-TGT",
+      "target_title": "UAT MVP Performance Target FY26",
+      "target_period_type": "Annual",
+      "period_label": "FY2026",
+      "target_measurement_type": "Numeric",
+      "target_value_numeric": 100
+    }
+  },
+  "budget": {
+    "budget_control_period": {
+      "name": "UAT-MVP-BCP",
+      "period_label": "UAT MVP FY26/27",
+      "status": "Open"
+    },
+    "budget": {
+      "name": "UAT-MVP-BUD",
+      "budget_title": "UAT MVP Master Budget"
+    },
+    "lines": {
+      "healthy": {
+        "name": "UAT-MVP-BL-OK",
+        "budget_line_type": "Operating",
+        "allocated_amount": 500000
+      },
+      "constrained": {
+        "name": "UAT-MVP-BL-TIGHT",
+        "budget_line_type": "Operating",
+        "allocated_amount": 50
+      }
+    }
+  },
+  "users": {
+    "password_env": "KENTENDER_UAT_MVP_PASSWORD",
+    "default_password": "k3nTender!uat",
+    "internal": [
+      {
+        "email": "requisitioner.uat-mvp@ken-tender.test",
+        "first_name": "MVP",
+        "last_name": "Requisitioner",
+        "role": "KT UAT Requisitioner",
+        "key": "requisitioner"
+      },
+      {
+        "email": "hod.uat-mvp@ken-tender.test",
+        "first_name": "MVP",
+        "last_name": "HOD",
+        "role": "KT UAT HOD",
+        "key": "hod"
+      },
+      {
+        "email": "finance.uat-mvp@ken-tender.test",
+        "first_name": "MVP",
+        "last_name": "Finance",
+        "role": "KT UAT Finance Approver",
+        "key": "finance"
+      },
+      {
+        "email": "procurement.uat-mvp@ken-tender.test",
+        "first_name": "MVP",
+        "last_name": "Procurement",
+        "role": "KT UAT Procurement Officer",
+        "key": "procurement"
+      },
+      {
+        "email": "evaluator.uat-mvp@ken-tender.test",
+        "first_name": "MVP",
+        "last_name": "Evaluator",
+        "role": "KT UAT Evaluator",
+        "key": "evaluator"
+      },
+      {
+        "email": "accounting.uat-mvp@ken-tender.test",
+        "first_name": "MVP",
+        "last_name": "Accounting",
+        "role": "KT UAT Accounting Officer",
+        "key": "accounting"
+      }
+    ],
+    "suppliers": [
+      {
+        "email": "supplier.uat-mvp@ken-tender.test",
+        "first_name": "MVP",
+        "last_name": "Supplier1",
+        "role": "KT UAT Supplier",
+        "key": "supplier"
+      },
+      {
+        "email": "supplier2.uat-mvp@ken-tender.test",
+        "first_name": "MVP",
+        "last_name": "Supplier2",
+        "role": "KT UAT Supplier",
+        "key": "supplier2"
+      }
+    ]
+  },
+  "purchase_requisitions": {
+    "draft": {
+      "name": "UAT-MVP-PR-DRAFT",
+      "title": "UAT MVP Draft Requisition",
+      "item": {
+        "description": "Draft line",
+        "quantity": 1,
+        "unit_cost": 100
+      }
+    },
+    "returned": {
+      "name": "UAT-MVP-PR-RETURNED",
+      "title": "UAT MVP Returned Requisition",
+      "item": {
+        "description": "Returned flow line",
+        "quantity": 1,
+        "unit_cost": 200
+      }
+    },
+    "approved": {
+      "name": "UAT-MVP-PR-APPROVED",
+      "title": "UAT MVP Approved Requisition",
+      "item": {
+        "description": "Approved flow line",
+        "quantity": 2,
+        "unit_cost": 500
+      }
+    }
+  }
+}

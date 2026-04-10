@@ -1,0 +1,71 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 14:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"procurement_contract",
+		"display_label",
+		"event_type",
+		"event_datetime",
+		"actor_user",
+		"summary",
+		"related_variation",
+		"related_milestone",
+		"status_result",
+		"event_hash"
+	],
+	"fields": [
+		{
+			"fieldname": "procurement_contract",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procurement Contract",
+			"options": "Procurement Contract",
+			"reqd": 1
+		},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{
+			"fieldname": "event_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Event Type",
+			"options": "Created\nSubmitted\nApproved\nRejected\nSignature\nActivated\nSuspended\nResumed\nTerminated\nClosed\nVariation Requested\nVariation Applied\nOther",
+			"reqd": 1
+		},
+		{"fieldname": "event_datetime", "fieldtype": "Datetime", "in_list_view": 1, "label": "Event Datetime", "reqd": 1},
+		{"fieldname": "actor_user", "fieldtype": "Link", "label": "Actor User", "options": "User"},
+		{"fieldname": "summary", "fieldtype": "Text Editor", "label": "Summary", "reqd": 1},
+		{
+			"fieldname": "related_variation",
+			"fieldtype": "Link",
+			"label": "Related Variation",
+			"options": "Procurement Contract Variation"
+		},
+		{
+			"fieldname": "related_milestone",
+			"fieldtype": "Link",
+			"label": "Related Milestone",
+			"options": "Procurement Contract Milestone"
+		},
+		{"fieldname": "status_result", "fieldtype": "Data", "label": "Status Result"},
+		{"fieldname": "event_hash", "fieldtype": "Data", "label": "Event Hash"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 14:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Procurement Contract Status Event",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

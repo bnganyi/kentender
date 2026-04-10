@@ -39,7 +39,7 @@ class TestBudgetAvailability(FrappeTestCase):
 		self.line = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BAV_LINE",
+				"name": "_KT_BAV_LINE",
 				"budget": self.budget.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -50,9 +50,9 @@ class TestBudgetAvailability(FrappeTestCase):
 	def tearDown(self):
 		frappe.db.delete(AUD, {"target_docname": self.line.name, "target_doctype": BL})
 		frappe.db.delete(BLE, {"budget_line": self.line.name})
-		frappe.db.delete(BL, {"business_id": ("like", "_KT_BAV_%")})
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BAV_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BAV_%")})
+		frappe.db.delete(BL, {"name": ("like", "_KT_BAV_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BAV_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BAV_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BAV_%")})
 		frappe.db.commit()
 		super().tearDown()
@@ -98,7 +98,7 @@ class TestBudgetAvailability(FrappeTestCase):
 		frappe.get_doc(
 			{
 				"doctype": BLE,
-				"business_id": "_KT_BAV_E1",
+				"name": "_KT_BAV_E1",
 				"budget_line": line.name,
 				"budget": line.budget,
 				"procuring_entity": line.procuring_entity,
@@ -117,7 +117,7 @@ class TestBudgetAvailability(FrappeTestCase):
 		frappe.get_doc(
 			{
 				"doctype": BLE,
-				"business_id": "_KT_BAV_E2",
+				"name": "_KT_BAV_E2",
 				"budget_line": line.name,
 				"budget": line.budget,
 				"procuring_entity": line.procuring_entity,

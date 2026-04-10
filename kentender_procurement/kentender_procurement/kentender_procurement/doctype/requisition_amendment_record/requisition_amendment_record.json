@@ -1,0 +1,201 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-03-29 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "purchase_requisition",
+  "amendment_type",
+  "display_label",
+  "status",
+  "column_break_req",
+  "requested_by",
+  "requested_on",
+  "approved_by",
+  "approved_on",
+  "budget_adjustment_required",
+  "section_reason",
+  "reason",
+  "section_summary",
+  "before_summary",
+  "after_summary"
+ ],
+ "fields": [
+  {
+   "fieldname": "purchase_requisition",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Purchase Requisition",
+   "options": "Purchase Requisition",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amendment_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Amendment Type",
+   "options": "Quantity Change\nCost Estimate Change\nStrategic Linkage Correction\nBudget Line Change\nNeed Specification Change\nCancellation",
+   "reqd": 1
+  },
+  {
+   "description": "Derived for link display (requisition — amendment type).",
+   "fieldname": "display_label",
+   "fieldtype": "Data",
+   "label": "Display Label",
+   "read_only": 1,
+   "hidden": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nSubmitted\nApproved\nRejected\nCancelled\nApplied",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_req",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "requested_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Requested By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "requested_on",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Requested On",
+   "reqd": 1
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User"
+  },
+  {
+   "fieldname": "approved_on",
+   "fieldtype": "Datetime",
+   "label": "Approved On"
+  },
+  {
+   "default": "0",
+   "fieldname": "budget_adjustment_required",
+   "fieldtype": "Check",
+   "label": "Budget Adjustment Required"
+  },
+  {
+   "fieldname": "section_reason",
+   "fieldtype": "Section Break",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_summary",
+   "fieldtype": "Section Break",
+   "label": "Before / after"
+  },
+  {
+   "fieldname": "before_summary",
+   "fieldtype": "Long Text",
+   "label": "Before Summary"
+  },
+  {
+   "fieldname": "after_summary",
+   "fieldtype": "Long Text",
+   "label": "After Summary",
+   "description": "Human-readable summary; for apply service, JSON payload per procurement amendment contract (PROC-STORY-008)."
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-29 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Procurement",
+ "name": "Requisition Amendment Record",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Requisitioner"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT HOD"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Finance Approver"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Procurement Officer"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "display_label",
+ "show_title_field_in_link": 1,
+ "search_fields": "purchase_requisition,amendment_type,status,display_label",
+ "track_changes": 1
+}

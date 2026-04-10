@@ -1,0 +1,226 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 14:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"business_id",
+		"tender",
+		"amendment_no",
+		"amendment_type",
+		"change_summary",
+		"reason",
+		"effective_datetime",
+		"requires_deadline_extension",
+		"new_submission_deadline",
+		"new_opening_datetime",
+		"status",
+		"approved_by",
+		"published_by",
+		"published_at",
+		"related_document",
+		"display_label"
+	],
+	"fields": [
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"fieldname": "amendment_no",
+			"fieldtype": "Int",
+			"in_list_view": 1,
+			"label": "Amendment No",
+			"non_negative": 1,
+			"reqd": 1
+		},
+		{
+			"default": "Administrative",
+			"fieldname": "amendment_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Amendment Type",
+			"options": "Schedule Change\nScope Change\nAdministrative\nClarification\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "change_summary",
+			"fieldtype": "Small Text",
+			"label": "Change Summary",
+			"reqd": 1
+		},
+		{
+			"fieldname": "reason",
+			"fieldtype": "Small Text",
+			"label": "Reason",
+			"reqd": 1
+		},
+		{
+			"fieldname": "effective_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Effective Datetime",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "requires_deadline_extension",
+			"fieldtype": "Check",
+			"label": "Requires Deadline Extension"
+		},
+		{
+			"fieldname": "new_submission_deadline",
+			"fieldtype": "Datetime",
+			"label": "New Submission Deadline"
+		},
+		{
+			"fieldname": "new_opening_datetime",
+			"fieldtype": "Datetime",
+			"label": "New Opening Datetime"
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nApproved\nPublished\nSuperseded\nCancelled",
+			"reqd": 1
+		},
+		{
+			"fieldname": "approved_by",
+			"fieldtype": "Link",
+			"label": "Approved By",
+			"options": "User"
+		},
+		{
+			"fieldname": "published_by",
+			"fieldtype": "Link",
+			"label": "Published By",
+			"options": "User"
+		},
+		{
+			"fieldname": "published_at",
+			"fieldtype": "Datetime",
+			"label": "Published At"
+		},
+		{
+			"fieldname": "related_document",
+			"fieldtype": "Link",
+			"label": "Related Document",
+			"options": "Tender Document"
+		},
+		{
+			"description": "Derived for link display (business ID — amendment label).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 14:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Tender Amendment",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Requisitioner",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT HOD",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Finance Approver",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "business_id,tender,amendment_no,amendment_type,status,display_label",
+	"track_changes": 1
+}

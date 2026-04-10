@@ -1,0 +1,104 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 16:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"inspection_record",
+		"display_label",
+		"sample_code",
+		"sample_type",
+		"sample_description",
+		"collected_by_user",
+		"collection_datetime",
+		"collection_location",
+		"quantity_collected",
+		"unit_of_measure",
+		"chain_of_custody_reference",
+		"submitted_to_lab_name",
+		"submitted_on",
+		"received_result_on",
+		"sample_status",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "inspection_record",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Inspection Record",
+			"options": "Inspection Record",
+			"reqd": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "sample_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Sample Code",
+			"reqd": 1
+		},
+		{
+			"fieldname": "sample_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Sample Type",
+			"options": "Grab\nComposite\nWitness\nLaboratory\nOther",
+			"reqd": 1
+		},
+		{"fieldname": "sample_description", "fieldtype": "Small Text", "label": "Sample Description"},
+		{
+			"fieldname": "collected_by_user",
+			"fieldtype": "Link",
+			"label": "Collected By User",
+			"options": "User"
+		},
+		{"fieldname": "collection_datetime", "fieldtype": "Datetime", "label": "Collection Datetime"},
+		{"fieldname": "collection_location", "fieldtype": "Small Text", "label": "Collection Location"},
+		{"fieldname": "quantity_collected", "fieldtype": "Float", "label": "Quantity Collected"},
+		{
+			"fieldname": "unit_of_measure",
+			"fieldtype": "Link",
+			"label": "Unit of Measure",
+			"options": "UOM"
+		},
+		{"fieldname": "chain_of_custody_reference", "fieldtype": "Data", "label": "Chain Of Custody Reference"},
+		{"fieldname": "submitted_to_lab_name", "fieldtype": "Data", "label": "Submitted To Lab Name"},
+		{"fieldname": "submitted_on", "fieldtype": "Date", "label": "Submitted On"},
+		{"fieldname": "received_result_on", "fieldtype": "Date", "label": "Received Result On"},
+		{
+			"default": "Collected",
+			"fieldname": "sample_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Sample Status",
+			"options": "Collected\nIn Transit\nAt Lab\nCompleted\nRejected",
+			"reqd": 1
+		},
+		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 16:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Sample Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "sample_code,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

@@ -34,9 +34,9 @@ class TestBudgetLineDerivedTotals(FrappeTestCase):
 		self.budget = _budget("_KT_BUD06_BG1", self.entity.name, self.period.name, self.currency).insert()
 
 	def tearDown(self):
-		frappe.db.delete(BL, {"business_id": ("like", "_KT_BUD06_%")})
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BUD06_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BUD06_%")})
+		frappe.db.delete(BL, {"name": ("like", "_KT_BUD06_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BUD06_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BUD06_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BUD06_%")})
 		frappe.db.commit()
 		super().tearDown()
@@ -44,7 +44,7 @@ class TestBudgetLineDerivedTotals(FrappeTestCase):
 	def _line_doc(self, business_id: str, **kw):
 		d = {
 			"doctype": BL,
-			"business_id": business_id,
+			"name": business_id,
 			"budget": self.budget.name,
 			"budget_line_type": "Operating",
 			"status": "Draft",

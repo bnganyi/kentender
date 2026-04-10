@@ -12,11 +12,15 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import flt
 
+from kentender.utils.display_label import code_title_label
+
 BL = "Budget Line"
 
 
 class BudgetAllocation(Document):
 	def validate(self):
+		subtitle = (self.allocation_reference or self.allocation_type or "").strip()
+		self.display_label = code_title_label((self.name or "").strip(), subtitle)
 		self._validate_amount_positive()
 		self._sync_and_validate_line_context()
 

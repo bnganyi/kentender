@@ -32,7 +32,7 @@ class TestBudgetLedgerEntry(FrappeTestCase):
 		self.line = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BLE_LINE",
+				"name": "_KT_BLE_LINE",
 				"budget": self.budget.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -41,10 +41,10 @@ class TestBudgetLedgerEntry(FrappeTestCase):
 		).insert()
 
 	def tearDown(self):
-		frappe.db.delete(BLE, {"business_id": ("like", "_KT_BLE_%")})
-		frappe.db.delete(BL, {"business_id": ("like", "_KT_BLE_%")})
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BLE_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BLE_%")})
+		frappe.db.delete(BLE, {"name": ("like", "_KT_BLE_%")})
+		frappe.db.delete(BL, {"name": ("like", "_KT_BLE_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BLE_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BLE_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BLE_%")})
 		frappe.db.commit()
 		super().tearDown()
@@ -52,7 +52,7 @@ class TestBudgetLedgerEntry(FrappeTestCase):
 	def _entry(self, business_id: str, **kw):
 		d = {
 			"doctype": BLE,
-			"business_id": business_id,
+			"name": business_id,
 			"budget_line": self.line.name,
 			"budget": self.budget.name,
 			"procuring_entity": self.entity.name,

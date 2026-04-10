@@ -1,0 +1,259 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 16:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_identity",
+		"business_id",
+		"display_label",
+		"contract",
+		"section_workflow",
+		"status",
+		"workflow_state",
+		"section_scope",
+		"inspection_scope_type",
+		"contract_milestone",
+		"contract_deliverable",
+		"section_detail",
+		"inspection_title",
+		"inspection_description",
+		"inspection_method_type",
+		"inspection_method_template",
+		"requires_sampling",
+		"requires_lab_test",
+		"requires_field_measurement",
+		"requires_third_party_test_certificate",
+		"section_org",
+		"procuring_entity",
+		"responsible_department",
+		"inspection_officer_user",
+		"inspection_team_lead_user",
+		"contract_manager_user",
+		"section_schedule",
+		"scheduled_inspection_datetime",
+		"actual_inspection_datetime",
+		"inspection_location",
+		"supplier_representative_name",
+		"supplier_representative_contact",
+		"section_results",
+		"inspection_result",
+		"checklist_items_count",
+		"parameter_tests_count",
+		"parameter_tests_passed_count",
+		"parameter_tests_failed_count",
+		"non_conformance_count",
+		"section_acceptance",
+		"acceptance_record",
+		"acceptance_status",
+		"is_reinspection_required",
+		"reinspection_due_date",
+		"section_lock",
+		"is_locked",
+		"exception_record",
+		"remarks",
+		"section_checklist",
+		"checklist_lines"
+	],
+	"fields": [
+		{"fieldname": "section_identity", "fieldtype": "Section Break", "label": "Identity"},
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "contract",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Contract",
+			"options": "Procurement Contract",
+			"reqd": 1
+		},
+		{"fieldname": "section_workflow", "fieldtype": "Section Break", "label": "Workflow"},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nScheduled\nIn Progress\nCompleted\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "workflow_state",
+			"fieldtype": "Select",
+			"label": "Workflow State",
+			"options": "Draft\nScheduled\nIn Progress\nCompleted\nCancelled",
+			"reqd": 1
+		},
+		{"fieldname": "section_scope", "fieldtype": "Section Break", "label": "Scope"},
+		{
+			"default": "Contract Wide",
+			"fieldname": "inspection_scope_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Inspection Scope Type",
+			"options": "Contract Wide\nMilestone\nDeliverable\nMilestone and Deliverable",
+			"reqd": 1
+		},
+		{
+			"fieldname": "contract_milestone",
+			"fieldtype": "Link",
+			"label": "Contract Milestone",
+			"options": "Procurement Contract Milestone"
+		},
+		{
+			"fieldname": "contract_deliverable",
+			"fieldtype": "Link",
+			"label": "Contract Deliverable",
+			"options": "Procurement Contract Deliverable"
+		},
+		{"fieldname": "section_detail", "fieldtype": "Section Break", "label": "Inspection detail"},
+		{
+			"fieldname": "inspection_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Inspection Title",
+			"reqd": 1
+		},
+		{"fieldname": "inspection_description", "fieldtype": "Text Editor", "label": "Inspection Description"},
+		{
+			"fieldname": "inspection_method_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Inspection Method Type",
+			"options": "Checklist\nParameter Testing\nField Measurement\nSampling\nLab Test\nCombined",
+			"reqd": 1
+		},
+		{
+			"fieldname": "inspection_method_template",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Inspection Method Template",
+			"options": "Inspection Method Template",
+			"reqd": 1
+		},
+		{"default": "0", "fieldname": "requires_sampling", "fieldtype": "Check", "label": "Requires Sampling"},
+		{"default": "0", "fieldname": "requires_lab_test", "fieldtype": "Check", "label": "Requires Lab Test"},
+		{"default": "0", "fieldname": "requires_field_measurement", "fieldtype": "Check", "label": "Requires Field Measurement"},
+		{"default": "0", "fieldname": "requires_third_party_test_certificate", "fieldtype": "Check", "label": "Requires Third Party Test Certificate"},
+		{"fieldname": "section_org", "fieldtype": "Section Break", "label": "Organisation"},
+		{
+			"fieldname": "procuring_entity",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procuring Entity",
+			"options": "Procuring Entity",
+			"reqd": 1
+		},
+		{
+			"fieldname": "responsible_department",
+			"fieldtype": "Link",
+			"label": "Responsible Department",
+			"options": "Procuring Department"
+		},
+		{
+			"fieldname": "inspection_officer_user",
+			"fieldtype": "Link",
+			"label": "Inspection Officer User",
+			"options": "User"
+		},
+		{
+			"fieldname": "inspection_team_lead_user",
+			"fieldtype": "Link",
+			"label": "Inspection Team Lead User",
+			"options": "User"
+		},
+		{
+			"fieldname": "contract_manager_user",
+			"fieldtype": "Link",
+			"label": "Contract Manager User",
+			"options": "User"
+		},
+		{"fieldname": "section_schedule", "fieldtype": "Section Break", "label": "Schedule and location"},
+		{"fieldname": "scheduled_inspection_datetime", "fieldtype": "Datetime", "label": "Scheduled Inspection Datetime"},
+		{"fieldname": "actual_inspection_datetime", "fieldtype": "Datetime", "label": "Actual Inspection Datetime"},
+		{"fieldname": "inspection_location", "fieldtype": "Small Text", "label": "Inspection Location"},
+		{"fieldname": "supplier_representative_name", "fieldtype": "Data", "label": "Supplier Representative Name"},
+		{"fieldname": "supplier_representative_contact", "fieldtype": "Data", "label": "Supplier Representative Contact"},
+		{"fieldname": "section_results", "fieldtype": "Section Break", "label": "Results summary"},
+		{
+			"default": "Pending",
+			"fieldname": "inspection_result",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Inspection Result",
+			"options": "Pending\nPass\nFail\nPass With Observations\nNot Applicable",
+			"reqd": 1
+		},
+		{"default": "0", "fieldname": "checklist_items_count", "fieldtype": "Int", "label": "Checklist Items Count"},
+		{"default": "0", "fieldname": "parameter_tests_count", "fieldtype": "Int", "label": "Parameter Tests Count"},
+		{"default": "0", "fieldname": "parameter_tests_passed_count", "fieldtype": "Int", "label": "Parameter Tests Passed Count"},
+		{"default": "0", "fieldname": "parameter_tests_failed_count", "fieldtype": "Int", "label": "Parameter Tests Failed Count"},
+		{"default": "0", "fieldname": "non_conformance_count", "fieldtype": "Int", "label": "Non Conformance Count"},
+		{"fieldname": "section_acceptance", "fieldtype": "Section Break", "label": "Acceptance reference"},
+		{
+			"fieldname": "acceptance_record",
+			"fieldtype": "Link",
+			"label": "Acceptance Record",
+			"options": "Acceptance Record"
+		},
+		{
+			"default": "Not Applicable",
+			"fieldname": "acceptance_status",
+			"fieldtype": "Select",
+			"label": "Acceptance Status",
+			"options": "Not Applicable\nPending\nAccepted\nRejected\nConditional",
+			"reqd": 1
+		},
+		{"default": "0", "fieldname": "is_reinspection_required", "fieldtype": "Check", "label": "Is Reinspection Required"},
+		{"fieldname": "reinspection_due_date", "fieldtype": "Date", "label": "Reinspection Due Date"},
+		{"fieldname": "section_lock", "fieldtype": "Section Break", "label": "Lock"},
+		{"default": "0", "fieldname": "is_locked", "fieldtype": "Check", "label": "Is Locked"},
+		{
+			"fieldname": "exception_record",
+			"fieldtype": "Link",
+			"label": "Exception Record",
+			"options": "Exception Record"
+		},
+		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"},
+		{"fieldname": "section_checklist", "fieldtype": "Section Break", "label": "Checklist lines"},
+		{
+			"fieldname": "checklist_lines",
+			"fieldtype": "Table",
+			"label": "Checklist Lines",
+			"options": "Inspection Checklist Line"
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 16:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Inspection Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "business_id,inspection_title,display_label",
+	"show_title_field_in_link": 1,
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

@@ -1,0 +1,76 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"deliberation_session",
+		"agenda_item",
+		"display_label",
+		"resolution_text",
+		"resolution_date",
+		"effective_status",
+		"related_doctype",
+		"related_docname"
+	],
+	"fields": [
+		{
+			"fieldname": "deliberation_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Deliberation Session",
+			"options": "Deliberation Session",
+			"reqd": 1
+		},
+		{
+			"fieldname": "agenda_item",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Agenda Item",
+			"options": "Deliberation Agenda Item",
+			"reqd": 1
+		},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{"fieldname": "resolution_text", "fieldtype": "Text Editor", "label": "Resolution Text", "reqd": 1},
+		{"fieldname": "resolution_date", "fieldtype": "Date", "in_list_view": 1, "label": "Resolution Date", "reqd": 1},
+		{
+			"default": "Draft",
+			"fieldname": "effective_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Effective Status",
+			"options": "Draft\nEffective\nSuperseded\nRevoked",
+			"reqd": 1
+		},
+		{
+			"fieldname": "related_doctype",
+			"fieldtype": "Link",
+			"label": "Related DocType",
+			"options": "DocType"
+		},
+		{
+			"fieldname": "related_docname",
+			"fieldtype": "Dynamic Link",
+			"label": "Related Document",
+			"options": "related_doctype"
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"module": "Kentender Governance",
+	"name": "Resolution Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "resolution_text,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

@@ -4,7 +4,11 @@
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import (
+	_ensure_test_currency,
+	_make_entity,
+	run_test_db_cleanup,
+)
 
 from kentender_strategy.tests.test_output_indicator import _indicator
 from kentender_strategy.tests.test_strategic_program_and_sub_program import (
@@ -29,7 +33,7 @@ OBJ = "National Objective"
 def _target(bid: str, indicator_name: str, **kw):
 	d = {
 		"doctype": PT,
-		"business_id": bid,
+		"name": bid,
 		"target_title": "Target",
 		"output_indicator": indicator_name,
 		"target_period_type": "Quarterly",
@@ -44,10 +48,23 @@ def _target(bid: str, indicator_name: str, **kw):
 	return frappe.get_doc(d)
 
 
+def _cleanup_pt08_data():
+	frappe.db.delete(PT, {"name": ("like", "_KT_PT08_%")})
+	frappe.db.delete(IND, {"name": ("like", "_KT_PT08_%")})
+	frappe.db.delete(SUB, {"name": ("like", "_KT_PT08_%")})
+	frappe.db.delete(PRG, {"name": ("like", "_KT_PT08_%")})
+	frappe.db.delete(ESP, {"name": ("like", "_KT_PT08_%")})
+	frappe.db.delete(OBJ, {"name": ("like", "_KT_PT08_%")})
+	frappe.db.delete(PILLAR, {"name": ("like", "_KT_PT08_%")})
+	frappe.db.delete(FW, {"name": ("like", "_KT_PT08_%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PT08_%")})
+
+
 class TestPerformanceTarget(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_pt08_data)
 		self.entity = _make_entity("_KT_PT08_PE").insert()
 		self.nf1 = _nf("_KT_PT08_NF1", "PT08-A").insert()
 		self.pl1 = _pillar("_KT_PT08_PL1", self.nf1.name).insert()
@@ -64,16 +81,7 @@ class TestPerformanceTarget(FrappeTestCase):
 		self.indicator = _indicator("_KT_PT08_IND1", self.sub.name, indicator_code="K1").insert()
 
 	def tearDown(self):
-		frappe.db.delete(PT, {"business_id": ("like", "_KT_PT08_%")})
-		frappe.db.delete(IND, {"business_id": ("like", "_KT_PT08_%")})
-		frappe.db.delete(SUB, {"business_id": ("like", "_KT_PT08_%")})
-		frappe.db.delete(PRG, {"business_id": ("like", "_KT_PT08_%")})
-		frappe.db.delete(ESP, {"business_id": ("like", "_KT_PT08_%")})
-		frappe.db.delete(OBJ, {"business_id": ("like", "_KT_PT08_%")})
-		frappe.db.delete(PILLAR, {"business_id": ("like", "_KT_PT08_%")})
-		frappe.db.delete(FW, {"business_id": ("like", "_KT_PT08_%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PT08_%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_pt08_data)
 		super().tearDown()
 
 	def test_valid_create_numeric(self):
@@ -91,7 +99,7 @@ class TestPerformanceTarget(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": PT,
-				"business_id": "_KT_PT08_T2",
+				"name": "_KT_PT08_T2",
 				"target_title": "Auto hierarchy",
 				"output_indicator": self.indicator.name,
 				"target_period_type": "Monthly",
@@ -107,7 +115,7 @@ class TestPerformanceTarget(FrappeTestCase):
 		self.assertEqual(doc.sub_program, self.sub.name)
 		self.assertEqual(doc.program, self.prog.name)
 
-	def test_wrong_sub_program_blocked(self):
+	def test_wrong_sub_program_corrected_from_output_indicator(self):
 		sub2 = _sub("_KT_PT08_SG2", self.prog.name, self.plan.name, sub_program_code="SG2").insert()
 		doc = _target(
 			"_KT_PT08_T3",
@@ -116,9 +124,12 @@ class TestPerformanceTarget(FrappeTestCase):
 			program=self.prog.name,
 			entity_strategic_plan=self.plan.name,
 		)
-		self.assertRaises(frappe.ValidationError, doc.insert)
+		doc.insert()
+		self.assertEqual(doc.sub_program, self.sub.name)
+		self.assertEqual(doc.program, self.prog.name)
+		self.assertEqual(doc.entity_strategic_plan, self.plan.name)
 
-	def test_wrong_plan_blocked(self):
+	def test_wrong_plan_corrected_from_output_indicator(self):
 		plan2 = _esp("_KT_PT08_ESP2", self.entity.name, self.nf1.name, version_no=2).insert()
 		doc = _target(
 			"_KT_PT08_T4",
@@ -127,7 +138,8 @@ class TestPerformanceTarget(FrappeTestCase):
 			program=self.prog.name,
 			sub_program=self.sub.name,
 		)
-		self.assertRaises(frappe.ValidationError, doc.insert)
+		doc.insert()
+		self.assertEqual(doc.entity_strategic_plan, self.plan.name)
 
 	def test_invalid_period_dates_blocked(self):
 		doc = _target(
@@ -151,7 +163,7 @@ class TestPerformanceTarget(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": PT,
-				"business_id": "_KT_PT08_T7",
+				"name": "_KT_PT08_T7",
 				"target_title": "Qual",
 				"output_indicator": self.indicator.name,
 				"entity_strategic_plan": self.plan.name,
@@ -173,7 +185,7 @@ class TestPerformanceTarget(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": PT,
-				"business_id": "_KT_PT08_T7B",
+				"name": "_KT_PT08_T7B",
 				"target_title": "Qual OK",
 				"output_indicator": self.indicator.name,
 				"entity_strategic_plan": self.plan.name,

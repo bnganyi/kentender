@@ -1,0 +1,68 @@
+{
+ "allow_copy": 0,
+ "creation": "2026-04-10 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "affected_plan_item",
+  "action_type",
+  "before_snapshot_ref",
+  "after_snapshot_ref",
+  "change_amount",
+  "change_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "affected_plan_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Affected Plan Item",
+   "options": "Procurement Plan Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "action_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Action Type",
+   "options": "Update\nAdd\nCancel\nSupersede",
+   "reqd": 1
+  },
+  {
+   "fieldname": "before_snapshot_ref",
+   "fieldtype": "Data",
+   "label": "Before Snapshot Ref",
+   "description": "Opaque reference for before state (PROC-STORY-020 may define storage)."
+  },
+  {
+   "fieldname": "after_snapshot_ref",
+   "fieldtype": "Data",
+   "label": "After Snapshot Ref"
+  },
+  {
+   "fieldname": "change_amount",
+   "fieldtype": "Currency",
+   "label": "Change Amount"
+  },
+  {
+   "fieldname": "change_notes",
+   "fieldtype": "Small Text",
+   "label": "Change Notes"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-04-10 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Procurement",
+ "name": "Procurement Plan Revision Line",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

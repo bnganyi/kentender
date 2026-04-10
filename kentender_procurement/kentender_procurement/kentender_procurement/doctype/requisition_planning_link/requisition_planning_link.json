@@ -1,0 +1,172 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-03-29 18:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "purchase_requisition",
+  "column_break_line",
+  "purchase_requisition_item",
+  "linked_quantity",
+  "procurement_plan",
+  "procurement_plan_item",
+  "linked_amount",
+  "linked_on",
+  "status",
+  "display_label"
+ ],
+ "fields": [
+  {
+   "fieldname": "purchase_requisition",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Purchase Requisition",
+   "options": "Purchase Requisition",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_line",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Optional: allocate a quantity from this line. Linked Amount is derived as quantity × estimated unit cost.",
+   "fieldname": "purchase_requisition_item",
+   "fieldtype": "Link",
+   "label": "Purchase Requisition Item",
+   "options": "Purchase Requisition Item"
+  },
+  {
+   "description": "When set, Linked Amount is derived from this quantity and the line unit cost.",
+   "fieldname": "linked_quantity",
+   "fieldtype": "Float",
+   "label": "Linked Quantity",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "procurement_plan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Procurement Plan",
+   "options": "Procurement Plan"
+  },
+  {
+   "fieldname": "procurement_plan_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Procurement Plan Item",
+   "options": "Procurement Plan Item"
+  },
+  {
+   "fieldname": "linked_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Linked Amount",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "linked_on",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Linked On",
+   "reqd": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nReleased\nSuperseded",
+   "reqd": 1
+  },
+  {
+   "description": "Derived for link display (requisition — status).",
+   "fieldname": "display_label",
+   "fieldtype": "Data",
+   "label": "Display Label",
+   "read_only": 1,
+   "hidden": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-29 18:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Procurement",
+ "name": "Requisition Planning Link",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Requisitioner"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT HOD"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Finance Approver"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Procurement Officer"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "display_label",
+ "show_title_field_in_link": 1,
+ "search_fields": "purchase_requisition,procurement_plan,status,display_label",
+ "track_changes": 1
+}

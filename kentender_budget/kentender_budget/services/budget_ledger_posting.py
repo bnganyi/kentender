@@ -44,7 +44,7 @@ def _require_budget_line(budget_line_id: str):
 	return line
 
 
-def _new_business_id(prefix: str = "KT-BLE") -> str:
+def _new_ledger_entry_name(prefix: str = "KT-BLE") -> str:
 	return f"{prefix}-{frappe.generate_hash(length=14)}"
 
 
@@ -66,7 +66,7 @@ def _insert_ledger_row(
 	related = related or {}
 	row = {
 		"doctype": BLE,
-		"business_id": _new_business_id(),
+		"name": _new_ledger_entry_name(),
 		"budget_line": line.name,
 		"budget": line.budget,
 		"procuring_entity": line.procuring_entity,
@@ -116,7 +116,6 @@ def _log_ledger_audit(
 	event_type: str,
 	budget_line_name: str,
 	procuring_entity: str | None,
-	ledger_business_id: str,
 	payload: dict[str, Any],
 ) -> None:
 	log_budget_audit(
@@ -124,7 +123,6 @@ def _log_ledger_audit(
 		procuring_entity=procuring_entity,
 		target_doctype=BL,
 		target_docname=budget_line_name,
-		business_id=ledger_business_id,
 		payload=payload,
 	)
 
@@ -188,7 +186,6 @@ def reserve_budget(
 		event_type="kt.budget.ledger.reserve",
 		budget_line_name=line.name,
 		procuring_entity=line.procuring_entity,
-		ledger_business_id=doc.business_id,
 		payload={"amount": amt, "entry": doc.name},
 	)
 	return doc.name
@@ -243,7 +240,6 @@ def release_reservation(
 		event_type="kt.budget.ledger.release_reservation",
 		budget_line_name=line.name,
 		procuring_entity=line.procuring_entity,
-		ledger_business_id=doc.business_id,
 		payload={"amount": amt, "entry": doc.name},
 	)
 	return doc.name
@@ -313,7 +309,6 @@ def commit_budget(
 		event_type="kt.budget.ledger.commit",
 		budget_line_name=line.name,
 		procuring_entity=line.procuring_entity,
-		ledger_business_id=doc.business_id,
 		payload={"amount": amt, "entry": doc.name, "from_reservation": from_reservation},
 	)
 	return doc.name
@@ -369,7 +364,6 @@ def release_commitment(
 		event_type="kt.budget.ledger.release_commitment",
 		budget_line_name=line.name,
 		procuring_entity=line.procuring_entity,
-		ledger_business_id=doc.business_id,
 		payload={"amount": amt, "entry": doc.name},
 	)
 	return doc.name

@@ -28,7 +28,6 @@ def get_active_strategic_plans_for_entity(procuring_entity: str) -> list[dict]:
 		filters={"procuring_entity": ent, "is_current_active_version": 1},
 		fields=[
 			"name",
-			"business_id",
 			"plan_title",
 			"version_no",
 			"status",
@@ -50,7 +49,6 @@ def get_programs_for_national_objective(national_objective: str) -> list[dict]:
 		filters={"national_objective": obj},
 		fields=[
 			"name",
-			"business_id",
 			"program_code",
 			"program_name",
 			"entity_strategic_plan",
@@ -78,7 +76,6 @@ def get_output_indicators_for_entity(procuring_entity: str) -> list[dict]:
 		filters={"program": ["in", programs]},
 		fields=[
 			"name",
-			"business_id",
 			"indicator_code",
 			"indicator_name",
 			"sub_program",
@@ -100,7 +97,6 @@ def get_performance_targets_for_entity(procuring_entity: str) -> list[dict]:
 		filters={"program": ["in", programs]},
 		fields=[
 			"name",
-			"business_id",
 			"target_title",
 			"output_indicator",
 			"sub_program",

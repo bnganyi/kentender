@@ -45,7 +45,6 @@ def apply_budget_revision(revision_id: str) -> None:
 		procuring_entity=rev.procuring_entity,
 		target_doctype=BR,
 		target_docname=rev.name,
-		business_id=rev.business_id,
 		payload={
 			"budget": rev.budget,
 			"lines": [
@@ -112,7 +111,7 @@ def _create_allocation(
 	doc = frappe.get_doc(
 		{
 			"doctype": BA,
-			"business_id": f"KT-BA-{frappe.generate_hash(length=14)}",
+			"name": f"KT-BA-{frappe.generate_hash(length=14)}",
 			"budget_line": budget_line,
 			"budget": budget,
 			"procuring_entity": entity,
@@ -131,7 +130,6 @@ def _create_allocation(
 		procuring_entity=entity,
 		target_doctype=BA,
 		target_docname=doc.name,
-		business_id=doc.business_id,
 		payload={
 			"budget_line": budget_line,
 			"allocation_type": allocation_type,

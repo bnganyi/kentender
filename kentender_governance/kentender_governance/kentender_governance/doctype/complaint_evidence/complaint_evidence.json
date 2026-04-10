@@ -1,0 +1,50 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"complaint",
+		"display_label",
+		"submitted_by_user",
+		"submitted_by_party",
+		"evidence_type",
+		"file",
+		"description",
+		"submitted_on",
+		"hash_value",
+		"sensitivity_class",
+		"remarks"
+	],
+	"fields": [
+		{"fieldname": "complaint", "fieldtype": "Link", "in_list_view": 1, "label": "Complaint", "options": "Complaint", "reqd": 1},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{"fieldname": "submitted_by_user", "fieldtype": "Link", "label": "Submitted By User", "options": "User"},
+		{"fieldname": "submitted_by_party", "fieldtype": "Link", "label": "Submitted By Party", "options": "Complaint Party"},
+		{"fieldname": "evidence_type", "fieldtype": "Select", "in_list_view": 1, "label": "Evidence Type", "options": "Document\nCorrespondence\nImage\nAudio\nVideo\nOther", "reqd": 1},
+		{"fieldname": "file", "fieldtype": "Attach", "label": "File"},
+		{"fieldname": "description", "fieldtype": "Small Text", "label": "Description", "reqd": 1},
+		{"fieldname": "submitted_on", "fieldtype": "Datetime", "in_list_view": 1, "label": "Submitted On", "reqd": 1},
+		{"fieldname": "hash_value", "fieldtype": "Data", "label": "Hash Value", "read_only": 1},
+		{"default": "Internal", "fieldname": "sensitivity_class", "fieldtype": "Select", "label": "Sensitivity Class", "options": "Public\nInternal\nRestricted\nConfidential", "reqd": 1},
+		{"fieldname": "remarks", "fieldtype": "Text Editor", "label": "Remarks"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"module": "Kentender Governance",
+	"name": "Complaint Evidence",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "description,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

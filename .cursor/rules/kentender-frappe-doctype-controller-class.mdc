@@ -1,0 +1,33 @@
+---
+description: Frappe DocType Python controller class name must match space-stripping algorithm (KenTender)
+globs: "**/kentender_platform/**/doctype/**/*.py,**/kentender_procurement/**/doctype/**/*.py,**/kentender/**/doctype/**/*.py"
+alwaysApply: false
+---
+
+# KenTender — DocType controller class names (Frappe)
+
+## Rule
+
+Frappe loads the controller with:
+
+`classname = doctype.replace(" ", "").replace("-", "")`
+
+It is **not** “PascalCase each word.” Any short word in the desk title keeps its **original casing** when spaces are removed.
+
+## Examples
+
+| Desk name (`name` in JSON) | Required Python class |
+| -------------------------- | --------------------- |
+| `Evaluation Session` | `EvaluationSession` |
+| `Conflict of Interest Declaration` | `ConflictofInterestDeclaration` (note lowercase **`o`** in `of`) |
+| `Bid Opening Register` | `BidOpeningRegister` |
+
+Wrong class → `get_controller` fails → during **`bench migrate`**, `remove_orphan_doctypes()` treats **`ImportError`** as an orphan and **deletes** the DocType row (symptoms: DocType vanishes, or misleading `frappe.core.doctype…` errors after deletion).
+
+## Before merge
+
+After adding or renaming a DocType controller, verify on a site:
+
+`bench --site <site> console` → `frappe.clear_cache(); from frappe.model.base_document import get_controller; get_controller("Your DocType Name")`
+
+If this raises `ImportError`, fix the **class name** in `your_doctype.py` to match the algorithm above (do not rename the desk title just to satisfy naming unless product agrees).

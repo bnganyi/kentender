@@ -37,7 +37,7 @@ BCP = "Budget Control Period"
 
 
 def _cleanup_b016():
-	line_names = frappe.get_all(BL, filters={"business_id": ("like", "_KT_B016%")}, pluck="name") or []
+	line_names = frappe.get_all(BL, filters={"name": ("like", "_KT_B016%")}, pluck="name") or []
 	for ln in line_names:
 		frappe.db.delete(AUD, {"target_docname": ln})
 	if line_names:
@@ -46,18 +46,18 @@ def _cleanup_b016():
 			frappe.db.delete(AUD, {"target_docname": an})
 		frappe.db.delete(BA, {"budget_line": ("in", line_names)})
 		frappe.db.delete(BLE, {"budget_line": ("in", line_names)})
-	rev_names = frappe.get_all(BR, filters={"business_id": ("like", "_KT_B016%")}, pluck="name") or []
+	rev_names = frappe.get_all(BR, filters={"name": ("like", "_KT_B016%")}, pluck="name") or []
 	for rn in rev_names:
 		frappe.db.delete(AUD, {"target_docname": rn})
-	frappe.db.sql("delete from `tabKenTender Audit Event` where business_id like '_KT_B016%%'")
+	frappe.db.sql("delete from `tabKenTender Audit Event` where target_docname like '_KT_B016%%'")
 	frappe.db.sql(
-		"delete from `tabKenTender Audit Event` where business_id like 'KT-BA-%%' and event_type = 'kt.budget.allocation.applied'"
+		"delete from `tabKenTender Audit Event` where target_docname like 'KT-BA-%%' and event_type = 'kt.budget.allocation.applied'"
 	)
 	for rn in rev_names:
 		frappe.delete_doc(BR, rn, force=True, ignore_permissions=True)
-	frappe.db.delete(BL, {"business_id": ("like", "_KT_B016%")})
-	frappe.db.delete(BUD, {"business_id": ("like", "_KT_B016%")})
-	frappe.db.delete(BCP, {"business_id": ("like", "_KT_B016%")})
+	frappe.db.delete(BL, {"name": ("like", "_KT_B016%")})
+	frappe.db.delete(BUD, {"name": ("like", "_KT_B016%")})
+	frappe.db.delete(BCP, {"name": ("like", "_KT_B016%")})
 	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_B016%")})
 	frappe.db.commit()
 
@@ -81,7 +81,7 @@ class TestBudgetIntegrationBase(FrappeTestCase):
 		self.line = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_B016_LINE",
+				"name": "_KT_B016_LINE",
 				"budget": self.budget.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -154,7 +154,7 @@ class TestBudgetRevisionWithLedgerIntegration(TestBudgetIntegrationBase):
 		rev = frappe.get_doc(
 			{
 				"doctype": BR,
-				"business_id": "_KT_B016_REV1",
+				"name": "_KT_B016_REV1",
 				"budget": self.budget.name,
 				"procuring_entity": self.entity.name,
 				"revision_type": "Supplementary",

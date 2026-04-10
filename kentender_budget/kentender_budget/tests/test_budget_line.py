@@ -59,16 +59,16 @@ class TestBudgetLine(FrappeTestCase):
 		self.budget = _budget("_KT_BUD04_BG1", self.entity.name, self.period.name, self.currency).insert()
 
 	def tearDown(self):
-		frappe.db.delete(BL, {"business_id": ("like", "_KT_BUD04_%")})
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BUD04_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BUD04_%")})
-		frappe.db.delete(IND, {"business_id": ("like", "_KT_BUD04_%")})
-		frappe.db.delete(SUB, {"business_id": ("like", "_KT_BUD04_%")})
-		frappe.db.delete(PRG, {"business_id": ("like", "_KT_BUD04_%")})
-		frappe.db.delete(ESP, {"business_id": ("like", "_KT_BUD04_%")})
-		frappe.db.delete(OBJ, {"business_id": ("like", "_KT_BUD04_%")})
-		frappe.db.delete(PILLAR, {"business_id": ("like", "_KT_BUD04_%")})
-		frappe.db.delete(FW, {"business_id": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(BL, {"name": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(IND, {"name": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(SUB, {"name": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(PRG, {"name": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(ESP, {"name": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(OBJ, {"name": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(PILLAR, {"name": ("like", "_KT_BUD04_%")})
+		frappe.db.delete(FW, {"name": ("like", "_KT_BUD04_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BUD04_%")})
 		frappe.db.commit()
 		super().tearDown()
@@ -76,7 +76,7 @@ class TestBudgetLine(FrappeTestCase):
 	def _line(self, business_id: str, **kw):
 		d = {
 			"doctype": BL,
-			"business_id": business_id,
+			"name": business_id,
 			"budget": self.budget.name,
 			"budget_line_type": "Operating",
 			"status": "Draft",
@@ -96,11 +96,28 @@ class TestBudgetLine(FrappeTestCase):
 		self.assertEqual(doc.fiscal_year, self.period.fiscal_year)
 		self.assertEqual(doc.currency, self.currency)
 
+	def test_budget_total_allocated_derived_from_lines(self):
+		self._line(
+			"_KT_BUD04_LROLL",
+			allocated_amount=250000,
+			output_indicator=self.indicator.name,
+			program=self.prog.name,
+			sub_program=self.sub.name,
+			entity_strategic_plan=self.plan.name,
+			budget_line_type="Operating",
+		).insert()
+		self.budget.reload()
+		self.assertEqual(float(self.budget.total_allocated_amount), 250000.0)
+		frappe.db.set_value(BUD, self.budget.name, "total_allocated_amount", 999999)
+		b = frappe.get_doc(BUD, self.budget.name)
+		b.save()
+		self.assertEqual(float(b.total_allocated_amount), 250000.0)
+
 	def test_line_fills_from_budget_and_indicator(self):
 		doc = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BUD04_L2",
+				"name": "_KT_BUD04_L2",
 				"budget": self.budget.name,
 				"output_indicator": self.indicator.name,
 				"budget_line_type": "Operating",

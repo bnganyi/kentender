@@ -37,7 +37,7 @@ class TestBudgetDownstream(FrappeTestCase):
 		self.line = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BDS_LINE",
+				"name": "_KT_BDS_LINE",
 				"budget": self.budget.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -47,9 +47,9 @@ class TestBudgetDownstream(FrappeTestCase):
 
 	def tearDown(self):
 		frappe.db.delete(BLE, {"budget_line": self.line.name})
-		frappe.db.delete(BL, {"business_id": ("like", "_KT_BDS_%")})
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BDS_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BDS_%")})
+		frappe.db.delete(BL, {"name": ("like", "_KT_BDS_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BDS_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BDS_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BDS_%")})
 		frappe.db.commit()
 		super().tearDown()

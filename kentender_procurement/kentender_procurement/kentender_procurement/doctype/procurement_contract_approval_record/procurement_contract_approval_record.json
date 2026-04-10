@@ -1,0 +1,61 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 14:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"procurement_contract",
+		"display_label",
+		"workflow_step",
+		"approver_user",
+		"approver_role",
+		"action_type",
+		"action_datetime",
+		"comments",
+		"decision_level",
+		"exception_record"
+	],
+	"fields": [
+		{
+			"fieldname": "procurement_contract",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procurement Contract",
+			"options": "Procurement Contract",
+			"reqd": 1
+		},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{"fieldname": "workflow_step", "fieldtype": "Data", "in_list_view": 1, "label": "Workflow Step", "reqd": 1},
+		{"fieldname": "approver_user", "fieldtype": "Link", "in_list_view": 1, "label": "Approver User", "options": "User", "reqd": 1},
+		{"fieldname": "approver_role", "fieldtype": "Link", "label": "Approver Role", "options": "Role"},
+		{
+			"fieldname": "action_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Action Type",
+			"options": "Submit\nApprove\nReject\nRequest Revision\nComment",
+			"reqd": 1
+		},
+		{"fieldname": "action_datetime", "fieldtype": "Datetime", "in_list_view": 1, "label": "Action Datetime", "reqd": 1},
+		{"fieldname": "comments", "fieldtype": "Small Text", "label": "Comments"},
+		{"fieldname": "decision_level", "fieldtype": "Data", "label": "Decision Level", "reqd": 1},
+		{"fieldname": "exception_record", "fieldtype": "Link", "label": "Exception Record", "options": "Exception Record"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 14:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Procurement Contract Approval Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

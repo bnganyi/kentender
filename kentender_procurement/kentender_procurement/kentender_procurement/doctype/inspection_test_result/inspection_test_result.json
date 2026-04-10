@@ -1,0 +1,100 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 16:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"inspection_record",
+		"inspection_parameter_line",
+		"display_label",
+		"observed_numeric_value",
+		"observed_text_value",
+		"observed_boolean_value",
+		"result_unit",
+		"result_datetime",
+		"test_performed_by_user",
+		"test_location",
+		"test_method_used",
+		"equipment_used",
+		"equipment_calibration_reference",
+		"lab_reference_no",
+		"certificate_reference",
+		"pass_fail_result",
+		"result_notes"
+	],
+	"fields": [
+		{
+			"fieldname": "inspection_record",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Inspection Record",
+			"options": "Inspection Record",
+			"reqd": 1
+		},
+		{
+			"fieldname": "inspection_parameter_line",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Inspection Parameter Line",
+			"options": "Inspection Parameter Line",
+			"reqd": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{"fieldname": "observed_numeric_value", "fieldtype": "Float", "label": "Observed Numeric Value"},
+		{"fieldname": "observed_text_value", "fieldtype": "Small Text", "label": "Observed Text Value"},
+		{"default": "0", "fieldname": "observed_boolean_value", "fieldtype": "Check", "label": "Observed Boolean Value"},
+		{
+			"fieldname": "result_unit",
+			"fieldtype": "Link",
+			"label": "Result Unit",
+			"options": "UOM"
+		},
+		{"fieldname": "result_datetime", "fieldtype": "Datetime", "label": "Result Datetime"},
+		{
+			"fieldname": "test_performed_by_user",
+			"fieldtype": "Link",
+			"label": "Test Performed By User",
+			"options": "User"
+		},
+		{"fieldname": "test_location", "fieldtype": "Small Text", "label": "Test Location"},
+		{"fieldname": "test_method_used", "fieldtype": "Small Text", "label": "Test Method Used"},
+		{"fieldname": "equipment_used", "fieldtype": "Small Text", "label": "Equipment Used"},
+		{"fieldname": "equipment_calibration_reference", "fieldtype": "Data", "label": "Equipment Calibration Reference"},
+		{"fieldname": "lab_reference_no", "fieldtype": "Data", "label": "Lab Reference No"},
+		{"fieldname": "certificate_reference", "fieldtype": "Data", "label": "Certificate Reference"},
+		{
+			"default": "Pending",
+			"fieldname": "pass_fail_result",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Pass Fail Result",
+			"options": "Pending\nPass\nFail\nNot Applicable",
+			"reqd": 1
+		},
+		{"fieldname": "result_notes", "fieldtype": "Small Text", "label": "Result Notes"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 16:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Inspection Test Result",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

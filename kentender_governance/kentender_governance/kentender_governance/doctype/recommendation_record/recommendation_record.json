@@ -1,0 +1,92 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"deliberation_session",
+		"agenda_item",
+		"display_label",
+		"recommendation_type",
+		"recommendation_text",
+		"related_doctype",
+		"related_docname",
+		"recommended_by_user",
+		"status"
+	],
+	"fields": [
+		{
+			"fieldname": "deliberation_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Deliberation Session",
+			"options": "Deliberation Session",
+			"reqd": 1
+		},
+		{
+			"fieldname": "agenda_item",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Agenda Item",
+			"options": "Deliberation Agenda Item",
+			"reqd": 1
+		},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{
+			"fieldname": "recommendation_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Recommendation Type",
+			"options": "Approve\nReject\nDefer\nRefer\nOther",
+			"reqd": 1
+		},
+		{"fieldname": "recommendation_text", "fieldtype": "Text Editor", "label": "Recommendation Text", "reqd": 1},
+		{
+			"fieldname": "related_doctype",
+			"fieldtype": "Link",
+			"label": "Related DocType",
+			"options": "DocType"
+		},
+		{
+			"fieldname": "related_docname",
+			"fieldtype": "Dynamic Link",
+			"label": "Related Document",
+			"options": "related_doctype"
+		},
+		{
+			"fieldname": "recommended_by_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Recommended By",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nSubmitted\nWithdrawn\nAccepted",
+			"reqd": 1
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"module": "Kentender Governance",
+	"name": "Recommendation Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "recommendation_text,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

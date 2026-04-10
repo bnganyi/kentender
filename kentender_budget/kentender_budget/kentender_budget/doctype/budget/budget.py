@@ -6,14 +6,19 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import cint
 
+from kentender.utils.display_label import code_title_label
+
+from kentender_budget.services.budget_rollup import sum_allocated_amount_for_budget
+
 
 class Budget(Document):
 	def validate(self):
 		self._normalize_text_fields()
-		self._validate_unique_business_id()
+		self.display_label = code_title_label(self.name, self.budget_title)
 		self._validate_unique_version_per_period()
 		self._validate_period_entity_alignment()
 		self._validate_supersedes_budget()
+		self._rollup_total_allocated_from_lines()
 
 	def after_insert(self):
 		self._demote_other_current_versions()
@@ -22,31 +27,10 @@ class Budget(Document):
 		self._demote_other_current_versions()
 
 	def _normalize_text_fields(self):
-		for fn in ("business_id", "budget_title"):
+		for fn in ("budget_title", "workflow_state"):
 			val = getattr(self, fn, None)
 			if val and str(val).strip():
 				setattr(self, fn, str(val).strip())
-		ws = getattr(self, "workflow_state", None)
-		if ws and str(ws).strip():
-			self.workflow_state = str(ws).strip()
-
-	def _validate_unique_business_id(self):
-		bid = (self.business_id or "").strip()
-		if not bid:
-			return
-		filters = {"business_id": bid}
-		if self.name:
-			filters["name"] = ("!=", self.name)
-		existing = frappe.db.get_value("Budget", filters, "name")
-		if existing:
-			frappe.throw(
-				_("Business ID {0} is already used by {1}.").format(
-					frappe.bold(bid),
-					frappe.bold(existing),
-				),
-				frappe.DuplicateEntryError,
-				title=_("Duplicate Business ID"),
-			)
 
 	def _validate_unique_version_per_period(self):
 		entity = (self.procuring_entity or "").strip()
@@ -92,6 +76,13 @@ class Budget(Document):
 				frappe.ValidationError,
 				title=_("Entity mismatch"),
 			)
+
+	def _rollup_total_allocated_from_lines(self):
+		"""``total_allocated_amount`` is read-only in Desk; always derive from Budget Lines (BUD rollup)."""
+		if not self.name:
+			self.total_allocated_amount = 0.0
+			return
+		self.total_allocated_amount = sum_allocated_amount_for_budget(self.name)
 
 	def _validate_supersedes_budget(self):
 		entity = (self.procuring_entity or "").strip()

@@ -1,0 +1,197 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-04-10 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "revision_business_id",
+  "source_procurement_plan",
+  "revision_type",
+  "display_label",
+  "status",
+  "column_break_header",
+  "requested_by",
+  "requested_on",
+  "approved_by",
+  "approved_on",
+  "section_reason",
+  "revision_reason",
+  "section_lines",
+  "revision_lines"
+ ],
+ "fields": [
+  {
+   "fieldname": "revision_business_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Revision Business ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "source_procurement_plan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source Procurement Plan",
+   "options": "Procurement Plan",
+   "reqd": 1
+  },
+  {
+   "fieldname": "revision_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Revision Type",
+   "options": "Budget\nSchedule\nScope\nAdministrative\nMixed",
+   "reqd": 1
+  },
+  {
+   "description": "Derived for link display (business id — revision type).",
+   "fieldname": "display_label",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Display Label",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nSubmitted\nApproved\nRejected\nCancelled\nApplied",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_header",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "requested_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Requested By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "requested_on",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Requested On",
+   "reqd": 1
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User"
+  },
+  {
+   "fieldname": "approved_on",
+   "fieldtype": "Datetime",
+   "label": "Approved On"
+  },
+  {
+   "fieldname": "section_reason",
+   "fieldtype": "Section Break",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "revision_reason",
+   "fieldtype": "Small Text",
+   "label": "Revision Reason",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_lines",
+   "fieldtype": "Section Break",
+   "label": "Revision lines"
+  },
+  {
+   "fieldname": "revision_lines",
+   "fieldtype": "Table",
+   "label": "Revision Lines",
+   "options": "Procurement Plan Revision Line"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-10 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Procurement",
+ "name": "Procurement Plan Revision",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Requisitioner"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT HOD"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Finance Approver"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Procurement Officer"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "display_label",
+ "show_title_field_in_link": 1,
+ "search_fields": "revision_business_id,source_procurement_plan,revision_type,status,display_label",
+ "track_changes": 1
+}

@@ -136,6 +136,9 @@ doc_events = {
 	"Budget Line": {
 		# Runs after controller validate; keeps available_amount in sync (BUD-006).
 		"validate": "kentender_budget.services.budget_line_derived_totals.run_validate_recalculate_derived_totals",
+		"after_insert": "kentender_budget.services.budget_rollup.run_refresh_parent_budget_total_after_line_save",
+		"on_update": "kentender_budget.services.budget_rollup.run_refresh_parent_budget_total_after_line_save",
+		"on_trash": "kentender_budget.services.budget_rollup.run_refresh_parent_budget_total_after_line_trash",
 	},
 }
 

@@ -1,0 +1,62 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"deliberation_session",
+		"display_label",
+		"event_type",
+		"event_datetime",
+		"actor_user",
+		"summary",
+		"event_hash"
+	],
+	"fields": [
+		{
+			"fieldname": "deliberation_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Deliberation Session",
+			"options": "Deliberation Session",
+			"reqd": 1
+		},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{
+			"fieldname": "event_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Event Type",
+			"options": "Scheduled\nStarted\nCompleted\nMinuteRecorded\nResolutionIssued\nLocked\nUnlocked\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "event_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Event Datetime",
+			"reqd": 1
+		},
+		{"fieldname": "actor_user", "fieldtype": "Link", "label": "Actor User", "options": "User"},
+		{"fieldname": "summary", "fieldtype": "Text Editor", "label": "Summary", "reqd": 1},
+		{"fieldname": "event_hash", "fieldtype": "Data", "label": "Event Hash"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"module": "Kentender Governance",
+	"name": "Deliberation Status Event",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "display_label,event_type",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

@@ -1,0 +1,171 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 19:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_session",
+		"evaluation_session",
+		"evaluator_user",
+		"display_label",
+		"section_declaration",
+		"declaration_status",
+		"declaration_datetime",
+		"conflict_summary",
+		"section_related",
+		"related_supplier",
+		"related_bid_submission",
+		"section_review",
+		"reviewed_by",
+		"reviewed_on",
+		"review_notes"
+	],
+	"fields": [
+		{
+			"fieldname": "section_session",
+			"fieldtype": "Section Break",
+			"label": "Session and evaluator"
+		},
+		{
+			"fieldname": "evaluation_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Evaluation Session",
+			"options": "Evaluation Session",
+			"reqd": 1
+		},
+		{
+			"fieldname": "evaluator_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Evaluator User",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_declaration",
+			"fieldtype": "Section Break",
+			"label": "Declaration"
+		},
+		{
+			"default": "Pending",
+			"fieldname": "declaration_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Declaration Status",
+			"options": "Pending\nDeclared No Conflict\nDeclared Conflict\nRejected from Participation\nReviewed and Cleared",
+			"reqd": 1
+		},
+		{
+			"fieldname": "declaration_datetime",
+			"fieldtype": "Datetime",
+			"label": "Declaration Datetime"
+		},
+		{
+			"fieldname": "conflict_summary",
+			"fieldtype": "Small Text",
+			"label": "Conflict Summary"
+		},
+		{
+			"fieldname": "section_related",
+			"fieldtype": "Section Break",
+			"label": "Related bid context"
+		},
+		{
+			"fieldname": "related_supplier",
+			"fieldtype": "Data",
+			"label": "Related Supplier"
+		},
+		{
+			"fieldname": "related_bid_submission",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Related Bid Submission",
+			"options": "Bid Submission"
+		},
+		{
+			"fieldname": "section_review",
+			"fieldtype": "Section Break",
+			"label": "Review"
+		},
+		{
+			"fieldname": "reviewed_by",
+			"fieldtype": "Link",
+			"label": "Reviewed By",
+			"options": "User"
+		},
+		{
+			"fieldname": "reviewed_on",
+			"fieldtype": "Datetime",
+			"label": "Reviewed On"
+		},
+		{
+			"fieldname": "review_notes",
+			"fieldtype": "Small Text",
+			"label": "Review Notes"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 19:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Conflict of Interest Declaration",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "evaluation_session,evaluator_user,declaration_status,related_bid_submission,display_label",
+	"track_changes": 1
+}

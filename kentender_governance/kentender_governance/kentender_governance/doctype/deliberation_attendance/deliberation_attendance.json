@@ -1,0 +1,62 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"deliberation_session",
+		"display_label",
+		"user",
+		"attendee_name",
+		"role_type",
+		"attendance_status"
+	],
+	"fields": [
+		{
+			"fieldname": "deliberation_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Deliberation Session",
+			"options": "Deliberation Session",
+			"reqd": 1
+		},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{"fieldname": "user", "fieldtype": "Link", "label": "User", "options": "User"},
+		{"fieldname": "attendee_name", "fieldtype": "Data", "in_list_view": 1, "label": "Attendee Name", "reqd": 1},
+		{
+			"fieldname": "role_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Role Type",
+			"options": "Chair\nSecretariat\nMember\nObserver\nGuest\nExternal",
+			"reqd": 1
+		},
+		{
+			"default": "Invited",
+			"fieldname": "attendance_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Attendance Status",
+			"options": "Invited\nConfirmed\nAttended\nAbsent\nExcused",
+			"reqd": 1
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"module": "Kentender Governance",
+	"name": "Deliberation Attendance",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "attendee_name,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "attendee_name",
+	"track_changes": 1
+}

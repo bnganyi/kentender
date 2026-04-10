@@ -36,7 +36,7 @@ class TestBudgetAuditIntegration(FrappeTestCase):
 		self.line = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BAU_LINE",
+				"name": "_KT_BAU_LINE",
 				"budget": self.budget.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -46,15 +46,15 @@ class TestBudgetAuditIntegration(FrappeTestCase):
 
 	def tearDown(self):
 		frappe.db.sql(
-			"delete from `tabKenTender Audit Event` where business_id like '_KT_BAU%%' or business_id like 'KT-BA-%%'"
+			"delete from `tabKenTender Audit Event` where target_docname like '_KT_BAU%%' or (event_type = 'kt.budget.allocation.applied' and target_docname like 'KT-BA-%')"
 		)
 		frappe.db.delete(BA, {"budget_line": self.line.name})
 		frappe.db.delete(BLE, {"budget_line": self.line.name})
-		for name in frappe.get_all(BR, filters={"business_id": ("like", "_KT_BAU_%")}, pluck="name") or []:
+		for name in frappe.get_all(BR, filters={"name": ("like", "_KT_BAU_%")}, pluck="name") or []:
 			frappe.delete_doc(BR, name, force=True, ignore_permissions=True)
-		frappe.db.delete(BL, {"business_id": ("like", "_KT_BAU_%")})
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BAU_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BAU_%")})
+		frappe.db.delete(BL, {"name": ("like", "_KT_BAU_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BAU_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BAU_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BAU_%")})
 		frappe.db.commit()
 		super().tearDown()
@@ -75,7 +75,7 @@ class TestBudgetAuditIntegration(FrappeTestCase):
 		rev = frappe.get_doc(
 			{
 				"doctype": BR,
-				"business_id": "_KT_BAU_R1",
+				"name": "_KT_BAU_R1",
 				"budget": self.budget.name,
 				"procuring_entity": self.entity.name,
 				"revision_type": "Adjustment",

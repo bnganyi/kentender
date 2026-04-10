@@ -1,259 +1,379 @@
 {
- "actions": [],
- "allow_rename": 0,
- "autoname": "field:business_id",
- "creation": "2026-03-28 16:00:00.000000",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "business_id",
-  "budget_line",
-  "budget",
-  "procuring_entity",
-  "fiscal_year",
-  "currency",
-  "column_break_movement",
-  "entry_type",
-  "entry_direction",
-  "amount",
-  "posting_datetime",
-  "status",
-  "section_source",
-  "source_doctype",
-  "source_docname",
-  "source_business_id",
-  "source_action",
-  "column_break_related",
-  "related_requisition",
-  "related_procurement_plan_item",
-  "related_tender",
-  "related_award_decision",
-  "related_contract",
-  "section_audit",
-  "reversal_of_entry",
-  "idempotency_key",
-  "event_hash",
-  "section_users",
-  "created_by_user",
-  "approved_by_user",
-  "remarks"
- ],
- "fields": [
-  {
-   "fieldname": "business_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Business ID",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fieldname": "budget_line",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Budget Line",
-   "options": "Budget Line",
-   "reqd": 1
-  },
-  {
-   "fieldname": "budget",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Budget",
-   "options": "Budget",
-   "reqd": 1
-  },
-  {
-   "fieldname": "procuring_entity",
-   "fieldtype": "Link",
-   "label": "Procuring Entity",
-   "options": "Procuring Entity",
-   "reqd": 1
-  },
-  {
-   "fieldname": "fiscal_year",
-   "fieldtype": "Data",
-   "label": "Fiscal Year",
-   "reqd": 1
-  },
-  {
-   "fieldname": "currency",
-   "fieldtype": "Link",
-   "label": "Currency",
-   "options": "Currency",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_movement",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "entry_type",
-   "fieldtype": "Select",
-   "label": "Entry Type",
-   "options": "Reserve\nRelease Reservation\nCommit From Reserved\nCommit From Available\nRelease Commitment",
-   "reqd": 1
-  },
-  {
-   "fieldname": "entry_direction",
-   "fieldtype": "Select",
-   "label": "Entry Direction",
-   "options": "In\nOut",
-   "reqd": 1,
-   "default": "In"
-  },
-  {
-   "fieldname": "amount",
-   "fieldtype": "Currency",
-   "label": "Amount",
-   "options": "currency",
-   "reqd": 1
-  },
-  {
-   "fieldname": "posting_datetime",
-   "fieldtype": "Datetime",
-   "label": "Posting Datetime",
-   "reqd": 1
-  },
-  {
-   "default": "Posted",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Draft\nPosted",
-   "reqd": 1
-  },
-  {
-   "fieldname": "section_source",
-   "fieldtype": "Section Break",
-   "label": "Source context"
-  },
-  {
-   "fieldname": "source_doctype",
-   "fieldtype": "Data",
-   "label": "Source DocType",
-   "reqd": 1
-  },
-  {
-   "fieldname": "source_docname",
-   "fieldtype": "Data",
-   "label": "Source Doc Name",
-   "reqd": 1
-  },
-  {
-   "fieldname": "source_business_id",
-   "fieldtype": "Data",
-   "label": "Source Business ID"
-  },
-  {
-   "fieldname": "source_action",
-   "fieldtype": "Data",
-   "label": "Source Action",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_related",
-   "fieldtype": "Column Break",
-   "label": "Related"
-  },
-  {
-   "fieldname": "related_requisition",
-   "fieldtype": "Data",
-   "label": "Related Requisition"
-  },
-  {
-   "fieldname": "related_procurement_plan_item",
-   "fieldtype": "Data",
-   "label": "Related Procurement Plan Item"
-  },
-  {
-   "fieldname": "related_tender",
-   "fieldtype": "Data",
-   "label": "Related Tender"
-  },
-  {
-   "fieldname": "related_award_decision",
-   "fieldtype": "Data",
-   "label": "Related Award Decision"
-  },
-  {
-   "fieldname": "related_contract",
-   "fieldtype": "Data",
-   "label": "Related Contract"
-  },
-  {
-   "fieldname": "section_audit",
-   "fieldtype": "Section Break",
-   "label": "Ledger audit"
-  },
-  {
-   "fieldname": "reversal_of_entry",
-   "fieldtype": "Link",
-   "label": "Reversal Of Entry",
-   "options": "Budget Ledger Entry"
-  },
-  {
-   "fieldname": "idempotency_key",
-   "fieldtype": "Data",
-   "label": "Idempotency Key",
-   "description": "Optional unique key for safe retries (BUD-010).",
-   "unique": 1
-  },
-  {
-   "fieldname": "event_hash",
-   "fieldtype": "Data",
-   "label": "Event Hash",
-   "read_only": 1
-  },
-  {
-   "fieldname": "section_users",
-   "fieldtype": "Section Break",
-   "label": "Users"
-  },
-  {
-   "fieldname": "created_by_user",
-   "fieldtype": "Link",
-   "label": "Created By User",
-   "options": "User"
-  },
-  {
-   "fieldname": "approved_by_user",
-   "fieldtype": "Link",
-   "label": "Approved By User",
-   "options": "User"
-  },
-  {
-   "fieldname": "remarks",
-   "fieldtype": "Small Text",
-   "label": "Remarks"
-  }
- ],
- "grid_page_length": 50,
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-03-28 16:00:00.000000",
- "modified_by": "Administrator",
- "module": "Kentender Budget",
- "name": "Budget Ledger Entry",
- "naming_rule": "By fieldname",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "row_format": "Dynamic",
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": [],
- "track_changes": 1
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "Prompt",
+	"creation": "2026-03-28 16:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"budget_line",
+		"budget",
+		"procuring_entity",
+		"fiscal_year",
+		"currency",
+		"column_break_movement",
+		"entry_type",
+		"display_label",
+		"entry_direction",
+		"amount",
+		"posting_datetime",
+		"status",
+		"section_source",
+		"source_doctype",
+		"source_docname",
+		"source_business_id",
+		"source_action",
+		"column_break_related",
+		"related_requisition",
+		"related_procurement_plan_item",
+		"related_tender",
+		"related_award_decision",
+		"related_contract",
+		"section_audit",
+		"reversal_of_entry",
+		"idempotency_key",
+		"event_hash",
+		"section_users",
+		"created_by_user",
+		"approved_by_user",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "budget_line",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Budget Line",
+			"options": "Budget Line",
+			"description": "Set by budget posting services (BUD-008); not manual input.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "budget",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Budget",
+			"options": "Budget",
+			"description": "Copied from Budget Line on post.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "procuring_entity",
+			"fieldtype": "Link",
+			"label": "Procuring Entity",
+			"options": "Procuring Entity",
+			"description": "Copied from Budget Line on post.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "fiscal_year",
+			"fieldtype": "Data",
+			"label": "Fiscal Year",
+			"description": "Copied from Budget Line on post.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency",
+			"description": "Copied from Budget Line on post.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_movement",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "entry_type",
+			"fieldtype": "Select",
+			"label": "Entry Type",
+			"options": "Reserve\nRelease Reservation\nCommit From Reserved\nCommit From Available\nRelease Commitment",
+			"description": "Set by budget posting services.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (business ID — entry type).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"label": "Display Label",
+			"read_only": 1,
+			"hidden": 1
+		},
+		{
+			"fieldname": "entry_direction",
+			"fieldtype": "Select",
+			"label": "Entry Direction",
+			"options": "In\nOut",
+			"description": "Set by budget posting services.",
+			"read_only": 1,
+			"reqd": 1,
+			"default": "In"
+		},
+		{
+			"fieldname": "amount",
+			"fieldtype": "Currency",
+			"label": "Amount",
+			"options": "currency",
+			"description": "Movement amount; set by posting services.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "posting_datetime",
+			"fieldtype": "Datetime",
+			"label": "Posting Datetime",
+			"description": "Set by posting services.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"default": "Posted",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"label": "Status",
+			"options": "Draft\nPosted",
+			"description": "Set by posting services.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_source",
+			"fieldtype": "Section Break",
+			"label": "Source context"
+		},
+		{
+			"fieldname": "source_doctype",
+			"fieldtype": "Data",
+			"label": "Source DocType",
+			"description": "Set by posting services.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "source_docname",
+			"fieldtype": "Data",
+			"label": "Source Doc Name",
+			"description": "Set by posting services.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "source_business_id",
+			"fieldtype": "Data",
+			"label": "Source Business ID",
+			"description": "Set by posting services.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "source_action",
+			"fieldtype": "Data",
+			"label": "Source Action",
+			"description": "Set by posting services.",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_related",
+			"fieldtype": "Column Break",
+			"label": "Related"
+		},
+		{
+			"fieldname": "related_requisition",
+			"fieldtype": "Data",
+			"label": "Related Requisition",
+			"description": "Set by posting services.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "related_procurement_plan_item",
+			"fieldtype": "Data",
+			"label": "Related Procurement Plan Item",
+			"description": "Set by posting services.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "related_tender",
+			"fieldtype": "Data",
+			"label": "Related Tender",
+			"description": "Set by posting services.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "related_award_decision",
+			"fieldtype": "Data",
+			"label": "Related Award Decision",
+			"description": "Set by posting services.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "related_contract",
+			"fieldtype": "Data",
+			"label": "Related Contract",
+			"description": "Set by posting services.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_audit",
+			"fieldtype": "Section Break",
+			"label": "Ledger audit"
+		},
+		{
+			"fieldname": "reversal_of_entry",
+			"fieldtype": "Link",
+			"label": "Reversal Of Entry",
+			"options": "Budget Ledger Entry",
+			"description": "Set by posting services for reversal rows.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "idempotency_key",
+			"fieldtype": "Data",
+			"label": "Idempotency Key",
+			"description": "Optional unique key for safe retries (BUD-010); set by posting services.",
+			"read_only": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "event_hash",
+			"fieldtype": "Data",
+			"label": "Event Hash",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_users",
+			"fieldtype": "Section Break",
+			"label": "Users"
+		},
+		{
+			"fieldname": "created_by_user",
+			"fieldtype": "Link",
+			"label": "Created By User",
+			"options": "User",
+			"description": "Set on insert.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "approved_by_user",
+			"fieldtype": "Link",
+			"label": "Approved By User",
+			"options": "User",
+			"description": "Reserved for future approval flows.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-03-28 16:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Budget",
+	"name": "Budget Ledger Entry",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT Budget Officer"
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT Requisitioner"
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT HOD"
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT Finance Approver"
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT Procurement Officer"
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT Strategy Manager"
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "name,entry_type,source_business_id,display_label",
+	"track_changes": 1
 }

@@ -1,0 +1,135 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "field:store_code",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"store_code",
+		"display_label",
+		"store_name",
+		"store_type",
+		"location",
+		"responsible_department",
+		"store_manager_user",
+		"status",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "store_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Store Code",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "store_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Store Name",
+			"reqd": 1
+		},
+		{
+			"fieldname": "store_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Store Type",
+			"options": "Central\nProject\nDepartment",
+			"reqd": 1
+		},
+		{
+			"fieldname": "location",
+			"fieldtype": "Small Text",
+			"label": "Location"
+		},
+		{
+			"fieldname": "responsible_department",
+			"fieldtype": "Link",
+			"label": "Responsible Department",
+			"options": "Procuring Department"
+		},
+		{
+			"fieldname": "store_manager_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Store Manager",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"default": "Active",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Active\nInactive\nClosed",
+			"reqd": 1
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text Editor",
+			"label": "Remarks"
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"module": "Kentender Stores",
+	"name": "Store",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"search_fields": "store_code,store_name,display_label",
+	"show_title_field_in_link": 1,
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "store_name",
+	"track_changes": 1
+}

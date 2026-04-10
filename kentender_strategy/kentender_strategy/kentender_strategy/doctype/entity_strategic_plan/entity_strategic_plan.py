@@ -10,7 +10,6 @@ from frappe.utils import cint
 class EntityStrategicPlan(Document):
 	def validate(self):
 		self._normalize_text_fields()
-		self._validate_unique_business_id()
 		self._validate_unique_version_per_entity()
 		self._validate_date_range()
 		self._validate_supersession_links()
@@ -22,31 +21,13 @@ class EntityStrategicPlan(Document):
 		self._demote_other_current_versions()
 
 	def _normalize_text_fields(self):
-		for fn in ("business_id", "plan_title", "plan_period_label"):
+		for fn in ("plan_title", "plan_period_label"):
 			val = getattr(self, fn, None)
 			if val and str(val).strip():
 				setattr(self, fn, str(val).strip())
 		ws = getattr(self, "workflow_state", None)
 		if ws and str(ws).strip():
 			self.workflow_state = str(ws).strip()
-
-	def _validate_unique_business_id(self):
-		bid = (self.business_id or "").strip()
-		if not bid:
-			return
-		filters = {"business_id": bid}
-		if self.name:
-			filters["name"] = ("!=", self.name)
-		existing = frappe.db.get_value("Entity Strategic Plan", filters, "name")
-		if existing:
-			frappe.throw(
-				_("Business ID {0} is already used by {1}.").format(
-					frappe.bold(bid),
-					frappe.bold(existing),
-				),
-				frappe.DuplicateEntryError,
-				title=_("Duplicate Business ID"),
-			)
 
 	def _validate_unique_version_per_entity(self):
 		entity = (self.procuring_entity or "").strip()

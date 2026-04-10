@@ -1,0 +1,396 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "Prompt",
+	"creation": "2026-04-08 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"plan_title",
+		"display_label",
+		"workflow_state",
+		"status",
+		"approval_status",
+		"column_break_header",
+		"procuring_entity",
+		"fiscal_year",
+		"budget_control_period",
+		"plan_period_label",
+		"currency",
+		"section_version",
+		"version_no",
+		"is_current_active_version",
+		"supersedes_plan",
+		"superseded_by_plan",
+		"revision_reason",
+		"section_owners",
+		"planning_owner_user",
+		"procurement_owner_user",
+		"column_break_owners",
+		"finance_review_user",
+		"planning_authority_user",
+		"section_totals",
+		"total_estimated_amount",
+		"total_item_count",
+		"planned_requisition_count",
+		"column_break_counts",
+		"manual_item_count",
+		"consolidated_item_count",
+		"section_flags",
+		"allow_manual_items",
+		"allow_split_tendering",
+		"allow_consolidation",
+		"anti_fragmentation_status",
+		"section_other",
+		"remarks",
+		"section_sensitivity",
+		"sensitivity_class",
+		"is_publicly_disclosable"
+	],
+	"fields": [
+		{
+			"fieldname": "plan_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Plan Title",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (business ID — plan title).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "workflow_state",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Stage",
+			"options": "Draft\nSubmitted\nApproved\nActive\nRejected\nReturned",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"hidden": 1,
+			"label": "Overall Status",
+			"options": "Draft\nPending\nApproved\nActive\nRejected\nReturned\nCancelled",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "approval_status",
+			"fieldtype": "Select",
+			"hidden": 1,
+			"label": "Legacy Approval Status",
+			"options": "Draft\nSubmitted\nApproved\nActive\nRejected\nReturned",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "procuring_entity",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procuring Entity",
+			"options": "Procuring Entity",
+			"reqd": 1
+		},
+		{
+			"fieldname": "fiscal_year",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Fiscal Year",
+			"reqd": 1
+		},
+		{
+			"fieldname": "budget_control_period",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Budget Control Period",
+			"options": "Budget Control Period",
+			"reqd": 1
+		},
+		{
+			"fieldname": "plan_period_label",
+			"fieldtype": "Data",
+			"label": "Plan Period Label"
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Currency",
+			"options": "Currency",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_version",
+			"fieldtype": "Section Break",
+			"label": "Versioning"
+		},
+		{
+			"default": "1",
+			"fieldname": "version_no",
+			"fieldtype": "Int",
+			"label": "Version No",
+			"non_negative": 1,
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "is_current_active_version",
+			"fieldtype": "Check",
+			"label": "Is Current Active Version"
+		},
+		{
+			"fieldname": "supersedes_plan",
+			"fieldtype": "Link",
+			"label": "Supersedes Plan",
+			"options": "Procurement Plan"
+		},
+		{
+			"fieldname": "superseded_by_plan",
+			"fieldtype": "Link",
+			"label": "Superseded By Plan",
+			"options": "Procurement Plan",
+			"read_only": 1
+		},
+		{
+			"fieldname": "revision_reason",
+			"fieldtype": "Small Text",
+			"label": "Revision Reason"
+		},
+		{
+			"fieldname": "section_owners",
+			"fieldtype": "Section Break",
+			"label": "Ownership"
+		},
+		{
+			"fieldname": "planning_owner_user",
+			"fieldtype": "Link",
+			"label": "Planning Owner",
+			"options": "User"
+		},
+		{
+			"fieldname": "procurement_owner_user",
+			"fieldtype": "Link",
+			"label": "Procurement Owner",
+			"options": "User"
+		},
+		{
+			"fieldname": "column_break_owners",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "finance_review_user",
+			"fieldtype": "Link",
+			"label": "Finance Review User",
+			"options": "User"
+		},
+		{
+			"fieldname": "planning_authority_user",
+			"fieldtype": "Link",
+			"label": "Planning Authority User",
+			"options": "User"
+		},
+		{
+			"fieldname": "section_totals",
+			"fieldtype": "Section Break",
+			"label": "Totals (derived later)"
+		},
+		{
+			"default": "0",
+			"description": "Derived from plan items (PROC-STORY-014).",
+			"fieldname": "total_estimated_amount",
+			"fieldtype": "Currency",
+			"label": "Total Estimated Amount",
+			"options": "currency",
+			"read_only": 1
+		},
+		{
+			"default": "0",
+			"description": "Derived from plan items (PROC-STORY-014).",
+			"fieldname": "total_item_count",
+			"fieldtype": "Int",
+			"label": "Total Item Count",
+			"non_negative": 1,
+			"read_only": 1
+		},
+		{
+			"default": "0",
+			"description": "Distinct requisitions with Active planning links to this plan or its items (PROC-STORY-014).",
+			"fieldname": "planned_requisition_count",
+			"fieldtype": "Int",
+			"label": "Planned Requisition Count",
+			"non_negative": 1,
+			"read_only": 1
+		},
+		{
+			"fieldname": "column_break_counts",
+			"fieldtype": "Column Break"
+		},
+		{
+			"default": "0",
+			"description": "Derived: origin type Manual (PROC-STORY-014).",
+			"fieldname": "manual_item_count",
+			"fieldtype": "Int",
+			"label": "Manual Item Count",
+			"non_negative": 1,
+			"read_only": 1
+		},
+		{
+			"default": "0",
+			"description": "Derived: origin type Consolidated (PROC-STORY-014).",
+			"fieldname": "consolidated_item_count",
+			"fieldtype": "Int",
+			"label": "Consolidated Item Count",
+			"non_negative": 1,
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_flags",
+			"fieldtype": "Section Break",
+			"label": "Planning options"
+		},
+		{
+			"default": "0",
+			"fieldname": "allow_manual_items",
+			"fieldtype": "Check",
+			"label": "Allow Manual Items"
+		},
+		{
+			"default": "0",
+			"fieldname": "allow_split_tendering",
+			"fieldtype": "Check",
+			"label": "Allow Split Tendering"
+		},
+		{
+			"default": "0",
+			"fieldname": "allow_consolidation",
+			"fieldtype": "Check",
+			"label": "Allow Consolidation"
+		},
+		{
+			"default": "Not Assessed",
+			"fieldname": "anti_fragmentation_status",
+			"fieldtype": "Select",
+			"label": "Anti-fragmentation Status",
+			"options": "Not Assessed\nClear\nWarning\nBlocked"
+		},
+		{
+			"fieldname": "section_other",
+			"fieldtype": "Section Break",
+			"label": "Other"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "section_sensitivity",
+			"fieldtype": "Section Break",
+			"label": "Sensitivity"
+		},
+		{
+			"fieldname": "sensitivity_class",
+			"fieldtype": "Select",
+			"label": "Sensitivity Class",
+			"options": "Public\nInternal\nConfidential\nRestricted\nSealed Procurement"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_publicly_disclosable",
+			"fieldtype": "Check",
+			"label": "Is Publicly Disclosable"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-08 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Procurement Plan",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Requisitioner"
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT HOD"
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Finance Approver"
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Procurement Officer"
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "name,plan_title,display_label",
+	"track_changes": 1
+}

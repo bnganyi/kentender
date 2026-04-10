@@ -1,0 +1,164 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 17:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_core",
+		"bid_opening_session",
+		"event_type",
+		"event_datetime",
+		"display_label",
+		"section_actor",
+		"actor_user",
+		"section_detail",
+		"event_summary",
+		"related_bid_submission",
+		"result_status",
+		"section_integrity",
+		"event_hash"
+	],
+	"fields": [
+		{
+			"fieldname": "section_core",
+			"fieldtype": "Section Break",
+			"label": "Event"
+		},
+		{
+			"fieldname": "bid_opening_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Bid Opening Session",
+			"options": "Bid Opening Session",
+			"reqd": 1
+		},
+		{
+			"fieldname": "event_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Event Type",
+			"options": "Session Scheduled\nPrecondition Check\nOpening Started\nBid Opened\nBid Excluded\nRegister Generated\nRegister Locked\nSession Completed\nSession Cancelled\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "event_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Event Datetime",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list and link display.",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_actor",
+			"fieldtype": "Section Break",
+			"label": "Actor"
+		},
+		{
+			"fieldname": "actor_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Actor User",
+			"options": "User"
+		},
+		{
+			"fieldname": "section_detail",
+			"fieldtype": "Section Break",
+			"label": "Detail"
+		},
+		{
+			"fieldname": "event_summary",
+			"fieldtype": "Small Text",
+			"label": "Event Summary",
+			"reqd": 1
+		},
+		{
+			"fieldname": "related_bid_submission",
+			"fieldtype": "Link",
+			"label": "Related Bid Submission",
+			"options": "Bid Submission"
+		},
+		{
+			"default": "Info",
+			"fieldname": "result_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Result Status",
+			"options": "Success\nWarning\nFailed\nInfo",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_integrity",
+			"fieldtype": "Section Break",
+			"label": "Integrity"
+		},
+		{
+			"fieldname": "event_hash",
+			"fieldtype": "Small Text",
+			"label": "Event Hash",
+			"reqd": 1
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 17:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Bid Opening Event Log",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "bid_opening_session,event_type,result_status,event_summary",
+	"track_changes": 1
+}

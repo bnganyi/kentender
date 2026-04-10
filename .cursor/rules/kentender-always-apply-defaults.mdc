@@ -1,0 +1,14 @@
+---
+description: Always apply KenTender defaults for calculated and denormalized fields
+alwaysApply: true
+---
+
+# KenTender — always apply when implementing DocTypes or services
+
+**You must follow these defaults on every change unless the PR explicitly opts out.**
+
+1. **Calculated / code-owned fields** — If the implementation sets a field from a formula, aggregate, ledger, or service (`x = f(…)`), that field is **`read_only` in DocType JSON**, has a short **description** of the source rule, and remains **assigned in Python** on save/events. See [kentender-frappe-derived-fields.mdc](kentender-frappe-derived-fields.mdc).
+
+2. **Denormalized fields** — If a field duplicates data fixed by another field or parent link, it stays **stored** but is **`read_only`** and **server-assigned** on save. See [kentender-strategy-derived-hierarchy.mdc](kentender-strategy-derived-hierarchy.mdc).
+
+3. After changing DocType JSON, **`bench migrate`** on the target site.

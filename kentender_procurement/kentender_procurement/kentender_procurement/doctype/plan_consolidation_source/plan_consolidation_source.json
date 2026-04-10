@@ -1,0 +1,168 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-04-08 20:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "procurement_plan_item",
+  "currency",
+  "purchase_requisition",
+  "source_type",
+  "linked_amount",
+  "linked_on",
+  "status",
+  "remarks",
+  "display_label"
+ ],
+ "fields": [
+  {
+   "fieldname": "procurement_plan_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Procurement Plan Item",
+   "options": "Procurement Plan Item",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "procurement_plan_item.currency",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "purchase_requisition",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Purchase Requisition",
+   "options": "Purchase Requisition",
+   "reqd": 1
+  },
+  {
+   "fieldname": "source_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Source Type",
+   "options": "Requisition\nManual\nRevision",
+   "reqd": 1
+  },
+  {
+   "fieldname": "linked_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Linked Amount",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "linked_on",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Linked On",
+   "reqd": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nReleased\nSuperseded",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "description": "Derived for link display.",
+   "fieldname": "display_label",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Display Label",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 20:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kentender Procurement",
+ "name": "Plan Consolidation Source",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Requisitioner"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT HOD"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Finance Approver"
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "KT UAT Procurement Officer"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "display_label",
+ "show_title_field_in_link": 1,
+ "search_fields": "procurement_plan_item,purchase_requisition,source_type,status,display_label",
+ "track_changes": 1
+}

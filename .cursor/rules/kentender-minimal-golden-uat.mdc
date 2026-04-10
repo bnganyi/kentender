@@ -1,0 +1,23 @@
+---
+description: Extend Minimal Golden UAT (canonical JSON, seed, verify, reset) when adding KenTender procurement features
+globs: "**/kentender_platform/**"
+alwaysApply: true
+---
+
+# Minimal Golden UAT
+
+When adding or changing DocTypes, workflows, or seed paths in **kentender_procurement** (or related apps) that represent **user-visible** procurement flow:
+
+1. **Extend** the Minimal Golden scenario: `kentender/kentender/uat/minimal_golden/data/minimal_golden_canonical.json` and keep **`uat/seed_packs/minimal_golden/minimal_golden_canonical.json`** in sync.
+2. Implement **`load_*`** helpers under `kentender/kentender/uat/minimal_golden/`, wire them in `commands.py` (full seed + step commands), **`reset_minimal_golden_data`** (delete order safe for FKs), and **`verify_minimal_golden`** (explicit checks for seeded rows).
+3. Reserve IDs under **`future_business_ids`** only for DocTypes not yet seeded; move IDs into a dedicated JSON section once a loader exists.
+4. **Run on dev/UAT** after changes that affect loaders or canonical data (use your site name):
+
+   ```bash
+   bench --site <site> execute kentender.uat.minimal_golden.commands.seed_minimal_golden_console
+   bench --site <site> execute kentender.uat.minimal_golden.commands.verify_minimal_golden_console
+   ```
+
+   Wave 3 implementation follow-along: keep the golden dataset and **KT UAT** persona users (see canonical JSON) aligned with the story unless the story documents an intentional skip.
+
+If a change cannot be represented minimally (e.g. heavy external deps), document why in the story or PR and still add **unit tests** on the app.

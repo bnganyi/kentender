@@ -4,7 +4,11 @@
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity
+from kentender.tests.test_procuring_entity import (
+	_ensure_test_currency,
+	_make_entity,
+	run_test_db_cleanup,
+)
 
 ESP = "Entity Strategic Plan"
 PRG = "Strategic Program"
@@ -17,7 +21,7 @@ OBJ = "National Objective"
 def _nf(bid: str, code: str, **kw):
 	d = {
 		"doctype": FW,
-		"business_id": bid,
+		"name": bid,
 		"framework_code": code,
 		"framework_name": code,
 		"framework_type": "National Development Plan",
@@ -34,7 +38,7 @@ def _nf(bid: str, code: str, **kw):
 def _pillar(bid: str, fw_name: str, code: str = "P1", **kw):
 	d = {
 		"doctype": PILLAR,
-		"business_id": bid,
+		"name": bid,
 		"national_framework": fw_name,
 		"pillar_code": code,
 		"pillar_name": "Pillar",
@@ -49,7 +53,7 @@ def _pillar(bid: str, fw_name: str, code: str = "P1", **kw):
 def _obj(bid: str, pillar_name: str, code: str = "O1", **kw):
 	d = {
 		"doctype": OBJ,
-		"business_id": bid,
+		"name": bid,
 		"national_pillar": pillar_name,
 		"objective_code": code,
 		"objective_name": "Objective",
@@ -64,7 +68,7 @@ def _obj(bid: str, pillar_name: str, code: str = "O1", **kw):
 def _esp(bid: str, entity_name: str, fw_name: str, ver: int = 1, **kw):
 	d = {
 		"doctype": ESP,
-		"business_id": bid,
+		"name": bid,
 		"plan_title": "Plan",
 		"procuring_entity": entity_name,
 		"plan_period_label": "2026",
@@ -83,7 +87,7 @@ def _esp(bid: str, entity_name: str, fw_name: str, ver: int = 1, **kw):
 def _program(bid: str, plan_name: str, entity_name: str, obj_name: str, **kw):
 	d = {
 		"doctype": PRG,
-		"business_id": bid,
+		"name": bid,
 		"entity_strategic_plan": plan_name,
 		"procuring_entity": entity_name,
 		"program_code": kw.pop("program_code", "PG1"),
@@ -99,7 +103,7 @@ def _program(bid: str, plan_name: str, entity_name: str, obj_name: str, **kw):
 def _sub(bid: str, program_name: str, plan_name: str, **kw):
 	d = {
 		"doctype": SUB,
-		"business_id": bid,
+		"name": bid,
 		"program": program_name,
 		"entity_strategic_plan": plan_name,
 		"sub_program_code": kw.pop("sub_program_code", "SG1"),
@@ -110,10 +114,21 @@ def _sub(bid: str, program_name: str, plan_name: str, **kw):
 	return frappe.get_doc(d)
 
 
+def _cleanup_sp05_data():
+	frappe.db.delete(SUB, {"name": ("like", "_KT_SP05_%")})
+	frappe.db.delete(PRG, {"name": ("like", "_KT_SP05_%")})
+	frappe.db.delete(ESP, {"name": ("like", "_KT_SP05_%")})
+	frappe.db.delete(OBJ, {"name": ("like", "_KT_SP05_%")})
+	frappe.db.delete(PILLAR, {"name": ("like", "_KT_SP05_%")})
+	frappe.db.delete(FW, {"name": ("like", "_KT_SP05_%")})
+	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_SP05_%")})
+
+
 class TestStrategicProgramAndSubProgram(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
 		_ensure_test_currency()
+		run_test_db_cleanup(_cleanup_sp05_data)
 		self.entity = _make_entity("_KT_SP05_PE").insert()
 		self.nf1 = _nf("_KT_SP05_NF1", "SP05-A").insert()
 		self.pl1 = _pillar("_KT_SP05_PL1", self.nf1.name).insert()
@@ -121,14 +136,7 @@ class TestStrategicProgramAndSubProgram(FrappeTestCase):
 		self.plan = _esp("_KT_SP05_ESP1", self.entity.name, self.nf1.name, version_no=1).insert()
 
 	def tearDown(self):
-		frappe.db.delete(SUB, {"business_id": ("like", "_KT_SP05_%")})
-		frappe.db.delete(PRG, {"business_id": ("like", "_KT_SP05_%")})
-		frappe.db.delete(ESP, {"business_id": ("like", "_KT_SP05_%")})
-		frappe.db.delete(OBJ, {"business_id": ("like", "_KT_SP05_%")})
-		frappe.db.delete(PILLAR, {"business_id": ("like", "_KT_SP05_%")})
-		frappe.db.delete(FW, {"business_id": ("like", "_KT_SP05_%")})
-		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_SP05_%")})
-		frappe.db.commit()
+		run_test_db_cleanup(_cleanup_sp05_data)
 		super().tearDown()
 
 	def test_valid_hierarchy(self):
@@ -141,7 +149,7 @@ class TestStrategicProgramAndSubProgram(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": PRG,
-				"business_id": "_KT_SP05_P0",
+				"name": "_KT_SP05_P0",
 				"entity_strategic_plan": self.plan.name,
 				"program_code": "PG0",
 				"program_name": "No entity on save",
@@ -167,18 +175,19 @@ class TestStrategicProgramAndSubProgram(FrappeTestCase):
 		doc = _program("_KT_SP05_P3", self.plan.name, self.entity.name, ob2.name)
 		self.assertRaises(frappe.ValidationError, doc.insert)
 
-	def test_sub_program_plan_mismatch_blocked(self):
+	def test_sub_program_wrong_plan_corrected_from_program(self):
 		plan2 = _esp("_KT_SP05_ESP2", self.entity.name, self.nf1.name, version_no=2).insert()
 		p = _program("_KT_SP05_P4", self.plan.name, self.entity.name, self.ob1.name).insert()
 		doc = _sub("_KT_SP05_S2", p.name, plan2.name)
-		self.assertRaises(frappe.ValidationError, doc.insert)
+		doc.insert()
+		self.assertEqual(doc.entity_strategic_plan, self.plan.name)
 
 	def test_sub_program_omitted_plan_filled_from_program(self):
 		p = _program("_KT_SP05_P5", self.plan.name, self.entity.name, self.ob1.name).insert()
 		doc = frappe.get_doc(
 			{
 				"doctype": SUB,
-				"business_id": "_KT_SP05_S3",
+				"name": "_KT_SP05_S3",
 				"program": p.name,
 				"sub_program_code": "AUTO",
 				"sub_program_name": "Auto plan",
@@ -186,4 +195,14 @@ class TestStrategicProgramAndSubProgram(FrappeTestCase):
 			}
 		)
 		doc.insert()
+		self.assertEqual(doc.entity_strategic_plan, self.plan.name)
+
+	def test_sub_program_stale_plan_realigned_on_save(self):
+		plan2 = _esp("_KT_SP05_ESP3", self.entity.name, self.nf1.name, version_no=3).insert()
+		p = _program("_KT_SP05_P6", self.plan.name, self.entity.name, self.ob1.name).insert()
+		s = _sub("_KT_SP05_S4", p.name, self.plan.name, sub_program_code="STALE").insert()
+		frappe.db.set_value(SUB, s.name, "entity_strategic_plan", plan2.name, update_modified=False)
+		frappe.db.commit()
+		doc = frappe.get_doc(SUB, s.name)
+		doc.save()
 		self.assertEqual(doc.entity_strategic_plan, self.plan.name)

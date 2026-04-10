@@ -1,0 +1,184 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "field:template_code",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"template_code",
+		"template_name",
+		"display_label",
+		"inspection_domain",
+		"applicable_contract_type",
+		"inspection_method_type",
+		"description",
+		"active",
+		"requires_sampling",
+		"requires_lab_test",
+		"requires_field_measurement",
+		"requires_checklist",
+		"requires_parameter_testing",
+		"standards_reference_summary",
+		"default_pass_logic"
+	],
+	"fields": [
+		{
+			"fieldname": "template_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Template Code",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "template_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Template Name",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (code — title).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"default": "General",
+			"fieldname": "inspection_domain",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Inspection Domain",
+			"options": "General\nGoods\nWorks\nServices\nConsultancy\nICT\nOther",
+			"reqd": 1
+		},
+		{
+			"default": "Goods",
+			"fieldname": "applicable_contract_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Applicable Contract Type",
+			"options": "Any\nGoods\nServices\nWorks\nConsultancy\nFramework\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "inspection_method_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Inspection Method Type",
+			"options": "Checklist\nParameter Testing\nField Measurement\nSampling\nLab Test\nCombined",
+			"reqd": 1
+		},
+		{
+			"fieldname": "description",
+			"fieldtype": "Small Text",
+			"label": "Description"
+		},
+		{
+			"default": "1",
+			"fieldname": "active",
+			"fieldtype": "Check",
+			"in_list_view": 1,
+			"label": "Active"
+		},
+		{
+			"default": "0",
+			"fieldname": "requires_sampling",
+			"fieldtype": "Check",
+			"label": "Requires Sampling"
+		},
+		{
+			"default": "0",
+			"fieldname": "requires_lab_test",
+			"fieldtype": "Check",
+			"label": "Requires Lab Test"
+		},
+		{
+			"default": "0",
+			"fieldname": "requires_field_measurement",
+			"fieldtype": "Check",
+			"label": "Requires Field Measurement"
+		},
+		{
+			"default": "0",
+			"fieldname": "requires_checklist",
+			"fieldtype": "Check",
+			"label": "Requires Checklist"
+		},
+		{
+			"default": "0",
+			"fieldname": "requires_parameter_testing",
+			"fieldtype": "Check",
+			"label": "Requires Parameter Testing"
+		},
+		{
+			"fieldname": "standards_reference_summary",
+			"fieldtype": "Small Text",
+			"label": "Standards Reference Summary"
+		},
+		{
+			"default": "All Mandatory Pass",
+			"fieldname": "default_pass_logic",
+			"fieldtype": "Select",
+			"label": "Default Pass Logic",
+			"options": "All Mandatory Pass\nAny Failure Fails\nWeighted Threshold\nTolerance Based",
+			"reqd": 1
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Inspection Method Template",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"search_fields": "template_code,template_name,display_label",
+	"show_title_field_in_link": 1,
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"track_changes": 1
+}

@@ -1,0 +1,16 @@
+---
+description: KenTender approval workflows must follow docs/workflow specification and WF tracker
+alwaysApply: false
+---
+
+# KenTender — workflow and approvals
+
+When implementing or changing **approval workflows**, **state transitions**, or **approval-controlled fields**:
+
+1. **Read first:** [KenTender Approval Workflow Specification v2](../../docs/workflow/KenTender%20Approval%20Workflow%20Specification%20v2.md) and [KenTender Cursor Workflow Implementation Pack v2](../../docs/workflow/KenTender%20Cursor%20Workflow%20Implementation%20Pack%20v2.md).
+
+2. **Track work:** Update [WF Implementation Tracker](../../docs/workflow/WF%20Implementation%20Tracker.md) (WF-001–WF-016) and the relevant **WAVE n BACKLOG** row when merging.
+
+3. **Code location:** Shared engine lives in **`kentender.workflow_engine`** (not `kentender_core`). Use `workflow_mutation_context()` when mutating approval-controlled fields; register fields via `workflow_engine.safeguards`.
+
+4. **Do not** rely on client-only authorization or ad hoc `workflow_state` updates outside engine services.

@@ -32,7 +32,7 @@ class TestBudgetAllocation(FrappeTestCase):
 		self.line = frappe.get_doc(
 			{
 				"doctype": BL,
-				"business_id": "_KT_BAL_LINE",
+				"name": "_KT_BAL_LINE",
 				"budget": self.budget.name,
 				"budget_line_type": "Operating",
 				"status": "Draft",
@@ -41,10 +41,10 @@ class TestBudgetAllocation(FrappeTestCase):
 		).insert()
 
 	def tearDown(self):
-		frappe.db.delete(BA, {"business_id": ("like", "_KT_BAL_%")})
-		frappe.db.delete(BL, {"business_id": ("like", "_KT_BAL_%")})
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BAL_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BAL_%")})
+		frappe.db.delete(BA, {"name": ("like", "_KT_BAL_%")})
+		frappe.db.delete(BL, {"name": ("like", "_KT_BAL_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BAL_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BAL_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BAL_%")})
 		frappe.db.commit()
 		super().tearDown()
@@ -53,7 +53,7 @@ class TestBudgetAllocation(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": BA,
-				"business_id": "_KT_BAL_A1",
+				"name": "_KT_BAL_A1",
 				"budget_line": self.line.name,
 				"budget": self.budget.name,
 				"procuring_entity": self.entity.name,
@@ -71,7 +71,7 @@ class TestBudgetAllocation(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": BA,
-				"business_id": "_KT_BAL_A2",
+				"name": "_KT_BAL_A2",
 				"budget_line": self.line.name,
 				"allocation_date": today(),
 				"allocation_amount": 50,
@@ -94,7 +94,7 @@ class TestBudgetAllocation(FrappeTestCase):
 			doc = frappe.get_doc(
 				{
 					"doctype": BA,
-					"business_id": "_KT_BAL_A3",
+					"name": "_KT_BAL_A3",
 					"budget_line": self.line.name,
 					"budget": bud2.name,
 					"procuring_entity": self.entity.name,
@@ -115,7 +115,7 @@ class TestBudgetAllocation(FrappeTestCase):
 		doc = frappe.get_doc(
 			{
 				"doctype": BA,
-				"business_id": "_KT_BAL_A4",
+				"name": "_KT_BAL_A4",
 				"budget_line": self.line.name,
 				"allocation_date": today(),
 				"allocation_amount": 0,

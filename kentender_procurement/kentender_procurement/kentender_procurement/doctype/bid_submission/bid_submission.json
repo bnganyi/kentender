@@ -1,0 +1,491 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-08 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_identity",
+		"business_id",
+		"tender",
+		"tender_lot_scope",
+		"tender_lot",
+		"display_label",
+		"section_parties",
+		"supplier",
+		"supplier_portal_user",
+		"procuring_entity",
+		"section_lifecycle",
+		"status",
+		"workflow_state",
+		"submission_version_no",
+		"is_final_submission",
+		"is_locked",
+		"active_submission_flag",
+		"allows_resubmission",
+		"prior_bid_submission",
+		"section_users_times",
+		"submitted_by_user",
+		"submitted_on",
+		"column_break_withdraw",
+		"withdrawn_by_user",
+		"withdrawn_on",
+		"section_market",
+		"procurement_method",
+		"submission_deadline",
+		"opening_datetime",
+		"visibility_scope",
+		"currency",
+		"section_sealed",
+		"sealed_status",
+		"submission_token",
+		"submission_hash",
+		"section_receipt",
+		"receipt_no",
+		"latest_receipt",
+		"section_validation",
+		"eligibility_check_status",
+		"mandatory_document_check_status",
+		"structure_check_status",
+		"validation_status",
+		"validation_summary",
+		"section_commercial",
+		"quoted_total_amount",
+		"bid_security_submitted",
+		"bid_security_reference",
+		"section_counts",
+		"lot_count",
+		"document_count",
+		"section_opening",
+		"is_opening_visible",
+		"opened_on",
+		"opened_by_session",
+		"section_outcome",
+		"disqualification_reason",
+		"remarks",
+		"sensitivity_class"
+	],
+	"fields": [
+		{
+			"fieldname": "section_identity",
+			"fieldtype": "Section Break",
+			"label": "Identity"
+		},
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"default": "Whole Tender",
+			"fieldname": "tender_lot_scope",
+			"fieldtype": "Select",
+			"label": "Tender / Lot Scope",
+			"options": "Whole Tender\nSingle Lot\nMulti Lot",
+			"reqd": 1
+		},
+		{
+			"description": "When scope is Single Lot, must reference a lot belonging to Tender.",
+			"fieldname": "tender_lot",
+			"fieldtype": "Link",
+			"label": "Tender Lot",
+			"options": "Tender Lot"
+		},
+		{
+			"description": "Derived for list and link display.",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_parties",
+			"fieldtype": "Section Break",
+			"label": "Parties"
+		},
+		{
+			"description": "Supplier identifier (future: Link to supplier master).",
+			"fieldname": "supplier",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Supplier",
+			"reqd": 1
+		},
+		{
+			"fieldname": "supplier_portal_user",
+			"fieldtype": "Link",
+			"label": "Supplier Portal User",
+			"options": "User"
+		},
+		{
+			"fieldname": "procuring_entity",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procuring Entity",
+			"options": "Procuring Entity"
+		},
+		{
+			"fieldname": "section_lifecycle",
+			"fieldtype": "Section Break",
+			"label": "Lifecycle"
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nSubmitted\nUnder Review\nAccepted\nRejected\nOpened\nWithdrawn\nDisqualified",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "workflow_state",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Workflow Stage",
+			"options": "Draft\nSubmitted\nOpened\nWithdrawn",
+			"reqd": 1
+		},
+		{
+			"default": "1",
+			"fieldname": "submission_version_no",
+			"fieldtype": "Int",
+			"label": "Submission Version No",
+			"non_negative": 1,
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "is_final_submission",
+			"fieldtype": "Check",
+			"label": "Is Final Submission"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_locked",
+			"fieldtype": "Check",
+			"label": "Is Locked"
+		},
+		{
+			"default": "1",
+			"fieldname": "active_submission_flag",
+			"fieldtype": "Check",
+			"label": "Active Submission"
+		},
+		{
+			"default": "0",
+			"fieldname": "allows_resubmission",
+			"fieldtype": "Check",
+			"label": "Allows Resubmission"
+		},
+		{
+			"description": "Previous bid version when this row was created by resubmission (PROC-STORY-045).",
+			"fieldname": "prior_bid_submission",
+			"fieldtype": "Link",
+			"label": "Prior Bid Submission",
+			"options": "Bid Submission"
+		},
+		{
+			"fieldname": "section_users_times",
+			"fieldtype": "Section Break",
+			"label": "Submission and withdrawal"
+		},
+		{
+			"fieldname": "submitted_by_user",
+			"fieldtype": "Link",
+			"label": "Submitted By User",
+			"options": "User"
+		},
+		{
+			"fieldname": "submitted_on",
+			"fieldtype": "Datetime",
+			"label": "Submitted On"
+		},
+		{
+			"fieldname": "column_break_withdraw",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "withdrawn_by_user",
+			"fieldtype": "Link",
+			"label": "Withdrawn By User",
+			"options": "User"
+		},
+		{
+			"fieldname": "withdrawn_on",
+			"fieldtype": "Datetime",
+			"label": "Withdrawn On"
+		},
+		{
+			"fieldname": "section_market",
+			"fieldtype": "Section Break",
+			"label": "Market context"
+		},
+		{
+			"fieldname": "procurement_method",
+			"fieldtype": "Select",
+			"label": "Procurement Method",
+			"options": "Open National Tender\nRestricted Bidding\nRequest for Quotation\nSingle Source\nFramework\nDirect Procurement\nOther"
+		},
+		{
+			"fieldname": "submission_deadline",
+			"fieldtype": "Datetime",
+			"label": "Submission Deadline"
+		},
+		{
+			"fieldname": "opening_datetime",
+			"fieldtype": "Datetime",
+			"label": "Opening Datetime"
+		},
+		{
+			"default": "Bidder Workspace",
+			"fieldname": "visibility_scope",
+			"fieldtype": "Select",
+			"label": "Visibility Scope",
+			"options": "Bidder Workspace\nProcuring Team\nPublic After Opening\nInternal Only"
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency"
+		},
+		{
+			"fieldname": "section_sealed",
+			"fieldtype": "Section Break",
+			"label": "Sealed submission",
+			"collapsible": 1
+		},
+		{
+			"default": "Not Sealed",
+			"fieldname": "sealed_status",
+			"fieldtype": "Select",
+			"label": "Sealed Status",
+			"options": "Not Sealed\nSealed\nOpened"
+		},
+		{
+			"description": "Set by submission services; not for manual entry.",
+			"fieldname": "submission_token",
+			"fieldtype": "Data",
+			"label": "Submission Token",
+			"read_only": 1
+		},
+		{
+			"description": "Content hash from submission pipeline.",
+			"fieldname": "submission_hash",
+			"fieldtype": "Small Text",
+			"label": "Submission Hash",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_receipt",
+			"fieldtype": "Section Break",
+			"label": "Receipt",
+			"collapsible": 1
+		},
+		{
+			"fieldname": "receipt_no",
+			"fieldtype": "Data",
+			"label": "Receipt No"
+		},
+		{
+			"description": "Set by submission/receipt services; not for manual entry.",
+			"fieldname": "latest_receipt",
+			"fieldtype": "Link",
+			"label": "Latest Receipt",
+			"options": "Bid Receipt",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_validation",
+			"fieldtype": "Section Break",
+			"label": "Validation summary",
+			"collapsible": 1
+		},
+		{
+			"default": "Pending",
+			"fieldname": "eligibility_check_status",
+			"fieldtype": "Select",
+			"label": "Eligibility Check Status",
+			"options": "Pending\nPass\nFail\nNot Run"
+		},
+		{
+			"default": "Pending",
+			"fieldname": "mandatory_document_check_status",
+			"fieldtype": "Select",
+			"label": "Mandatory Document Check Status",
+			"options": "Pending\nPass\nFail\nNot Run"
+		},
+		{
+			"default": "Pending",
+			"fieldname": "structure_check_status",
+			"fieldtype": "Select",
+			"label": "Structure Check Status",
+			"options": "Pending\nPass\nFail\nNot Run"
+		},
+		{
+			"default": "Pending",
+			"fieldname": "validation_status",
+			"fieldtype": "Select",
+			"label": "Validation Status",
+			"options": "Pending\nPass\nFail\nWarning"
+		},
+		{
+			"fieldname": "validation_summary",
+			"fieldtype": "Small Text",
+			"label": "Validation Summary"
+		},
+		{
+			"fieldname": "section_commercial",
+			"fieldtype": "Section Break",
+			"label": "Commercial"
+		},
+		{
+			"fieldname": "quoted_total_amount",
+			"fieldtype": "Currency",
+			"label": "Quoted Total Amount",
+			"options": "currency"
+		},
+		{
+			"default": "0",
+			"fieldname": "bid_security_submitted",
+			"fieldtype": "Check",
+			"label": "Bid Security Submitted"
+		},
+		{
+			"fieldname": "bid_security_reference",
+			"fieldtype": "Data",
+			"label": "Bid Security Reference"
+		},
+		{
+			"fieldname": "section_counts",
+			"fieldtype": "Section Break",
+			"label": "Counts"
+		},
+		{
+			"default": "0",
+			"fieldname": "lot_count",
+			"fieldtype": "Int",
+			"label": "Lot Count",
+			"non_negative": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "document_count",
+			"fieldtype": "Int",
+			"label": "Document Count",
+			"non_negative": 1
+		},
+		{
+			"fieldname": "section_opening",
+			"fieldtype": "Section Break",
+			"label": "Opening",
+			"collapsible": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "is_opening_visible",
+			"fieldtype": "Check",
+			"label": "Is Opening Visible"
+		},
+		{
+			"fieldname": "opened_on",
+			"fieldtype": "Datetime",
+			"label": "Opened On"
+		},
+		{
+			"fieldname": "opened_by_session",
+			"fieldtype": "Data",
+			"label": "Opened By Session"
+		},
+		{
+			"fieldname": "section_outcome",
+			"fieldtype": "Section Break",
+			"label": "Outcome"
+		},
+		{
+			"fieldname": "disqualification_reason",
+			"fieldtype": "Small Text",
+			"label": "Disqualification Reason"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text Editor",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "sensitivity_class",
+			"fieldtype": "Select",
+			"label": "Sensitivity Class",
+			"options": "Public\nInternal\nConfidential\nRestricted\nSealed Procurement"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-08 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Bid Submission",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "business_id,tender,supplier,status,workflow_state",
+	"track_changes": 1
+}

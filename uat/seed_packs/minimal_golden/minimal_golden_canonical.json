@@ -1,0 +1,280 @@
+{
+  "version": 1,
+  "description": "Minimal Golden Scenario — Procurement of 2 Ultrasound Machines (docs/testing/Minimal Golden Testing Scenario.md).",
+  "business_id_prefix": "MG",
+  "fiscal_year": "2026-2027",
+  "currency_code": "KES",
+  "entity": {
+    "entity_code": "MOH",
+    "entity_name": "Ministry of Health",
+    "entity_type": "Government"
+  },
+  "departments": [
+    {
+      "department_code": "CLIN-SERV",
+      "department_name": "Clinical Services",
+      "hod_email_key": "hod"
+    }
+  ],
+  "funding_source": {
+    "funding_source_code": "EXCH-DEV",
+    "funding_source_name": "Exchequer Development Grant",
+    "funding_source_type": "Other"
+  },
+  "procurement_category": {
+    "category_code": "MED-EQ",
+    "category_name": "Medical Equipment",
+    "category_type": "Goods"
+  },
+  "procurement_method": {
+    "method_code": "ONT",
+    "method_name": "Open National Tender",
+    "requires_publication": 1,
+    "requires_invitation_only": 0,
+    "allows_lotting": 0,
+    "allows_framework": 0
+  },
+  "deferred_masters_note": "Store (CMS) and Asset Category (MED-DIAG) are defined in the scenario workbook; KenTender DocTypes for them are not seeded here until kentender_stores/kentender_assets exist.",
+  "strategy": {
+    "national_framework": {
+      "name": "VF2030",
+      "framework_code": "VF2030",
+      "framework_name": "Vision 2030",
+      "framework_type": "National Development Plan",
+      "version_label": "v1"
+    },
+    "national_pillar": {
+      "name": "SOC-VF2030",
+      "pillar_code": "SOC",
+      "pillar_name": "Social Development"
+    },
+    "national_objective": {
+      "name": "HEALTH-ACCESS",
+      "objective_code": "HEALTH-ACCESS",
+      "objective_name": "Improve access to healthcare services"
+    },
+    "entity_strategic_plan": {
+      "name": "MOH-SP-2026",
+      "plan_title": "MOH Strategic Plan 2026–2030",
+      "plan_period_label": "FY 2026/27",
+      "version_no": 1
+    },
+    "program": {
+      "name": "MOH-HD",
+      "program_code": "HD",
+      "program_name": "Healthcare Delivery"
+    },
+    "sub_program": {
+      "name": "MOH-CRS",
+      "sub_program_code": "CRS",
+      "sub_program_name": "County Referral Strengthening"
+    },
+    "output_indicator": {
+      "name": "IMG-EQ-HOSP",
+      "indicator_code": "IMG-EQ-HOSP",
+      "indicator_name": "Number of hospitals equipped with imaging equipment"
+    },
+    "performance_target": {
+      "name": "PT-IMG-2026",
+      "target_title": "Equip 2 district hospitals with ultrasound machines",
+      "target_period_type": "Annual",
+      "period_label": "FY2026",
+      "target_measurement_type": "Numeric",
+      "target_value_numeric": 2
+    }
+  },
+  "budget": {
+    "budget_control_period": {
+      "name": "BCP-2026",
+      "period_label": "FY2026/27",
+      "fiscal_year_label": "FY2026/27",
+      "status": "Open"
+    },
+    "budget": {
+      "name": "BUD-MOH-2026-V1",
+      "budget_title": "MOH Budget FY2026/27 v1"
+    },
+    "lines": {
+      "main": {
+        "name": "BL-MOH-IMG-001",
+        "budget_line_type": "Operating",
+        "allocated_amount": 12000000
+      }
+    }
+  },
+  "users": {
+    "password_env": "KENTENDER_MINIMAL_GOLDEN_PASSWORD",
+    "default_password": "k3nTender!golden",
+    "internal": [
+      {
+        "key": "requisitioner",
+        "email": "requisitioner.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Requisitioner",
+        "role": "KT UAT Requisitioner"
+      },
+      {
+        "key": "hod",
+        "email": "hod.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "HOD",
+        "role": "KT UAT HOD"
+      },
+      {
+        "key": "finance",
+        "email": "finance.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Finance",
+        "role": "KT UAT Finance Approver"
+      },
+      {
+        "key": "procurement",
+        "email": "procurement.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Procurement",
+        "role": "KT UAT Procurement Officer"
+      },
+      {
+        "key": "openingchair",
+        "email": "openingchair.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Opening Chair",
+        "role": "KT UAT Opening Chair"
+      },
+      {
+        "key": "evaluator",
+        "email": "evaluator.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Evaluator",
+        "role": "KT UAT Evaluator"
+      },
+      {
+        "key": "evaluationchair",
+        "email": "evaluationchair.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Evaluation Chair",
+        "role": "KT UAT Evaluation Chair"
+      },
+      {
+        "key": "accounting",
+        "email": "accounting.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Accounting",
+        "role": "KT UAT Accounting Officer"
+      },
+      {
+        "key": "contractmanager",
+        "email": "contractmanager.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Contract Manager",
+        "role": "KT UAT Contract Manager"
+      },
+      {
+        "key": "inspector",
+        "email": "inspector.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Inspector",
+        "role": "KT UAT Inspection Officer"
+      },
+      {
+        "key": "storekeeper",
+        "email": "storekeeper.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Storekeeper",
+        "role": "KT UAT Storekeeper"
+      },
+      {
+        "key": "assetofficer",
+        "email": "assetofficer.test@ken-tender.test",
+        "first_name": "Golden",
+        "last_name": "Asset Officer",
+        "role": "KT UAT Asset Officer"
+      }
+    ],
+    "suppliers": [
+      {
+        "key": "supplier1",
+        "email": "supplier1.test@ken-tender.test",
+        "first_name": "MedEquip",
+        "last_name": "Africa Ltd",
+        "role": "KT UAT Supplier",
+        "supplier_display_name": "MedEquip Africa Ltd"
+      },
+      {
+        "key": "supplier2",
+        "email": "supplier2.test@ken-tender.test",
+        "first_name": "Afya",
+        "last_name": "Diagnostics Ltd",
+        "role": "KT UAT Supplier",
+        "supplier_display_name": "Afya Diagnostics Ltd"
+      }
+    ]
+  },
+	"purchase_requisition": {
+		"name": "PR-MOH-0001",
+		"title": "Procurement of 2 Ultrasound Machines",
+		"priority_level": "High",
+		"item": {
+			"description": "Portable Ultrasound Machine",
+			"quantity": 2,
+			"unit_cost": 4500000
+		}
+	},
+	"procurement_planning": {
+		"plan": {
+			"name": "PP-MOH-0001",
+			"plan_title": "MOH FY2026/27 imaging equipment procurement plan",
+			"workflow_state": "Draft",
+			"version_no": 1,
+			"allow_manual_items": 1,
+			"plan_period_label": "FY2026/27"
+		},
+		"plan_item": {
+			"name": "PPI-MOH-0001",
+			"title": "Portable ultrasound machines (2 units)",
+			"status": "Draft",
+			"origin_type": "Manual",
+			"manual_entry_justification": "Minimal Golden seed — aligns with PR-MOH-0001 ultrasound scope.",
+			"estimated_amount": 9000000,
+			"priority_level": "High"
+		}
+	},
+	"tender": {
+		"name": "TD-MOH-0001",
+		"business_id": "TD-MOH-0001",
+		"title": "Supply of 2 portable ultrasound machines",
+		"tender_number": "MOH/ONT/2026/0001",
+		"origin_type": "Manual",
+		"procurement_method": "Open National Tender",
+		"tender_type": "Goods",
+		"estimated_amount": 9000000,
+		"publication_datetime": "2026-05-01 09:00:00",
+		"clarification_deadline": "2026-05-15 17:00:00",
+		"submission_deadline": "2026-06-01 17:00:00",
+		"opening_datetime": "2026-06-02 10:00:00"
+	},
+	"bid_receipt": {
+		"for_bid_future_key": "bid_1",
+		"business_id": "BR-GOLD-TD-0001-01",
+		"receipt_no": "RCPT-MOH-2026-0001",
+		"submission_hash": "sha256:minimal_golden_submission_v1",
+		"receipt_hash": "sha256:minimal_golden_receipt_v1"
+	},
+	"future_business_ids": {
+		"note": "bid_1 and bid_2 are Bid Submission business_id values (seeded). Remaining keys reserved for later waves; verify skips when DocType missing or not KenTender-owned.",
+    "bid_1": "BID-TD-0001-01",
+    "bid_2": "BID-TD-0001-02",
+    "opening_session": "BOS-MOH-0001",
+    "opening_register": "BOR-MOH-0001",
+    "evaluation_session": "EVS-MOH-0001",
+    "evaluation_report": "EVR-MOH-0001",
+    "award_decision": "AWD-MOH-0001",
+    "standstill": "STS-MOH-0001",
+    "contract": "CT-MOH-0001",
+    "inspection": "INSP-MOH-0001",
+    "acceptance": "ACC-MOH-0001",
+    "grn": "GRN-MOH-0001",
+    "asset_1": "AST-MOH-0001",
+    "asset_2": "AST-MOH-0002"
+  }
+}

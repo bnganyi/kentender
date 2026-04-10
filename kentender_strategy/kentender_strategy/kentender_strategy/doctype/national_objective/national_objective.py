@@ -5,6 +5,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
+from kentender.utils.display_label import code_title_label
 from kentender_strategy.services.national_reference_immutability import (
 	enforce_active_locked_immutability,
 	national_objective_tracked_fieldnames,
@@ -14,35 +15,17 @@ from kentender_strategy.services.national_reference_immutability import (
 class NationalObjective(Document):
 	def validate(self):
 		self._normalize_text_fields()
-		self._validate_unique_business_id()
+		self.display_label = code_title_label(self.objective_code, self.objective_name)
 		self._validate_pillar_and_framework_alignment()
 		self._validate_unique_objective_code_per_pillar()
 		self._validate_display_order()
 		enforce_active_locked_immutability(self, national_objective_tracked_fieldnames())
 
 	def _normalize_text_fields(self):
-		for fn in ("business_id", "objective_code", "objective_name"):
+		for fn in ("objective_code", "objective_name"):
 			val = getattr(self, fn, None)
 			if val and str(val).strip():
 				setattr(self, fn, str(val).strip())
-
-	def _validate_unique_business_id(self):
-		bid = (self.business_id or "").strip()
-		if not bid:
-			return
-		filters = {"business_id": bid}
-		if self.name:
-			filters["name"] = ("!=", self.name)
-		existing = frappe.db.get_value("National Objective", filters, "name")
-		if existing:
-			frappe.throw(
-				_("Business ID {0} is already used by {1}.").format(
-					frappe.bold(bid),
-					frappe.bold(existing),
-				),
-				frappe.DuplicateEntryError,
-				title=_("Duplicate Business ID"),
-			)
 
 	def _validate_pillar_and_framework_alignment(self):
 		pillar = (self.national_pillar or "").strip()

@@ -1,0 +1,108 @@
+{
+	"allow_copy": 0,
+	"creation": "2026-04-10 16:00:00.000000",
+	"doctype": "DocType",
+	"editable_grid": 1,
+	"engine": "InnoDB",
+	"field_order": [
+		"bid_submission",
+		"supplier",
+		"submission_timestamp",
+		"receipt_no",
+		"was_opened",
+		"was_excluded",
+		"exclusion_reason",
+		"quoted_total_amount",
+		"currency",
+		"bid_security_present",
+		"lot_summary",
+		"register_notes"
+	],
+	"fields": [
+		{
+			"fieldname": "bid_submission",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Bid Submission",
+			"options": "Bid Submission",
+			"reqd": 1
+		},
+		{
+			"fieldname": "supplier",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Supplier",
+			"reqd": 1
+		},
+		{
+			"fieldname": "submission_timestamp",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Submission Timestamp"
+		},
+		{
+			"fieldname": "receipt_no",
+			"fieldtype": "Data",
+			"label": "Receipt No"
+		},
+		{
+			"default": "0",
+			"fieldname": "was_opened",
+			"fieldtype": "Check",
+			"label": "Was Opened"
+		},
+		{
+			"default": "0",
+			"fieldname": "was_excluded",
+			"fieldtype": "Check",
+			"label": "Was Excluded"
+		},
+		{
+			"fieldname": "exclusion_reason",
+			"fieldtype": "Small Text",
+			"label": "Exclusion Reason"
+		},
+		{
+			"fieldname": "quoted_total_amount",
+			"fieldtype": "Currency",
+			"label": "Quoted Total Amount",
+			"options": "currency"
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency"
+		},
+		{
+			"default": "0",
+			"fieldname": "bid_security_present",
+			"fieldtype": "Check",
+			"label": "Bid Security Present"
+		},
+		{
+			"fieldname": "lot_summary",
+			"fieldtype": "Small Text",
+			"label": "Lot Summary"
+		},
+		{
+			"fieldname": "register_notes",
+			"fieldtype": "Small Text",
+			"label": "Register Notes"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"istable": 1,
+	"links": [],
+	"modified": "2026-04-10 16:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Bid Opening Register Line",
+	"owner": "Administrator",
+	"permissions": [],
+	"row_format": "Dynamic",
+	"sort_field": "idx",
+	"sort_order": "ASC",
+	"states": [],
+	"track_changes": 0
+}

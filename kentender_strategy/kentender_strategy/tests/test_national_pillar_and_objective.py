@@ -12,7 +12,7 @@ OBJECTIVE = "National Objective"
 def _make_framework(business_id: str, framework_code: str, **kwargs):
 	data = {
 		"doctype": FW,
-		"business_id": business_id,
+		"name": business_id,
 		"framework_code": framework_code,
 		"framework_name": f"Framework {framework_code}",
 		"framework_type": "National Development Plan",
@@ -29,7 +29,7 @@ def _make_framework(business_id: str, framework_code: str, **kwargs):
 def _make_pillar(business_id: str, national_framework: str, pillar_code: str = "P1", **kwargs):
 	data = {
 		"doctype": PILLAR,
-		"business_id": business_id,
+		"name": business_id,
 		"national_framework": national_framework,
 		"pillar_code": pillar_code,
 		"pillar_name": f"Pillar {pillar_code}",
@@ -43,7 +43,7 @@ def _make_pillar(business_id: str, national_framework: str, pillar_code: str = "
 def _make_objective(business_id: str, national_pillar: str, objective_code: str = "O1", **kwargs):
 	data = {
 		"doctype": OBJECTIVE,
-		"business_id": business_id,
+		"name": business_id,
 		"national_pillar": national_pillar,
 		"objective_code": objective_code,
 		"objective_name": f"Objective {objective_code}",
@@ -56,9 +56,9 @@ def _make_objective(business_id: str, national_pillar: str, objective_code: str 
 
 class TestNationalPillarAndObjective(FrappeTestCase):
 	def tearDown(self):
-		frappe.db.delete(OBJECTIVE, {"business_id": ("like", "_KT_STRAT2_%")})
-		frappe.db.delete(PILLAR, {"business_id": ("like", "_KT_STRAT2_%")})
-		frappe.db.delete(FW, {"business_id": ("like", "_KT_STRAT2_%")})
+		frappe.db.delete(OBJECTIVE, {"name": ("like", "_KT_STRAT2_%")})
+		frappe.db.delete(PILLAR, {"name": ("like", "_KT_STRAT2_%")})
+		frappe.db.delete(FW, {"name": ("like", "_KT_STRAT2_%")})
 		frappe.db.commit()
 		super().tearDown()
 
@@ -104,3 +104,17 @@ class TestNationalPillarAndObjective(FrappeTestCase):
 		pl = _make_pillar("_KT_STRAT2_PMS", fw.name).insert()
 		obj = _make_objective("_KT_STRAT2_OMS", pl.name).insert()
 		self.assertEqual(obj.national_framework, pl.national_framework)
+
+	def test_pillar_display_label_and_link_title(self):
+		from frappe.desk.search import get_link_title
+
+		fw = _make_framework("_KT_STRAT2_FWL", "STRAT2-FWL").insert()
+		pl = _make_pillar(
+			"_KT_STRAT2_PLL",
+			fw.name,
+			pillar_code="SOC",
+			pillar_name="Social Development",
+		).insert()
+		pl.reload()
+		self.assertEqual(pl.display_label, "SOC — Social Development")
+		self.assertEqual(get_link_title(PILLAR, pl.name), "SOC — Social Development")

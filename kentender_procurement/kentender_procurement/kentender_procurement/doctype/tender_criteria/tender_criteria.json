@@ -1,0 +1,234 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-09 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"tender",
+		"lot",
+		"criteria_type",
+		"criteria_code",
+		"criteria_title",
+		"display_label",
+		"description",
+		"score_type",
+		"max_score",
+		"weight_percentage",
+		"minimum_pass_mark",
+		"display_order",
+		"is_required",
+		"applies_to_stage",
+		"status",
+		"is_locked"
+	],
+	"fields": [
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"description": "Optional. When set, must belong to the same tender (lot-scoped criteria). Leave empty for tender-wide criteria.",
+			"fieldname": "lot",
+			"fieldtype": "Link",
+			"label": "Lot",
+			"options": "Tender Lot"
+		},
+		{
+			"fieldname": "criteria_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Criteria Type",
+			"options": "Mandatory\nTechnical\nFinancial\nEligibility\nPreliminary",
+			"reqd": 1
+		},
+		{
+			"fieldname": "criteria_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Criteria Code",
+			"reqd": 1
+		},
+		{
+			"fieldname": "criteria_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Criteria Title",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (code — title).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "description",
+			"fieldtype": "Small Text",
+			"label": "Description"
+		},
+		{
+			"fieldname": "score_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Score Type",
+			"options": "Numeric\nPass/Fail",
+			"reqd": 1
+		},
+		{
+			"description": "Required when Score Type is Numeric. For Pass/Fail, leave empty or set to 1.",
+			"fieldname": "max_score",
+			"fieldtype": "Float",
+			"label": "Max Score"
+		},
+		{
+			"description": "Weight in percent (0–100) when used in weighted evaluation.",
+			"fieldname": "weight_percentage",
+			"fieldtype": "Float",
+			"label": "Weight Percentage"
+		},
+		{
+			"description": "For Numeric: pass threshold within 0…max_score. For Pass/Fail: threshold within 0…1.",
+			"fieldname": "minimum_pass_mark",
+			"fieldtype": "Float",
+			"label": "Minimum Pass Mark"
+		},
+		{
+			"default": "0",
+			"fieldname": "display_order",
+			"fieldtype": "Int",
+			"in_list_view": 1,
+			"label": "Display Order",
+			"non_negative": 1,
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "is_required",
+			"fieldtype": "Check",
+			"label": "Is Required"
+		},
+		{
+			"default": "Combined",
+			"description": "Which evaluation stage this criterion applies to (scaffold).",
+			"fieldname": "applies_to_stage",
+			"fieldtype": "Select",
+			"label": "Applies To Stage",
+			"options": "Preliminary\nTechnical Evaluation\nFinancial Evaluation\nCombined",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nActive\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"description": "When set on an existing saved document, the record cannot be edited (publication lock scaffold).",
+			"fieldname": "is_locked",
+			"fieldtype": "Check",
+			"label": "Is Locked"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-09 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Tender Criteria",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Requisitioner",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT HOD",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Finance Approver",
+			"share": 0,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "criteria_code,criteria_title,display_label,tender,status",
+	"track_changes": 1
+}

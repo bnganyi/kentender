@@ -1,0 +1,89 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-12 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"inspection_record",
+		"contract",
+		"display_label",
+		"trigger_reason",
+		"scheduled_datetime",
+		"actual_datetime",
+		"status",
+		"outcome_summary",
+		"linked_followup_inspection",
+		"created_by_user",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "inspection_record",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Inspection Record",
+			"options": "Inspection Record",
+			"reqd": 1
+		},
+		{
+			"fieldname": "contract",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Contract",
+			"options": "Procurement Contract",
+			"reqd": 1
+		},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{
+			"fieldname": "trigger_reason",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Trigger Reason",
+			"options": "Non Conformance\nFailed Inspection\nClient Request\nRegulatory\nOther",
+			"reqd": 1
+		},
+		{"fieldname": "scheduled_datetime", "fieldtype": "Datetime", "label": "Scheduled Datetime"},
+		{"fieldname": "actual_datetime", "fieldtype": "Datetime", "label": "Actual Datetime"},
+		{
+			"default": "Planned",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Planned\nIn Progress\nCompleted\nCancelled",
+			"reqd": 1
+		},
+		{"fieldname": "outcome_summary", "fieldtype": "Text Editor", "label": "Outcome Summary"},
+		{
+			"fieldname": "linked_followup_inspection",
+			"fieldtype": "Link",
+			"label": "Linked Followup Inspection",
+			"options": "Inspection Record"
+		},
+		{
+			"fieldname": "created_by_user",
+			"fieldtype": "Link",
+			"label": "Created By User",
+			"options": "User"
+		},
+		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-12 12:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Reinspection Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

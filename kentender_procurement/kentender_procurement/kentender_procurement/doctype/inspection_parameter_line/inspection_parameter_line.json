@@ -1,0 +1,113 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 16:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"inspection_record",
+		"display_label",
+		"parameter_code",
+		"parameter_name",
+		"parameter_category",
+		"specification_reference",
+		"test_method_reference",
+		"unit_of_measure",
+		"expected_min_value",
+		"expected_max_value",
+		"target_value",
+		"tolerance_type",
+		"tolerance_value",
+		"sample_required",
+		"lab_test_required",
+		"mandatory_for_acceptance",
+		"status"
+	],
+	"fields": [
+		{
+			"fieldname": "inspection_record",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Inspection Record",
+			"options": "Inspection Record",
+			"reqd": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "parameter_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Parameter Code",
+			"reqd": 1
+		},
+		{
+			"fieldname": "parameter_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Parameter Name",
+			"reqd": 1
+		},
+		{
+			"fieldname": "parameter_category",
+			"fieldtype": "Select",
+			"label": "Parameter Category",
+			"options": "Dimensional\nChemical\nElectrical\nMechanical\nEnvironmental\nOther",
+			"reqd": 1
+		},
+		{"fieldname": "specification_reference", "fieldtype": "Data", "label": "Specification Reference"},
+		{"fieldname": "test_method_reference", "fieldtype": "Small Text", "label": "Test Method Reference"},
+		{
+			"fieldname": "unit_of_measure",
+			"fieldtype": "Link",
+			"label": "Unit of Measure",
+			"options": "UOM"
+		},
+		{"fieldname": "expected_min_value", "fieldtype": "Float", "label": "Expected Min Value"},
+		{"fieldname": "expected_max_value", "fieldtype": "Float", "label": "Expected Max Value"},
+		{"fieldname": "target_value", "fieldtype": "Float", "label": "Target Value"},
+		{
+			"default": "None",
+			"fieldname": "tolerance_type",
+			"fieldtype": "Select",
+			"label": "Tolerance Type",
+			"options": "None\nAbsolute\nPercent\nMinMax\nPassFailOnly",
+			"reqd": 1
+		},
+		{"fieldname": "tolerance_value", "fieldtype": "Float", "label": "Tolerance Value"},
+		{"default": "0", "fieldname": "sample_required", "fieldtype": "Check", "label": "Sample Required"},
+		{"default": "0", "fieldname": "lab_test_required", "fieldtype": "Check", "label": "Lab Test Required"},
+		{"default": "0", "fieldname": "mandatory_for_acceptance", "fieldtype": "Check", "label": "Mandatory For Acceptance"},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nPending\nPassed\nFailed\nWaived",
+			"reqd": 1
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 16:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Inspection Parameter Line",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "parameter_code,parameter_name,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

@@ -19,7 +19,6 @@ def log_budget_audit(
 	procuring_entity: str | None = None,
 	target_doctype: str | None = None,
 	target_docname: str | None = None,
-	business_id: str | None = None,
 	payload: dict[str, Any] | None = None,
 ) -> None:
 	log_audit_event(
@@ -28,6 +27,5 @@ def log_budget_audit(
 		procuring_entity=procuring_entity,
 		target_doctype=target_doctype,
 		target_docname=target_docname,
-		business_id=business_id,
 		new_state=json.dumps(payload, sort_keys=True, default=str) if payload else None,
 	)

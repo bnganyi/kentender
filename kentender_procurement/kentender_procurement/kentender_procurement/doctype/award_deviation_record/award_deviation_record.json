@@ -1,0 +1,123 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 10:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"award_decision",
+		"display_label",
+		"recommended_bid_submission",
+		"approved_bid_submission",
+		"recommended_supplier",
+		"approved_supplier",
+		"deviation_type",
+		"deviation_reason",
+		"authorized_by_user",
+		"authorized_on",
+		"status",
+		"exception_record"
+	],
+	"fields": [
+		{
+			"fieldname": "award_decision",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Award Decision",
+			"options": "Award Decision",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list display (suppliers — status).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "recommended_bid_submission",
+			"fieldtype": "Link",
+			"label": "Recommended Bid Submission",
+			"options": "Bid Submission",
+			"reqd": 1
+		},
+		{
+			"fieldname": "approved_bid_submission",
+			"fieldtype": "Link",
+			"label": "Approved Bid Submission",
+			"options": "Bid Submission",
+			"reqd": 1
+		},
+		{
+			"fieldname": "recommended_supplier",
+			"fieldtype": "Data",
+			"label": "Recommended Supplier",
+			"reqd": 1
+		},
+		{
+			"fieldname": "approved_supplier",
+			"fieldtype": "Data",
+			"label": "Approved Supplier",
+			"reqd": 1
+		},
+		{
+			"fieldname": "deviation_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Deviation Type",
+			"options": "Different Bid\nDifferent Supplier\nDifferent Amount\nCombined\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "deviation_reason",
+			"fieldtype": "Text Editor",
+			"label": "Deviation Reason",
+			"reqd": 1
+		},
+		{
+			"fieldname": "authorized_by_user",
+			"fieldtype": "Link",
+			"label": "Authorized By User",
+			"options": "User"
+		},
+		{"fieldname": "authorized_on", "fieldtype": "Datetime", "label": "Authorized On"},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nSubmitted\nAcknowledged\nRejected",
+			"reqd": 1
+		},
+		{
+			"fieldname": "exception_record",
+			"fieldtype": "Link",
+			"label": "Exception Record",
+			"options": "Exception Record"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 10:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Award Deviation Record",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "award_decision,deviation_type,status,display_label",
+	"track_changes": 1
+}

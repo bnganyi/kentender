@@ -56,7 +56,7 @@ def assert_procuring_department_scoped(
 
 
 def sync_strategic_sub_program_plan(doc: Document) -> None:
-	"""Set `entity_strategic_plan` from parent program when missing; validate when set."""
+	"""Overwrite `entity_strategic_plan` from parent `program` on save (canonical parent: program)."""
 	prg = _strip(doc.get("program"))
 	if not prg:
 		return
@@ -73,23 +73,11 @@ def sync_strategic_sub_program_plan(doc: Document) -> None:
 			frappe.ValidationError,
 			title=_("Invalid program"),
 		)
-	plan = _strip(doc.get("entity_strategic_plan"))
-	if not plan:
-		doc.entity_strategic_plan = plan_from_program
-		return
-	if plan != plan_from_program:
-		frappe.throw(
-			_(
-				"Entity Strategic Plan must match the selected program's plan "
-				"(expected {0}, got {1})."
-			).format(frappe.bold(plan_from_program), frappe.bold(plan)),
-			frappe.ValidationError,
-			title=_("Plan mismatch"),
-		)
+	doc.entity_strategic_plan = plan_from_program
 
 
 def sync_output_indicator_hierarchy(doc: Document) -> None:
-	"""Align program and plan from `sub_program`; mutate doc when fields are empty."""
+	"""Overwrite `program` and `entity_strategic_plan` from `sub_program` on save (canonical parent: sub_program)."""
 	sub = _strip(doc.get("sub_program"))
 	if not sub:
 		return
@@ -114,35 +102,12 @@ def sync_output_indicator_hierarchy(doc: Document) -> None:
 			title=_("Invalid sub program"),
 		)
 
-	prog = _strip(doc.get("program"))
-	if not prog:
-		doc.program = expected_program
-	elif prog != expected_program:
-		frappe.throw(
-			_(
-				"Program must match the selected Sub Program's program "
-				"(expected {0}, got {1})."
-			).format(frappe.bold(expected_program), frappe.bold(prog)),
-			frappe.ValidationError,
-			title=_("Program mismatch"),
-		)
-
-	plan = _strip(doc.get("entity_strategic_plan"))
-	if not plan:
-		doc.entity_strategic_plan = expected_plan
-	elif plan != expected_plan:
-		frappe.throw(
-			_(
-				"Entity Strategic Plan must match the selected Sub Program's plan "
-				"(expected {0}, got {1})."
-			).format(frappe.bold(expected_plan), frappe.bold(plan)),
-			frappe.ValidationError,
-			title=_("Plan mismatch"),
-		)
+	doc.program = expected_program
+	doc.entity_strategic_plan = expected_plan
 
 
 def sync_performance_target_hierarchy(doc: Document) -> None:
-	"""Align sub-program, program, and plan from `output_indicator`; mutate doc when empty."""
+	"""Overwrite sub-program, program, and plan from `output_indicator` on save (canonical parent: output_indicator)."""
 	ind_name = _strip(doc.get("output_indicator"))
 	if not ind_name:
 		return
@@ -165,32 +130,9 @@ def sync_performance_target_hierarchy(doc: Document) -> None:
 			title=_("Invalid indicator"),
 		)
 
-	labels = {
-		"sub_program": _("Sub Program"),
-		"program": _("Program"),
-		"entity_strategic_plan": _("Entity Strategic Plan"),
-	}
-	for field, expected in (
-		("sub_program", row.sub_program),
-		("program", row.program),
-		("entity_strategic_plan", row.entity_strategic_plan),
-	):
-		current = _strip(doc.get(field))
-		if not current:
-			doc.set(field, expected)
-		elif current != expected:
-			frappe.throw(
-				_(
-					"{0} must match the selected Output Indicator "
-					"(expected {1}, got {2})."
-				).format(
-					labels[field],
-					frappe.bold(expected),
-					frappe.bold(current),
-				),
-				frappe.ValidationError,
-				title=_("Hierarchy mismatch"),
-			)
+	doc.sub_program = row.sub_program
+	doc.program = row.program
+	doc.entity_strategic_plan = row.entity_strategic_plan
 
 
 def validate_program(program_id: str, entity: str) -> None:

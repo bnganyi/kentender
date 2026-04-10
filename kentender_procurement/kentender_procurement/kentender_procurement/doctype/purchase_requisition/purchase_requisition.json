@@ -1,0 +1,608 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "Prompt",
+	"creation": "2026-03-28 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"title",
+		"display_label",
+		"requisition_type",
+		"workflow_state",
+		"status",
+		"approval_status",
+		"column_break_org",
+		"procuring_entity",
+		"requesting_department",
+		"requested_by_user",
+		"hod_user",
+		"finance_reviewer_user",
+		"procurement_receiver_user",
+		"section_dates",
+		"fiscal_year",
+		"currency",
+		"request_date",
+		"required_by_date",
+		"priority_level",
+		"section_strategy",
+		"entity_strategic_plan",
+		"program",
+		"sub_program",
+		"output_indicator",
+		"performance_target",
+		"national_objective",
+		"section_budget",
+		"budget_control_period",
+		"budget",
+		"budget_line",
+		"funding_source",
+		"requested_amount",
+		"reserved_amount",
+		"available_budget_at_check",
+		"budget_check_datetime",
+		"budget_reservation_status",
+		"section_justification",
+		"business_justification",
+		"procurement_objective",
+		"specification_summary",
+		"delivery_location",
+		"requested_delivery_period_days",
+		"section_flags",
+		"is_emergency_request",
+		"emergency_justification",
+		"is_multi_department",
+		"beneficiary_summary",
+		"section_planning",
+		"planning_status",
+		"planned_amount",
+		"unplanned_amount",
+		"latest_procurement_plan",
+		"latest_procurement_plan_item",
+		"section_lock",
+		"is_locked",
+		"lock_reason",
+		"last_budget_action_ref",
+		"exception_record",
+		"section_closure",
+		"cancellation_reason",
+		"closure_notes",
+		"remarks",
+		"section_sensitivity",
+		"sensitivity_class",
+		"is_publicly_disclosable",
+		"section_items",
+		"items"
+	],
+	"fields": [
+		{
+			"fieldname": "title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Title",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (business ID — title).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"label": "Display Label",
+			"read_only": 1,
+			"hidden": 1
+		},
+		{
+			"fieldname": "requisition_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Requisition Type",
+			"options": "Goods\nServices\nWorks\nMixed\nOther",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "workflow_state",
+			"fieldtype": "Select",
+			"description": "Authoritative business stage (system-managed).",
+			"in_list_view": 1,
+			"label": "Stage",
+			"options": "Draft\nPending HOD Approval\nPending Finance Approval\nApproved\nRejected\nReturned for Amendment\nCancelled",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"description": "Derived summary from Stage for reporting (system-managed).",
+			"hidden": 1,
+			"label": "Overall Status",
+			"options": "Draft\nPending\nApproved\nRejected\nCancelled",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "approval_status",
+			"fieldtype": "Select",
+			"description": "Deprecated: mirrors Stage for legacy integrations. Do not use in new logic.",
+			"hidden": 1,
+			"label": "Legacy Approval Status",
+			"options": "Draft\nPending HOD Approval\nPending Finance Approval\nApproved\nRejected\nReturned for Amendment\nCancelled",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_org",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "procuring_entity",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Procuring Entity",
+			"options": "Procuring Entity",
+			"reqd": 1
+		},
+		{
+			"fieldname": "requesting_department",
+			"fieldtype": "Link",
+			"label": "Requesting Department",
+			"options": "Procuring Department"
+		},
+		{
+			"fieldname": "requested_by_user",
+			"fieldtype": "Link",
+			"label": "Requested By",
+			"options": "User"
+		},
+		{
+			"fieldname": "hod_user",
+			"fieldtype": "Link",
+			"label": "HOD User",
+			"options": "User"
+		},
+		{
+			"fieldname": "finance_reviewer_user",
+			"fieldtype": "Link",
+			"label": "Finance Reviewer",
+			"options": "User"
+		},
+		{
+			"fieldname": "procurement_receiver_user",
+			"fieldtype": "Link",
+			"label": "Procurement Receiver",
+			"options": "User"
+		},
+		{
+			"fieldname": "section_dates",
+			"fieldtype": "Section Break",
+			"label": "Dates and priority"
+		},
+		{
+			"fieldname": "fiscal_year",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Fiscal Year",
+			"description": "When Budget Line is set, copied from the line on save.",
+			"read_only_depends_on": "eval:doc.budget_line",
+			"reqd": 1
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Currency",
+			"options": "Currency",
+			"description": "When Budget Line is set, copied from the line on save.",
+			"read_only_depends_on": "eval:doc.budget_line",
+			"reqd": 1
+		},
+		{
+			"fieldname": "request_date",
+			"fieldtype": "Date",
+			"in_list_view": 1,
+			"label": "Request Date",
+			"reqd": 1
+		},
+		{
+			"fieldname": "required_by_date",
+			"fieldtype": "Date",
+			"label": "Required By Date"
+		},
+		{
+			"default": "Medium",
+			"fieldname": "priority_level",
+			"fieldtype": "Select",
+			"label": "Priority Level",
+			"options": "Low\nMedium\nHigh\nCritical",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_strategy",
+			"fieldtype": "Section Break",
+			"label": "Strategy linkage"
+		},
+		{
+			"fieldname": "entity_strategic_plan",
+			"fieldtype": "Link",
+			"label": "Entity Strategic Plan",
+			"options": "Entity Strategic Plan",
+			"description": "When Budget Line is set, copied from the line on save.",
+			"read_only_depends_on": "eval:doc.budget_line"
+		},
+		{
+			"fieldname": "program",
+			"fieldtype": "Link",
+			"label": "Program",
+			"options": "Strategic Program",
+			"description": "When Budget Line is set, copied from the line on save.",
+			"read_only_depends_on": "eval:doc.budget_line"
+		},
+		{
+			"fieldname": "sub_program",
+			"fieldtype": "Link",
+			"label": "Sub Program",
+			"options": "Strategic Sub Program",
+			"description": "When Budget Line is set, copied from the line on save.",
+			"read_only_depends_on": "eval:doc.budget_line"
+		},
+		{
+			"fieldname": "output_indicator",
+			"fieldtype": "Link",
+			"label": "Output Indicator",
+			"options": "Output Indicator",
+			"description": "When Budget Line is set, copied from the line on save.",
+			"read_only_depends_on": "eval:doc.budget_line"
+		},
+		{
+			"fieldname": "performance_target",
+			"fieldtype": "Link",
+			"label": "Performance Target",
+			"options": "Performance Target",
+			"description": "When Budget Line is set, copied from the line on save.",
+			"read_only_depends_on": "eval:doc.budget_line"
+		},
+		{
+			"fieldname": "national_objective",
+			"fieldtype": "Link",
+			"label": "National Objective",
+			"options": "National Objective",
+			"description": "When Budget Line is set, derived from Program on save.",
+			"read_only_depends_on": "eval:doc.budget_line"
+		},
+		{
+			"fieldname": "section_budget",
+			"fieldtype": "Section Break",
+			"label": "Budget linkage"
+		},
+		{
+			"fieldname": "budget_control_period",
+			"fieldtype": "Link",
+			"label": "Budget Control Period",
+			"options": "Budget Control Period",
+			"description": "When Budget Line is set, copied from the line on save.",
+			"read_only_depends_on": "eval:doc.budget_line"
+		},
+		{
+			"fieldname": "budget",
+			"fieldtype": "Link",
+			"label": "Budget",
+			"options": "Budget",
+			"description": "When Budget Line is set, copied from the line on save.",
+			"read_only_depends_on": "eval:doc.budget_line"
+		},
+		{
+			"fieldname": "budget_line",
+			"fieldtype": "Link",
+			"label": "Budget Line",
+			"options": "Budget Line"
+		},
+		{
+			"fieldname": "funding_source",
+			"fieldtype": "Link",
+			"label": "Funding Source",
+			"options": "Funding Source",
+			"description": "When Budget Line is set, copied from the line on save (Funding Source name).",
+			"read_only_depends_on": "eval:doc.budget_line"
+		},
+		{
+			"default": "0",
+			"fieldname": "requested_amount",
+			"fieldtype": "Currency",
+			"label": "Requested Amount",
+			"description": "Derived from sum of item line totals on save (PROC-STORY-003).",
+			"options": "currency",
+			"read_only": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "reserved_amount",
+			"fieldtype": "Currency",
+			"label": "Reserved Amount",
+			"description": "Set by budget reservation on final approval (PROC-STORY-006); not user input.",
+			"options": "currency",
+			"read_only": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "available_budget_at_check",
+			"fieldtype": "Currency",
+			"label": "Available Budget At Check",
+			"description": "Snapshot of budget line headroom at reservation time; set by reservation service.",
+			"options": "currency",
+			"read_only": 1
+		},
+		{
+			"fieldname": "budget_check_datetime",
+			"fieldtype": "Datetime",
+			"label": "Budget Check Datetime",
+			"description": "Set when reservation runs; not user input.",
+			"read_only": 1
+		},
+		{
+			"default": "None",
+			"fieldname": "budget_reservation_status",
+			"fieldtype": "Select",
+			"label": "Budget Reservation Status",
+			"description": "Driven by reservation / release services and amendments; not a manual override.",
+			"options": "None\nPending\nReserved\nReleased\nFailed",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_justification",
+			"fieldtype": "Section Break",
+			"label": "Justification and delivery"
+		},
+		{
+			"fieldname": "business_justification",
+			"fieldtype": "Text Editor",
+			"label": "Business Justification"
+		},
+		{
+			"fieldname": "procurement_objective",
+			"fieldtype": "Text Editor",
+			"label": "Procurement Objective"
+		},
+		{
+			"fieldname": "specification_summary",
+			"fieldtype": "Text Editor",
+			"label": "Specification Summary"
+		},
+		{
+			"fieldname": "delivery_location",
+			"fieldtype": "Data",
+			"label": "Delivery Location"
+		},
+		{
+			"fieldname": "requested_delivery_period_days",
+			"fieldtype": "Int",
+			"label": "Requested Delivery Period (Days)"
+		},
+		{
+			"fieldname": "section_flags",
+			"fieldtype": "Section Break",
+			"label": "Flags"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_emergency_request",
+			"fieldtype": "Check",
+			"label": "Is Emergency Request"
+		},
+		{
+			"fieldname": "emergency_justification",
+			"fieldtype": "Small Text",
+			"label": "Emergency Justification"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_multi_department",
+			"fieldtype": "Check",
+			"label": "Is Multi Department"
+		},
+		{
+			"fieldname": "beneficiary_summary",
+			"fieldtype": "Small Text",
+			"label": "Beneficiary Summary"
+		},
+		{
+			"fieldname": "section_planning",
+			"fieldtype": "Section Break",
+			"label": "Planning"
+		},
+		{
+			"default": "Unplanned",
+			"fieldname": "planning_status",
+			"fieldtype": "Select",
+			"label": "Planning Status",
+			"options": "Unplanned\nPartially Planned\nPlanned\nLinked",
+			"read_only": 1,
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "planned_amount",
+			"fieldtype": "Currency",
+			"label": "Planned Amount",
+			"options": "currency",
+			"read_only": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "unplanned_amount",
+			"fieldtype": "Currency",
+			"label": "Unplanned Amount",
+			"options": "currency",
+			"read_only": 1
+		},
+		{
+			"fieldname": "latest_procurement_plan",
+			"fieldtype": "Link",
+			"label": "Latest Procurement Plan",
+			"options": "Procurement Plan"
+		},
+		{
+			"fieldname": "latest_procurement_plan_item",
+			"fieldtype": "Link",
+			"label": "Latest Procurement Plan Item",
+			"options": "Procurement Plan Item"
+		},
+		{
+			"fieldname": "section_lock",
+			"fieldtype": "Section Break",
+			"label": "Lock and exceptions"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_locked",
+			"fieldtype": "Check",
+			"label": "Is Locked"
+		},
+		{
+			"fieldname": "lock_reason",
+			"fieldtype": "Small Text",
+			"label": "Lock Reason"
+		},
+		{
+			"fieldname": "last_budget_action_ref",
+			"fieldtype": "Data",
+			"label": "Last Budget Action Ref",
+			"description": "Budget Ledger Entry or related ref from last reservation action; set by services.",
+			"read_only": 1
+		},
+		{
+			"fieldname": "exception_record",
+			"fieldtype": "Link",
+			"label": "Exception Record",
+			"options": "Exception Record"
+		},
+		{
+			"fieldname": "section_closure",
+			"fieldtype": "Section Break",
+			"label": "Closure"
+		},
+		{
+			"fieldname": "cancellation_reason",
+			"fieldtype": "Small Text",
+			"label": "Cancellation Reason"
+		},
+		{
+			"fieldname": "closure_notes",
+			"fieldtype": "Text Editor",
+			"label": "Closure Notes"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "section_sensitivity",
+			"fieldtype": "Section Break",
+			"label": "Sensitivity"
+		},
+		{
+			"fieldname": "sensitivity_class",
+			"fieldtype": "Select",
+			"label": "Sensitivity Class",
+			"options": "Public\nInternal\nConfidential\nRestricted\nSealed Procurement"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_publicly_disclosable",
+			"fieldtype": "Check",
+			"label": "Is Publicly Disclosable"
+		},
+		{
+			"fieldname": "section_items",
+			"fieldtype": "Section Break",
+			"label": "Items"
+		},
+		{
+			"fieldname": "items",
+			"fieldtype": "Table",
+			"label": "Items",
+			"options": "Purchase Requisition Item"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-03-28 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Purchase Requisition",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Requisitioner"
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT HOD"
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Finance Approver"
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Procurement Officer"
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "name,title,display_label",
+	"track_changes": 1
+}

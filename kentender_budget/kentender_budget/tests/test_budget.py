@@ -16,7 +16,7 @@ BUD = "Budget"
 def _budget(business_id: str, entity_name: str, period_name: str, currency: str, **kw):
 	d = {
 		"doctype": BUD,
-		"business_id": business_id,
+		"name": business_id,
 		"budget_title": kw.pop("budget_title", "Test Budget"),
 		"procuring_entity": entity_name,
 		"budget_control_period": period_name,
@@ -35,8 +35,8 @@ class TestBudget(FrappeTestCase):
 		self.period = _bcp("_KT_BUD02_BCP", self.entity.name).insert()
 
 	def tearDown(self):
-		frappe.db.delete(BUD, {"business_id": ("like", "_KT_BUD02_%")})
-		frappe.db.delete(BCP, {"business_id": ("like", "_KT_BUD02_%")})
+		frappe.db.delete(BUD, {"name": ("like", "_KT_BUD02_%")})
+		frappe.db.delete(BCP, {"name": ("like", "_KT_BUD02_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_BUD02_%")})
 		frappe.db.commit()
 		super().tearDown()

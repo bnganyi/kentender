@@ -5,40 +5,31 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
+from kentender.utils.display_label import code_title_label
 from kentender_budget.services.budget_line_scope_validation import validate_budget_line_scope_and_strategy
 
 
 class BudgetLine(Document):
 	def validate(self):
 		self._normalize_text_fields()
-		self._validate_unique_business_id()
+		subtitle = (
+			self.external_reference_name or self.external_budget_code or self.fiscal_year or ""
+		).strip()
+		self.display_label = code_title_label(self.name, subtitle)
 		self._sync_and_validate_budget_context()
 		self._sync_strategy_fields_from_links()
 		validate_budget_line_scope_and_strategy(self)
 
 	def _normalize_text_fields(self):
-		for fn in ("business_id", "fiscal_year", "funding_source"):
+		for fn in (
+			"fiscal_year",
+			"funding_source",
+			"external_budget_code",
+			"external_reference_name",
+		):
 			val = getattr(self, fn, None)
 			if val and str(val).strip():
 				setattr(self, fn, str(val).strip())
-
-	def _validate_unique_business_id(self):
-		bid = (self.business_id or "").strip()
-		if not bid:
-			return
-		filters = {"business_id": bid}
-		if self.name:
-			filters["name"] = ("!=", self.name)
-		existing = frappe.db.get_value("Budget Line", filters, "name")
-		if existing:
-			frappe.throw(
-				_("Business ID {0} is already used by {1}.").format(
-					frappe.bold(bid),
-					frappe.bold(existing),
-				),
-				frappe.DuplicateEntryError,
-				title=_("Duplicate Business ID"),
-			)
 
 	def _sync_and_validate_budget_context(self):
 		bud = (self.budget or "").strip()

@@ -56,7 +56,6 @@ def enforce_active_locked_immutability(doc: Document, tracked_fieldnames: list[s
 
 def national_framework_tracked_fieldnames() -> list[str]:
 	return [
-		"business_id",
 		"framework_code",
 		"framework_name",
 		"framework_type",
@@ -76,7 +75,6 @@ def national_framework_tracked_fieldnames() -> list[str]:
 
 def national_pillar_tracked_fieldnames() -> list[str]:
 	return [
-		"business_id",
 		"national_framework",
 		"pillar_code",
 		"pillar_name",
@@ -89,7 +87,6 @@ def national_pillar_tracked_fieldnames() -> list[str]:
 
 def national_objective_tracked_fieldnames() -> list[str]:
 	return [
-		"business_id",
 		"national_pillar",
 		"national_framework",
 		"objective_code",

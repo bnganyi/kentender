@@ -7,12 +7,18 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import flt
 
+from kentender.utils.display_label import code_title_label
+
 BL = "Budget Line"
 BUD = "Budget"
 
 
 class BudgetRevision(Document):
 	def validate(self):
+		self.display_label = code_title_label(
+			(self.name or "").strip(),
+			(self.revision_type or "").strip(),
+		)
 		self._validate_budget_header()
 		self._validate_lines()
 

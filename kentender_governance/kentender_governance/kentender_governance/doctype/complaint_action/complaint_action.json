@@ -1,0 +1,48 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"complaint",
+		"decision",
+		"display_label",
+		"action_type",
+		"target_doctype",
+		"target_docname",
+		"status",
+		"executed_on",
+		"executed_by_user",
+		"notes"
+	],
+	"fields": [
+		{"fieldname": "complaint", "fieldtype": "Link", "in_list_view": 1, "label": "Complaint", "options": "Complaint", "reqd": 1},
+		{"fieldname": "decision", "fieldtype": "Link", "in_list_view": 1, "label": "Complaint Decision", "options": "Complaint Decision", "reqd": 1},
+		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
+		{"fieldname": "action_type", "fieldtype": "Select", "in_list_view": 1, "label": "Action Type", "options": "Notification\nContract Amendment\nAward Revision\nHold Release\nOther", "reqd": 1},
+		{"fieldname": "target_doctype", "fieldtype": "Link", "label": "Target DocType", "options": "DocType"},
+		{"fieldname": "target_docname", "fieldtype": "Dynamic Link", "label": "Target Document", "options": "target_doctype"},
+		{"default": "Planned", "fieldname": "status", "fieldtype": "Select", "in_list_view": 1, "label": "Status", "options": "Planned\nIn Progress\nCompleted\nCancelled", "reqd": 1},
+		{"fieldname": "executed_on", "fieldtype": "Datetime", "label": "Executed On"},
+		{"fieldname": "executed_by_user", "fieldtype": "Link", "label": "Executed By", "options": "User"},
+		{"fieldname": "notes", "fieldtype": "Text Editor", "label": "Notes"}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"module": "Kentender Governance",
+	"name": "Complaint Action",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

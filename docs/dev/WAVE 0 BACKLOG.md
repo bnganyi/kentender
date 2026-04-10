@@ -39,6 +39,14 @@
 
 **Status values:** `Not Started` | `In Progress` | `Blocked` | `Done`
 
+## Wave 0 follow-on — workflow engine (WF-001–WF-010)
+
+**Canonical docs:** [`KenTender Approval Workflow Specification v2`](../workflow/KenTender%20Approval%20Workflow%20Specification%20v2.md), [`KenTender Cursor Workflow Implementation Pack v2`](../workflow/KenTender%20Cursor%20Workflow%20Implementation%20Pack%20v2.md). **Tracker:** [`WF Implementation Tracker.md`](../workflow/WF%20Implementation%20Tracker.md).
+
+| Story ID | Title (short) | Epic | Depends on | Status | Notes |
+| --- | --- | --- | --- | --- | --- |
+| WF-PLATFORM-001 | Workflow engine WF-001–WF-010 (spec v2) | EPIC-WF-PLATFORM | Wave 0 steps 1–22 Done | In Progress | `kentender.workflow_engine` + KenTender DocTypes; **WF-007/008** done (2026-04); WF-002/009/010 partial — see [`WF Implementation Tracker`](../workflow/WF%20Implementation%20Tracker.md) |
+
 ## Wave 1
 
 Wave 1 is **closed**; tracker [`WAVE 1 BACKLOG.md`](Wave%201%20BACKLOG.md), prompts [`docs/prompts/Wave 1 Ticket Pack.md`](../prompts/Wave%201%20Ticket%20Pack.md).

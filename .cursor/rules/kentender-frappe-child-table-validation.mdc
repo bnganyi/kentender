@@ -1,0 +1,28 @@
+---
+description: Frappe child table rows do not run custom validate() on parent insert; validate from parent (KenTender)
+globs: "**/kentender_platform/**/doctype/**/*.py,**/kentender_procurement/**/doctype/**/*.py,**/kentender/**/doctype/**/*.py"
+alwaysApply: false
+---
+
+# KenTender — Child table (`istable`) validation
+
+## Rule
+
+On **`Document.insert()`** and **`Document._save()`**, Frappe runs **`run_method("validate")` only on the parent**. For child rows in a **Table** field, `_validate()` runs **`_validate_mandatory`**, **`_validate_selects`**, **`_validate_length`**, etc. — it does **not** call the child DocType’s custom **`validate()`** hook.
+
+So code in **`ChildRow(Document).validate()`** is **skipped** when the user (or test) saves a **new parent with new child rows** in one shot. Symptoms: DB rows appear with defaults, `read_only` derived fields stay empty, cross-link checks never run — tests fail in non-obvious ways.
+
+## What to do
+
+1. Put non-trivial child rules in a **shared function** e.g. `validate_<child>_row(parent_doc, line_doc)` in the child module (or `services/`), and call it from **`Parent.validate()`** in a loop over `self.<table_field>`.
+2. Pass the **in-memory parent** (`self`) into that function. During the parent’s first **`validate()`**, the parent is often **not in the database yet**, so **`frappe.get_doc(parenttype, parent.name)` can be wrong or fail** — read session/tender from `parent_doc` fields plus `frappe.db.get_value` on **linked** docs that already exist (e.g. Evaluation Session).
+3. Keep **`ChildRow.validate()`** as a thin delegate that calls the same function **only when** `frappe.db.exists(parenttype, parent)` (e.g. editing after save) if you want parity — but **parent-driven validation is mandatory** for insert.
+
+## Reference
+
+- `frappe.model.document.Document.insert` (parent `db_insert` after `validate`; children `db_insert` without child `validate`).
+- `frappe.model.document.Document._validate` (children: `_validate_*` helpers only, not `run_method("validate")`).
+
+Example in-repo: **PROC-STORY-062** — `validate_evaluation_score_line_row` + `EvaluationRecord._validate_score_lines`.
+
+Human-readable summary: [application-package-layout.md](docs/architecture/application-package-layout.md) — **Child table validation**.

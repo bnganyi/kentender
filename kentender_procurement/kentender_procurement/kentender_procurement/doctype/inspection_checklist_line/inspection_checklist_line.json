@@ -1,0 +1,85 @@
+{
+	"creation": "2026-04-11 16:00:00.000000",
+	"doctype": "DocType",
+	"editable_grid": 1,
+	"engine": "InnoDB",
+	"field_order": [
+		"check_item_no",
+		"requirement_type",
+		"requirement_title",
+		"expected_requirement",
+		"observed_result",
+		"result_status",
+		"severity_if_failed",
+		"related_deliverable",
+		"related_milestone",
+		"notes"
+	],
+	"fields": [
+		{
+			"fieldname": "check_item_no",
+			"fieldtype": "Int",
+			"in_list_view": 1,
+			"label": "Check Item No",
+			"non_negative": 1,
+			"reqd": 1
+		},
+		{
+			"fieldname": "requirement_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Requirement Type",
+			"options": "Visual\nDocument\nProcedural\nMeasurement\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "requirement_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Requirement Title",
+			"reqd": 1
+		},
+		{"fieldname": "expected_requirement", "fieldtype": "Small Text", "label": "Expected Requirement"},
+		{"fieldname": "observed_result", "fieldtype": "Small Text", "label": "Observed Result"},
+		{
+			"default": "Pending",
+			"fieldname": "result_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Result Status",
+			"options": "Pending\nPass\nFail\nNot Applicable",
+			"reqd": 1
+		},
+		{
+			"fieldname": "severity_if_failed",
+			"fieldtype": "Select",
+			"label": "Severity If Failed",
+			"options": "\nMinor\nMajor\nCritical"
+		},
+		{
+			"fieldname": "related_deliverable",
+			"fieldtype": "Link",
+			"label": "Related Deliverable",
+			"options": "Procurement Contract Deliverable"
+		},
+		{
+			"fieldname": "related_milestone",
+			"fieldtype": "Link",
+			"label": "Related Milestone",
+			"options": "Procurement Contract Milestone"
+		},
+		{"fieldname": "notes", "fieldtype": "Small Text", "label": "Notes"}
+	],
+	"index_web_pages_for_search": 0,
+	"istable": 1,
+	"links": [],
+	"modified": "2026-04-11 16:00:00.000000",
+	"module": "Kentender Procurement",
+	"name": "Inspection Checklist Line",
+	"owner": "Administrator",
+	"permissions": [],
+	"row_format": "Dynamic",
+	"sort_field": "idx",
+	"sort_order": "ASC",
+	"track_changes": 0
+}

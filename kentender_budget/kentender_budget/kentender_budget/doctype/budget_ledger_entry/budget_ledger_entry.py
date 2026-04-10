@@ -26,6 +26,8 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import flt, get_datetime
 
+from kentender.utils.display_label import code_title_label
+
 
 def _compute_entry_hash(payload: dict[str, Any], salt: str) -> str:
 	canonical = json.dumps(payload, sort_keys=True, ensure_ascii=False)
@@ -35,6 +37,10 @@ def _compute_entry_hash(payload: dict[str, Any], salt: str) -> str:
 
 class BudgetLedgerEntry(Document):
 	def validate(self):
+		self.display_label = code_title_label(
+			(self.name or "").strip(),
+			(self.entry_type or "").strip(),
+		)
 		if not self.is_new():
 			frappe.throw(
 				_("Budget Ledger Entry records cannot be modified."),

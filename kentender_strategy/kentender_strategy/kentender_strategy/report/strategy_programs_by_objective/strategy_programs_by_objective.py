@@ -16,7 +16,7 @@ def execute(filters=None):
 	data = [
 		[
 			r.get("name"),
-			r.get("business_id"),
+			r.get("name"),
 			r.get("program_code"),
 			r.get("program_name"),
 			r.get("procuring_entity"),
@@ -31,7 +31,7 @@ def execute(filters=None):
 def get_columns():
 	return [
 		_("Program") + ":Link/Strategic Program:200",
-		_("Business ID") + ":Data:120",
+		_("Reference") + ":Data:120",
 		_("Program Code") + ":Data:100",
 		_("Program Name") + ":Data:180",
 		_("Procuring Entity") + ":Link/Procuring Entity:160",

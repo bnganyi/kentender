@@ -1,0 +1,321 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-11 10:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_identity",
+		"business_id",
+		"tender",
+		"evaluation_session",
+		"evaluation_report",
+		"display_label",
+		"section_status",
+		"status",
+		"workflow_state",
+		"approval_status",
+		"section_counts",
+		"responsive_bid_count",
+		"non_responsive_bid_count",
+		"disqualified_bid_count",
+		"section_recommendation",
+		"recommended_bid_submission",
+		"recommended_supplier",
+		"recommended_amount",
+		"currency",
+		"section_approved",
+		"approved_bid_submission",
+		"approved_supplier",
+		"approved_amount",
+		"section_award",
+		"award_type",
+		"approval_decision_date",
+		"final_approval_datetime",
+		"section_governance",
+		"accounting_officer_user",
+		"head_of_procurement_user",
+		"tender_committee_ref",
+		"section_deviation",
+		"is_deviation_from_recommendation",
+		"deviation_record",
+		"section_standstill",
+		"standstill_required",
+		"standstill_period",
+		"section_contract",
+		"ready_for_contract_creation",
+		"exception_record",
+		"section_notifications",
+		"notification_status",
+		"successful_notification_sent_on",
+		"unsuccessful_notification_sent_on",
+		"section_narrative",
+		"award_summary_notes",
+		"decision_justification",
+		"section_lock",
+		"is_locked",
+		"lock_reason",
+		"remarks",
+		"section_outcomes",
+		"outcome_lines"
+	],
+	"fields": [
+		{"fieldname": "section_identity", "fieldtype": "Section Break", "label": "Identity"},
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"fieldname": "evaluation_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Evaluation Session",
+			"options": "Evaluation Session",
+			"reqd": 1
+		},
+		{
+			"fieldname": "evaluation_report",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Evaluation Report",
+			"options": "Evaluation Report",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list display (business_id — status).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{"fieldname": "section_status", "fieldtype": "Section Break", "label": "Status"},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nIn Progress\nApproved\nRejected\nCancelled\nLocked",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "workflow_state",
+			"fieldtype": "Select",
+			"label": "Workflow State",
+			"options": "Draft\nIn Progress\nPending Approval\nApproved\nRejected\nReturned\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "approval_status",
+			"fieldtype": "Select",
+			"label": "Approval Status",
+			"options": "Draft\nPending\nApproved\nRejected",
+			"reqd": 1
+		},
+		{"fieldname": "section_counts", "fieldtype": "Section Break", "label": "Bid counts"},
+		{
+			"default": "0",
+			"fieldname": "responsive_bid_count",
+			"fieldtype": "Int",
+			"label": "Responsive Bid Count"
+		},
+		{
+			"default": "0",
+			"fieldname": "non_responsive_bid_count",
+			"fieldtype": "Int",
+			"label": "Non-Responsive Bid Count"
+		},
+		{
+			"default": "0",
+			"fieldname": "disqualified_bid_count",
+			"fieldtype": "Int",
+			"label": "Disqualified Bid Count"
+		},
+		{"fieldname": "section_recommendation", "fieldtype": "Section Break", "label": "Recommendation"},
+		{
+			"fieldname": "recommended_bid_submission",
+			"fieldtype": "Link",
+			"label": "Recommended Bid Submission",
+			"options": "Bid Submission"
+		},
+		{"fieldname": "recommended_supplier", "fieldtype": "Data", "label": "Recommended Supplier"},
+		{"fieldname": "recommended_amount", "fieldtype": "Currency", "label": "Recommended Amount"},
+		{"fieldname": "currency", "fieldtype": "Link", "label": "Currency", "options": "Currency"},
+		{"fieldname": "section_approved", "fieldtype": "Section Break", "label": "Approved outcome"},
+		{
+			"fieldname": "approved_bid_submission",
+			"fieldtype": "Link",
+			"label": "Approved Bid Submission",
+			"options": "Bid Submission"
+		},
+		{"fieldname": "approved_supplier", "fieldtype": "Data", "label": "Approved Supplier"},
+		{"fieldname": "approved_amount", "fieldtype": "Currency", "label": "Approved Amount"},
+		{"fieldname": "section_award", "fieldtype": "Section Break", "label": "Award"},
+		{
+			"default": "Single Award",
+			"fieldname": "award_type",
+			"fieldtype": "Select",
+			"label": "Award Type",
+			"options": "Single Award\nMultiple Lot\nFramework Call-off\nOther",
+			"reqd": 1
+		},
+		{"fieldname": "approval_decision_date", "fieldtype": "Date", "label": "Approval Decision Date"},
+		{"fieldname": "final_approval_datetime", "fieldtype": "Datetime", "label": "Final Approval Datetime"},
+		{"fieldname": "section_governance", "fieldtype": "Section Break", "label": "Governance"},
+		{
+			"fieldname": "accounting_officer_user",
+			"fieldtype": "Link",
+			"label": "Accounting Officer User",
+			"options": "User"
+		},
+		{
+			"fieldname": "head_of_procurement_user",
+			"fieldtype": "Link",
+			"label": "Head of Procurement User",
+			"options": "User"
+		},
+		{"fieldname": "tender_committee_ref", "fieldtype": "Data", "label": "Tender Committee Ref"},
+		{"fieldname": "section_deviation", "fieldtype": "Section Break", "label": "Deviation"},
+		{
+			"default": "0",
+			"fieldname": "is_deviation_from_recommendation",
+			"fieldtype": "Check",
+			"label": "Is Deviation From Recommendation"
+		},
+		{
+			"fieldname": "deviation_record",
+			"fieldtype": "Link",
+			"label": "Deviation Record",
+			"options": "Award Deviation Record"
+		},
+		{"fieldname": "section_standstill", "fieldtype": "Section Break", "label": "Standstill"},
+		{
+			"default": "0",
+			"fieldname": "standstill_required",
+			"fieldtype": "Check",
+			"label": "Standstill Required"
+		},
+		{
+			"fieldname": "standstill_period",
+			"fieldtype": "Link",
+			"label": "Standstill Period",
+			"options": "Standstill Period"
+		},
+		{"fieldname": "section_contract", "fieldtype": "Section Break", "label": "Contract gate"},
+		{
+			"default": "0",
+			"fieldname": "ready_for_contract_creation",
+			"fieldtype": "Check",
+			"label": "Ready For Contract Creation"
+		},
+		{
+			"fieldname": "exception_record",
+			"fieldtype": "Link",
+			"label": "Exception Record",
+			"options": "Exception Record"
+		},
+		{"fieldname": "section_notifications", "fieldtype": "Section Break", "label": "Notifications"},
+		{
+			"default": "Pending",
+			"fieldname": "notification_status",
+			"fieldtype": "Select",
+			"label": "Notification Status",
+			"options": "Pending\nIn Progress\nComplete\nNot Applicable",
+			"reqd": 1
+		},
+		{
+			"fieldname": "successful_notification_sent_on",
+			"fieldtype": "Datetime",
+			"label": "Successful Notification Sent On"
+		},
+		{
+			"fieldname": "unsuccessful_notification_sent_on",
+			"fieldtype": "Datetime",
+			"label": "Unsuccessful Notification Sent On"
+		},
+		{"fieldname": "section_narrative", "fieldtype": "Section Break", "label": "Narrative"},
+		{"fieldname": "award_summary_notes", "fieldtype": "Text Editor", "label": "Award Summary Notes"},
+		{"fieldname": "decision_justification", "fieldtype": "Text Editor", "label": "Decision Justification"},
+		{"fieldname": "section_lock", "fieldtype": "Section Break", "label": "Lock"},
+		{"default": "0", "fieldname": "is_locked", "fieldtype": "Check", "label": "Is Locked"},
+		{"fieldname": "lock_reason", "fieldtype": "Small Text", "label": "Lock Reason"},
+		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"},
+		{"fieldname": "section_outcomes", "fieldtype": "Section Break", "label": "Outcome lines"},
+		{
+			"fieldname": "outcome_lines",
+			"fieldtype": "Table",
+			"label": "Outcome Lines",
+			"options": "Award Outcome Line"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-11 10:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Award Decision",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "business_id,tender,evaluation_session,status,approval_status,display_label",
+	"track_changes": 1
+}

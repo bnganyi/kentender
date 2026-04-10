@@ -3,4 +3,5 @@
 # Read docs to understand patches: https://frappeframework.com/docs/v14/user/en/database-migrations
 
 [post_model_sync]
+kentender_strategy.patches.backfill_strategy_display_labels
 # Patches added in this section will be executed after doctypes are migrated

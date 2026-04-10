@@ -1,0 +1,116 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"store",
+		"display_label",
+		"item_code",
+		"item_name",
+		"unit_of_measure",
+		"status",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "store",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Store",
+			"options": "Store",
+			"reqd": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "item_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Item Code",
+			"reqd": 1
+		},
+		{
+			"fieldname": "item_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Item Name"
+		},
+		{
+			"fieldname": "unit_of_measure",
+			"fieldtype": "Data",
+			"label": "Unit of Measure"
+		},
+		{
+			"default": "Active",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Active\nInactive",
+			"reqd": 1
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 12:00:00.000000",
+	"module": "Kentender Stores",
+	"name": "Store Item",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"search_fields": "item_code,item_name,display_label",
+	"show_title_field_in_link": 1,
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

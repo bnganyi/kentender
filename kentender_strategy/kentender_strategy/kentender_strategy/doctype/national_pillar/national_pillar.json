@@ -1,106 +1,169 @@
 {
- "actions": [],
- "allow_rename": 0,
- "autoname": "field:business_id",
- "creation": "2026-03-28 00:00:00.000000",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "business_id",
-  "national_framework",
-  "pillar_code",
-  "pillar_name",
-  "status",
-  "is_locked_reference",
-  "display_order",
-  "description"
- ],
- "fields": [
-  {
-   "fieldname": "business_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Business ID",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fieldname": "national_framework",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "National Framework",
-   "options": "National Framework",
-   "reqd": 1
-  },
-  {
-   "fieldname": "pillar_code",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Pillar Code",
-   "reqd": 1
-  },
-  {
-   "fieldname": "pillar_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Pillar Name",
-   "reqd": 1
-  },
-  {
-   "default": "Draft",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Status",
-   "options": "Draft\nActive\nSuperseded\nArchived",
-   "reqd": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "is_locked_reference",
-   "fieldtype": "Check",
-   "label": "Locked Reference",
-   "description": "When Active and locked, this pillar cannot be edited (STORY-STRAT-003)."
-  },
-  {
-   "default": "0",
-   "fieldname": "display_order",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Display Order"
-  },
-  {
-   "fieldname": "description",
-   "fieldtype": "Text Editor",
-   "label": "Description"
-  }
- ],
- "grid_page_length": 50,
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-03-28 00:00:00.000000",
- "modified_by": "Administrator",
- "module": "Kentender Strategy",
- "name": "National Pillar",
- "naming_rule": "By fieldname",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "row_format": "Dynamic",
- "sort_field": "display_order",
- "sort_order": "ASC",
- "states": [],
- "track_changes": 1
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "Prompt",
+	"creation": "2026-03-28 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"national_framework",
+		"pillar_code",
+		"pillar_name",
+		"display_label",
+		"status",
+		"is_locked_reference",
+		"display_order",
+		"description"
+	],
+	"fields": [
+		{
+			"fieldname": "national_framework",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "National Framework",
+			"options": "National Framework",
+			"reqd": 1
+		},
+		{
+			"fieldname": "pillar_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Pillar Code",
+			"reqd": 1
+		},
+		{
+			"fieldname": "pillar_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Pillar Name",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for link display (code — title).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"label": "Display Label",
+			"read_only": 1,
+			"hidden": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nActive\nSuperseded\nArchived",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "is_locked_reference",
+			"fieldtype": "Check",
+			"label": "Locked Reference",
+			"description": "When Active and locked, this pillar cannot be edited (STORY-STRAT-003)."
+		},
+		{
+			"default": "0",
+			"fieldname": "display_order",
+			"fieldtype": "Int",
+			"in_list_view": 1,
+			"label": "Display Order"
+		},
+		{
+			"fieldname": "description",
+			"fieldtype": "Text Editor",
+			"label": "Description"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-03-28 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Strategy",
+	"name": "National Pillar",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 1,
+			"write": 1,
+			"role": "KT UAT Strategy Manager"
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT Requisitioner"
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT HOD"
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT Finance Approver"
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"share": 0,
+			"write": 0,
+			"role": "KT UAT Procurement Officer"
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "display_order",
+	"sort_order": "ASC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "pillar_code,pillar_name,display_label",
+	"track_changes": 1
 }

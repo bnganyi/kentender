@@ -1,0 +1,251 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 23:30:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"section_identity",
+		"business_id",
+		"evaluation_session",
+		"tender",
+		"display_label",
+		"section_outcome",
+		"status",
+		"responsive_bid_count",
+		"non_responsive_bid_count",
+		"disqualified_bid_count",
+		"section_recommendation",
+		"recommended_bid_submission",
+		"recommended_supplier",
+		"recommended_amount",
+		"currency",
+		"section_narrative",
+		"process_summary",
+		"evaluation_method_summary",
+		"committee_observations",
+		"recommendation_justification",
+		"special_conditions_notes",
+		"section_submission",
+		"submitted_by_user",
+		"submitted_on",
+		"approved_for_submission_by_chair",
+		"locked_hash",
+		"report_file"
+	],
+	"fields": [
+		{
+			"fieldname": "section_identity",
+			"fieldtype": "Section Break",
+			"label": "Identity"
+		},
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "evaluation_session",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Evaluation Session",
+			"options": "Evaluation Session",
+			"reqd": 1
+		},
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
+		{
+			"description": "Derived for list and link display (business_id — status).",
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_outcome",
+			"fieldtype": "Section Break",
+			"label": "Outcome and counts"
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nIn Progress\nSubmitted\nLocked\nCancelled",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "responsive_bid_count",
+			"fieldtype": "Int",
+			"label": "Responsive Bid Count"
+		},
+		{
+			"default": "0",
+			"fieldname": "non_responsive_bid_count",
+			"fieldtype": "Int",
+			"label": "Non-Responsive Bid Count"
+		},
+		{
+			"default": "0",
+			"fieldname": "disqualified_bid_count",
+			"fieldtype": "Int",
+			"label": "Disqualified Bid Count"
+		},
+		{
+			"fieldname": "section_recommendation",
+			"fieldtype": "Section Break",
+			"label": "Recommendation"
+		},
+		{
+			"fieldname": "recommended_bid_submission",
+			"fieldtype": "Link",
+			"label": "Recommended Bid Submission",
+			"options": "Bid Submission"
+		},
+		{
+			"fieldname": "recommended_supplier",
+			"fieldtype": "Data",
+			"label": "Recommended Supplier"
+		},
+		{
+			"fieldname": "recommended_amount",
+			"fieldtype": "Currency",
+			"label": "Recommended Amount"
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency"
+		},
+		{
+			"fieldname": "section_narrative",
+			"fieldtype": "Section Break",
+			"label": "Narrative"
+		},
+		{
+			"fieldname": "process_summary",
+			"fieldtype": "Text Editor",
+			"label": "Process Summary"
+		},
+		{
+			"fieldname": "evaluation_method_summary",
+			"fieldtype": "Text Editor",
+			"label": "Evaluation Method Summary"
+		},
+		{
+			"fieldname": "committee_observations",
+			"fieldtype": "Text Editor",
+			"label": "Committee Observations"
+		},
+		{
+			"fieldname": "recommendation_justification",
+			"fieldtype": "Text Editor",
+			"label": "Recommendation Justification"
+		},
+		{
+			"fieldname": "special_conditions_notes",
+			"fieldtype": "Small Text",
+			"label": "Special Conditions Notes"
+		},
+		{
+			"fieldname": "section_submission",
+			"fieldtype": "Section Break",
+			"label": "Submission and file"
+		},
+		{
+			"fieldname": "submitted_by_user",
+			"fieldtype": "Link",
+			"label": "Submitted By User",
+			"options": "User"
+		},
+		{
+			"fieldname": "submitted_on",
+			"fieldtype": "Datetime",
+			"label": "Submitted On"
+		},
+		{
+			"default": "0",
+			"fieldname": "approved_for_submission_by_chair",
+			"fieldtype": "Check",
+			"label": "Approved For Submission By Chair"
+		},
+		{
+			"fieldname": "locked_hash",
+			"fieldtype": "Data",
+			"label": "Locked Hash"
+		},
+		{
+			"fieldname": "report_file",
+			"fieldtype": "Attach",
+			"label": "Report File"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-10 23:30:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Evaluation Report",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Procurement Officer",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"create": 0,
+			"delete": 0,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "KT UAT Auditor",
+			"share": 0,
+			"write": 0
+		}
+	],
+	"row_format": "Dynamic",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "display_label",
+	"show_title_field_in_link": 1,
+	"search_fields": "business_id,evaluation_session,tender,status,recommended_supplier,recommended_bid_submission,display_label",
+	"track_changes": 1
+}

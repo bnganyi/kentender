@@ -1,0 +1,137 @@
+{
+	"allow_copy": 0,
+	"creation": "2026-04-10 21:00:00.000000",
+	"doctype": "DocType",
+	"editable_grid": 1,
+	"engine": "InnoDB",
+	"field_order": [
+		"section_identity",
+		"tender_criteria",
+		"criteria_type",
+		"criteria_title",
+		"section_scoring",
+		"score_value",
+		"pass_fail_result",
+		"max_score",
+		"weight_percentage",
+		"weighted_score",
+		"section_notes",
+		"comments",
+		"section_flags",
+		"is_disqualifying_failure",
+		"section_formula",
+		"formula_result_json"
+	],
+	"fields": [
+		{
+			"fieldname": "section_identity",
+			"fieldtype": "Section Break",
+			"label": "Criterion"
+		},
+		{
+			"fieldname": "tender_criteria",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender Criteria",
+			"options": "Tender Criteria",
+			"reqd": 1
+		},
+		{
+			"fieldname": "criteria_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Criteria Type",
+			"options": "Mandatory\nTechnical\nFinancial\nEligibility\nPreliminary",
+			"reqd": 1
+		},
+		{
+			"fieldname": "criteria_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Criteria Title",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_scoring",
+			"fieldtype": "Section Break",
+			"label": "Scoring"
+		},
+		{
+			"fieldname": "score_value",
+			"fieldtype": "Float",
+			"in_list_view": 1,
+			"label": "Score Value"
+		},
+		{
+			"default": "Pending",
+			"fieldname": "pass_fail_result",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Pass / Fail Result",
+			"options": "Pending\nPass\nFail\nNot Applicable",
+			"reqd": 1
+		},
+		{
+			"fieldname": "max_score",
+			"fieldtype": "Float",
+			"label": "Max Score"
+		},
+		{
+			"fieldname": "weight_percentage",
+			"fieldtype": "Float",
+			"label": "Weight Percentage"
+		},
+		{
+			"description": "Derived for numeric lines: score × weight / 100.",
+			"fieldname": "weighted_score",
+			"fieldtype": "Float",
+			"label": "Weighted Score",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_notes",
+			"fieldtype": "Section Break",
+			"label": "Notes"
+		},
+		{
+			"fieldname": "comments",
+			"fieldtype": "Small Text",
+			"label": "Comments"
+		},
+		{
+			"fieldname": "section_flags",
+			"fieldtype": "Section Break",
+			"label": "Flags"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_disqualifying_failure",
+			"fieldtype": "Check",
+			"label": "Disqualifying Failure"
+		},
+		{
+			"fieldname": "section_formula",
+			"fieldtype": "Section Break",
+			"label": "Formula"
+		},
+		{
+			"fieldname": "formula_result_json",
+			"fieldtype": "Long Text",
+			"label": "Formula Result JSON"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"istable": 1,
+	"links": [],
+	"modified": "2026-04-10 21:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Kentender Procurement",
+	"name": "Evaluation Score Line",
+	"owner": "Administrator",
+	"permissions": [],
+	"row_format": "Dynamic",
+	"sort_field": "idx",
+	"sort_order": "ASC",
+	"states": [],
+	"track_changes": 0
+}

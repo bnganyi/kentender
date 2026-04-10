@@ -18,6 +18,27 @@
  "roles": [
   {
    "role": "System Manager"
+  },
+  {
+   "role": "KT UAT Strategy Manager"
+  },
+  {
+   "role": "KT UAT Budget Officer"
+  },
+  {
+   "role": "KT UAT Requisitioner"
+  },
+  {
+   "role": "KT UAT HOD"
+  },
+  {
+   "role": "KT UAT Finance Approver"
+  },
+  {
+   "role": "KT UAT Procurement Officer"
+  },
+  {
+   "role": "KT UAT Auditor"
   }
  ]
 }
