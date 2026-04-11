@@ -24,7 +24,7 @@ Developer-facing map of how access control is layered in KenTender, aligned with
 
 Shared vocabulary and integration points live under `kentender.permissions` (not a separate `kentender_core` app):
 
-- `registry` — stable **business role** keys and **UAT Role** name constants; helpers such as `user_has_any_uat_role`.
+- `registry` — stable **business role** keys and **MATRIX_ROLE** Frappe `Role.name` strings (plain labels from the security matrix); helpers such as `user_has_any_matrix_role` (and deprecated `user_has_any_uat_role`).
 - `scope` — thin re-exports and small **cross-domain** filter builders that compose `permission_query_service` patterns.
 - `reports` — helpers to reason about report access (e.g. `user_can_open_script_report`).
 - `actions` — documentation and thin entry points around **PERM-005**; implementation remains in `controlled_action_service`.
@@ -38,7 +38,7 @@ Baseline and row-level permissions are **not** expected to match [Roles and Perm
 **Checklist for each story that adds or materially changes a DocType, report, workspace, or queue**
 
 1. **Matrix** — Identify the §3 / §4 rows that apply; note **X**, **RO**, **RO/F**, **C/R/W/S/A**, etc.
-2. **Layer D** — Update DocType `permissions` in JSON (or a focused patch) so UAT/production roles match the matrix for that DocType.
+2. **Layer D** — Update DocType `permissions` in JSON (or a focused patch) so Frappe roles match the matrix for that DocType.
 3. **Layers A–B** — Adjust workspace `roles` and report **Has Role** rows when the story exposes new desk or report entry points.
 4. **Layers C–E** — If the matrix needs **F** (filtered), assignment, or workflow-only actions, extend the appropriate service or `has_permission` in the **same** delivery; JSON alone is not enough for row-level or transition rules.
 5. **Migrate** — Run `bench migrate` after JSON permission changes so `tabCustom DocPerm` / report roles update.

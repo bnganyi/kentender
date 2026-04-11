@@ -74,8 +74,8 @@ Full definitions: [Workspace Implementation Backlog with Cursor.md](Workspace%20
 | UI-STORY-005 | Procurement Operations workspace | EPIC-UI-002 | UI-STORY-001, UI-STORY-004 | 5 | Done | **WS-004** — [`ken_tender_procurement.json`](../../kentender/kentender/kentender/workspace/ken_tender_procurement/ken_tender_procurement.json); wired to PR script reports + DocTypes. |
 | UI-STORY-006 | Evaluation and Award workspace | EPIC-UI-002 | UI-STORY-004 | 6 | Not Started | **WS-005**. |
 | UI-STORY-007 | Contract and Delivery workspace | EPIC-UI-002 | UI-STORY-004 | 7 | Not Started | **WS-006**. |
-| UI-STORY-008 | Strategy and Planning workspace | EPIC-UI-002 | UI-STORY-004 | 8 | Done | **WS-002** — [`ken_tender_strategy.json`](../../kentender/kentender/kentender/workspace/ken_tender_strategy/ken_tender_strategy.json); KT UAT Strategy Manager + read visibility for procurement/budget personas. |
-| UI-STORY-009 | Budget Control workspace | EPIC-UI-002 | UI-STORY-004 | 9 | Done | **WS-003** — [`ken_tender_budget.json`](../../kentender/kentender/kentender/workspace/ken_tender_budget/ken_tender_budget.json); KT UAT Budget Officer + finance/read chain. |
+| UI-STORY-008 | Strategy and Planning workspace | EPIC-UI-002 | UI-STORY-004 | 8 | Done | **WS-002** — [`ken_tender_strategy.json`](../../kentender/kentender/kentender/workspace/ken_tender_strategy/ken_tender_strategy.json); Procurement Planner + read visibility for procurement/budget personas. |
+| UI-STORY-009 | Budget Control workspace | EPIC-UI-002 | UI-STORY-004 | 9 | Done | **WS-003** — [`ken_tender_budget.json`](../../kentender/kentender/kentender/workspace/ken_tender_budget/ken_tender_budget.json); Budget Controller + finance/read chain. |
 | UI-STORY-010 | Governance and Complaints workspace | EPIC-UI-002 | UI-STORY-004 | 10 | Not Started | **WS-007**. |
 | UI-STORY-011 | Stores workspace | EPIC-UI-002 | UI-STORY-004 | 11 | Not Started | **WS-008**. |
 | UI-STORY-012 | Assets workspace | EPIC-UI-002 | UI-STORY-004 | 12 | Not Started | **WS-009**. |
@@ -94,9 +94,9 @@ Full definitions: same file.
 | Story ID | Title (short) | Epic | Depends on (pack) | Step # | Status | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | UAT-STORY-001 | UAT fixture folder structure and conventions | EPIC-UAT-001 | Workspace foundation only | 1 | Done | Repo [`uat/`](../../uat/) + [`README`](../../uat/README.md). |
-| UAT-STORY-002 | Seeded internal test users | EPIC-UAT-001 | UAT-STORY-001 | 2 | In Progress | **Wave 2:** `seed_pr_uat_users_console` (6 Desk users). **MVP pack:** six internal fixtures via [`kentender.uat.mvp.commands.seed_uat_mvp`](../../kentender/kentender/uat/mvp/commands.py); full long-form catalogue still pending. |
-| UAT-STORY-003 | Seeded supplier test users | EPIC-UAT-001 | UAT-STORY-001 | 3 | In Progress | **MVP:** two Website Users in MVP seed (`supplier*.uat-mvp@ken-tender.test`). Legacy supplieradmin/supplieruser IDs still future. |
-| UAT-STORY-004 | Role and persona assignment loader | EPIC-UAT-001 | UAT-002, UAT-003; Frappe Roles for personas | 4 | In Progress | **KT UAT** roles + MVP extras (`KT UAT Evaluator`, `KT UAT Accounting Officer`, `KT UAT Supplier`); valid user↔role in MVP/bootstrap commands. |
+| UAT-STORY-002 | Seeded internal test users | EPIC-UAT-001 | UAT-STORY-001 | 2 | In Progress | **Minimal golden** desk users only (`minimal_golden_canonical.json`). **MVP:** same emails via [`kentender.uat.mvp.commands.seed_uat_mvp`](../../kentender/kentender/uat/mvp/commands.py) for `UAT-MVP*` data. |
+| UAT-STORY-003 | Seeded supplier test users | EPIC-UAT-001 | UAT-STORY-001 | 3 | In Progress | **Minimal golden** Website Users (`supplier1/2.test@ken-tender.test`). MVP seed reuses them. Legacy supplieradmin/supplieruser IDs still future. |
+| UAT-STORY-004 | Role and persona assignment loader | EPIC-UAT-001 | UAT-002, UAT-003; Frappe Roles for personas | 4 | In Progress | **KT UAT** roles + MVP extras (`Evaluator`, `Accounting Officer`, `Supplier`); valid user↔role in MVP/bootstrap commands. |
 | UAT-STORY-005 | BASE-REF loader | EPIC-UAT-002 | Core master data where applicable | 5 | Done | MVP: [`kentender.uat.mvp.base_ref`](../../kentender/kentender/uat/mvp/base_ref.py) + [`mvp_canonical.json`](../../uat/seed_packs/mvp_canonical.json). |
 | UAT-STORY-006 | BASE-STRAT loader | EPIC-UAT-002 | UAT-005; strategy module | 6 | Done | MVP: [`kentender.uat.mvp.base_strat`](../../kentender/kentender/uat/mvp/base_strat.py). |
 | UAT-STORY-007 | BASE-BUD loader | EPIC-UAT-002 | UAT-005, UAT-006; budget module | 7 | Done | MVP: [`kentender.uat.mvp.base_bud`](../../kentender/kentender/uat/mvp/base_bud.py); healthy + constrained lines. |

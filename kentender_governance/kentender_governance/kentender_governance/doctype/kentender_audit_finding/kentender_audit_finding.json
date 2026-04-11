@@ -1,0 +1,107 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "field:business_id",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"business_id",
+		"display_label",
+		"audit_query",
+		"finding_title",
+		"finding_detail",
+		"severity",
+		"status",
+		"identified_on",
+		"identified_by_user",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "audit_query",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Audit Query",
+			"options": "KenTender Audit Query",
+			"reqd": 1
+		},
+		{
+			"fieldname": "finding_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Finding Title",
+			"reqd": 1
+		},
+		{
+			"fieldname": "finding_detail",
+			"fieldtype": "Text Editor",
+			"label": "Finding Detail",
+			"reqd": 1
+		},
+		{
+			"default": "Medium",
+			"fieldname": "severity",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Severity",
+			"options": "Critical\nHigh\nMedium\nLow\nInfo",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nIssued\nClosed",
+			"reqd": 1
+		},
+		{
+			"fieldname": "identified_on",
+			"fieldtype": "Date",
+			"in_list_view": 1,
+			"label": "Identified On",
+			"reqd": 1
+		},
+		{
+			"fieldname": "identified_by_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Identified By",
+			"options": "User",
+			"reqd": 1
+		},
+		{"fieldname": "remarks", "fieldtype": "Text Editor", "label": "Remarks"}
+	],
+	"index_web_pages_for_search": 1,
+	"module": "Kentender Governance",
+	"name": "KenTender Audit Finding",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Procurement Officer", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Auditor", "share": 1, "write": 1}
+	],
+	"search_fields": "business_id,finding_title,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "finding_title",
+	"track_changes": 1
+}

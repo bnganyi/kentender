@@ -11,10 +11,12 @@ from frappe.tests.utils import FrappeTestCase
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 from kentender_budget.tests.test_budget_control_period import _bcp
 from kentender.services.audit_event_service import AUDIT_EVENT_DOCTYPE
+from kentender.workflow_engine.safeguards import workflow_mutation_context
 
 from kentender_procurement.services.award_approval_services import (
 	detect_award_deviation,
 	final_approve_award,
+	submit_award_for_approval,
 )
 from kentender_procurement.services.award_from_evaluation import create_award_decision_from_evaluation
 from kentender_procurement.services.award_notification_standstill_services import (
@@ -59,6 +61,73 @@ def _norm(s: str | None) -> str:
 	return (s or "").strip()
 
 
+def _cleanup_award_workflow_policies():
+	pol_code = f"{PREFIX}_AWPOL"
+	tpl_code = f"{PREFIX}_AWTPL"
+	for name in frappe.get_all(
+		"KenTender Approval Route Instance",
+		filters={"reference_doctype": AD, "reference_docname": ("like", f"{PREFIX}%")},
+		pluck="name",
+	):
+		try:
+			frappe.delete_doc("KenTender Approval Route Instance", name, force=True, ignore_permissions=True)
+		except Exception:
+			pass
+	frappe.db.delete(
+		"KenTender Approval Action",
+		{"reference_doctype": AD, "reference_docname": ("like", f"{PREFIX}%")},
+	)
+	if frappe.db.exists("KenTender Workflow Policy", {"policy_code": pol_code}):
+		frappe.delete_doc("KenTender Workflow Policy", pol_code, force=True, ignore_permissions=True)
+	if frappe.db.exists("KenTender Approval Route Template", {"template_code": tpl_code}):
+		frappe.delete_doc("KenTender Approval Route Template", tpl_code, force=True, ignore_permissions=True)
+
+
+def _ensure_award_route_policy(*, n_steps: int = 1) -> None:
+	pol_code = f"{PREFIX}_AWPOL"
+	tpl_code = f"{PREFIX}_AWTPL"
+	if frappe.db.exists("KenTender Workflow Policy", {"policy_code": pol_code}):
+		return
+	steps = []
+	for i in range(n_steps):
+		steps.append(
+			{
+				"doctype": "KenTender Approval Route Template Step",
+				"step_order": i + 1,
+				"step_name": f"A{i + 1}",
+				"actor_type": "Role",
+				"role_required": "System Manager",
+			}
+		)
+	tpl = frappe.get_doc(
+		{
+			"doctype": "KenTender Approval Route Template",
+			"template_code": tpl_code,
+			"template_name": f"Award route {n_steps}-step",
+			"object_type": AD,
+			"steps": steps,
+		}
+	)
+	tpl.insert()
+	pol = frappe.get_doc(
+		{
+			"doctype": "KenTender Workflow Policy",
+			"policy_code": pol_code,
+			"applies_to_doctype": AD,
+			"linked_template": tpl.name,
+			"active": 1,
+			"evaluation_order": 1,
+		}
+	)
+	pol.insert()
+
+
+def _submit_and_final_approve(ad_name: str) -> None:
+	_ensure_award_route_policy(n_steps=1)
+	submit_award_for_approval(ad_name)
+	final_approve_award(ad_name)
+
+
 _REPORT_MODULES = (
 	"kentender_procurement.kentender_procurement.report.awards_pending_approval.awards_pending_approval",
 	"kentender_procurement.kentender_procurement.report.awards_pending_final_approval.awards_pending_final_approval",
@@ -70,6 +139,7 @@ _REPORT_MODULES = (
 
 
 def _cleanup_awd08():
+	_cleanup_award_workflow_policies()
 	for es_name in frappe.get_all(ES, filters={"business_id": ("like", f"{PREFIX}%")}, pluck="name") or []:
 		frappe.db.delete(EA, {"evaluation_session": es_name})
 	for ad_name in frappe.get_all(AD, filters={"business_id": ("like", f"{PREFIX}%")}, pluck="name") or []:
@@ -267,8 +337,19 @@ class TestAwardServices080to085(FrappeTestCase):
 		ad.approved_amount = ad.recommended_amount
 		ad.save(ignore_permissions=True)
 		with self.assertRaises(frappe.ValidationError):
+			_ensure_award_route_policy(n_steps=1)
+			submit_award_for_approval(a["name"])
 			final_approve_award(a["name"])
 		frappe.db.delete(EA, {"evaluation_session": e.name})
+		_cleanup_award_workflow_policies()
+		ad_reset = frappe.get_doc(AD, a["name"])
+		with workflow_mutation_context():
+			ad_reset.workflow_state = "Draft"
+			ad_reset.approval_status = "Draft"
+			ad_reset.status = "In Progress"
+			ad_reset.save(ignore_permissions=True)
+		_ensure_award_route_policy(n_steps=1)
+		submit_award_for_approval(a["name"])
 		out = final_approve_award(a["name"])
 		self.assertEqual(out["status"], "Approved")
 
@@ -283,7 +364,10 @@ class TestAwardServices080to085(FrappeTestCase):
 		d = detect_award_deviation(a["name"])
 		self.assertTrue(d["material_deviation"])
 		with self.assertRaises(frappe.ValidationError):
+			_ensure_award_route_policy(n_steps=1)
+			submit_award_for_approval(a["name"])
 			final_approve_award(a["name"])
+		ad.reload()
 		dev = frappe.get_doc(
 			{
 				"doctype": ADR,
@@ -312,7 +396,7 @@ class TestAwardServices080to085(FrappeTestCase):
 		ad.approved_amount = ad.recommended_amount
 		ad.standstill_required = 1
 		ad.save(ignore_permissions=True)
-		final_approve_award(ad.name)
+		_submit_and_final_approve(ad.name)
 		r0 = get_award_contract_readiness(ad.name)
 		self.assertFalse(r0["ready"])
 		self.assertIn("standstill_missing", r0["blockers"])
@@ -340,7 +424,7 @@ class TestAwardServices080to085(FrappeTestCase):
 		ad.approved_supplier = ad.recommended_supplier
 		ad.approved_amount = ad.recommended_amount
 		ad.save(ignore_permissions=True)
-		final_approve_award(ad.name)
+		_submit_and_final_approve(ad.name)
 		ns = send_award_notifications(ad.name)
 		self.assertGreaterEqual(len(ns["notifications"]), 1)
 

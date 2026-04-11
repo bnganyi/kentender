@@ -89,7 +89,7 @@
 			"print": 1,
 			"read": 1,
 			"report": 1,
-			"role": "KT UAT Requisitioner",
+			"role": "Requisitioner",
 			"share": 0,
 			"write": 1
 		},
@@ -101,7 +101,7 @@
 			"print": 1,
 			"read": 1,
 			"report": 1,
-			"role": "KT UAT HOD",
+			"role": "Head of Department",
 			"share": 0,
 			"write": 1
 		},
@@ -113,7 +113,7 @@
 			"print": 1,
 			"read": 1,
 			"report": 1,
-			"role": "KT UAT Finance Approver",
+			"role": "Finance Officer",
 			"share": 0,
 			"write": 1
 		},
@@ -125,7 +125,7 @@
 			"print": 1,
 			"read": 1,
 			"report": 1,
-			"role": "KT UAT Procurement Officer",
+			"role": "Procurement Officer",
 			"share": 1,
 			"write": 1
 		},
@@ -137,7 +137,7 @@
 			"print": 1,
 			"read": 1,
 			"report": 1,
-			"role": "KT UAT Auditor",
+			"role": "Auditor",
 			"share": 0,
 			"write": 0
 		}

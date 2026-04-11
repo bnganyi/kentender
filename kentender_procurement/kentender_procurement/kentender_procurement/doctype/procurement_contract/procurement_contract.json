@@ -79,7 +79,11 @@
 		"signed_document_hash"
 	],
 	"fields": [
-		{"fieldname": "section_identity", "fieldtype": "Section Break", "label": "Identity"},
+		{
+			"fieldname": "section_identity",
+			"fieldtype": "Section Break",
+			"label": "Identity"
+		},
 		{
 			"fieldname": "business_id",
 			"fieldtype": "Data",
@@ -95,8 +99,18 @@
 			"label": "Display Label",
 			"read_only": 1
 		},
-		{"fieldname": "contract_title", "fieldtype": "Data", "in_list_view": 1, "label": "Contract Title", "reqd": 1},
-		{"fieldname": "section_workflow", "fieldtype": "Section Break", "label": "Workflow"},
+		{
+			"fieldname": "contract_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Contract Title",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_workflow",
+			"fieldtype": "Section Break",
+			"label": "Workflow"
+		},
 		{
 			"default": "Draft",
 			"fieldname": "status",
@@ -122,7 +136,11 @@
 			"options": "Draft\nPending\nApproved\nRejected",
 			"reqd": 1
 		},
-		{"fieldname": "section_award", "fieldtype": "Section Break", "label": "Award context"},
+		{
+			"fieldname": "section_award",
+			"fieldtype": "Section Break",
+			"label": "Award context"
+		},
 		{
 			"fieldname": "award_decision",
 			"fieldtype": "Link",
@@ -131,7 +149,14 @@
 			"options": "Award Decision",
 			"reqd": 1
 		},
-		{"fieldname": "tender", "fieldtype": "Link", "in_list_view": 1, "label": "Tender", "options": "Tender", "reqd": 1},
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Tender",
+			"options": "Tender",
+			"reqd": 1
+		},
 		{
 			"fieldname": "procurement_plan_item",
 			"fieldtype": "Link",
@@ -152,8 +177,18 @@
 			"options": "Bid Submission",
 			"reqd": 1
 		},
-		{"fieldname": "supplier", "fieldtype": "Data", "in_list_view": 1, "label": "Supplier", "reqd": 1},
-		{"fieldname": "section_org", "fieldtype": "Section Break", "label": "Organisation"},
+		{
+			"fieldname": "supplier",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Supplier",
+			"reqd": 1
+		},
+		{
+			"fieldname": "section_org",
+			"fieldtype": "Section Break",
+			"label": "Organisation"
+		},
 		{
 			"fieldname": "procuring_entity",
 			"fieldtype": "Link",
@@ -173,24 +208,82 @@
 			"label": "Responsible Department",
 			"options": "Procuring Department"
 		},
-		{"fieldname": "contract_manager_user", "fieldtype": "Link", "label": "Contract Manager User", "options": "User"},
-		{"fieldname": "procurement_officer_user", "fieldtype": "Link", "label": "Procurement Officer User", "options": "User"},
-		{"fieldname": "section_strategy", "fieldtype": "Section Break", "label": "Strategy linkage"},
+		{
+			"fieldname": "contract_manager_user",
+			"fieldtype": "Link",
+			"label": "Contract Manager User",
+			"options": "User"
+		},
+		{
+			"fieldname": "procurement_officer_user",
+			"fieldtype": "Link",
+			"label": "Procurement Officer User",
+			"options": "User"
+		},
+		{
+			"fieldname": "section_strategy",
+			"fieldtype": "Section Break",
+			"label": "Strategy linkage"
+		},
 		{
 			"fieldname": "entity_strategic_plan",
 			"fieldtype": "Link",
 			"label": "Entity Strategic Plan",
 			"options": "Entity Strategic Plan"
 		},
-		{"fieldname": "program", "fieldtype": "Link", "label": "Program", "options": "Strategic Program"},
-		{"fieldname": "sub_program", "fieldtype": "Link", "label": "Sub Program", "options": "Strategic Sub Program"},
-		{"fieldname": "output_indicator", "fieldtype": "Link", "label": "Output Indicator", "options": "Output Indicator"},
-		{"fieldname": "performance_target", "fieldtype": "Link", "label": "Performance Target", "options": "Performance Target"},
-		{"fieldname": "national_objective", "fieldtype": "Link", "label": "National Objective", "options": "National Objective"},
-		{"fieldname": "section_budget", "fieldtype": "Section Break", "label": "Budget"},
-		{"fieldname": "budget", "fieldtype": "Link", "label": "Budget", "options": "Budget"},
-		{"fieldname": "budget_line", "fieldtype": "Link", "label": "Budget Line", "options": "Budget Line"},
-		{"fieldname": "funding_source", "fieldtype": "Link", "label": "Funding Source", "options": "Funding Source"},
+		{
+			"fieldname": "program",
+			"fieldtype": "Link",
+			"label": "Program",
+			"options": "Strategic Program"
+		},
+		{
+			"fieldname": "sub_program",
+			"fieldtype": "Link",
+			"label": "Sub Program",
+			"options": "Strategic Sub Program"
+		},
+		{
+			"fieldname": "output_indicator",
+			"fieldtype": "Link",
+			"label": "Output Indicator",
+			"options": "Output Indicator"
+		},
+		{
+			"fieldname": "performance_target",
+			"fieldtype": "Link",
+			"label": "Performance Target",
+			"options": "Performance Target"
+		},
+		{
+			"fieldname": "national_objective",
+			"fieldtype": "Link",
+			"label": "National Objective",
+			"options": "National Objective"
+		},
+		{
+			"fieldname": "section_budget",
+			"fieldtype": "Section Break",
+			"label": "Budget"
+		},
+		{
+			"fieldname": "budget",
+			"fieldtype": "Link",
+			"label": "Budget",
+			"options": "Budget"
+		},
+		{
+			"fieldname": "budget_line",
+			"fieldtype": "Link",
+			"label": "Budget Line",
+			"options": "Budget Line"
+		},
+		{
+			"fieldname": "funding_source",
+			"fieldtype": "Link",
+			"label": "Funding Source",
+			"options": "Funding Source"
+		},
 		{
 			"default": "Uncommitted",
 			"fieldname": "commitment_status",
@@ -198,8 +291,16 @@
 			"label": "Commitment Status",
 			"options": "Uncommitted\nReserved\nCommitted\nReleased"
 		},
-		{"fieldname": "related_budget_commitment_ref", "fieldtype": "Data", "label": "Related Budget Commitment Ref"},
-		{"fieldname": "section_commercial", "fieldtype": "Section Break", "label": "Commercial"},
+		{
+			"fieldname": "related_budget_commitment_ref",
+			"fieldtype": "Data",
+			"label": "Related Budget Commitment Ref"
+		},
+		{
+			"fieldname": "section_commercial",
+			"fieldtype": "Section Break",
+			"label": "Commercial"
+		},
 		{
 			"default": "Goods",
 			"fieldname": "contract_type",
@@ -208,46 +309,193 @@
 			"options": "Goods\nServices\nWorks\nConsultancy\nFramework\nOther",
 			"reqd": 1
 		},
-		{"fieldname": "contract_value", "fieldtype": "Currency", "in_list_view": 1, "label": "Contract Value", "reqd": 1},
-		{"fieldname": "currency", "fieldtype": "Link", "label": "Currency", "options": "Currency", "reqd": 1},
-		{"default": "0", "fieldname": "tax_inclusive_flag", "fieldtype": "Check", "label": "Tax Inclusive Flag"},
-		{"default": "0", "fieldname": "retention_applicable", "fieldtype": "Check", "label": "Retention Applicable"},
-		{"fieldname": "retention_terms", "fieldtype": "Small Text", "label": "Retention Terms"},
-		{"default": "0", "fieldname": "performance_security_required", "fieldtype": "Check", "label": "Performance Security Required"},
-		{"fieldname": "performance_security_details", "fieldtype": "Small Text", "label": "Performance Security Details"},
-		{"fieldname": "payment_terms_summary", "fieldtype": "Small Text", "label": "Payment Terms Summary"},
-		{"fieldname": "section_dates", "fieldtype": "Section Break", "label": "Dates"},
-		{"fieldname": "contract_start_date", "fieldtype": "Date", "label": "Contract Start Date"},
-		{"fieldname": "contract_end_date", "fieldtype": "Date", "label": "Contract End Date"},
-		{"fieldname": "signing_deadline", "fieldtype": "Date", "label": "Signing Deadline"},
-		{"fieldname": "actual_signed_date", "fieldtype": "Datetime", "label": "Actual Signed Date"},
-		{"fieldname": "actual_activation_date", "fieldtype": "Datetime", "label": "Actual Activation Date"},
-		{"fieldname": "planned_completion_date", "fieldtype": "Date", "label": "Planned Completion Date"},
-		{"fieldname": "section_scope", "fieldtype": "Section Break", "label": "Scope"},
-		{"fieldname": "scope_summary", "fieldtype": "Text Editor", "label": "Scope Summary"},
-		{"fieldname": "special_conditions", "fieldtype": "Text Editor", "label": "Special Conditions"},
-		{"fieldname": "section_variation_meta", "fieldtype": "Section Break", "label": "Variations"},
-		{"default": "0", "fieldname": "variation_count", "fieldtype": "Int", "label": "Variation Count"},
+		{
+			"fieldname": "contract_value",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "Contract Value",
+			"reqd": 1
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency",
+			"reqd": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "tax_inclusive_flag",
+			"fieldtype": "Check",
+			"label": "Tax Inclusive Flag"
+		},
+		{
+			"default": "0",
+			"fieldname": "retention_applicable",
+			"fieldtype": "Check",
+			"label": "Retention Applicable"
+		},
+		{
+			"fieldname": "retention_terms",
+			"fieldtype": "Small Text",
+			"label": "Retention Terms"
+		},
+		{
+			"default": "0",
+			"fieldname": "performance_security_required",
+			"fieldtype": "Check",
+			"label": "Performance Security Required"
+		},
+		{
+			"fieldname": "performance_security_details",
+			"fieldtype": "Small Text",
+			"label": "Performance Security Details"
+		},
+		{
+			"fieldname": "payment_terms_summary",
+			"fieldtype": "Small Text",
+			"label": "Payment Terms Summary"
+		},
+		{
+			"fieldname": "section_dates",
+			"fieldtype": "Section Break",
+			"label": "Dates"
+		},
+		{
+			"fieldname": "contract_start_date",
+			"fieldtype": "Date",
+			"label": "Contract Start Date"
+		},
+		{
+			"fieldname": "contract_end_date",
+			"fieldtype": "Date",
+			"label": "Contract End Date"
+		},
+		{
+			"fieldname": "signing_deadline",
+			"fieldtype": "Date",
+			"label": "Signing Deadline"
+		},
+		{
+			"fieldname": "actual_signed_date",
+			"fieldtype": "Datetime",
+			"label": "Actual Signed Date"
+		},
+		{
+			"fieldname": "actual_activation_date",
+			"fieldtype": "Datetime",
+			"label": "Actual Activation Date"
+		},
+		{
+			"fieldname": "planned_completion_date",
+			"fieldtype": "Date",
+			"label": "Planned Completion Date"
+		},
+		{
+			"fieldname": "section_scope",
+			"fieldtype": "Section Break",
+			"label": "Scope"
+		},
+		{
+			"fieldname": "scope_summary",
+			"fieldtype": "Text Editor",
+			"label": "Scope Summary"
+		},
+		{
+			"fieldname": "special_conditions",
+			"fieldtype": "Text Editor",
+			"label": "Special Conditions"
+		},
+		{
+			"fieldname": "section_variation_meta",
+			"fieldtype": "Section Break",
+			"label": "Variations"
+		},
+		{
+			"default": "0",
+			"fieldname": "variation_count",
+			"fieldtype": "Int",
+			"label": "Variation Count"
+		},
 		{
 			"description": "Name of the latest **Procurement Contract Variation** (Data to avoid import order issues).",
 			"fieldname": "latest_variation_ref",
 			"fieldtype": "Data",
 			"label": "Latest Variation Ref"
 		},
-		{"default": "0", "fieldname": "completion_percent", "fieldtype": "Percent", "label": "Completion Percent"},
-		{"fieldname": "section_lock", "fieldtype": "Section Break", "label": "Lock / closure"},
-		{"default": "0", "fieldname": "is_locked", "fieldtype": "Check", "label": "Is Locked"},
-		{"fieldname": "lock_reason", "fieldtype": "Small Text", "label": "Lock Reason"},
-		{"fieldname": "termination_reason", "fieldtype": "Text Editor", "label": "Termination Reason"},
-		{"fieldname": "closure_notes", "fieldtype": "Text Editor", "label": "Closure Notes"},
-		{"fieldname": "section_other", "fieldtype": "Section Break", "label": "Other"},
-		{"fieldname": "exception_record", "fieldtype": "Link", "label": "Exception Record", "options": "Exception Record"},
-		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"},
-		{"fieldname": "section_documents", "fieldtype": "Section Break", "label": "Documents"},
-		{"fieldname": "draft_contract_document", "fieldtype": "Attach", "label": "Draft Contract Document"},
-		{"fieldname": "signed_contract_document", "fieldtype": "Attach", "label": "Signed Contract Document"},
-		{"fieldname": "generated_contract_version_hash", "fieldtype": "Data", "label": "Generated Contract Version Hash"},
-		{"fieldname": "signed_document_hash", "fieldtype": "Data", "label": "Signed Document Hash"}
+		{
+			"default": "0",
+			"fieldname": "completion_percent",
+			"fieldtype": "Percent",
+			"label": "Completion Percent"
+		},
+		{
+			"fieldname": "section_lock",
+			"fieldtype": "Section Break",
+			"label": "Lock / closure"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_locked",
+			"fieldtype": "Check",
+			"label": "Is Locked"
+		},
+		{
+			"fieldname": "lock_reason",
+			"fieldtype": "Small Text",
+			"label": "Lock Reason"
+		},
+		{
+			"fieldname": "termination_reason",
+			"fieldtype": "Text Editor",
+			"label": "Termination Reason"
+		},
+		{
+			"fieldname": "closure_notes",
+			"fieldtype": "Text Editor",
+			"label": "Closure Notes"
+		},
+		{
+			"fieldname": "section_other",
+			"fieldtype": "Section Break",
+			"label": "Other"
+		},
+		{
+			"fieldname": "exception_record",
+			"fieldtype": "Link",
+			"label": "Exception Record",
+			"options": "Exception Record"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "section_documents",
+			"fieldtype": "Section Break",
+			"label": "Documents"
+		},
+		{
+			"fieldname": "draft_contract_document",
+			"fieldtype": "Attach",
+			"label": "Draft Contract Document"
+		},
+		{
+			"fieldname": "signed_contract_document",
+			"fieldtype": "Attach",
+			"label": "Signed Contract Document"
+		},
+		{
+			"fieldname": "generated_contract_version_hash",
+			"fieldtype": "Data",
+			"label": "Generated Contract Version Hash"
+		},
+		{
+			"fieldname": "signed_document_hash",
+			"fieldtype": "Data",
+			"label": "Signed Document Hash"
+		}
 	],
 	"grid_page_length": 50,
 	"index_web_pages_for_search": 1,
@@ -271,28 +519,74 @@
 			"write": 1
 		},
 		{
+			"role": "Contract Manager",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 1,
 			"create": 1,
 			"delete": 0,
-			"email": 1,
-			"export": 1,
-			"print": 1,
-			"read": 1,
-			"report": 1,
-			"role": "KT UAT Procurement Officer",
-			"share": 1,
-			"write": 1
+			"submit": 1,
+			"cancel": 0,
+			"report": 0
 		},
 		{
-			"create": 0,
-			"delete": 0,
+			"role": "Authorized Signatory",
 			"email": 1,
 			"export": 1,
 			"print": 1,
-			"read": 1,
-			"report": 1,
-			"role": "KT UAT Auditor",
 			"share": 0,
-			"write": 0
+			"read": 1,
+			"write": 1,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 0
+		},
+		{
+			"role": "Accounting Officer",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 1,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 0
+		},
+		{
+			"role": "Procurement Officer",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 0,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 0
+		},
+		{
+			"role": "Auditor",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 0,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 1
 		}
 	],
 	"row_format": "Dynamic",

@@ -5,6 +5,7 @@ import frappe
 from frappe.tests.utils import FrappeTestCase
 
 from kentender.services.separation_of_duty_service import RULE_DOCTYPE
+from kentender.uat.kt_test_local_users import delete_kt_test_local_user
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 from kentender_procurement.services.requisition_workflow_actions import (
 	RAR_DOCTYPE,
@@ -153,6 +154,7 @@ class TestRequisitionWorkflowActions(FrappeTestCase):
 			frappe.delete_doc(PR, name, force=True, ignore_permissions=True)
 		frappe.db.delete(RULE_DOCTYPE, {"rule_code": ("like", "_KT_PR04_%")})
 		frappe.db.delete("Procuring Entity", {"entity_code": "_KT_PR04_WF_PE"})
+		delete_kt_test_local_user("_kt_pr04_approver@test.local")
 
 	def tearDown(self):
 		run_test_db_cleanup(self._teardown_pr04_wf)

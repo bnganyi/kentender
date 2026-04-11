@@ -1,9 +1,14 @@
 {
 	"version": 1,
-	"description": "Minimal Golden Scenario — Procurement of 2 Ultrasound Machines (docs/testing/Minimal Golden Testing Scenario.md).",
+	"description": "Minimal Golden Scenario — Procurement of 2 Ultrasound Machines (docs/testing/Minimal Golden Testing Scenario.md). Users: one System User per matrix role (plus System Manager test account) and two Website Users for Supplier; see verify_matrix_alignment.",
 	"business_id_prefix": "MG",
 	"fiscal_year": "2026-2027",
 	"currency_code": "KES",
+	"template_codes": {
+		"procurement": "ONT_STANDARD",
+		"evaluation": "QCBS_SIMPLE",
+		"acceptance": "GOODS_SIMPLE"
+	},
 	"entity": {
 		"entity_code": "MOH",
 		"entity_name": "Ministry of Health",
@@ -107,88 +112,284 @@
 		"default_password": "k3nTender!golden",
 		"internal": [
 			{
+				"key": "strategyadmin",
+				"email": "strategyadmin.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Strategy Admin",
+				"role": "Strategy Administrator",
+				"default_workspace": "KenTender Strategy"
+			},
+			{
+				"key": "strategyreviewer",
+				"email": "strategyreviewer.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Strategy Reviewer",
+				"role": "Strategy Reviewer",
+				"default_workspace": "KenTender Strategy"
+			},
+			{
 				"key": "requisitioner",
 				"email": "requisitioner.test@ken-tender.test",
 				"first_name": "Golden",
 				"last_name": "Requisitioner",
-				"role": "KT UAT Requisitioner"
+				"role": "Requisitioner",
+				"default_workspace": "KenTender My Work"
+			},
+			{
+				"key": "deptreviewer",
+				"email": "deptreviewer.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Dept Reviewer",
+				"role": "Department Reviewer",
+				"default_workspace": "KenTender My Work"
 			},
 			{
 				"key": "hod",
 				"email": "hod.test@ken-tender.test",
 				"first_name": "Golden",
 				"last_name": "HOD",
-				"role": "KT UAT HOD"
+				"role": "Head of Department",
+				"default_workspace": "KenTender Approvals"
+			},
+			{
+				"key": "procurementplanner",
+				"email": "procurementplanner.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Proc Planner",
+				"role": "Procurement Planner",
+				"default_workspace": "KenTender Strategy"
+			},
+			{
+				"key": "planningauthority",
+				"email": "planningauthority.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Planning Auth",
+				"role": "Planning Authority",
+				"default_workspace": "KenTender Strategy"
 			},
 			{
 				"key": "finance",
 				"email": "finance.test@ken-tender.test",
 				"first_name": "Golden",
 				"last_name": "Finance",
-				"role": "KT UAT Finance Approver"
+				"role": "Finance Officer",
+				"default_workspace": "KenTender Budget"
 			},
 			{
-				"key": "procurement",
-				"email": "procurement.test@ken-tender.test",
+				"key": "budgetcontroller",
+				"email": "budgetcontroller.test@ken-tender.test",
 				"first_name": "Golden",
-				"last_name": "Procurement",
-				"role": "KT UAT Procurement Officer"
-			},
-			{
-				"key": "openingchair",
-				"email": "openingchair.test@ken-tender.test",
-				"first_name": "Golden",
-				"last_name": "Opening Chair",
-				"role": "KT UAT Opening Chair"
-			},
-			{
-				"key": "evaluator",
-				"email": "evaluator.test@ken-tender.test",
-				"first_name": "Golden",
-				"last_name": "Evaluator",
-				"role": "KT UAT Evaluator"
-			},
-			{
-				"key": "evaluationchair",
-				"email": "evaluationchair.test@ken-tender.test",
-				"first_name": "Golden",
-				"last_name": "Evaluation Chair",
-				"role": "KT UAT Evaluation Chair"
+				"last_name": "Budget Ctrl",
+				"role": "Budget Controller",
+				"default_workspace": "KenTender Budget"
 			},
 			{
 				"key": "accounting",
 				"email": "accounting.test@ken-tender.test",
 				"first_name": "Golden",
 				"last_name": "Accounting",
-				"role": "KT UAT Accounting Officer"
+				"role": "Accounting Officer",
+				"default_workspace": "KenTender Budget"
+			},
+			{
+				"key": "procurement",
+				"email": "procurement.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Procurement",
+				"role": "Procurement Officer",
+				"default_workspace": "KenTender Procurement"
+			},
+			{
+				"key": "tendersecretary",
+				"email": "tendersecretary.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Tender Sec",
+				"role": "Tender Committee Secretary",
+				"default_workspace": "KenTender Procurement"
+			},
+			{
+				"key": "tenderchair",
+				"email": "tenderchair.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Tender Chair",
+				"role": "Tender Committee Chair",
+				"default_workspace": "KenTender Procurement"
+			},
+			{
+				"key": "tendermember",
+				"email": "tendermember.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Tender Member",
+				"role": "Tender Committee Member",
+				"default_workspace": "KenTender Procurement"
+			},
+			{
+				"key": "suppliercompliance",
+				"email": "suppliercompliance.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Supp Compl",
+				"role": "Supplier Compliance Reviewer"
 			},
 			{
 				"key": "contractmanager",
 				"email": "contractmanager.test@ken-tender.test",
 				"first_name": "Golden",
-				"last_name": "Contract Manager",
-				"role": "KT UAT Contract Manager"
+				"last_name": "Contract Mgr",
+				"role": "Contract Manager"
+			},
+			{
+				"key": "authorizedsignatory",
+				"email": "authorizedsignatory.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Auth Signatory",
+				"role": "Authorized Signatory"
 			},
 			{
 				"key": "inspector",
 				"email": "inspector.test@ken-tender.test",
 				"first_name": "Golden",
 				"last_name": "Inspector",
-				"role": "KT UAT Inspection Officer"
+				"role": "Inspector"
 			},
 			{
 				"key": "storekeeper",
 				"email": "storekeeper.test@ken-tender.test",
 				"first_name": "Golden",
 				"last_name": "Storekeeper",
-				"role": "KT UAT Storekeeper"
+				"role": "Storekeeper"
+			},
+			{
+				"key": "storessupervisor",
+				"email": "storessupervisor.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Stores Sup",
+				"role": "Stores Supervisor"
 			},
 			{
 				"key": "assetofficer",
 				"email": "assetofficer.test@ken-tender.test",
 				"first_name": "Golden",
 				"last_name": "Asset Officer",
-				"role": "KT UAT Asset Officer"
+				"role": "Asset Officer"
+			},
+			{
+				"key": "assetcustodian",
+				"email": "assetcustodian.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Asset Custodian",
+				"role": "Asset Custodian"
+			},
+			{
+				"key": "auditor",
+				"email": "auditor.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Auditor",
+				"role": "Auditor"
+			},
+			{
+				"key": "complaintreviewer",
+				"email": "complaintreviewer.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Complaint",
+				"role": "Complaint Reviewer"
+			},
+			{
+				"key": "openingchair",
+				"email": "openingchair.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Opening Chair",
+				"role": "Opening Committee Chair"
+			},
+			{
+				"key": "openingmember",
+				"email": "openingmember.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Opening Mbr",
+				"role": "Opening Committee Member"
+			},
+			{
+				"key": "openingsecretary",
+				"email": "openingsecretary.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Opening Sec",
+				"role": "Opening Committee Secretary"
+			},
+			{
+				"key": "evaluator",
+				"email": "evaluator.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Evaluator",
+				"role": "Evaluator"
+			},
+			{
+				"key": "evaluationchair",
+				"email": "evaluationchair.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Eval Chair",
+				"role": "Evaluation Committee Chair"
+			},
+			{
+				"key": "evaluationsecretary",
+				"email": "evaluationsecretary.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Eval Sec",
+				"role": "Evaluation Committee Secretary"
+			},
+			{
+				"key": "technicalexpert",
+				"email": "technicalexpert.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Tech Expert",
+				"role": "Technical Expert"
+			},
+			{
+				"key": "acceptancechair",
+				"email": "acceptancechair.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Accept Chair",
+				"role": "Acceptance Committee Chair"
+			},
+			{
+				"key": "acceptancemember",
+				"email": "acceptancemember.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Accept Mbr",
+				"role": "Acceptance Committee Member"
+			},
+			{
+				"key": "systemmanager",
+				"email": "systemmanager.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Sys Admin",
+				"role": "System Manager"
+			},
+			{
+				"key": "templateadmin",
+				"email": "templateadmin.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Tpl Admin",
+				"role": "Template Administrator"
+			},
+			{
+				"key": "workflowadmin",
+				"email": "workflowadmin.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "WF Admin",
+				"role": "Workflow Administrator"
+			},
+			{
+				"key": "permissionadmin",
+				"email": "permissionadmin.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Perm Admin",
+				"role": "Permission Administrator"
+			},
+			{
+				"key": "masterdataadmin",
+				"email": "masterdataadmin.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "MDM Admin",
+				"role": "Master Data Administrator"
 			}
 		],
 		"suppliers": [
@@ -197,7 +398,7 @@
 				"email": "supplier1.test@ken-tender.test",
 				"first_name": "MedEquip",
 				"last_name": "Africa Ltd",
-				"role": "KT UAT Supplier",
+				"role": "Supplier",
 				"supplier_display_name": "MedEquip Africa Ltd"
 			},
 			{
@@ -205,7 +406,7 @@
 				"email": "supplier2.test@ken-tender.test",
 				"first_name": "Afya",
 				"last_name": "Diagnostics Ltd",
-				"role": "KT UAT Supplier",
+				"role": "Supplier",
 				"supplier_display_name": "Afya Diagnostics Ltd"
 			}
 		]
@@ -261,7 +462,7 @@
 		"receipt_hash": "sha256:minimal_golden_receipt_v1"
 	},
 	"future_business_ids": {
-		"note": "bid_1 and bid_2 are Bid Submission business_id values (seeded). Remaining keys reserved for later waves; verify skips when DocType missing or not KenTender-owned.",
+		"note": "bid_1/bid_2 seeded as Bid Submissions. opening_session through contract are seeded by post_tender_scenario (E2E). standstill through asset_* remain optional / later waves.",
 		"bid_1": "BID-TD-0001-01",
 		"bid_2": "BID-TD-0001-02",
 		"opening_session": "BOS-MOH-0001",

@@ -11,6 +11,7 @@ from frappe.utils import getdate, now_datetime, nowdate
 
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 from kentender_budget.tests.test_budget_control_period import _bcp
+from kentender.workflow_engine.safeguards import workflow_mutation_context
 
 from kentender_procurement.services.inspection_queue_queries import (
 	get_inspections_awaiting_acceptance,
@@ -331,7 +332,7 @@ class TestInspectionQueues116(FrappeTestCase):
 				"inspection_result": "Pass",
 			}
 		).insert(ignore_permissions=True)
-		frappe.get_doc(
+		ar = frappe.get_doc(
 			{
 				"doctype": AR,
 				"business_id": f"{PREFIX}_ARC",
@@ -344,7 +345,9 @@ class TestInspectionQueues116(FrappeTestCase):
 				"payment_eligibility_signal_status": "Conditional",
 				"next_action_type": "Variation",
 			}
-		).insert(ignore_permissions=True)
+		)
+		with workflow_mutation_context():
+			ar.insert(ignore_permissions=True)
 		rows = get_partial_or_rejected_acceptance_rows(procuring_entity=self.entity.name)
 		self.assertEqual(len(rows), 1)
 		self.assertEqual(rows[0]["acceptance_decision"], "Conditional")

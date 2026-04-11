@@ -6,6 +6,7 @@
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
+from kentender.uat.kt_test_local_users import delete_kt_test_local_user
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 from kentender_budget.tests.test_budget_control_period import _bcp
 from kentender.services.audit_event_service import AUDIT_EVENT_DOCTYPE
@@ -84,8 +85,7 @@ def _cleanup_es069():
 		frappe.delete_doc(EX, "_KT_ES069_EX", force=True, ignore_permissions=True)
 	frappe.db.delete(BCP, {"name": ("like", "_KT_ES069_%")})
 	frappe.db.delete("Procuring Entity", {"entity_code": "_KT_ES069_PE"})
-	if frappe.db.exists("User", "_kt_es069_b@test.local"):
-		frappe.delete_doc("User", "_kt_es069_b@test.local", force=True, ignore_permissions=True)
+	delete_kt_test_local_user("_kt_es069_b@test.local")
 
 
 class TestEvaluationScoring069(FrappeTestCase):

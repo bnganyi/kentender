@@ -11,6 +11,7 @@ from kentender.services.entity_scope_service import (
 	user_has_entity_access,
 	user_may_access_scoped_record,
 )
+from kentender.uat.legacy_kt_roles import delete_obsolete_kt_role
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 
 _ROLE = "KT C008 Scope Test"
@@ -54,6 +55,7 @@ def _cleanup_c008_data():
 	frappe.db.delete("Exception Record", {"name": ("like", "_KT_C008_EX%")})
 	frappe.db.delete("Procuring Department", {"department_code": ("like", "_KT_C008_DP%")})
 	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_C008_%")})
+	delete_obsolete_kt_role(_ROLE)
 
 
 class TestEntityScopeService(FrappeTestCase):

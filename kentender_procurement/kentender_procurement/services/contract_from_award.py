@@ -12,6 +12,7 @@ from frappe import _
 from frappe.utils import flt, now_datetime
 
 from kentender.services.audit_event_service import log_audit_event
+from kentender.workflow_engine.safeguards import workflow_mutation_context
 
 from kentender_procurement.services.contract_readiness_gate import get_award_contract_readiness
 
@@ -98,7 +99,8 @@ def create_contract_from_award(
 	doc.commitment_status = "Uncommitted"
 	doc.variation_count = 0
 
-	doc.insert(ignore_permissions=True)
+	with workflow_mutation_context():
+		doc.insert(ignore_permissions=True)
 
 	ts = now_datetime()
 	frappe.get_doc(

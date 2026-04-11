@@ -8,12 +8,16 @@ from frappe.tests.utils import FrappeTestCase
 
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 from kentender.workflow_engine.actions import emit_post_transition, log_global_approval_action
+from kentender_budget.tests.test_budget_control_period import _bcp
 from kentender.workflow_engine.execution import apply_step_decision, assert_actor_allowed_on_step, get_current_step_row
 from kentender.workflow_engine.hooks import clear_side_effect_hooks_for_tests, register_side_effect_hook
 from kentender.workflow_engine.routes import get_or_create_active_route, resolve_route_for_object
 from kentender.workflow_engine.safeguards import workflow_mutation_context
 
 PR = "Purchase Requisition"
+TENDER = "Tender"
+PP = "Procurement Plan"
+BCP = "Budget Control Period"
 WS_PENDING_HOD = "Pending HOD Approval"
 
 
@@ -45,6 +49,17 @@ class TestWorkflowEngine(FrappeTestCase):
 					frappe.delete_doc(PR, name, force=True, ignore_permissions=True)
 				except Exception:
 					pass
+			for name in frappe.get_all(TENDER, filters={"name": ("like", "_KT_WF_T_%")}, pluck="name"):
+				try:
+					frappe.delete_doc(TENDER, name, force=True, ignore_permissions=True)
+				except Exception:
+					pass
+			for name in frappe.get_all(PP, filters={"name": ("like", "_KT_WF_P_%")}, pluck="name"):
+				try:
+					frappe.delete_doc(PP, name, force=True, ignore_permissions=True)
+				except Exception:
+					pass
+			frappe.db.delete(BCP, {"name": ("like", "_KT_WF_B_%")})
 			for name in frappe.get_all(
 				"KenTender Workflow Policy",
 				filters={"policy_code": ("like", "_KT_WF_%")},
@@ -102,6 +117,55 @@ class TestWorkflowEngine(FrappeTestCase):
 		doc.insert()
 		return doc
 
+	def _minimal_wf_tender(self):
+		cur = _ensure_test_currency()
+		ent = _make_entity(f"_KT_WF_E_{self.suffix}").insert()
+		doc = frappe.get_doc(
+			{
+				"doctype": TENDER,
+				"name": f"_KT_WF_T_{self.suffix}",
+				"business_id": f"WF-T-{self.suffix}",
+				"title": "WF tender safeguard",
+				"tender_number": f"WF-TN-{self.suffix}",
+				"workflow_state": "Draft",
+				"status": "Draft",
+				"approval_status": "Draft",
+				"origin_type": "Manual",
+				"procuring_entity": ent.name,
+				"currency": cur,
+				"supplier_eligibility_rule_mode": "Open",
+				"procurement_method": "Open National Tender",
+				"publication_datetime": "2026-05-01 09:00:00",
+				"clarification_deadline": "2026-05-10 17:00:00",
+				"submission_deadline": "2026-06-01 17:00:00",
+				"opening_datetime": "2026-06-02 10:00:00",
+			}
+		)
+		doc.insert()
+		return doc
+
+	def _minimal_wf_procurement_plan(self):
+		cur = _ensure_test_currency()
+		ent = _make_entity(f"_KT_WF_E_{self.suffix}").insert()
+		period = _bcp(f"_KT_WF_B_{self.suffix}", ent.name).insert()
+		doc = frappe.get_doc(
+			{
+				"doctype": PP,
+				"name": f"_KT_WF_P_{self.suffix}",
+				"plan_title": "WF plan safeguard",
+				"workflow_state": "Draft",
+				"status": "Draft",
+				"approval_status": "Draft",
+				"procuring_entity": ent.name,
+				"fiscal_year": "2026-2027",
+				"budget_control_period": period.name,
+				"currency": cur,
+				"version_no": 1,
+			}
+		)
+		doc.insert()
+		return doc
+
 	def _tpl_and_pol(self, *, threshold_min=None, threshold_max=None, evaluation_order=100):
 		tpl = frappe.get_doc(
 			{
@@ -154,6 +218,39 @@ class TestWorkflowEngine(FrappeTestCase):
 		self.assertEqual(doc.workflow_state, WS_PENDING_HOD)
 		self.assertEqual(doc.status, "Pending")
 		self.assertEqual(doc.approval_status, WS_PENDING_HOD)
+
+	def test_tender_workflow_state_blocked_without_context(self):
+		doc = self._minimal_wf_tender()
+		doc.reload()
+		doc.workflow_state = "Submitted"
+		with self.assertRaises(frappe.ValidationError):
+			doc.save()
+
+	def test_tender_workflow_mutation_context_allows(self):
+		doc = self._minimal_wf_tender()
+		with workflow_mutation_context():
+			doc.reload()
+			doc.workflow_state = "Submitted"
+			doc.save()
+		doc.reload()
+		self.assertEqual(doc.workflow_state, "Submitted")
+
+	def test_procurement_plan_workflow_state_blocked_without_context(self):
+		doc = self._minimal_wf_procurement_plan()
+		doc.reload()
+		doc.workflow_state = "Submitted"
+		with self.assertRaises(frappe.ValidationError):
+			doc.save()
+
+	def test_procurement_plan_workflow_mutation_context_allows(self):
+		doc = self._minimal_wf_procurement_plan()
+		with workflow_mutation_context():
+			doc.reload()
+			doc.workflow_state = "Submitted"
+			doc.save()
+		doc.reload()
+		self.assertEqual(doc.workflow_state, "Submitted")
+		self.assertEqual(doc.status, "Pending")
 
 	def test_ignore_workflow_field_protection_allows_stage_change(self):
 		doc = self._minimal_pr()
@@ -388,3 +485,35 @@ class TestWorkflowEngine(FrappeTestCase):
 			context={},
 		)
 		self.assertTrue(any(c.startswith("submit:") for c in called))
+
+	def test_side_effect_hook_action_filter(self):
+		doc = self._minimal_pr()
+		all_actions: list[str] = []
+		approve_only: list[str] = []
+
+		def _hook_all(dt, dn, action, actor, ctx):
+			all_actions.append(action)
+
+		def _hook_approve(dt, dn, action, actor, ctx):
+			approve_only.append(action)
+
+		register_side_effect_hook(PR, _hook_all, order=5)
+		register_side_effect_hook(PR, _hook_approve, order=10, action="approve")
+		emit_post_transition(
+			doctype=PR,
+			docname=doc.name,
+			action="submit",
+			actor="Administrator",
+			context={},
+		)
+		self.assertEqual(all_actions, ["submit"])
+		self.assertEqual(approve_only, [])
+		emit_post_transition(
+			doctype=PR,
+			docname=doc.name,
+			action="approve",
+			actor="Administrator",
+			context={},
+		)
+		self.assertIn("approve", all_actions)
+		self.assertEqual(approve_only, ["approve"])

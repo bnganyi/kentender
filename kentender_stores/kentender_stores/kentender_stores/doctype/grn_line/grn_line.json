@@ -11,6 +11,8 @@
 		"unit_of_measure",
 		"unit_rate",
 		"amount",
+		"capital_asset",
+		"asset_category",
 		"remarks"
 	],
 	"fields": [
@@ -50,6 +52,19 @@
 			"in_list_view": 1,
 			"label": "Amount",
 			"read_only": 1
+		},
+		{
+			"default": "0",
+			"fieldname": "capital_asset",
+			"fieldtype": "Check",
+			"in_list_view": 1,
+			"label": "Capital asset"
+		},
+		{
+			"fieldname": "asset_category",
+			"fieldtype": "Link",
+			"label": "Asset Category",
+			"options": "KenTender Asset Category"
 		},
 		{
 			"fieldname": "remarks",

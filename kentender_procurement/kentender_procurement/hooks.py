@@ -124,9 +124,9 @@ required_apps = ["kentender", "kentender_strategy", "kentender_budget"]
 # 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
 # }
 #
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+has_permission = {
+	"Bid Submission": "kentender_procurement.services.bid_permission_hooks.bid_submission_has_permission",
+}
 
 # Document Events
 # ---------------

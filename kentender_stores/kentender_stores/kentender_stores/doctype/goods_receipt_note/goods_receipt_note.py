@@ -29,6 +29,8 @@ class GoodsReceiptNote(Document):
 
 		self.display_label = code_title_label(_strip(self.business_id), _strip(self.supplier) or "—")
 
+		self._validate_acceptance_approval_gate()
+
 		if not frappe.db.exists(PC, self.contract):
 			frappe.throw(_("Procurement Contract not found."), frappe.ValidationError)
 		if not frappe.db.exists(S, self.store):
@@ -85,8 +87,32 @@ class GoodsReceiptNote(Document):
 
 		self.total_received_value = total
 
+	def _validate_acceptance_approval_gate(self) -> None:
+		"""Matrix §11.1 / §15.5 — GRN requires an approved acceptance record."""
+		ar = _strip(self.acceptance_reference)
+		if not ar:
+			frappe.throw(
+				_("Goods Receipt requires a linked Acceptance Record in **Approved** status."),
+				frappe.ValidationError,
+				title=_("Acceptance required"),
+			)
+		row = frappe.db.get_value(AR, ar, ["status", "workflow_state"], as_dict=True)
+		if not row:
+			return
+		if (row.get("status") or "").strip() != "Approved" or (row.get("workflow_state") or "").strip() != "Approved":
+			frappe.throw(
+				_("Goods Receipt cannot be recorded until acceptance {0} is fully approved.").format(
+					frappe.bold(ar),
+				),
+				frappe.ValidationError,
+				title=_("Acceptance not approved"),
+			)
+
 	def _validate_grn_line(self, row) -> None:
 		if not _strip(row.item_code):
 			frappe.throw(_("Item Code is required on each line."), frappe.ValidationError)
 		if flt(row.quantity) <= 0:
 			frappe.throw(_("Quantity must be greater than zero."), frappe.ValidationError)
+		if getattr(row, "asset_category", None) and frappe.db.exists("DocType", "KenTender Asset Category"):
+			if not frappe.db.exists("KenTender Asset Category", row.asset_category):
+				frappe.throw(_("KenTender Asset Category not found on GRN line."), frappe.ValidationError)

@@ -1,0 +1,114 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "field:business_id",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"business_id",
+		"display_label",
+		"related_doctype",
+		"related_docname",
+		"disclosure_stage",
+		"disclosure_datetime",
+		"public_summary",
+		"redacted_flag",
+		"published_by_user",
+		"status",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "related_doctype",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Related DocType",
+			"options": "DocType",
+			"reqd": 1
+		},
+		{
+			"fieldname": "related_docname",
+			"fieldtype": "Dynamic Link",
+			"in_list_view": 1,
+			"label": "Related Document",
+			"options": "related_doctype",
+			"reqd": 1
+		},
+		{
+			"fieldname": "disclosure_stage",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Disclosure Stage",
+			"options": "Tender\nAward\nContract\nInspection\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "disclosure_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Disclosure Datetime",
+			"reqd": 1
+		},
+		{
+			"fieldname": "public_summary",
+			"fieldtype": "Text Editor",
+			"label": "Public Summary",
+			"reqd": 1
+		},
+		{
+			"default": "1",
+			"fieldname": "redacted_flag",
+			"fieldtype": "Check",
+			"label": "Redacted / Non-sensitive only"
+		},
+		{
+			"fieldname": "published_by_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Published By",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nPublished\nWithdrawn",
+			"reqd": 1
+		},
+		{"fieldname": "remarks", "fieldtype": "Text Editor", "label": "Remarks"}
+	],
+	"index_web_pages_for_search": 1,
+	"module": "Kentender Governance",
+	"name": "KenTender Public Disclosure Record",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "business_id,display_label,disclosure_stage",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "business_id",
+	"track_changes": 1
+}

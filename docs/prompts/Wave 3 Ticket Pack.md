@@ -87,7 +87,7 @@ Applies to every story that adds or changes **user-visible** tender/bid/opening 
 
 1. **`bench migrate`** on the target site when DocType JSON changes.
 2. **`bench run-tests --app kentender_procurement`** — keep the suite green for the story.
-3. **Minimal Golden UAT** — follow [`Minimal Golden UAT`](../../.cursor/rules/kentender-minimal-golden-uat.mdc) (Cursor rule) and [`uat/seed_packs/minimal_golden/README.md`](../../uat/seed_packs/minimal_golden/README.md). Use the **canonical users and roles** from [`minimal_golden_canonical.json`](../../kentender/kentender/uat/minimal_golden/data/minimal_golden_canonical.json) (e.g. `procurement.test@ken-tender.test` → **KT UAT Procurement Officer**).
+3. **Minimal Golden UAT** — follow [`Minimal Golden UAT`](../../.cursor/rules/kentender-minimal-golden-uat.mdc) (Cursor rule) and [`uat/seed_packs/minimal_golden/README.md`](../../uat/seed_packs/minimal_golden/README.md). Use the **canonical users and roles** from [`minimal_golden_canonical.json`](../../kentender/kentender/uat/minimal_golden/data/minimal_golden_canonical.json) (e.g. `procurement.test@ken-tender.test` → **Procurement Officer**).
    - **Extend** the canonical JSON (and the mirror under `uat/seed_packs/minimal_golden/`), **`load_*`** helpers, **`reset_minimal_golden_data`**, and **`verify_minimal_golden`** whenever the story should leave a **deterministic row** in the golden dataset (or document in the story/PR why not).
    - **On dev/UAT sites** used for implementation follow-along, after the story’s code is in place, run the **full seed** and **verify** so the database matches the loaders (replace `<site>` with your site name):
 

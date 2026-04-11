@@ -35,7 +35,7 @@ Deterministic **BASE-REF → BASE-STRAT → BASE-BUD → SP1** load for mileston
    bench --site kentender.midas.com execute kentender.uat.mvp.commands.reset_uat_mvp_console
    ```
 
-Password: `users.default_password` in the JSON, or override with env **`KENTENDER_UAT_MVP_PASSWORD`**.
+Password: `users.default_password` in the JSON (`k3nTender!golden`), or override with env **`KENTENDER_MINIMAL_GOLDEN_PASSWORD`** (same as minimal golden).
 
 Bundled dataset path (for `bench` installs): `kentender/kentender/uat/mvp/data/mvp_canonical.json` (keep in sync with `uat/seed_packs/mvp_canonical.json` when editing).
 
@@ -77,36 +77,55 @@ Password: `users.default_password` in JSON, or env **`KENTENDER_MINIMAL_GOLDEN_P
 
 Bundled dataset: `kentender/kentender/uat/minimal_golden/data/minimal_golden_canonical.json` — keep in sync with `uat/seed_packs/minimal_golden/minimal_golden_canonical.json`.
 
+**Matrix ↔ xlsx ↔ golden seed check** (Role Catalogue vs `MATRIX_ROLE` vs which roles have a golden test user):
+
+```bash
+bench --site kentender.midas.com execute kentender.uat.verify_matrix_alignment.verify_matrix_alignment_console
+```
+
+See [`docs/security/Implementation_Audit_vs_Permissions_Matrix_xlsx.md`](../docs/security/Implementation_Audit_vs_Permissions_Matrix_xlsx.md).
+
 ## Purchase Requisition phase (Wave 2) — end-to-end without System Manager
 
-UI testers can run **reference masters → strategy chain → budget → PR submit/approve** using only the seeded **KT UAT** personas (after `bench migrate` and one console seed).
+Matrix **Role** documents are created on every migrate (`after_migrate`). Desk and portal **users** come only from the **minimal golden** seed (see above): e.g. `requisitioner.test@ken-tender.test`, `strategyadmin.test@ken-tender.test`, `strategyreviewer.test@ken-tender.test`, `hod.test@ken-tender.test`, `finance.test@ken-tender.test`, and the rest of `minimal_golden_canonical.json` — not from a separate PR-phase UAT user list.
 
-1. Run **`bench migrate`** so Workspace docs and DocType permission JSON sync.
-2. Roles **`KT UAT *`** are created automatically on migrate (`after_migrate`).
-3. Create desk users (once per site):
+**Suggested journey order (through approved / planning-ready PR):**
 
-   ```bash
-   bench --site kentender.midas.com execute kentender.uat.bootstrap.seed_pr_uat_users_console
-   ```
+1. **Procurement / strategy roles** — **KenTender Strategy** or **KenTender Procurement**: procuring entity, department, funding source, category, method; national framework → pillars/objectives → entity strategic plan → programs/sub-programs → outputs/targets as required. If national reference rows are **locked** when Active, create or use **Draft** records per DocType rules.
+2. **Budget** — **KenTender Budget**: budget control period → budget → budget lines (amounts your PR will consume).
+3. **Requisitioner** — **KenTender My Work**: new **Purchase Requisition**, set strategy/budget links, add lines, save/submit per workflow.
+4. **HOD** → **Finance** — **KenTender Approvals** (**Pending Requisition Approvals**). **Procurement Officer** — **KenTender Procurement** for **Planning Ready Requisitions** and related ops.
 
-4. Log in with (default password in [`kentender/uat/bootstrap.py`](../kentender/kentender/uat/bootstrap.py) — **`DEFAULT_PASSWORD`**; change on shared environments):
+For scripted **UAT-MVP** business IDs (separate entity `UAT-MVP-PE`), run `kentender.uat.mvp.commands.seed_uat_mvp` — it upserts the **same** golden test emails against that dataset.
 
-   | User | Role | Default workspace |
-   | --- | --- | --- |
-   | `strategy.uat@ken-tender.test` | KT UAT Strategy Manager | KenTender Strategy |
-   | `budgetofficer.uat@ken-tender.test` | KT UAT Budget Officer | KenTender Budget |
-   | `requisitioner.uat@ken-tender.test` | KT UAT Requisitioner | KenTender My Work |
-   | `hod.uat@ken-tender.test` | KT UAT HOD | KenTender Approvals |
-   | `financeapprover.uat@ken-tender.test` | KT UAT Finance Approver | KenTender Approvals |
-   | `procurement.uat@ken-tender.test` | KT UAT Procurement Officer | KenTender Procurement |
+Full scripted IDs and SP1 loaders remain in [`KenTender Seed Data.md`](../docs/testing/KenTender%20Seed%20Data.md).
 
-5. **Suggested journey order (through approved / planning-ready PR):**
+## Obsolete seed users (one-off cleanup)
 
-   1. **Strategy Manager** — **KenTender Strategy**: procuring entity, department, funding source, category, method (or use **KenTender Procurement** / masters as applicable); national framework → pillars/objectives → entity strategic plan → programs/sub-programs → outputs/targets as required by your test case. If national reference rows are **locked** when Active, create or use **Draft** records per DocType rules.
-   2. **Budget Officer** — **KenTender Budget**: budget control period → budget → budget lines (amounts your PR will consume).
-   3. **Requisitioner** — **KenTender My Work**: new **Purchase Requisition**, set strategy/budget links, add lines, save/submit per workflow.
-   4. **HOD** → **Finance Approver** — **KenTender Approvals** (**Pending Requisition Approvals**). **Procurement Officer** — **KenTender Procurement** for **Planning Ready Requisitions** and related ops.
+Sites that previously ran the old PR-phase desk seed or MVP with `*.uat-mvp@ken-tender.test` can remove those **User** rows without touching minimal golden accounts:
 
-6. All six personas can open **KenTender My Work**. **KenTender Procurement** is for procurement/strategy/budget/auditor-style desk roles (not the pure requisitioner). **KenTender Approvals** is for HOD and finance approvers. Strategy and Budget workspaces stay visible to the broader UAT role set for cross-checking.
+```bash
+bench --site kentender.midas.com execute kentender.uat.wipe_test_data.purge_legacy_uat_seed_users_console
+```
 
-7. Full scripted IDs and SP1 loaders remain in [`KenTender Seed Data.md`](../docs/testing/KenTender%20Seed%20Data.md); this slice provides **navigation, roles, permissions for strategy/budget masters, and users** so Link fields on PR resolve for non–System Manager testers.
+Implementation: [`kentender.uat.wipe_test_data`](../kentender/kentender/uat/wipe_test_data.py) (`LEGACY_SEED_USER_EMAILS`).
+
+## Pytest / bench test fixture users (`_kt_*@test.local`)
+
+Automated tests create System Users with emails like `_kt_pr04_approver@test.local`. TearDown now deletes them; for sites that already have leftovers:
+
+```bash
+bench --site kentender.midas.com execute kentender.uat.wipe_test_data.purge_kt_test_local_users_console
+```
+
+Helpers: [`kentender.uat.kt_test_local_users`](../kentender/kentender/uat/kt_test_local_users.py).
+
+## Obsolete `KT UAT *` Frappe Roles
+
+Historical Role documents used a `KT UAT …` prefix before the matrix moved to plain names (`Requisitioner`, etc.). To remove those rows (and disposable test roles like `KT PQ Test Role`) from the site:
+
+```bash
+bench --site kentender.midas.com execute kentender.uat.wipe_test_data.purge_legacy_kt_roles_console
+```
+
+Implementation: [`kentender.uat.legacy_kt_roles`](../kentender/kentender/uat/legacy_kt_roles.py).

@@ -45,7 +45,7 @@
 
 | Story ID | Title (short) | Epic | Depends on | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| WF-PLATFORM-001 | Workflow engine WF-001–WF-010 (spec v2) | EPIC-WF-PLATFORM | Wave 0 steps 1–22 Done | In Progress | `kentender.workflow_engine` + KenTender DocTypes; **WF-007/008** done (2026-04); WF-002/009/010 partial — see [`WF Implementation Tracker`](../workflow/WF%20Implementation%20Tracker.md) |
+| WF-PLATFORM-001 | Workflow engine WF-001–WF-010 (spec v2) | EPIC-WF-PLATFORM | Wave 0 steps 1–22 Done | Done | `kentender.workflow_engine` + KenTender DocTypes; WF-002/009/010/016 complete — [`WF Implementation Tracker`](../workflow/WF%20Implementation%20Tracker.md); [`approval_field_registry.py`](../../kentender/kentender/workflow_engine/approval_field_registry.py) |
 
 ## Wave 1
 

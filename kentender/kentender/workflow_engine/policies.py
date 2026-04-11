@@ -56,7 +56,12 @@ def policy_matches_document(policy_name: str, business_doc: Document) -> bool:
 		return False
 	if _norm_str(pol.applies_to_doctype) != business_doc.doctype:
 		return False
-	if not _match_optional_str(pol.category, business_doc.get("category")):
+	# Complaint has no procurement `category`; policy.category matches `complaint_type` (Select).
+	if _norm_str(business_doc.doctype) == "Complaint":
+		cat_ok = _match_optional_str(pol.category, business_doc.get("complaint_type"))
+	else:
+		cat_ok = _match_optional_str(pol.category, business_doc.get("category"))
+	if not cat_ok:
 		return False
 	if not _match_optional_str(pol.procurement_method, business_doc.get("procurement_method")):
 		return False
@@ -73,6 +78,8 @@ def policy_matches_document(policy_name: str, business_doc: Document) -> bool:
 	if not _match_optional_bool(pol.requires_committee, business_doc.get("requires_committee")):
 		return False
 	amt = business_doc.get("requested_amount")
+	if amt is None and _norm_str(business_doc.doctype) == "Acceptance Record":
+		amt = business_doc.get("accepted_value_amount")
 	if amt is not None and (pol.threshold_min or pol.threshold_max):
 		try:
 			val = float(amt)
@@ -113,6 +120,8 @@ def assert_no_blocking_sod(
 	proposed_user: str,
 	proposed_action: str,
 	participation_history: list[ParticipationRecord],
+	proposed_role: str | None = None,
+	scope_key: str | None = None,
 ) -> None:
 	"""WF-009: thin wrapper around separation_of_duty_service."""
 	if has_blocking_sod_violation(
@@ -120,7 +129,9 @@ def assert_no_blocking_sod(
 		target_docname=target_docname,
 		proposed_user=proposed_user,
 		proposed_action=proposed_action,
+		proposed_role=proposed_role,
 		participation_history=participation_history,
+		scope_key=scope_key,
 	):
 		frappe.throw(
 			_("Separation of duty policy blocks this action."),

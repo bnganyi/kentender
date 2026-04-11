@@ -17,18 +17,18 @@ Checklist for user stories in [KenTender Permissions Cursor Implementation Pack]
 | ID | Story (from pack) | Target | Status | Notes |
 |----|-------------------|--------|--------|-------|
 | PERM-001 | Permission architecture conventions | `kentender` + `docs/permissions` | Done | [Permissions Architecture](Permissions%20Architecture.md); `kentender/permissions/` package layout |
-| PERM-002 | Role constants and permission registry | `kentender.permissions.registry` | Done | `BUSINESS_ROLE`, `UAT_ROLE`, helpers; tests in `kentender.tests.test_permissions_registry` |
+| PERM-002 | Role constants and permission registry | `kentender.permissions.registry` | Done | `BUSINESS_ROLE`, `MATRIX_ROLE` (plain Frappe Role names per [security matrix](../security/KenTender%20Roles%20and%20Permissions%20Matrix.md)), `UAT_ROLE` alias; `matrix_roles_for_business_role`, `all_matrix_role_names`; tests in `kentender.tests.test_permissions_registry` |
 | PERM-003 | Row-level scope helper framework | `kentender.services` + `kentender.permissions.scope` | Partial | `permission_query_service`, `entity_scope_service`, `assignment_access_service`; `scope.py` re-exports; extend with dept/HOD/finance patterns as domains need |
 | PERM-004 | Report and queue access control framework | `kentender.permissions.reports` + domain queries | Partial | `user_can_open_script_report`; report `roles` JSON + row filters per report (see Matrix audit) |
 | PERM-005 | Workflow action authorization framework | `kentender.services.controlled_action_service` | Partial | `run_controlled_action_gate`; adopt on all critical transitions domain-by-domain |
-| PERM-006 | Assignment-based access hardening | `kentender.services.assignment_access_service` | Partial | Core helpers exist; wire into tender/evaluation/etc. when those flows ship |
+| PERM-006 | Assignment-based access hardening | `kentender.services.assignment_access_service` | Partial | Core helpers exist; **Bid Submission** `has_permission` hook denies Evaluator without active assignment (`bid_permission_hooks`); extend for other session roles as needed |
 | PERM-007 | Sensitivity and sealed-access enforcement | `protected_file_access_service`, `sensitivity_classification` | Partial | Extend coverage as DocTypes/files grow |
-| PERM-008 | Requisition permission implementation | `kentender_procurement` | Partial | Queues + report row scope; DocType JSON vs §3B still to tighten |
+| PERM-008 | Requisition permission implementation | `kentender_procurement` | Partial | Queues + report row scope; **Purchase Requisition** JSON adds Department Reviewer, Procurement Planner, Auditor rows (matrix §3.1); further SoD/tightening under domain stories |
 | PERM-009 | Planning permission implementation | `kentender_procurement` | Partial | Reports + queue scoping in place; **DocType JSON vs §3B** (e.g. Requisitioner **X** on PP/PPI, HOD/Finance **RO/F**) ships **with** this story—see Architecture checklist. No preemptive bulk tighten elsewhere. |
-| PERM-010 | Tender and bid permission implementation | future app / module | Not started | When tender DocTypes exist |
+| PERM-010 | Tender and bid permission implementation | `kentender_procurement` | Partial | Tender/bid DocTypes exist; role JSON renamed to matrix labels; Evaluator assignment gate on **Bid Submission** (PERM-006 hook); sealed-bid CL still partial (`protected_file_access_service`) |
 | PERM-011 | Evaluation permission implementation | future app / module | Not started | When evaluation DocTypes exist |
-| PERM-012 | Award and contract permission implementation | future app / module | Not started | When award/contract DocTypes exist |
-| PERM-013 | Inspection / stores / assets permission implementation | future app / module | Not started | When those DocTypes exist |
+| PERM-012 | Award and contract permission implementation | `kentender_procurement` | Not started | DocTypes exist; **WF-012/WF-013** engine routes + `workflow_state` protection landed — still need §3B matrix + desk/list views when this PERM row is scheduled |
+| PERM-013 | Inspection / stores / assets permission implementation | `kentender_stores`, `kentender_assets`, `kentender_procurement` | Partial | DocTypes/reports use matrix role names; **Goods Receipt Note** validates linked **Acceptance Record** is Approved (matrix §15.5) |
 | PERM-014 | Report and queue permission implementation (cross-cutting) | all `kentender_*` | Partial | Align every shipped report + queue to §4+; strategy reports done; add new rows as reports appear |
 | PERM-015 | Permission test suite and verification fixtures | `kentender` + domain `tests` | Partial | `test_permissions_*`, `test_requisition_queue_queries`; expand per domain |
 

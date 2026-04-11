@@ -27,10 +27,8 @@ from kentender.services.controlled_action_service import (
 	log_controlled_action_completed,
 	run_controlled_action_gate,
 )
-from kentender.services.separation_of_duty_service import (
-	ParticipationRecord,
-	has_blocking_sod_violation,
-)
+from kentender.services.separation_of_duty_service import ParticipationRecord
+from kentender.workflow_engine.policies import assert_no_blocking_sod
 from kentender.workflow_engine.actions import emit_post_transition, log_global_approval_action
 from kentender.workflow_engine.execution import apply_step_decision, get_current_step_row
 from kentender.workflow_engine.routes import get_active_route_instance, get_or_create_active_route
@@ -258,19 +256,14 @@ def _assert_no_blocking_sod(
 	proposed_user: str,
 	proposed_action: str,
 ) -> None:
-	if has_blocking_sod_violation(
+	assert_no_blocking_sod(
 		target_doctype=PR_DOCTYPE,
 		target_docname=doc.name,
 		proposed_user=proposed_user,
 		proposed_action=proposed_action,
-		proposed_role=_primary_role_for_user(proposed_user),
 		participation_history=requisition_participation_history(doc),
-	):
-		frappe.throw(
-			_("Separation of duty policy blocks this action."),
-			frappe.ValidationError,
-			title=_("Conflict of duty"),
-		)
+		proposed_role=_primary_role_for_user(proposed_user),
+	)
 
 
 def _insert_approval_record(

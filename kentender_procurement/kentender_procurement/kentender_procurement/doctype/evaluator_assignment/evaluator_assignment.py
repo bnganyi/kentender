@@ -8,6 +8,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
+from kentender.permissions.registry import MATRIX_ROLE
 from kentender.utils.display_label import code_title_label
 
 EVALUATION_SESSION = "Evaluation Session"
@@ -25,6 +26,7 @@ class EvaluatorAssignment(Document):
 	def validate(self):
 		self._normalize_text()
 		self._validate_evaluation_session()
+		self._validate_separation_of_duties()
 		self._validate_unique_evaluator_per_session()
 		self._validate_status_and_replacement()
 		self._set_display_label()
@@ -42,6 +44,25 @@ class EvaluatorAssignment(Document):
 				_("Evaluation Session {0} does not exist.").format(frappe.bold(sn)),
 				frappe.ValidationError,
 				title=_("Invalid evaluation session"),
+			)
+
+	def _validate_separation_of_duties(self) -> None:
+		"""Matrix §16 — Evaluator cannot be Supplier or Contract Manager."""
+		eu = _strip(self.evaluator_user)
+		if not eu:
+			return
+		roles = set(frappe.get_roles(eu))
+		if MATRIX_ROLE.SUPPLIER.value in roles:
+			frappe.throw(
+				_("A user with the Supplier role cannot be assigned as an Evaluator."),
+				frappe.ValidationError,
+				title=_("Separation of duties"),
+			)
+		if MATRIX_ROLE.CONTRACT_MANAGER.value in roles:
+			frappe.throw(
+				_("A user with the Contract Manager role cannot be assigned as an Evaluator."),
+				frappe.ValidationError,
+				title=_("Separation of duties"),
 			)
 
 	def _validate_unique_evaluator_per_session(self) -> None:

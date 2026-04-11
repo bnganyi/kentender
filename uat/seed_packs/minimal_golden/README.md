@@ -15,15 +15,16 @@ Loader implementation pack: **[KenTender Minimal Golden Scenario Seed Loader Imp
 2. Base reference — procuring entity, departments, funding source, category, method. For each department with ``hod_email_key``, the matching ``users.internal`` row is **created if missing** (role, password), and a **User Permission** on **Procuring Entity** is added for that HOD when ``grant_hod_entity_user_permission`` is true (default). Full user seed also grants entity permission to each internal user when ``grant_entity_user_permission`` is true (default).
 3. Strategy — national framework → … → performance target.
 4. Budget — control period, budget, main budget line.
-5. Users — internal + supplier personas.
+5. Users — full **Role Catalogue** coverage: one **System User** per matrix role (including **System Manager** for the “System Administrator” row), plus two **Website User** supplier bidders sharing the **Supplier** role (`kentender.uat.verify_matrix_alignment` checks this).
 6. **Re-base-ref** — refresh department HOD links after users exist.
 7. Purchase requisition — `PR-MOH-0001` approved with budget reservation (SP1).
 8. Tender — `TD-MOH-0001` (manual origin), aligned with strategy/budget links.
 9. **Bid Submission** — two rows (`future_business_ids` **bid_1** / **bid_2** → `BID-TD-0001-01`, `BID-TD-0001-02`) linked to the tender.
 10. **Bid Receipt** — one row for **bid_1** (`bid_receipt` in JSON); sets **Latest Receipt** on that bid submission.
+11. **Post-tender E2E** (`post_tender_scenario.py`) — publication prerequisites (criteria + document), tender submit/approve/publish, both bids marked submitted, **Bid Opening Session** + `execute_bid_opening`, **Evaluation Session** (Two Envelope) + locked **Evaluation Record** rows + aggregation + submitted **Evaluation Report**, **Award Decision** (workflow policies `MG-GOLD-AWARD-*`) + **Procurement Contract** (`MG-GOLD-PC-*`) through **Active** (sign + activate).
 
 **Deferred:** Store (CMS) and Asset Category (MED-DIAG) — no KenTender DocTypes yet (see JSON `deferred_masters_note`).  
-**Future:** remaining `future_business_ids` (opening session, award, contract, …) — verified only when DocTypes exist and loaders are added.
+**Optional next wave:** `future_business_ids` for inspection, acceptance, GRN, assets — placeholders until `kentender_stores` / `kentender_assets` seed helpers exist.
 
 ## Commands
 
@@ -67,7 +68,7 @@ bench --site kentender.midas.com execute kentender.uat.minimal_golden.commands.s
 
 Creates the canonical approved **Purchase Requisition** (`PR-MOH-0001`) with budget reservation and the canonical **Tender** (`TD-MOH-0001`), matching the tail of the full seed. Requires **steps 1–4** (entity, strategy, budget, users). From code, `seed_minimal_golden_requisition()` matches the console. Pass `ensure_base_ref=True`, `ensure_strategy=True`, and/or `ensure_budget=True` for idempotent shortcuts that run earlier steps in the same call.
 
-After step 5, **`verify_minimal_golden_console`** should pass for the golden dataset.
+After step 5, **`verify_minimal_golden_console`** passes for the head of the chain (PR through bids). The **full** `seed_minimal_golden_console` run includes step 11; **`verify_minimal_golden_console`** then checks `future_business_ids` for opening through **Procurement Contract** (`BOS-MOH-0001` … `CT-MOH-0001`).
 
 **Full chain (through approved PR):**
 
@@ -86,4 +87,4 @@ Password: `users.default_password` in JSON, or env **`KENTENDER_MINIMAL_GOLDEN_P
 
 ## Implementation layout (in app)
 
-Source: `kentender/kentender/uat/minimal_golden/` — `base_ref.py`, `strategy.py`, `budget.py`, `users.py`, `requisition.py`, `procurement_planning.py`, `tender.py`, `commands.py`, `verify.py`, `reset.py`, `cleanup.py`, `dataset.py`, `paths.py`.
+Source: `kentender/kentender/uat/minimal_golden/` — `base_ref.py`, `strategy.py`, `budget.py`, `users.py`, `requisition.py`, `procurement_planning.py`, `tender.py`, `bid_submissions.py`, `bid_receipts.py`, `post_tender_scenario.py`, `commands.py`, `verify.py`, `reset.py`, `cleanup.py`, `dataset.py`, `paths.py`.

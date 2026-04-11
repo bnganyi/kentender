@@ -72,7 +72,8 @@ def cleanup_procurement_chain(prefix: str) -> None:
 	for s in frappe.get_all(STORE, filters={"store_code": ("like", f"{prefix}%")}, pluck="name") or []:
 		frappe.delete_doc(STORE, s, force=True, ignore_permissions=True)
 	frappe.db.delete("Budget Control Period", {"name": ("like", f"{prefix}%")})
-	frappe.db.delete("Procuring Entity", {"entity_code": f"{prefix}_PE"})
+	for pe in frappe.get_all("Procuring Entity", filters={"entity_code": ("like", f"{prefix}%")}, pluck="name") or []:
+		frappe.delete_doc("Procuring Entity", pe, force=True, ignore_permissions=True)
 
 
 def _cleanup_ops003():
@@ -245,7 +246,9 @@ class TestGRNDoctypes003004(FrappeTestCase):
 				"business_id": f"{PREFIX}_AR1",
 				"inspection_record": ir.name,
 				"contract": pc.name,
-				"acceptance_decision": "Pending",
+				"status": "Approved",
+				"workflow_state": "Approved",
+				"acceptance_decision": "Accepted",
 			}
 		).insert(ignore_permissions=True)
 

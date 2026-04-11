@@ -47,45 +47,252 @@
 		"remarks"
 	],
 	"fields": [
-		{"fieldname": "business_id", "fieldtype": "Data", "in_list_view": 1, "label": "Business ID", "reqd": 1, "unique": 1},
-		{"fieldname": "display_label", "fieldtype": "Data", "hidden": 1, "label": "Display Label", "read_only": 1},
-		{"fieldname": "complaint_title", "fieldtype": "Data", "in_list_view": 1, "label": "Complaint Title", "reqd": 1},
-		{"default": "Draft", "fieldname": "status", "fieldtype": "Select", "in_list_view": 1, "label": "Status", "options": "Draft\nSubmitted\nUnder Review\nDecided\nClosed\nWithdrawn", "reqd": 1},
-		{"default": "Intake", "fieldname": "workflow_state", "fieldtype": "Select", "in_list_view": 1, "label": "Workflow State", "options": "Intake\nAdmissibility\nPanel Review\nDecision\nAction\nClosed", "reqd": 1},
-		{"fieldname": "complaint_type", "fieldtype": "Select", "in_list_view": 1, "label": "Complaint Type", "options": "Procurement Process\nAward\nContract\nOther", "reqd": 1},
-		{"default": "Intake", "fieldname": "complaint_stage", "fieldtype": "Select", "label": "Complaint Stage", "options": "Intake\nFormal Review\nAppeal\nClosed", "reqd": 1},
-		{"fieldname": "tender", "fieldtype": "Link", "label": "Tender", "options": "Tender"},
-		{"fieldname": "bid_submission", "fieldtype": "Link", "label": "Bid Submission", "options": "Bid Submission"},
-		{"fieldname": "evaluation_session", "fieldtype": "Link", "label": "Evaluation Session", "options": "Evaluation Session"},
-		{"fieldname": "award_decision", "fieldtype": "Link", "label": "Award Decision", "options": "Award Decision"},
-		{"fieldname": "contract", "fieldtype": "Link", "label": "Contract", "options": "Procurement Contract"},
-		{"fieldname": "complainant_type", "fieldtype": "Select", "label": "Complainant Type", "options": "Bidder\nSupplier\nCitizen\nOther", "reqd": 1},
-		{"fieldname": "supplier", "fieldtype": "Link", "label": "Supplier", "options": "Supplier"},
-		{"fieldname": "complainant_name", "fieldtype": "Data", "label": "Complainant Name", "reqd": 1},
-		{"fieldname": "complainant_contact_email", "fieldtype": "Data", "label": "Complainant Contact Email", "options": "Email"},
-		{"fieldname": "complainant_contact_phone", "fieldtype": "Data", "label": "Complainant Contact Phone"},
-		{"fieldname": "complaint_summary", "fieldtype": "Small Text", "label": "Complaint Summary", "reqd": 1},
-		{"fieldname": "complaint_details", "fieldtype": "Text Editor", "label": "Complaint Details", "reqd": 1},
-		{"fieldname": "requested_remedy", "fieldtype": "Small Text", "label": "Requested Remedy", "reqd": 1},
-		{"fieldname": "submission_datetime", "fieldtype": "Datetime", "in_list_view": 1, "label": "Submission Datetime", "reqd": 1},
-		{"fieldname": "received_by_user", "fieldtype": "Link", "label": "Received By", "options": "User", "reqd": 1},
-		{"default": "Pending", "fieldname": "admissibility_status", "fieldtype": "Select", "in_list_view": 1, "label": "Admissibility Status", "options": "Pending\nAdmissible\nInadmissible\nDeferred", "reqd": 1},
-		{"fieldname": "admissibility_reason", "fieldtype": "Small Text", "label": "Admissibility Reason"},
-		{"fieldname": "reviewed_by_user", "fieldtype": "Link", "label": "Reviewed By", "options": "User"},
-		{"fieldname": "reviewed_on", "fieldtype": "Datetime", "label": "Reviewed On"},
-		{"default": "0", "fieldname": "affects_award_process", "fieldtype": "Check", "label": "Affects Award Process"},
-		{"default": "0", "fieldname": "affects_contract_execution", "fieldtype": "Check", "label": "Affects Contract Execution"},
-		{"default": "0", "fieldname": "hold_required", "fieldtype": "Check", "label": "Hold Required"},
-		{"fieldname": "hold_scope", "fieldtype": "Small Text", "label": "Hold Scope"},
-		{"default": "Not Applicable", "fieldname": "hold_status", "fieldtype": "Select", "label": "Hold Status", "options": "Not Applicable\nActive\nReleased"},
-		{"fieldname": "decision_due_date", "fieldtype": "Date", "label": "Decision Due Date"},
-		{"fieldname": "actual_decision_date", "fieldtype": "Date", "label": "Actual Decision Date"},
-		{"fieldname": "appeal_deadline", "fieldtype": "Date", "label": "Appeal Deadline"},
-		{"fieldname": "closure_date", "fieldtype": "Date", "label": "Closure Date"},
-		{"default": "0", "fieldname": "is_anonymous", "fieldtype": "Check", "label": "Is Anonymous"},
-		{"default": "0", "fieldname": "complaint_locked", "fieldtype": "Check", "label": "Complaint Locked"},
-		{"fieldname": "exception_record", "fieldtype": "Link", "label": "Exception Record", "options": "Exception Record"},
-		{"fieldname": "remarks", "fieldtype": "Text Editor", "label": "Remarks"}
+		{
+			"fieldname": "business_id",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Business ID",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "complaint_title",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Complaint Title",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nSubmitted\nUnder Review\nDecided\nClosed\nWithdrawn",
+			"reqd": 1
+		},
+		{
+			"default": "Intake",
+			"fieldname": "workflow_state",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Workflow State",
+			"options": "Intake\nAdmissibility\nPanel Review\nDecision\nAction\nClosed",
+			"reqd": 1
+		},
+		{
+			"fieldname": "complaint_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Complaint Type",
+			"options": "Procurement Process\nAward\nContract\nOther",
+			"reqd": 1
+		},
+		{
+			"default": "Intake",
+			"fieldname": "complaint_stage",
+			"fieldtype": "Select",
+			"label": "Complaint Stage",
+			"options": "Intake\nFormal Review\nAppeal\nClosed",
+			"reqd": 1
+		},
+		{
+			"fieldname": "tender",
+			"fieldtype": "Link",
+			"label": "Tender",
+			"options": "Tender"
+		},
+		{
+			"fieldname": "bid_submission",
+			"fieldtype": "Link",
+			"label": "Bid Submission",
+			"options": "Bid Submission"
+		},
+		{
+			"fieldname": "evaluation_session",
+			"fieldtype": "Link",
+			"label": "Evaluation Session",
+			"options": "Evaluation Session"
+		},
+		{
+			"fieldname": "award_decision",
+			"fieldtype": "Link",
+			"label": "Award Decision",
+			"options": "Award Decision"
+		},
+		{
+			"fieldname": "contract",
+			"fieldtype": "Link",
+			"label": "Contract",
+			"options": "Procurement Contract"
+		},
+		{
+			"fieldname": "complainant_type",
+			"fieldtype": "Select",
+			"label": "Complainant Type",
+			"options": "Bidder\nSupplier\nCitizen\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "supplier",
+			"fieldtype": "Link",
+			"label": "Supplier",
+			"options": "Supplier"
+		},
+		{
+			"fieldname": "complainant_name",
+			"fieldtype": "Data",
+			"label": "Complainant Name",
+			"reqd": 1
+		},
+		{
+			"fieldname": "complainant_contact_email",
+			"fieldtype": "Data",
+			"label": "Complainant Contact Email",
+			"options": "Email"
+		},
+		{
+			"fieldname": "complainant_contact_phone",
+			"fieldtype": "Data",
+			"label": "Complainant Contact Phone"
+		},
+		{
+			"fieldname": "complaint_summary",
+			"fieldtype": "Small Text",
+			"label": "Complaint Summary",
+			"reqd": 1
+		},
+		{
+			"fieldname": "complaint_details",
+			"fieldtype": "Text Editor",
+			"label": "Complaint Details",
+			"reqd": 1
+		},
+		{
+			"fieldname": "requested_remedy",
+			"fieldtype": "Small Text",
+			"label": "Requested Remedy",
+			"reqd": 1
+		},
+		{
+			"fieldname": "submission_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Submission Datetime",
+			"reqd": 1
+		},
+		{
+			"fieldname": "received_by_user",
+			"fieldtype": "Link",
+			"label": "Received By",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"default": "Pending",
+			"fieldname": "admissibility_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Admissibility Status",
+			"options": "Pending\nAdmissible\nInadmissible\nDeferred",
+			"reqd": 1
+		},
+		{
+			"fieldname": "admissibility_reason",
+			"fieldtype": "Small Text",
+			"label": "Admissibility Reason"
+		},
+		{
+			"fieldname": "reviewed_by_user",
+			"fieldtype": "Link",
+			"label": "Reviewed By",
+			"options": "User"
+		},
+		{
+			"fieldname": "reviewed_on",
+			"fieldtype": "Datetime",
+			"label": "Reviewed On"
+		},
+		{
+			"default": "0",
+			"fieldname": "affects_award_process",
+			"fieldtype": "Check",
+			"label": "Affects Award Process"
+		},
+		{
+			"default": "0",
+			"fieldname": "affects_contract_execution",
+			"fieldtype": "Check",
+			"label": "Affects Contract Execution"
+		},
+		{
+			"default": "0",
+			"fieldname": "hold_required",
+			"fieldtype": "Check",
+			"label": "Hold Required"
+		},
+		{
+			"fieldname": "hold_scope",
+			"fieldtype": "Small Text",
+			"label": "Hold Scope"
+		},
+		{
+			"default": "Not Applicable",
+			"fieldname": "hold_status",
+			"fieldtype": "Select",
+			"label": "Hold Status",
+			"options": "Not Applicable\nActive\nReleased"
+		},
+		{
+			"fieldname": "decision_due_date",
+			"fieldtype": "Date",
+			"label": "Decision Due Date"
+		},
+		{
+			"fieldname": "actual_decision_date",
+			"fieldtype": "Date",
+			"label": "Actual Decision Date"
+		},
+		{
+			"fieldname": "appeal_deadline",
+			"fieldtype": "Date",
+			"label": "Appeal Deadline"
+		},
+		{
+			"fieldname": "closure_date",
+			"fieldtype": "Date",
+			"label": "Closure Date"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_anonymous",
+			"fieldtype": "Check",
+			"label": "Is Anonymous"
+		},
+		{
+			"default": "0",
+			"fieldname": "complaint_locked",
+			"fieldtype": "Check",
+			"label": "Complaint Locked"
+		},
+		{
+			"fieldname": "exception_record",
+			"fieldtype": "Link",
+			"label": "Exception Record",
+			"options": "Exception Record"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text Editor",
+			"label": "Remarks"
+		}
 	],
 	"index_web_pages_for_search": 1,
 	"links": [],
@@ -95,9 +302,60 @@
 	"naming_rule": "By fieldname",
 	"owner": "Administrator",
 	"permissions": [
-		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
-		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Procurement Officer", "share": 1, "write": 1},
-		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "KT UAT Auditor", "share": 0, "write": 0}
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"role": "Supplier",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 0,
+			"create": 1,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 0
+		},
+		{
+			"role": "Complaint Reviewer",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 1,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 0
+		},
+		{
+			"role": "Auditor",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 0,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 1
+		}
 	],
 	"search_fields": "business_id,complaint_title,display_label",
 	"show_title_field_in_link": 1,

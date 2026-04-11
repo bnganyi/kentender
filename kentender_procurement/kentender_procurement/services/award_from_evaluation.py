@@ -12,6 +12,7 @@ from frappe import _
 from frappe.utils import now_datetime
 
 from kentender.services.audit_event_service import log_audit_event
+from kentender.workflow_engine.safeguards import workflow_mutation_context
 
 AD = "Award Decision"
 ERPT = "Evaluation Report"
@@ -100,7 +101,8 @@ def create_award_decision_from_evaluation(
 	for line in _outcome_lines_from_aggregation(sn, tender):
 		doc.append("outcome_lines", line)
 
-	doc.insert(ignore_permissions=True)
+	with workflow_mutation_context():
+		doc.insert(ignore_permissions=True)
 
 	pe = _procuring_entity_for_tender(tender)
 	ts = now_datetime()

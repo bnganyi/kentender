@@ -13,6 +13,7 @@ import frappe
 from kentender.uat.minimal_golden.base_ref import load_base_ref
 from kentender.uat.minimal_golden.bid_receipts import load_bid_receipts
 from kentender.uat.minimal_golden.bid_submissions import load_bid_submissions
+from kentender.uat.minimal_golden.post_tender_scenario import load_post_tender_scenario
 from kentender.uat.minimal_golden.budget import (
 	assert_budget_seeded_for_pr,
 	assert_strategy_chain_seeded,
@@ -24,6 +25,7 @@ from kentender.uat.minimal_golden.procurement_planning import load_procurement_p
 from kentender.uat.minimal_golden.requisition import load_purchase_requisition
 from kentender.uat.minimal_golden.reset import reset_minimal_golden_data
 from kentender.uat.minimal_golden.tender import load_tender
+from kentender.uat.minimal_golden.templates import ensure_minimal_golden_template_codes
 from kentender.uat.minimal_golden.strategy import assert_strategy_context_for_pr, load_strategy
 from kentender.uat.minimal_golden.users import seed_minimal_golden_users as upsert_minimal_golden_user_accounts
 from kentender.uat.minimal_golden.verify import format_verify_report, verify_minimal_golden
@@ -80,6 +82,7 @@ def seed_minimal_golden(*, cleanup_mvp: bool = True) -> dict:
 	ref = load_base_ref(ds)
 	dept_first = ref["departments"][0] if ref.get("departments") else None
 	strat = load_strategy(ds, procuring_entity=ref["procuring_entity"])
+	template_codes = ensure_minimal_golden_template_codes(ds)
 	bud = load_budget(
 		ds,
 		procuring_entity=ref["procuring_entity"],
@@ -118,11 +121,13 @@ def seed_minimal_golden(*, cleanup_mvp: bool = True) -> dict:
 	)
 	bs = load_bid_submissions(ds, procuring_entity=ref["procuring_entity"])
 	br = load_bid_receipts(ds, procuring_entity=ref["procuring_entity"])
+	post = load_post_tender_scenario(ds)
 	frappe.db.commit()
 	return {
 		"cleanup_mvp": cleanup_mvp,
 		"base_ref": ref,
 		"strategy": strat,
+		"template_codes": template_codes,
 		"budget": bud,
 		"users": users,
 		"procurement_planning": planning,
@@ -130,6 +135,7 @@ def seed_minimal_golden(*, cleanup_mvp: bool = True) -> dict:
 		"tender": td,
 		"bid_submissions": bs,
 		"bid_receipt": br,
+		"post_tender": post,
 	}
 
 
@@ -387,6 +393,7 @@ def seed_minimal_golden_requisition(
 	)
 	bs = load_bid_submissions(ds, procuring_entity=ent)
 	br = load_bid_receipts(ds, procuring_entity=ent)
+	post = load_post_tender_scenario(ds)
 	frappe.db.commit()
 	return {
 		"step": "requisition",
@@ -396,6 +403,7 @@ def seed_minimal_golden_requisition(
 		"tender": td,
 		"bid_submissions": bs,
 		"bid_receipt": br,
+		"post_tender": post,
 		"base_ref": ref_out,
 	}
 

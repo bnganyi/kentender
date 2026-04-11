@@ -8,6 +8,8 @@ from typing import Any
 import frappe
 from frappe import _
 
+from kentender_strategy.services.strategic_linkage_validation import validate_strategic_linkage_set
+
 
 def _upsert_business_doc(doctype: str, business_id: str, fields: dict[str, Any]) -> str:
 	if frappe.db.exists(doctype, business_id):
@@ -167,6 +169,15 @@ def load_strategy(ds: dict[str, Any], *, procuring_entity: str) -> dict[str, Any
 	)
 
 	frappe.db.commit()
+
+	validate_strategic_linkage_set(
+		program=b_pg,
+		sub_program=b_sg,
+		output_indicator=b_ind,
+		performance_target=b_tgt,
+		entity=ent,
+	)
+
 	return {
 		"national_framework": b_nf,
 		"national_pillar": b_pl,

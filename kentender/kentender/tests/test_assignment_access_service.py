@@ -12,6 +12,7 @@ from kentender.services.assignment_access_service import (
 	user_assignment_roles_on_target,
 	user_has_assignment,
 )
+from kentender.uat.legacy_kt_roles import delete_obsolete_kt_role
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 
 _ENTITY = "_KT_ASG_PE"
@@ -50,6 +51,7 @@ def _cleanup_asg_data():
 	if frappe.db.exists("User", _USER):
 		frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
 	frappe.db.delete("Procuring Entity", {"entity_code": _ENTITY})
+	delete_obsolete_kt_role(_ROLE)
 
 
 class TestAssignmentValidForDate(FrappeTestCase):

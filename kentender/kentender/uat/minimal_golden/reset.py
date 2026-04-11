@@ -12,6 +12,7 @@ from kentender_procurement.services.requisition_workflow_actions import RAR_DOCT
 from kentender.uat.minimal_golden.bid_receipts import delete_minimal_golden_bid_receipt
 from kentender.uat.minimal_golden.bid_submissions import delete_minimal_golden_bid_submissions
 from kentender.uat.minimal_golden.dataset import load_minimal_golden_dataset
+from kentender.uat.minimal_golden.post_tender_scenario import delete_post_tender_scenario
 
 PR = "Purchase Requisition"
 BLE = "Budget Ledger Entry"
@@ -28,6 +29,7 @@ def reset_minimal_golden_data(ds: dict[str, Any] | None = None) -> None:
 
 	t_spec = ds.get("tender") or {}
 	t_name = (t_spec.get("name") or "").strip()
+	delete_post_tender_scenario(ds)
 	# Bid Receipt links to Bid Submission — remove before bids/tender.
 	delete_minimal_golden_bid_receipt(ds)
 	# Bids link to Tender — remove before deleting the tender.

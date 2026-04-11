@@ -17,8 +17,8 @@
  "report_type": "Script Report",
  "roles": [
   {"role": "System Manager"},
-  {"role": "KT UAT Finance Approver"},
-  {"role": "KT UAT Procurement Officer"},
-  {"role": "KT UAT Auditor"}
+  {"role": "Finance Officer"},
+  {"role": "Procurement Officer"},
+  {"role": "Auditor"}
  ]
 }

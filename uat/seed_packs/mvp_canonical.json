@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Canonical MVP (through Purchase Requisition) seed keys. Derived from docs/testing MVP ticket pack; Excel workbooks can be merged here later.",
+  "description": "Canonical MVP (through Purchase Requisition) seed keys for UAT-MVP* business IDs. Desk/portal users reuse minimal golden emails (see minimal_golden_canonical.json).",
   "business_id_prefix": "UAT-MVP",
   "fiscal_year": "2026-2027",
   "currency_code": "USD",
@@ -111,70 +111,70 @@
       }
     }
   },
-  "users": {
-    "password_env": "KENTENDER_UAT_MVP_PASSWORD",
-    "default_password": "k3nTender!uat",
-    "internal": [
-      {
-        "email": "requisitioner.uat-mvp@ken-tender.test",
-        "first_name": "MVP",
-        "last_name": "Requisitioner",
-        "role": "KT UAT Requisitioner",
-        "key": "requisitioner"
-      },
-      {
-        "email": "hod.uat-mvp@ken-tender.test",
-        "first_name": "MVP",
-        "last_name": "HOD",
-        "role": "KT UAT HOD",
-        "key": "hod"
-      },
-      {
-        "email": "finance.uat-mvp@ken-tender.test",
-        "first_name": "MVP",
-        "last_name": "Finance",
-        "role": "KT UAT Finance Approver",
-        "key": "finance"
-      },
-      {
-        "email": "procurement.uat-mvp@ken-tender.test",
-        "first_name": "MVP",
-        "last_name": "Procurement",
-        "role": "KT UAT Procurement Officer",
-        "key": "procurement"
-      },
-      {
-        "email": "evaluator.uat-mvp@ken-tender.test",
-        "first_name": "MVP",
-        "last_name": "Evaluator",
-        "role": "KT UAT Evaluator",
-        "key": "evaluator"
-      },
-      {
-        "email": "accounting.uat-mvp@ken-tender.test",
-        "first_name": "MVP",
-        "last_name": "Accounting",
-        "role": "KT UAT Accounting Officer",
-        "key": "accounting"
-      }
-    ],
-    "suppliers": [
-      {
-        "email": "supplier.uat-mvp@ken-tender.test",
-        "first_name": "MVP",
-        "last_name": "Supplier1",
-        "role": "KT UAT Supplier",
-        "key": "supplier"
-      },
-      {
-        "email": "supplier2.uat-mvp@ken-tender.test",
-        "first_name": "MVP",
-        "last_name": "Supplier2",
-        "role": "KT UAT Supplier",
-        "key": "supplier2"
-      }
-    ]
-  },
+	"users": {
+		"password_env": "KENTENDER_MINIMAL_GOLDEN_PASSWORD",
+		"default_password": "k3nTender!golden",
+		"internal": [
+			{
+				"email": "requisitioner.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Requisitioner",
+				"role": "Requisitioner",
+				"key": "requisitioner"
+			},
+			{
+				"email": "hod.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "HOD",
+				"role": "Head of Department",
+				"key": "hod"
+			},
+			{
+				"email": "finance.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Finance",
+				"role": "Finance Officer",
+				"key": "finance"
+			},
+			{
+				"email": "procurement.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Procurement",
+				"role": "Procurement Officer",
+				"key": "procurement"
+			},
+			{
+				"email": "evaluator.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Evaluator",
+				"role": "Evaluator",
+				"key": "evaluator"
+			},
+			{
+				"email": "accounting.test@ken-tender.test",
+				"first_name": "Golden",
+				"last_name": "Accounting",
+				"role": "Accounting Officer",
+				"key": "accounting"
+			}
+		],
+		"suppliers": [
+			{
+				"email": "supplier1.test@ken-tender.test",
+				"first_name": "MedEquip",
+				"last_name": "Africa Ltd",
+				"role": "Supplier",
+				"key": "supplier1"
+			},
+			{
+				"email": "supplier2.test@ken-tender.test",
+				"first_name": "Afya",
+				"last_name": "Diagnostics Ltd",
+				"role": "Supplier",
+				"key": "supplier2"
+			}
+		]
+	},
   "purchase_requisitions": {
     "draft": {
       "name": "UAT-MVP-PR-DRAFT",

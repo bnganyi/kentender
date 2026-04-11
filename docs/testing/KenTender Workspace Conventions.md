@@ -12,7 +12,7 @@
 **Naming**
 
 - Workspace **labels** are prefixed with `KenTender` to avoid collisions with ERPNext workspaces on the same site.
-- UAT **Frappe Role** names use the `KT UAT` prefix for clarity and easy filtering.
+- **Frappe Role** names follow the permissions matrix / Excel Role Catalogue (plain labels such as `Requisitioner`, `Head of Department`). Do **not** use a `KT UAT` prefix on Role documents; older `KT UAT *` roles are legacy and can be removed with `kentender.uat.legacy_kt_roles.purge_legacy_kt_roles`.
 
 **Paths**
 

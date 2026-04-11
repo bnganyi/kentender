@@ -104,6 +104,8 @@ class EvaluationApprovalSubmissionRecord(Document):
 		self.display_label = code_title_label(_strip(self.action_type) or "—", _strip(self.evaluation_session) or "—")
 
 	def on_trash(self):
+		if frappe.flags.get("allow_evaluation_approval_submission_record_delete"):
+			return
 		frappe.throw(
 			_("Evaluation Approval Submission Record cannot be deleted."),
 			frappe.ValidationError,

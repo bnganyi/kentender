@@ -146,7 +146,7 @@
 			"print": 1,
 			"read": 1,
 			"report": 1,
-			"role": "KT UAT Procurement Officer",
+			"role": "Procurement Officer",
 			"share": 1,
 			"write": 1
 		},
@@ -158,7 +158,7 @@
 			"print": 1,
 			"read": 1,
 			"report": 1,
-			"role": "KT UAT Auditor",
+			"role": "Auditor",
 			"share": 0,
 			"write": 0
 		}

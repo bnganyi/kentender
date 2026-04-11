@@ -1,0 +1,73 @@
+{
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-10 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"display_label",
+		"asset",
+		"condition_datetime",
+		"condition_status",
+		"assessed_by_user",
+		"notes",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "display_label",
+			"fieldtype": "Data",
+			"hidden": 1,
+			"label": "Display Label",
+			"read_only": 1
+		},
+		{
+			"fieldname": "asset",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Asset",
+			"options": "KenTender Asset",
+			"reqd": 1
+		},
+		{
+			"fieldname": "condition_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Condition Datetime",
+			"reqd": 1
+		},
+		{
+			"fieldname": "condition_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Condition Status",
+			"options": "Good\nFair\nPoor\nCritical\nUnserviceable",
+			"reqd": 1
+		},
+		{
+			"fieldname": "assessed_by_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Assessed By",
+			"options": "User",
+			"reqd": 1
+		},
+		{"fieldname": "notes", "fieldtype": "Text Editor", "label": "Notes"},
+		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"}
+	],
+	"index_web_pages_for_search": 1,
+	"module": "Kentender Assets",
+	"name": "KenTender Asset Condition Log",
+	"owner": "Administrator",
+	"permissions": [
+		{"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+		{"create": 1, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Procurement Officer", "share": 1, "write": 1},
+		{"create": 0, "delete": 0, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Auditor", "share": 0, "write": 0}
+	],
+	"search_fields": "asset,display_label",
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"title_field": "display_label",
+	"track_changes": 1
+}

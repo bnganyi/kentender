@@ -11,6 +11,7 @@ from frappe.tests.utils import FrappeTestCase
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 from kentender_budget.tests.test_budget_control_period import _bcp
 from kentender.services.audit_event_service import AUDIT_EVENT_DOCTYPE
+from kentender.workflow_engine.safeguards import workflow_mutation_context
 
 from kentender_procurement.services.contract_activation_service import activate_contract
 from kentender_procurement.services.contract_approval_signature_services import (
@@ -36,7 +37,7 @@ from kentender_procurement.services.contract_variation_services import (
 	approve_contract_variation,
 	request_contract_variation,
 )
-from kentender_procurement.services.award_approval_services import final_approve_award
+from kentender_procurement.services.award_approval_services import final_approve_award, submit_award_for_approval
 from kentender_procurement.services.award_from_evaluation import create_award_decision_from_evaluation
 from kentender_procurement.services.evaluation_aggregation import aggregate_evaluation_results
 from kentender_procurement.services.evaluation_report_services import (
@@ -74,7 +75,125 @@ def _norm(s: str | None) -> str:
 	return (s or "").strip()
 
 
+def _cleanup_con094_award_workflow():
+	pol_code = f"{PREFIX}_AWPOL"
+	tpl_code = f"{PREFIX}_AWTPL"
+	for name in frappe.get_all(
+		"KenTender Approval Route Instance",
+		filters={"reference_doctype": AD, "reference_docname": ("like", f"{PREFIX}%")},
+		pluck="name",
+	):
+		try:
+			frappe.delete_doc("KenTender Approval Route Instance", name, force=True, ignore_permissions=True)
+		except Exception:
+			pass
+	frappe.db.delete(
+		"KenTender Approval Action",
+		{"reference_doctype": AD, "reference_docname": ("like", f"{PREFIX}%")},
+	)
+	if frappe.db.exists("KenTender Workflow Policy", {"policy_code": pol_code}):
+		frappe.delete_doc("KenTender Workflow Policy", pol_code, force=True, ignore_permissions=True)
+	if frappe.db.exists("KenTender Approval Route Template", {"template_code": tpl_code}):
+		frappe.delete_doc("KenTender Approval Route Template", tpl_code, force=True, ignore_permissions=True)
+
+
+def _ensure_con094_award_route_policy() -> None:
+	pol_code = f"{PREFIX}_AWPOL"
+	tpl_code = f"{PREFIX}_AWTPL"
+	if frappe.db.exists("KenTender Workflow Policy", {"policy_code": pol_code}):
+		return
+	tpl = frappe.get_doc(
+		{
+			"doctype": "KenTender Approval Route Template",
+			"template_code": tpl_code,
+			"template_name": "CON094 award 1-step",
+			"object_type": AD,
+			"steps": [
+				{
+					"doctype": "KenTender Approval Route Template Step",
+					"step_order": 1,
+					"step_name": "Final",
+					"actor_type": "Role",
+					"role_required": "System Manager",
+				}
+			],
+		}
+	)
+	tpl.insert()
+	pol = frappe.get_doc(
+		{
+			"doctype": "KenTender Workflow Policy",
+			"policy_code": pol_code,
+			"applies_to_doctype": AD,
+			"linked_template": tpl.name,
+			"active": 1,
+			"evaluation_order": 1,
+		}
+	)
+	pol.insert()
+
+
+def _cleanup_con094_contract_workflow():
+	pol_code = f"{PREFIX}_PCPOL"
+	tpl_code = f"{PREFIX}_PCTPL"
+	for name in frappe.get_all(
+		"KenTender Approval Route Instance",
+		filters={"reference_doctype": PC, "reference_docname": ("like", f"{PREFIX}%")},
+		pluck="name",
+	):
+		try:
+			frappe.delete_doc("KenTender Approval Route Instance", name, force=True, ignore_permissions=True)
+		except Exception:
+			pass
+	frappe.db.delete(
+		"KenTender Approval Action",
+		{"reference_doctype": PC, "reference_docname": ("like", f"{PREFIX}%")},
+	)
+	if frappe.db.exists("KenTender Workflow Policy", {"policy_code": pol_code}):
+		frappe.delete_doc("KenTender Workflow Policy", pol_code, force=True, ignore_permissions=True)
+	if frappe.db.exists("KenTender Approval Route Template", {"template_code": tpl_code}):
+		frappe.delete_doc("KenTender Approval Route Template", tpl_code, force=True, ignore_permissions=True)
+
+
+def _ensure_con094_contract_route_policy() -> None:
+	pol_code = f"{PREFIX}_PCPOL"
+	tpl_code = f"{PREFIX}_PCTPL"
+	if frappe.db.exists("KenTender Workflow Policy", {"policy_code": pol_code}):
+		return
+	tpl = frappe.get_doc(
+		{
+			"doctype": "KenTender Approval Route Template",
+			"template_code": tpl_code,
+			"template_name": "CON094 contract 1-step",
+			"object_type": PC,
+			"steps": [
+				{
+					"doctype": "KenTender Approval Route Template Step",
+					"step_order": 1,
+					"step_name": "Approve",
+					"actor_type": "Role",
+					"role_required": "System Manager",
+				}
+			],
+		}
+	)
+	tpl.insert()
+	pol = frappe.get_doc(
+		{
+			"doctype": "KenTender Workflow Policy",
+			"policy_code": pol_code,
+			"applies_to_doctype": PC,
+			"linked_template": tpl.name,
+			"active": 1,
+			"evaluation_order": 1,
+		}
+	)
+	pol.insert()
+
+
 def _cleanup_con094():
+	_cleanup_con094_award_workflow()
+	_cleanup_con094_contract_workflow()
 	frappe.flags.allow_contract_status_event_delete = True
 	for pc in frappe.get_all(PC, filters={"business_id": ("like", f"{PREFIX}%")}, pluck="name") or []:
 		for dt in (PCSE, "Procurement Contract Signing Record", "Procurement Contract Approval Record", PCV):
@@ -240,6 +359,8 @@ class TestContractServices094to099(FrappeTestCase):
 		ad.approved_supplier = ad.recommended_supplier
 		ad.approved_amount = ad.recommended_amount
 		ad.save(ignore_permissions=True)
+		_ensure_con094_award_route_policy()
+		submit_award_for_approval(ad.name)
 		final_approve_award(ad.name)
 		return t, e, ad
 
@@ -342,6 +463,7 @@ class TestContractServices094to099(FrappeTestCase):
 		_t, _e, ad = self._ready_award("A")
 		c = create_contract_from_award(ad.name, business_id=f"{PREFIX}_PC1")
 		self.assertTrue(c["name"])
+		_ensure_con094_contract_route_policy()
 		submit_contract_for_review(c["name"])
 		approve_contract(c["name"])
 		send_contract_for_signature(c["name"])
@@ -353,9 +475,10 @@ class TestContractServices094to099(FrappeTestCase):
 		_t, _e, ad = self._ready_award("B")
 		c = create_contract_from_award(ad.name, business_id=f"{PREFIX}_PC2")
 		pc = frappe.get_doc(PC, c["name"])
-		pc.status = "Active"
-		pc.workflow_state = "Active"
-		pc.save(ignore_permissions=True)
+		with workflow_mutation_context():
+			pc.status = "Active"
+			pc.workflow_state = "Active"
+			pc.save(ignore_permissions=True)
 		v = request_contract_variation(
 			c["name"],
 			reason="Adjust value",
@@ -371,9 +494,10 @@ class TestContractServices094to099(FrappeTestCase):
 		_t, _e, ad = self._ready_award("C")
 		c = create_contract_from_award(ad.name, business_id=f"{PREFIX}_PC3")
 		pc = frappe.get_doc(PC, c["name"])
-		pc.status = "Active"
-		pc.workflow_state = "Active"
-		pc.save(ignore_permissions=True)
+		with workflow_mutation_context():
+			pc.status = "Active"
+			pc.workflow_state = "Active"
+			pc.save(ignore_permissions=True)
 		suspend_contract(c["name"], reason="pause")
 		res = frappe.get_doc(PC, c["name"])
 		self.assertEqual(res.status, "Suspended")

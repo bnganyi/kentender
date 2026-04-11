@@ -1,7 +1,7 @@
 {
  "app": "kentender",
  "charts": [],
- "content": "[{\"id\":\"kts_h\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>KenTender \u2014 Strategy and Planning</b></span>\",\"col\":12}},{\"id\":\"kts_p\",\"type\":\"paragraph\",\"data\":{\"text\":\"National reference model and entity strategic programs. Create data top-down before linking requisitions.\",\"col\":12}}]",
+ "content": "[{\"id\": \"kts_h\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>KenTender \\u2014 Strategy & Alignment</b></span>\", \"col\": 12}}, {\"id\": \"kts_p\", \"type\": \"paragraph\", \"data\": {\"text\": \"Process-controlled alignment: use the hierarchy snapshot to browse code + name, KPI summary for coverage, requisitions-by-program for demand alignment, and linkage exceptions for records missing targets.\", \"col\": 12}}]",
  "creation": "2026-03-30 12:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
@@ -126,9 +126,87 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Alignment & monitoring",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Strategy Alignment Summary",
+   "link_count": 0,
+   "link_to": "Strategy Alignment Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Strategy Hierarchy Snapshot",
+   "link_count": 0,
+   "link_to": "Strategy Hierarchy Snapshot",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Strategy Requisitions By Program",
+   "link_count": 0,
+   "link_to": "Strategy Requisitions By Program",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Strategy Linkage Exceptions",
+   "link_count": 0,
+   "link_to": "Strategy Linkage Exceptions",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Strategy Active Plans By Entity",
+   "link_count": 0,
+   "link_to": "Strategy Active Plans By Entity",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Strategy Programs By Objective",
+   "link_count": 0,
+   "link_to": "Strategy Programs By Objective",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Strategy Indicators And Targets By Entity",
+   "link_count": 0,
+   "link_to": "Strategy Indicators And Targets By Entity",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-03-30 12:00:00.000000",
+ "modified": "2026-04-11 18:30:00.000000",
  "modified_by": "Administrator",
  "module": "KenTender",
  "name": "KenTender Strategy",
@@ -139,30 +217,38 @@
  "quick_lists": [],
  "restrict_to_domain": "",
  "roles": [
-  {
-   "role": "System Manager"
-  },
-  {
-   "role": "KT UAT Strategy Manager"
-  },
-  {
-   "role": "KT UAT Budget Officer"
-  },
-  {
-   "role": "KT UAT Requisitioner"
-  },
-  {
-   "role": "KT UAT HOD"
-  },
-  {
-   "role": "KT UAT Finance Approver"
-  },
-  {
-   "role": "KT UAT Procurement Officer"
-  }
+  {"role": "System Manager"},
+  {"role": "Strategy Administrator"},
+  {"role": "Strategy Reviewer"},
+  {"role": "Planning Authority"},
+  {"role": "Procurement Planner"},
+  {"role": "Budget Controller"},
+  {"role": "Requisitioner"},
+  {"role": "Head of Department"},
+  {"role": "Finance Officer"},
+  {"role": "Procurement Officer"},
+  {"role": "Auditor"}
  ],
  "sequence_id": 3.0,
  "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "Strategy Alignment Summary",
+   "link_to": "Strategy Alignment Summary",
+   "type": "Report"
+  },
+  {
+   "doc_view": "",
+   "label": "Strategy Hierarchy Snapshot",
+   "link_to": "Strategy Hierarchy Snapshot",
+   "type": "Report"
+  },
+  {
+   "doc_view": "",
+   "label": "Strategy Linkage Exceptions",
+   "link_to": "Strategy Linkage Exceptions",
+   "type": "Report"
+  },
   {
    "doc_view": "New",
    "label": "New National Framework",
@@ -173,12 +259,6 @@
    "doc_view": "New",
    "label": "New Entity Strategic Plan",
    "link_to": "Entity Strategic Plan",
-   "type": "DocType"
-  },
-  {
-   "doc_view": "New",
-   "label": "New Strategic Program",
-   "link_to": "Strategic Program",
    "type": "DocType"
   }
  ],

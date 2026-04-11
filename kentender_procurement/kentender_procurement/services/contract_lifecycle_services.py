@@ -12,6 +12,7 @@ from frappe import _
 from frappe.utils import now_datetime
 
 from kentender.services.audit_event_service import log_audit_event
+from kentender.workflow_engine.safeguards import workflow_mutation_context
 
 PC = "Procurement Contract"
 PCSE = "Procurement Contract Status Event"
@@ -46,7 +47,8 @@ def suspend_contract(contract_id: str, *, reason: str | None = None) -> dict[str
 	doc.workflow_state = "Suspended"
 	if reason:
 		doc.remarks = (doc.remarks or "") + "\n" + _("Suspend: {0}").format(reason)
-	doc.save(ignore_permissions=True)
+	with workflow_mutation_context():
+		doc.save(ignore_permissions=True)
 	_event(cn, "Suspended", _("Contract suspended."), "Suspended")
 	log_audit_event(
 		event_type="procurement_contract.suspended",
@@ -65,7 +67,8 @@ def resume_contract(contract_id: str) -> dict[str, Any]:
 		frappe.throw(_("Only suspended contracts can be resumed."), frappe.ValidationError)
 	doc.status = "Active"
 	doc.workflow_state = "Active"
-	doc.save(ignore_permissions=True)
+	with workflow_mutation_context():
+		doc.save(ignore_permissions=True)
 	_event(cn, "Resumed", _("Contract resumed."), "Active")
 	log_audit_event(
 		event_type="procurement_contract.resumed",
@@ -87,7 +90,8 @@ def terminate_contract(contract_id: str, *, reason: str | None = None) -> dict[s
 	doc.workflow_state = "Terminated"
 	if reason:
 		doc.termination_reason = reason
-	doc.save(ignore_permissions=True)
+	with workflow_mutation_context():
+		doc.save(ignore_permissions=True)
 	_event(cn, "Terminated", _("Contract terminated."), "Terminated")
 	log_audit_event(
 		event_type="procurement_contract.terminated",
@@ -109,7 +113,8 @@ def close_contract(contract_id: str, *, notes: str | None = None) -> dict[str, A
 	doc.workflow_state = "Closed"
 	if notes:
 		doc.closure_notes = notes
-	doc.save(ignore_permissions=True)
+	with workflow_mutation_context():
+		doc.save(ignore_permissions=True)
 	_event(cn, "Closed", _("Contract closed."), "Closed")
 	log_audit_event(
 		event_type="procurement_contract.closed",

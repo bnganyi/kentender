@@ -1,144 +1,158 @@
 {
- "actions": [],
- "allow_rename": 0,
- "autoname": "hash",
- "creation": "2026-04-03 12:00:00.000000",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "reference_doctype",
-  "reference_docname",
-  "route_instance",
-  "route_step",
-  "workflow_stage",
-  "action",
-  "decision",
-  "column_actor",
-  "actor_user",
-  "actor_role",
-  "action_datetime",
-  "comments",
-  "previous_state",
-  "new_state",
-  "is_final_action"
- ],
- "fields": [
-  {
-   "fieldname": "reference_doctype",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Reference DocType",
-   "options": "DocType",
-   "reqd": 1
-  },
-  {
-   "fieldname": "reference_docname",
-   "fieldtype": "Dynamic Link",
-   "in_list_view": 1,
-   "label": "Reference Document",
-   "options": "reference_doctype",
-   "reqd": 1
-  },
-  {
-   "fieldname": "route_instance",
-   "fieldtype": "Link",
-   "label": "Route Instance",
-   "options": "KenTender Approval Route Instance"
-  },
-  {
-   "fieldname": "route_step",
-   "fieldtype": "Link",
-   "label": "Route Step",
-   "options": "KenTender Approval Route Step"
-  },
-  {
-   "fieldname": "workflow_stage",
-   "fieldtype": "Data",
-   "label": "Workflow Stage"
-  },
-  {
-   "fieldname": "action",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Action",
-   "reqd": 1
-  },
-  {
-   "fieldname": "decision",
-   "fieldtype": "Data",
-   "label": "Decision"
-  },
-  {
-   "fieldname": "column_actor",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "actor_user",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Actor User",
-   "options": "User",
-   "reqd": 1
-  },
-  {
-   "fieldname": "actor_role",
-   "fieldtype": "Link",
-   "label": "Actor Role",
-   "options": "Role"
-  },
-  {
-   "fieldname": "action_datetime",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "label": "Action Datetime",
-   "reqd": 1
-  },
-  {
-   "fieldname": "comments",
-   "fieldtype": "Small Text",
-   "label": "Comments"
-  },
-  {
-   "fieldname": "previous_state",
-   "fieldtype": "Small Text",
-   "label": "Previous State"
-  },
-  {
-   "fieldname": "new_state",
-   "fieldtype": "Small Text",
-   "label": "New State"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_final_action",
-   "fieldtype": "Check",
-   "label": "Is Final Action"
-  }
- ],
- "grid_page_length": 50,
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-04-03 12:00:00.000000",
- "modified_by": "Administrator",
- "module": "KenTender",
- "name": "KenTender Approval Action",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 0,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 0
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": [],
- "track_changes": 0
+	"actions": [],
+	"allow_rename": 0,
+	"autoname": "hash",
+	"creation": "2026-04-03 12:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"reference_doctype",
+		"reference_docname",
+		"route_instance",
+		"route_step",
+		"workflow_stage",
+		"action",
+		"decision",
+		"column_actor",
+		"actor_user",
+		"actor_role",
+		"action_datetime",
+		"comments",
+		"previous_state",
+		"new_state",
+		"is_final_action"
+	],
+	"fields": [
+		{
+			"fieldname": "reference_doctype",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Reference DocType",
+			"options": "DocType",
+			"reqd": 1
+		},
+		{
+			"fieldname": "reference_docname",
+			"fieldtype": "Dynamic Link",
+			"in_list_view": 1,
+			"label": "Reference Document",
+			"options": "reference_doctype",
+			"reqd": 1
+		},
+		{
+			"fieldname": "route_instance",
+			"fieldtype": "Link",
+			"label": "Route Instance",
+			"options": "KenTender Approval Route Instance"
+		},
+		{
+			"fieldname": "route_step",
+			"fieldtype": "Link",
+			"label": "Route Step",
+			"options": "KenTender Approval Route Step"
+		},
+		{
+			"fieldname": "workflow_stage",
+			"fieldtype": "Data",
+			"label": "Workflow Stage"
+		},
+		{
+			"fieldname": "action",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Action",
+			"reqd": 1
+		},
+		{
+			"fieldname": "decision",
+			"fieldtype": "Data",
+			"label": "Decision"
+		},
+		{
+			"fieldname": "column_actor",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "actor_user",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Actor User",
+			"options": "User",
+			"reqd": 1
+		},
+		{
+			"fieldname": "actor_role",
+			"fieldtype": "Link",
+			"label": "Actor Role",
+			"options": "Role"
+		},
+		{
+			"fieldname": "action_datetime",
+			"fieldtype": "Datetime",
+			"in_list_view": 1,
+			"label": "Action Datetime",
+			"reqd": 1
+		},
+		{
+			"fieldname": "comments",
+			"fieldtype": "Small Text",
+			"label": "Comments"
+		},
+		{
+			"fieldname": "previous_state",
+			"fieldtype": "Small Text",
+			"label": "Previous State"
+		},
+		{
+			"fieldname": "new_state",
+			"fieldtype": "Small Text",
+			"label": "New State"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_final_action",
+			"fieldtype": "Check",
+			"label": "Is Final Action"
+		}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-04-03 12:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "KenTender",
+	"name": "KenTender Approval Action",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"role": "Auditor",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 0,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 1
+		}
+	],
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 0
 }

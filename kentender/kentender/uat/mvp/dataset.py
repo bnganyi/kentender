@@ -23,4 +23,4 @@ def mvp_password(ds: dict[str, Any]) -> str:
 		v = os.environ.get(env_key)
 		if v:
 			return v
-	return (ds.get("users") or {}).get("default_password") or "k3nTender!uat"
+	return (ds.get("users") or {}).get("default_password") or "k3nTender!golden"

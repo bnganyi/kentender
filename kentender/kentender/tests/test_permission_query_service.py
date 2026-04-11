@@ -14,6 +14,7 @@ from kentender.services.permission_query_service import (
 	or_filters_entity_or_docnames,
 	owner_is_user,
 )
+from kentender.uat.legacy_kt_roles import delete_obsolete_kt_role
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 
 _ENTITY_A = "_KT_PQ_A"
@@ -51,6 +52,7 @@ def _cleanup_pq_merge_data():
 	if frappe.db.exists("User", _USER):
 		frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
 	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PQ_%")})
+	delete_obsolete_kt_role(_ROLE)
 
 
 def _cleanup_pq_assign_data():
@@ -59,11 +61,13 @@ def _cleanup_pq_assign_data():
 	if frappe.db.exists("User", _USER):
 		frappe.delete_doc("User", _USER, force=1, ignore_permissions=1)
 	frappe.db.delete("Procuring Entity", {"entity_code": "_KT_PQ_E"})
+	delete_obsolete_kt_role(_ROLE)
 
 
 def _cleanup_pq_or_data():
 	frappe.db.delete("Exception Record", {"name": ("like", "_KT_PQ_OX%")})
 	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PQ_O%")})
+	delete_obsolete_kt_role(_ROLE)
 
 
 class TestPermissionQueryFragments(FrappeTestCase):

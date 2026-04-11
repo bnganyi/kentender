@@ -123,7 +123,7 @@
    "report": 1,
    "share": 1,
    "write": 1,
-   "role": "KT UAT Strategy Manager"
+   "role": "Procurement Planner"
   },
   {
    "create": 0,
@@ -135,7 +135,7 @@
    "report": 1,
    "share": 0,
    "write": 0,
-   "role": "KT UAT Requisitioner"
+   "role": "Requisitioner"
   },
   {
    "create": 0,
@@ -147,7 +147,7 @@
    "report": 1,
    "share": 0,
    "write": 0,
-   "role": "KT UAT HOD"
+   "role": "Head of Department"
   },
   {
    "create": 0,
@@ -159,7 +159,7 @@
    "report": 1,
    "share": 0,
    "write": 0,
-   "role": "KT UAT Finance Approver"
+   "role": "Finance Officer"
   },
   {
    "create": 0,
@@ -171,7 +171,7 @@
    "report": 1,
    "share": 0,
    "write": 0,
-   "role": "KT UAT Procurement Officer"
+   "role": "Procurement Officer"
   },
   {
    "create": 0,
@@ -183,7 +183,7 @@
    "report": 1,
    "share": 0,
    "write": 0,
-   "role": "KT UAT Budget Officer"
+   "role": "Budget Controller"
   }
  ],
  "row_format": "Dynamic",

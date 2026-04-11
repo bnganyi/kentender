@@ -9,28 +9,13 @@ import frappe
 from frappe.permissions import add_user_permission
 
 from kentender.uat.bootstrap import KT_UAT_ROLES, ensure_uat_roles
-from kentender.uat.mvp.users import MVP_EXTRA_ROLES, _ensure_role
 
 from kentender.uat.minimal_golden.dataset import minimal_golden_password
 
-# Personas referenced in Minimal Golden Testing Scenario (future SP3+); desk roles for suppliers stay Website User.
-GOLDEN_EXTRA_ROLES = (
-	("KT UAT Opening Chair", "KenTender Minimal Golden — opening chair (future tender)"),
-	("KT UAT Evaluation Chair", "KenTender Minimal Golden — evaluation chair"),
-	("KT UAT Contract Manager", "KenTender Minimal Golden — contract manager"),
-	("KT UAT Inspection Officer", "KenTender Minimal Golden — inspection officer"),
-	("KT UAT Storekeeper", "KenTender Minimal Golden — storekeeper"),
-	("KT UAT Asset Officer", "KenTender Minimal Golden — asset officer"),
-)
-
 
 def ensure_golden_roles() -> None:
+	"""Ensure Frappe Role documents for the KenTender matrix (Excel Role Catalogue)."""
 	ensure_uat_roles()
-	for role_name, _desc in MVP_EXTRA_ROLES:
-		desk = 0 if role_name == "KT UAT Supplier" else 1
-		_ensure_role(role_name, desk_access=desk)
-	for role_name, _desc in GOLDEN_EXTRA_ROLES:
-		_ensure_role(role_name, desk_access=1)
 	frappe.db.commit()
 
 
@@ -72,7 +57,7 @@ def upsert_internal_system_user(row: dict[str, Any], password: str) -> bool:
 
 
 def upsert_supplier_user(row: dict[str, Any], password: str) -> bool:
-	"""Create or update a Website User supplier with role (e.g. KT UAT Supplier)."""
+	"""Create or update a Website User supplier with role (e.g. Supplier)."""
 	tz = frappe.db.get_single_value("System Settings", "time_zone") or "UTC"
 	email = row["email"]
 	role = row["role"]
@@ -182,5 +167,4 @@ def seed_minimal_golden_users(ds: dict[str, Any], password: str) -> dict[str, An
 			{r.role for r in frappe.get_doc("User", row["email"]).roles}
 		)
 	frappe.db.commit()
-	extra = len(MVP_EXTRA_ROLES) + len(GOLDEN_EXTRA_ROLES)
-	return {"users": summary, "roles_expected": len(KT_UAT_ROLES) + extra}
+	return {"users": summary, "roles_expected": len(KT_UAT_ROLES)}

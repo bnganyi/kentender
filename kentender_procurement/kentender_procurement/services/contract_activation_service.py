@@ -12,6 +12,7 @@ from frappe import _
 from frappe.utils import now_datetime
 
 from kentender.services.audit_event_service import log_audit_event
+from kentender.workflow_engine.safeguards import workflow_mutation_context
 
 PC = "Procurement Contract"
 PCSR = "Procurement Contract Signing Record"
@@ -51,10 +52,11 @@ def activate_contract(contract_id: str) -> dict[str, Any]:
 		frappe.throw(_("Signing record must include hash or signed document."), frappe.ValidationError)
 
 	ts = now_datetime()
-	doc.status = "Active"
-	doc.workflow_state = "Active"
-	doc.actual_activation_date = ts
-	doc.save(ignore_permissions=True)
+	with workflow_mutation_context():
+		doc.status = "Active"
+		doc.workflow_state = "Active"
+		doc.actual_activation_date = ts
+		doc.save(ignore_permissions=True)
 
 	frappe.get_doc(
 		{

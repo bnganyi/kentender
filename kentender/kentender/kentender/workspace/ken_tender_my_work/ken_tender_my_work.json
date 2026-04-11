@@ -57,22 +57,22 @@
    "role": "System Manager"
   },
   {
-   "role": "KT UAT Requisitioner"
+   "role": "Requisitioner"
   },
   {
-   "role": "KT UAT HOD"
+   "role": "Head of Department"
   },
   {
-   "role": "KT UAT Finance Approver"
+   "role": "Finance Officer"
   },
   {
-   "role": "KT UAT Procurement Officer"
+   "role": "Procurement Officer"
   },
   {
-   "role": "KT UAT Strategy Manager"
+   "role": "Procurement Planner"
   },
   {
-   "role": "KT UAT Budget Officer"
+   "role": "Budget Controller"
   }
  ],
  "sequence_id": 1.0,

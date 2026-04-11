@@ -134,8 +134,10 @@ after_migrate = ["kentender.uat.bootstrap.after_migrate"]
 # ---------------
 # Hook on document methods and events
 
+# WF-002: approval-controlled fields — handler no-ops unless doctype is registered in
+# ``workflow_engine.approval_field_registry`` / ``register_approval_controlled_fields``.
 doc_events = {
-	"Purchase Requisition": {
+	"*": {
 		"validate": "kentender.workflow_engine.safeguards.document_validate_approval_controlled_fields",
 	}
 }

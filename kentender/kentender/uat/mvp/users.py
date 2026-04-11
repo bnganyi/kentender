@@ -9,33 +9,10 @@ import frappe
 
 from kentender.uat.bootstrap import KT_UAT_ROLES, ensure_uat_roles
 
-MVP_EXTRA_ROLES = (
-	("KT UAT Evaluator", "KenTender UAT MVP — evaluator (future SP2+)"),
-	("KT UAT Accounting Officer", "KenTender UAT MVP — accounting (future milestone)"),
-	("KT UAT Supplier", "KenTender UAT MVP — supplier fixture"),
-)
-
-
-def _ensure_role(role_name: str, *, desk_access: int = 1) -> None:
-	if frappe.db.exists("Role", role_name):
-		return
-	frappe.get_doc(
-		{
-			"doctype": "Role",
-			"role_name": role_name,
-			"desk_access": desk_access,
-			"is_custom": 1,
-		}
-	).insert(ignore_permissions=True)
-
 
 def ensure_mvp_roles() -> None:
-	"""KT UAT roles from bootstrap plus MVP-only personas."""
+	"""Ensure matrix Role documents (same catalogue as minimal golden / Excel Role Catalogue)."""
 	ensure_uat_roles()
-	for role_name, _desc in MVP_EXTRA_ROLES:
-		desk = 0 if role_name == "KT UAT Supplier" else 1
-		_ensure_role(role_name, desk_access=desk)
-	frappe.db.commit()
 
 
 def seed_mvp_users(ds: dict[str, Any], password: str) -> dict[str, Any]:
@@ -86,4 +63,4 @@ def seed_mvp_users(ds: dict[str, Any], password: str) -> dict[str, Any]:
 			user_type="Website User",
 		)
 	frappe.db.commit()
-	return {"users": summary, "roles_expected": len(KT_UAT_ROLES) + len(MVP_EXTRA_ROLES)}
+	return {"users": summary, "roles_expected": len(KT_UAT_ROLES)}

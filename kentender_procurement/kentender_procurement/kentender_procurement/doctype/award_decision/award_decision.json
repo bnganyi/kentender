@@ -61,7 +61,11 @@
 		"outcome_lines"
 	],
 	"fields": [
-		{"fieldname": "section_identity", "fieldtype": "Section Break", "label": "Identity"},
+		{
+			"fieldname": "section_identity",
+			"fieldtype": "Section Break",
+			"label": "Identity"
+		},
 		{
 			"fieldname": "business_id",
 			"fieldtype": "Data",
@@ -102,7 +106,11 @@
 			"label": "Display Label",
 			"read_only": 1
 		},
-		{"fieldname": "section_status", "fieldtype": "Section Break", "label": "Status"},
+		{
+			"fieldname": "section_status",
+			"fieldtype": "Section Break",
+			"label": "Status"
+		},
 		{
 			"default": "Draft",
 			"fieldname": "status",
@@ -128,7 +136,11 @@
 			"options": "Draft\nPending\nApproved\nRejected",
 			"reqd": 1
 		},
-		{"fieldname": "section_counts", "fieldtype": "Section Break", "label": "Bid counts"},
+		{
+			"fieldname": "section_counts",
+			"fieldtype": "Section Break",
+			"label": "Bid counts"
+		},
 		{
 			"default": "0",
 			"fieldname": "responsive_bid_count",
@@ -147,26 +159,59 @@
 			"fieldtype": "Int",
 			"label": "Disqualified Bid Count"
 		},
-		{"fieldname": "section_recommendation", "fieldtype": "Section Break", "label": "Recommendation"},
+		{
+			"fieldname": "section_recommendation",
+			"fieldtype": "Section Break",
+			"label": "Recommendation"
+		},
 		{
 			"fieldname": "recommended_bid_submission",
 			"fieldtype": "Link",
 			"label": "Recommended Bid Submission",
 			"options": "Bid Submission"
 		},
-		{"fieldname": "recommended_supplier", "fieldtype": "Data", "label": "Recommended Supplier"},
-		{"fieldname": "recommended_amount", "fieldtype": "Currency", "label": "Recommended Amount"},
-		{"fieldname": "currency", "fieldtype": "Link", "label": "Currency", "options": "Currency"},
-		{"fieldname": "section_approved", "fieldtype": "Section Break", "label": "Approved outcome"},
+		{
+			"fieldname": "recommended_supplier",
+			"fieldtype": "Data",
+			"label": "Recommended Supplier"
+		},
+		{
+			"fieldname": "recommended_amount",
+			"fieldtype": "Currency",
+			"label": "Recommended Amount"
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency"
+		},
+		{
+			"fieldname": "section_approved",
+			"fieldtype": "Section Break",
+			"label": "Approved outcome"
+		},
 		{
 			"fieldname": "approved_bid_submission",
 			"fieldtype": "Link",
 			"label": "Approved Bid Submission",
 			"options": "Bid Submission"
 		},
-		{"fieldname": "approved_supplier", "fieldtype": "Data", "label": "Approved Supplier"},
-		{"fieldname": "approved_amount", "fieldtype": "Currency", "label": "Approved Amount"},
-		{"fieldname": "section_award", "fieldtype": "Section Break", "label": "Award"},
+		{
+			"fieldname": "approved_supplier",
+			"fieldtype": "Data",
+			"label": "Approved Supplier"
+		},
+		{
+			"fieldname": "approved_amount",
+			"fieldtype": "Currency",
+			"label": "Approved Amount"
+		},
+		{
+			"fieldname": "section_award",
+			"fieldtype": "Section Break",
+			"label": "Award"
+		},
 		{
 			"default": "Single Award",
 			"fieldname": "award_type",
@@ -175,9 +220,21 @@
 			"options": "Single Award\nMultiple Lot\nFramework Call-off\nOther",
 			"reqd": 1
 		},
-		{"fieldname": "approval_decision_date", "fieldtype": "Date", "label": "Approval Decision Date"},
-		{"fieldname": "final_approval_datetime", "fieldtype": "Datetime", "label": "Final Approval Datetime"},
-		{"fieldname": "section_governance", "fieldtype": "Section Break", "label": "Governance"},
+		{
+			"fieldname": "approval_decision_date",
+			"fieldtype": "Date",
+			"label": "Approval Decision Date"
+		},
+		{
+			"fieldname": "final_approval_datetime",
+			"fieldtype": "Datetime",
+			"label": "Final Approval Datetime"
+		},
+		{
+			"fieldname": "section_governance",
+			"fieldtype": "Section Break",
+			"label": "Governance"
+		},
 		{
 			"fieldname": "accounting_officer_user",
 			"fieldtype": "Link",
@@ -190,8 +247,16 @@
 			"label": "Head of Procurement User",
 			"options": "User"
 		},
-		{"fieldname": "tender_committee_ref", "fieldtype": "Data", "label": "Tender Committee Ref"},
-		{"fieldname": "section_deviation", "fieldtype": "Section Break", "label": "Deviation"},
+		{
+			"fieldname": "tender_committee_ref",
+			"fieldtype": "Data",
+			"label": "Tender Committee Ref"
+		},
+		{
+			"fieldname": "section_deviation",
+			"fieldtype": "Section Break",
+			"label": "Deviation"
+		},
 		{
 			"default": "0",
 			"fieldname": "is_deviation_from_recommendation",
@@ -204,7 +269,11 @@
 			"label": "Deviation Record",
 			"options": "Award Deviation Record"
 		},
-		{"fieldname": "section_standstill", "fieldtype": "Section Break", "label": "Standstill"},
+		{
+			"fieldname": "section_standstill",
+			"fieldtype": "Section Break",
+			"label": "Standstill"
+		},
 		{
 			"default": "0",
 			"fieldname": "standstill_required",
@@ -217,7 +286,11 @@
 			"label": "Standstill Period",
 			"options": "Standstill Period"
 		},
-		{"fieldname": "section_contract", "fieldtype": "Section Break", "label": "Contract gate"},
+		{
+			"fieldname": "section_contract",
+			"fieldtype": "Section Break",
+			"label": "Contract gate"
+		},
 		{
 			"default": "0",
 			"fieldname": "ready_for_contract_creation",
@@ -230,7 +303,11 @@
 			"label": "Exception Record",
 			"options": "Exception Record"
 		},
-		{"fieldname": "section_notifications", "fieldtype": "Section Break", "label": "Notifications"},
+		{
+			"fieldname": "section_notifications",
+			"fieldtype": "Section Break",
+			"label": "Notifications"
+		},
 		{
 			"default": "Pending",
 			"fieldname": "notification_status",
@@ -249,14 +326,47 @@
 			"fieldtype": "Datetime",
 			"label": "Unsuccessful Notification Sent On"
 		},
-		{"fieldname": "section_narrative", "fieldtype": "Section Break", "label": "Narrative"},
-		{"fieldname": "award_summary_notes", "fieldtype": "Text Editor", "label": "Award Summary Notes"},
-		{"fieldname": "decision_justification", "fieldtype": "Text Editor", "label": "Decision Justification"},
-		{"fieldname": "section_lock", "fieldtype": "Section Break", "label": "Lock"},
-		{"default": "0", "fieldname": "is_locked", "fieldtype": "Check", "label": "Is Locked"},
-		{"fieldname": "lock_reason", "fieldtype": "Small Text", "label": "Lock Reason"},
-		{"fieldname": "remarks", "fieldtype": "Small Text", "label": "Remarks"},
-		{"fieldname": "section_outcomes", "fieldtype": "Section Break", "label": "Outcome lines"},
+		{
+			"fieldname": "section_narrative",
+			"fieldtype": "Section Break",
+			"label": "Narrative"
+		},
+		{
+			"fieldname": "award_summary_notes",
+			"fieldtype": "Text Editor",
+			"label": "Award Summary Notes"
+		},
+		{
+			"fieldname": "decision_justification",
+			"fieldtype": "Text Editor",
+			"label": "Decision Justification"
+		},
+		{
+			"fieldname": "section_lock",
+			"fieldtype": "Section Break",
+			"label": "Lock"
+		},
+		{
+			"default": "0",
+			"fieldname": "is_locked",
+			"fieldtype": "Check",
+			"label": "Is Locked"
+		},
+		{
+			"fieldname": "lock_reason",
+			"fieldtype": "Small Text",
+			"label": "Lock Reason"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Small Text",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "section_outcomes",
+			"fieldtype": "Section Break",
+			"label": "Outcome lines"
+		},
 		{
 			"fieldname": "outcome_lines",
 			"fieldtype": "Table",
@@ -286,28 +396,60 @@
 			"write": 1
 		},
 		{
+			"role": "Procurement Officer",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 1,
 			"create": 1,
 			"delete": 0,
-			"email": 1,
-			"export": 1,
-			"print": 1,
-			"read": 1,
-			"report": 1,
-			"role": "KT UAT Procurement Officer",
-			"share": 1,
-			"write": 1
+			"submit": 0,
+			"cancel": 0,
+			"report": 0
 		},
 		{
-			"create": 0,
-			"delete": 0,
+			"role": "Evaluation Committee Chair",
 			"email": 1,
 			"export": 1,
 			"print": 1,
-			"read": 1,
-			"report": 1,
-			"role": "KT UAT Auditor",
 			"share": 0,
-			"write": 0
+			"read": 1,
+			"write": 1,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 0
+		},
+		{
+			"role": "Auditor",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 0,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 1
+		},
+		{
+			"role": "Accounting Officer",
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"share": 0,
+			"read": 1,
+			"write": 1,
+			"create": 0,
+			"delete": 0,
+			"submit": 0,
+			"cancel": 0,
+			"report": 0
 		}
 	],
 	"row_format": "Dynamic",

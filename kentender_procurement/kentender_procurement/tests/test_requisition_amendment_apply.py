@@ -9,6 +9,7 @@ import frappe
 from frappe.tests.utils import FrappeTestCase
 from frappe.utils import flt
 
+from kentender.uat.kt_test_local_users import delete_kt_test_local_user
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 from kentender_budget.services.budget_availability import aggregate_ledger_buckets
 from kentender_budget.tests.test_budget import _budget
@@ -151,6 +152,7 @@ def _tear_down_pr08():
 	frappe.db.delete(PILLAR, {"name": ("like", "_KT_PR08_%")})
 	frappe.db.delete(FW, {"name": ("like", "_KT_PR08_%")})
 	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_PR08_%")})
+	delete_kt_test_local_user("_kt_pr08_approver@test.local")
 
 
 class TestRequisitionAmendmentApply(FrappeTestCase):

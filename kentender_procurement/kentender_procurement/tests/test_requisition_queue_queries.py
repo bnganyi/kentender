@@ -8,6 +8,7 @@ import importlib
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
+from kentender.uat.kt_test_local_users import delete_kt_test_local_user
 from kentender.tests.test_procuring_entity import _ensure_test_currency, _make_entity, run_test_db_cleanup
 from kentender.permissions.registry import UAT_ROLE
 from kentender_procurement.services.requisition_queue_queries import (
@@ -166,6 +167,12 @@ def _cleanup_q010_full():
 		frappe.db.delete(RAR_DOCTYPE, {"purchase_requisition": name})
 		frappe.delete_doc(PR, name, force=True, ignore_permissions=True)
 	frappe.db.delete("Procuring Entity", {"entity_code": ("like", "_KT_Q010_%")})
+	for em in (
+		"_kt_q010_other@test.local",
+		"_kt_q010_req_only@test.local",
+		"_kt_q010_hod@test.local",
+	):
+		delete_kt_test_local_user(em)
 
 
 class TestRequisitionQueueQueries(FrappeTestCase):

@@ -9,12 +9,18 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import get_datetime, now_datetime, today
 
+from kentender.workflow_engine.safeguards import workflow_mutation_context
+
 from kentender_governance.services.complaint_service_utils import (
 	append_complaint_event,
 	ensure_complaint_not_locked,
 	get_complaint_doc,
 	norm,
 	save_complaint,
+)
+from kentender_governance.services.complaint_workflow_actions import (
+	apply_route_decision_after_admissibility_review,
+	attach_route_after_intake,
 )
 
 C = "Complaint"
@@ -116,7 +122,9 @@ def submit_complaint(
 			"exception_record": exception_record or None,
 		}
 	)
-	doc.insert(ignore_permissions=True)
+	with workflow_mutation_context():
+		doc.insert(ignore_permissions=True)
+	attach_route_after_intake(doc.name)
 	append_complaint_event(
 		doc.name,
 		"Submitted",
@@ -174,6 +182,8 @@ def review_complaint_admissibility(
 	if not frappe.db.exists("User", reviewer):
 		frappe.throw(_("Reviewed By user not found."), frappe.ValidationError)
 
+	old_snapshot = {"workflow_state": norm(doc.workflow_state), "status": norm(doc.status)}
+
 	doc.admissibility_status = out
 	doc.admissibility_reason = reason or None
 	doc.reviewed_by_user = reviewer
@@ -193,6 +203,16 @@ def review_complaint_admissibility(
 		doc.status = "Submitted"
 
 	save_complaint(doc)
+	doc.reload()
+	new_snapshot = {"workflow_state": norm(doc.workflow_state), "status": norm(doc.status)}
+	apply_route_decision_after_admissibility_review(
+		doc,
+		admissibility_outcome=out,
+		actor_user=actor_user or reviewer,
+		comments=reason,
+		previous_state=old_snapshot,
+		new_state=new_snapshot,
+	)
 	summary = _("Admissibility outcome: {0}.").format(out)
 	if reason:
 		summary = summary + " " + reason

@@ -10,6 +10,8 @@ import frappe
 from frappe import _
 from frappe.utils import now_datetime
 
+from kentender.workflow_engine.safeguards import workflow_mutation_context
+
 AR = "Acceptance Record"
 IR = "Inspection Record"
 IPL = "Inspection Parameter Line"
@@ -143,6 +145,8 @@ def submit_acceptance_decision(inspection_record_id: str, decision_data: dict[st
 	if _norm(ir.status) != "Completed":
 		frappe.throw(_("Inspection must be completed before acceptance."), frappe.ValidationError)
 
+	use_engine_workflow = bool(data.get("use_engine_workflow", False))
+
 	existing_ar = _norm(ir.acceptance_record)
 	if existing_ar and frappe.db.exists(AR, existing_ar):
 		st = _norm(frappe.db.get_value(AR, existing_ar, "status"))
@@ -167,8 +171,12 @@ def submit_acceptance_decision(inspection_record_id: str, decision_data: dict[st
 	ar.inspection_record = irn
 	ar.contract = ir.contract
 	ar.acceptance_decision = ad
-	ar.status = _norm(data.get("status")) or "Submitted"
-	ar.workflow_state = _norm(data.get("workflow_state")) or "Pending Approval"
+	if use_engine_workflow:
+		ar.status = _norm(data.get("status")) or "Draft"
+		ar.workflow_state = _norm(data.get("workflow_state")) or "Draft"
+	else:
+		ar.status = _norm(data.get("status")) or "Submitted"
+		ar.workflow_state = _norm(data.get("workflow_state")) or "Pending Approval"
 	ar.standards_compliance_status = _norm(data.get("standards_compliance_status")) or "Not Assessed"
 	ar.payment_eligibility_signal_status = (
 		_norm(data.get("payment_eligibility_signal_status")) or _default_payment_eligibility_signal(ad)
@@ -198,20 +206,25 @@ def submit_acceptance_decision(inspection_record_id: str, decision_data: dict[st
 		if data.get(fn) is not None:
 			setattr(ar, fn, data.get(fn))
 
-	ar.insert(ignore_permissions=True)
+	with workflow_mutation_context():
+		ar.insert(ignore_permissions=True)
 
 	ir.reload()
 	ir.acceptance_record = ar.name
-	ir.acceptance_status = _map_ir_acceptance_status(ad)
+	if use_engine_workflow:
+		ir.acceptance_status = "Pending"
+	else:
+		ir.acceptance_status = _map_ir_acceptance_status(ad)
 	ir.save(ignore_permissions=True)
 
-	_append_acceptance_event(
-		irn,
-		ar.name,
-		ad,
-		summary_notes=_norm(data.get("event_summary")),
-		actor_user=_norm(data.get("approved_by_user")) or None,
-	)
+	if not use_engine_workflow:
+		_append_acceptance_event(
+			irn,
+			ar.name,
+			ad,
+			summary_notes=_norm(data.get("event_summary")),
+			actor_user=_norm(data.get("approved_by_user")) or None,
+		)
 
 	return {
 		"name": ar.name,
@@ -219,4 +232,18 @@ def submit_acceptance_decision(inspection_record_id: str, decision_data: dict[st
 		"acceptance_decision": ar.acceptance_decision,
 		"inspection_acceptance_status": ir.acceptance_status,
 	}
+
+
+def sync_inspection_acceptance_status_from_record(acceptance_record_id: str) -> None:
+	"""After workflow final approval, align **Inspection Record** ``acceptance_status`` with the decision."""
+	an = _norm(acceptance_record_id)
+	if not an or not frappe.db.exists(AR, an):
+		frappe.throw(_("Acceptance Record not found."), frappe.ValidationError)
+	ar = frappe.get_doc(AR, an)
+	irn = _norm(ar.inspection_record)
+	if not irn:
+		return
+	ir = frappe.get_doc(IR, irn)
+	ir.acceptance_status = _map_ir_acceptance_status(ar.acceptance_decision)
+	ir.save(ignore_permissions=True)
 

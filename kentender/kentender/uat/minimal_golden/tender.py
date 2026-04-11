@@ -19,8 +19,12 @@ def _emails_by_key(ds: dict[str, Any]) -> dict[str, str]:
 
 
 def _delete_tender(docname: str) -> None:
-	if docname and frappe.db.exists(TENDER, docname):
-		frappe.delete_doc(TENDER, docname, force=True, ignore_permissions=True)
+	"""Remove tender and dependent rows (e.g. Tender Document + File links) so re-seed is idempotent."""
+	if not docname or not frappe.db.exists(TENDER, docname):
+		return
+	for td in frappe.get_all("Tender Document", filters={"tender": docname}, pluck="name") or []:
+		frappe.delete_doc("Tender Document", td, force=True, ignore_permissions=True)
+	frappe.delete_doc(TENDER, docname, force=True, ignore_permissions=True)
 
 
 def load_tender(

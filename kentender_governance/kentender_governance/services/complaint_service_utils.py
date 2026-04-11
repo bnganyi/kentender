@@ -9,6 +9,8 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import now_datetime
 
+from kentender.workflow_engine.safeguards import workflow_mutation_context
+
 C = "Complaint"
 CSE = "Complaint Status Event"
 
@@ -49,5 +51,7 @@ def append_complaint_event(
 
 
 def save_complaint(doc: Document) -> Document:
-	doc.save(ignore_permissions=True)
+	"""Persist complaint; workflow_state is approval-controlled (WF-002 / WF-015)."""
+	with workflow_mutation_context():
+		doc.save(ignore_permissions=True)
 	return doc

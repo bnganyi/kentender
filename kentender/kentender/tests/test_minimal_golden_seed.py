@@ -36,7 +36,7 @@ class TestMinimalGoldenSeed(FrappeTestCase):
 		self.assertEqual(r1["procuring_entity"], "MOH")
 		hod_email = "hod.test@ken-tender.test"
 		self.assertTrue(frappe.db.exists("User", hod_email))
-		self.assertIn("KT UAT HOD", frappe.get_roles(hod_email))
+		self.assertIn("Head of Department", frappe.get_roles(hod_email))
 		self.assertTrue(
 			frappe.db.exists(
 				"User Permission",
@@ -82,7 +82,7 @@ class TestMinimalGoldenSeed(FrappeTestCase):
 		self.assertIn("base_ref", out)
 		req_email = "requisitioner.test@ken-tender.test"
 		self.assertTrue(frappe.db.exists("User", req_email))
-		self.assertIn("KT UAT Requisitioner", frappe.get_roles(req_email))
+		self.assertIn("Requisitioner", frappe.get_roles(req_email))
 		self.assertTrue(
 			frappe.db.exists(
 				"User Permission",
@@ -153,6 +153,11 @@ class TestMinimalGoldenSeed(FrappeTestCase):
 			out1["purchase_requisition"]["name"],
 			out2["purchase_requisition"]["name"],
 		)
+		pt = out1.get("post_tender") or {}
+		if not pt.get("skipped"):
+			self.assertEqual(pt.get("contract_status"), "Active")
+			self.assertTrue(pt.get("evaluation_session"))
+			self.assertTrue(pt.get("procurement_contract"))
 		v = verify_minimal_golden(ds)
 		self.assertTrue(v.get("ok"), msg=v)
 		fut = ds.get("future_business_ids") or {}
